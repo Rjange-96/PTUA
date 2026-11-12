@@ -1,0 +1,33 @@
+# Maintient le projet Supabase gratuit actif (il est mis en pause après 7 jours sans activité).
+# N'envoie aucune donnée : simple lecture à vide avec la clé publique de l'application.
+name: Maintien du serveur de synchronisation
+on:
+  schedule:
+    - cron: '17 5 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Lecture à vide
+        run: |
+          Z=$(printf '0%.0s' $(seq 64))
+          for f in ptua_get ptua_hist_list; do
+            curl -sS -o /dev/null -w "$f : HTTP %{http_code}\n" --max-time 30 \
+              -X POST "https://iofbwpzhptctyelmylkz.supabase.co/rest/v1/rpc/$f" \
+              -H "apikey: sb_publishable_sFlCanmeyZ_iOQJ6zynyqA_qPgTsUey" -H "Content-Type: application/json" \
+              -d "{\"p_id\":\"$Z\",\"p_auth\":\"$Z\"}" || true
+          done
+      # GitHub désactive les tâches planifiées après 60 jours sans activité du dépôt : un témoin mensuel l'évite.
+      - uses: actions/checkout@v4
+        if: github.event_name == 'schedule'
+      - name: Témoin mensuel
+        if: github.event_name == 'schedule'
+        run: |
+          [ "$(date -u +%d)" = "01" ] || exit 0
+          date -u +%Y-%m-%d > .keepalive
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .keepalive && git commit -m "Témoin mensuel d'activité" && git push || true
