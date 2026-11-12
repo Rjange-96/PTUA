@@ -26,5 +26,6 @@ bash tests/run_all.sh
 | t18.py | déverrouillage Face ID (faux lecteur biométrique) |
 | t19.py | onglet Activité |
 | t20.py | vérification NextDNS |
+| t21.py | modèles de courriers (Word, impression) |
 
 À lancer après chaque modification, avant de publier.
