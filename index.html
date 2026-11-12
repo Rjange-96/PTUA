@@ -175,16 +175,47 @@ nav i{font-style:normal}nav .sh,nav .more{display:none}
 .vb{flex:1;overflow:auto;background:#566074;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}.vz{margin:0 auto;padding:4px 10px calc(16px + env(safe-area-inset-bottom));box-sizing:border-box}
 .vh{color:#fff;font-weight:600;font-size:13px;padding:10px 2px 6px}.ve{color:#fff;background:#0006;border-radius:10px;padding:12px;margin:6px 0}
 .pg{background:#fff;margin:0 0 10px;box-shadow:0 2px 10px #0005}.pg canvas,.pg img{display:block;width:100%;height:auto}
+/* ===== v9.1 — identité « sceau » : sobriété, icônes vectorielles, cibles tactiles, contrastes, états d’erreur ===== */
+:root{--s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:24px;--rd:12px}
+:root:not([data-t=dark]){--o:#9a4a00;--y:#6f5600;--g:#0a6b48;--r:#b4232f;--m:#505d78}
+#bg,.cu{display:none!important}
+.lgo{flex:none;width:34px;height:34px;color:var(--p)}
+#sp{background:var(--bg);gap:22px}#sp .lgo{width:92px;height:92px}
+#sp b{background:none;color:var(--t);-webkit-text-fill-color:currentColor;letter-spacing:.42em;font-size:22px;font-weight:700}
+h1{background:none;color:var(--t);-webkit-text-fill-color:currentColor}h1 small{-webkit-text-fill-color:var(--m)}
+.k b{background:none;color:var(--t);-webkit-text-fill-color:currentColor}
+.skip{position:absolute;left:12px;top:-60px;z-index:300;background:var(--p);color:var(--bt);padding:10px 16px;border-radius:10px;font-weight:600;text-decoration:none}.skip:focus{top:12px}
+:focus-visible{outline:3px solid var(--p);outline-offset:2px;border-radius:8px}
+nav i,.hb button{display:grid;place-items:center}nav i svg,.hb svg{width:22px;height:22px;display:block}
+nav button i{line-height:0}
+@media(min-width:900px){nav button i{width:22px}nav button{font-size:14.5px}}
+.hb button{width:44px;height:44px;border-radius:12px}
+input[aria-invalid=true],select[aria-invalid=true]{border-color:var(--r);box-shadow:0 0 0 3px color-mix(in srgb,var(--r) 22%,transparent)}
+.derr{margin:0 0 12px;padding:10px 12px;border-radius:10px;border-left:4px solid var(--r);background:color-mix(in srgb,var(--r) 9%,var(--c));color:var(--r);font-weight:600;font-size:14px}
+label{font-size:13px;font-weight:500}
+th{font-size:12.5px}td,th{padding:12px 12px}
+.card h2,.sh h2{letter-spacing:-.005em}.card{padding:18px}
+.al:hover{filter:brightness(.98)}
+@media(pointer:coarse){button{min-height:44px}td>button,.ca button{min-height:36px;padding:6px 12px}.di button{min-height:40px}}
+@media(max-width:700px){
+ .kpis{grid-template-columns:1fr 1fr;gap:10px}.kpis>.k:last-child:nth-child(odd){grid-column:1/-1}
+ .k{padding:12px 14px}.k b{font-size:24px}
+ .card{padding:14px}
+}
+@media(max-width:899px){.hb button{width:42px;height:42px}h1{font-size:15.5px}}
+@media(prefers-reduced-motion:reduce){#sp{display:none}}
+.card input[type=date]{width:auto;min-width:170px}
+@media(prefers-contrast:more){:root{--b:#8a94a8}[data-t=dark]{--b:#6b7894}.b{border:1px solid currentColor}}
 </style></head><body>
-<div id="bg"></div><div id="sp"><div class="cu"></div><b>PTUA</b></div><header><div class="lg"><div class="cu"></div><h1>Gestionnaire juridique et contractuel PTUA <small>v9.0</small> <span id="sys" onclick="go('sauv')"></span></h1></div><div class="hr"><b id="ht">--:--:--</b><small id="hdt"></small></div>
-<div class="hb"><button onclick="go('search')" aria-label="Rechercher" title="Rechercher">🔎</button><button id="th" onclick="th()"></button><button onclick="pinMenu()" aria-label="Code d’accès et verrouillage" title="Code d’accès et verrouillage">🔒</button><button onclick="menu()" aria-label="Autres actions" title="Autres actions">⋯</button></div>
+<a class="skip" href="#v">Aller au contenu</a><div id="bg"></div><div id="sp"><svg class="lgo" viewBox="0 0 48 48" role="img" aria-label="PTUA"><circle cx="24" cy="24" r="22" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="24" cy="24" r="17.5" fill="none" stroke="currentColor" stroke-width="1" opacity=".55"/><text x="24" y="33" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="26" font-weight="700" fill="currentColor">§</text></svg><b>PTUA</b></div><header><div class="lg"><svg class="lgo" viewBox="0 0 48 48" role="img" aria-label="PTUA"><circle cx="24" cy="24" r="22" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="24" cy="24" r="17.5" fill="none" stroke="currentColor" stroke-width="1" opacity=".55"/><text x="24" y="33" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="26" font-weight="700" fill="currentColor">§</text></svg><h1>Gestionnaire juridique et contractuel PTUA <small>v9.1</small> <span id="sys" onclick="go('sauv')"></span></h1></div><div class="hr"><b id="ht">--:--:--</b><small id="hdt"></small></div>
+<div class="hb"><button onclick="go('search')" aria-label="Rechercher" title="Rechercher" data-i="search"></button><button id="th" onclick="th()"></button><button onclick="pinMenu()" aria-label="Code d’accès et verrouillage" title="Code d’accès et verrouillage" data-i="lock"></button><button onclick="menu()" aria-label="Autres actions" title="Autres actions" data-i="dots"></button></div>
 <input type="file" id="imp" hidden onchange="impJ(this)"></header>
 <div id="ins" hidden></div><nav id="nav"></nav><div id="al"></div><main id="v"></main><div id="lk" hidden><div class="lkb"><h2 style="margin:0">🔒 Application verrouillée</h2><small style="color:var(--m)">Données chiffrées sur cet appareil (AES-256)</small><button type="button" class="pri" id="fb" hidden onclick="unlFid()">🙂 Déverrouiller avec Face ID</button><form onsubmit="event.preventDefault();unl()"><input type="text" name="username" value="PTUA" autocomplete="username" hidden readonly><input id="pin" type="password" autocomplete="current-password" placeholder="Code d’accès" autocapitalize="off" spellcheck="false"><button class="pri" type="submit">Déverrouiller</button></form><small id="lke" style="color:var(--r)"></small></div></div>
 <datalist id="orgs"></datalist>
 <dialog id="cd"></dialog><dialog id="dv"></dialog><dialog id="dlg"><h3 id="dt" style="margin-top:0"></h3><div id="df"></div><div class="row"><button onclick="$('#dlg').close()">Annuler</button><button class="pri" onclick="ok()">Enregistrer</button></div></dialog>
 <script>
 if(top!==self){try{top.location=self.location.href}catch(e){document.documentElement.innerHTML='';throw 0}}
-const APPV='9.0',MOB=()=>matchMedia('(max-width:700px)').matches,K='ptua_v3',$=s=>document.querySelector(s),day=864e5,today=new Date(new Date().toDateString());
+const APPV='9.1',MOB=()=>matchMedia('(max-width:700px)').matches,K='ptua_v3',$=s=>document.querySelector(s),day=864e5,today=new Date(new Date().toDateString());
 // ===== v8.7 — Moniteur d’activité : métadonnées uniquement (heure, serveur, taille), jamais le contenu des données =====
 const MON={net:[],ev:[],t0:Date.now(),sent:0,recv:0,hosts:{}};
 (()=>{const f0=window.fetch.bind(window);window.fetch=async(u,o)=>{const t=performance.now(),rec={at:Date.now(),m:(o&&o.method)||'GET',host:'?',path:'',bl:0,st:0,ms:0,rl:0};
@@ -200,6 +231,7 @@ os:{t:'Ordre de service',f:[['marche','Marché','ref'],['num','N° OS'],['type',
 avenants:{t:'Avenant',f:[['marche','Marché','ref'],['num','N° avenant'],['date','Date de signature','date'],['objet','Objet'],['montant','Variation de montant (FCFA)','number'],['delai','Délai supplémentaire (jours)','number']]},
 assurances:{t:'Assurance',f:[['marche','Marché','ref'],['type','Type d’assurance','sel',['Tous risques chantier (TRC)','Responsabilité civile (RC)','Garantie décennale','Accidents du travail','Multirisque matériel / engins','Transport des marchandises','Autre']],['assureur','Compagnie d’assurance'],['police','N° de police'],['assure','Assuré / souscripteur'],['montant','Capital / montant assuré (FCFA)','number'],['prime','Prime (FCFA)','number'],['effet','Date d’effet','date'],['echeance','Date d’échéance','date'],['statut','Statut','sel',['Active','En attente de justificatif','Expirée','Résiliée']],['note','Observation'],['doc','Référence document / lien']]}};
 const NAV=[['dash','📊 Tableau de bord'],['marches','📁 Marchés'],['garanties','🛡️ Garanties'],['assurances','☂️ Assurances'],['conf','✅ Conformité'],['os','📝 Ordres de service'],['avenants','📑 Avenants'],['search','🔎 Recherche'],['stats','📈 Statistiques'],['pres','🎤 Présentation'],['veille','⚖️ Veille juridique'],['sauv','💾 Sauvegarde'],['act','📡 Activité'],['amel','💡 Améliorations'],['journal','🕘 Journal']];
+const ICO={"dash": "M4 4h7v7H4zM13 4h7v4h-7zM13 10h7v10h-7zM4 13h7v7H4z", "marches": "M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z", "garanties": "M12 3l8 3v6c0 4.5-3.2 8-8 9-4.8-1-8-4.5-8-9V6z", "assurances": "M3 12a9 9 0 0 1 18 0zM12 12v6a2 2 0 0 0 4 0", "conf": "M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM8 12l3 3 5-6", "os": "M6 3h8l4 4v14H6zM14 3v4h4M9 12h6M9 16h6", "avenants": "M8 8h11v13H8zM5 16V3h11", "search": "M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM21 21l-4.3-4.3", "stats": "M4 20V10M10 20V4M16 20v-7M22 20H2", "pres": "M3 4h18v12H3zM8 20h8M12 16v4", "veille": "M12 3v18M5 21h14M5 7h14M5 7l-3 7a3 3 0 0 0 6 0zM19 7l-3 7a3 3 0 0 0 6 0z", "sauv": "M5 3h11l3 3v15H5zM8 3v6h7V3M8 21v-7h8v7", "act": "M3 12h4l3-8 4 16 3-8h4", "amel": "M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z", "journal": "M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 7v5l3 2", "more": "M4 6h16M4 12h16M4 18h16", "lock": "M6 11h12v10H6zM8 11V8a4 4 0 0 1 8 0v3", "moon": "M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z", "sun": "M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5", "dots": "M5 12h.01M12 12h.01M19 12h.01"},ic=k=>ICO[k]?`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${ICO[k]}"/></svg>`:'';
 const PRIM=['dash','marches','garanties','assurances'],GRP={dash:'Suivi',search:'Analyse',sauv:'Application'},SH={dash:'Accueil'};
 let db=null,tab='dash',q='',cur={};
 const EK='ptua_enc',IT=600000,te=new TextEncoder(),td=new TextDecoder();
@@ -266,7 +298,7 @@ const badgeA=a=>{const x=galA(a);return x?(x.j>=9999?'<span class="b y">Sans éc
 const badge=g=>{const a=gal(g);return endedG(g)?`<span class="b g">Terminée · ${esc(g.fin_ev)}</span>`:a&&a.j>=9999?'<span class="b g">En cours · fin sur événement</span>':a?`<span class="b ${a.c}">${a.j<0?'Échue depuis '+(-a.j)+' j':a.j+' j restants'}</span>`:`<span class="b ${g.statut=='Mainlevée obtenue'?'g':'y'}">${esc(g.statut)}</span>`};
 
 function render(){banner();
- $('#nav').innerHTML=NAV.map(([k,l])=>{const i=l.indexOf(' ');return `${GRP[k]?`<div class="ng">${GRP[k]}</div>`:''}<button class="${k==tab?'on':''}${PRIM.includes(k)?'':' sec'}" onclick="go('${k}')"><i>${l.slice(0,i)}</i><span class="lo">${l.slice(i+1)}${k=='amel'?amN():''}</span><span class="sh">${SH[k]||l.slice(i+1)}</span></button>`}).join('')+`<button class="more${PRIM.includes(tab)?'':' on'}" onclick="more()"><i>☰</i><span class="sh">Plus</span></button>`;
+ $('#nav').innerHTML=NAV.map(([k,l])=>{const i=l.indexOf(' ');return `${GRP[k]?`<div class="ng">${GRP[k]}</div>`:''}<button class="${k==tab?'on':''}${PRIM.includes(k)?'':' sec'}" onclick="go('${k}')"><i>${ic(k)||l.slice(0,i)}</i><span class="lo">${l.slice(i+1)}${k=='amel'?amN():''}</span><span class="sh">${SH[k]||l.slice(i+1)}</span></button>`}).join('')+`<button class="more${PRIM.includes(tab)?'':' on'}" onclick="more()" aria-label="Plus de rubriques"><i>${ic('more')}</i><span class="sh">Plus</span></button>`;
  $('#orgs').innerHTML=[...new Set(db.garanties.map(g=>g.organisme).filter(Boolean))].map(o=>`<option value="${esc(o)}">`).join('');
  if(tab=='dash')$('#v').innerHTML=dash();
  else if(tab=='search'){$('#v').innerHTML=sUI();sRes();$('#gq')?.focus()}
@@ -283,6 +315,7 @@ function render(){banner();
   $('#tb').innerHTML=rows(tab);
  }
 }
+const R9=render;render=function(){R9();document.querySelectorAll('.card,.w,.w2').forEach(e=>{if(e.scrollWidth>e.clientWidth+2){e.tabIndex=0;e.setAttribute('role','region');e.setAttribute('aria-label','Contenu défilant')}})};
 function go(t){try{const u=RF().use||(RF().use={});u[t]=(u[t]||0)+1}catch(e){}tab=t;q='';sk=S[t]?VW(t).sk:'';sd=S[t]?VW(t).sd:1;sf='';render()}
 function rows(e){
  const s=S[e],V=VW(e),F=s.f.filter(f=>!V.hide.includes(f[0]));LL='';
@@ -329,10 +362,11 @@ if(e=='marches'){const E=['num','objet','titulaire','montant'],L=[...$('#df').ch
  $('#df').insertAdjacentHTML('beforeend',`<label>📎 Joindre le scan du document (photo ou PDF)${it.files&&it.files.length?` — ${it.files.length} déjà joint(s)`:''}<input type="file" id="fa" accept="image/*,application/pdf" multiple></label>`);
  $('#dlg').showModal();
 }
+function fErrF(n,m){$('#derr')?.remove();$('#df').querySelectorAll('[aria-invalid]').forEach(x=>x.removeAttribute('aria-invalid'));const f=$('#df [name="'+n+'"]'),p=document.createElement('p');p.id='derr';p.className='derr';p.setAttribute('role','alert');p.textContent=m;$('#df').prepend(p);if(f){f.setAttribute('aria-invalid','true');f.setAttribute('aria-describedby','derr');const d=f.closest('details');if(d)d.open=true;f.focus()}}
 function ok(){
  const s=S[cur.e],o={};$('#df').querySelectorAll('[name]').forEach(x=>o[x.name]=x.value.trim());
- const rq=cur.e=='marches'?s.f.find(f=>f[0]=='num'):s.f[0];if(!o[rq[0]]){alert('Le champ « '+rq[1]+' » est obligatoire.');return}
- if(cur.e=='marches'&&db.marches.some(m=>m.num==o.num&&m.id!=cur.id)){alert('Ce numéro de marché existe déjà.');return}
+ const rq=cur.e=='marches'?s.f.find(f=>f[0]=='num'):s.f[0];if(!o[rq[0]]){fErrF(rq[0],'Le champ « '+rq[1]+' » est obligatoire.');return}
+ if(cur.e=='marches'&&db.marches.some(m=>m.num==o.num&&m.id!=cur.id)){fErrF('num','Ce numéro de marché existe déjà : choisissez-en un autre.');return}
  o._u=Date.now();
  if(cur.id){Object.assign(db[cur.e].find(x=>x.id==cur.id),o);log('Modification '+s.t+' : '+lab(cur.e,o))}
  else{o.id=Date.now().toString(36)+Math.random().toString(36).slice(2,5);db[cur.e].push(o);log('Ajout '+s.t+' : '+lab(cur.e,o))}
@@ -374,22 +408,10 @@ async function impJ(inp){
  r.readAsText(f);inp.value='';
 }
 
-(()=>{const cube=e=>e.innerHTML='<i></i><i></i><i></i><i></i><i></i><i></i>';
-document.querySelectorAll('.cu').forEach(cube);
-const bg=$('#bg');
-for(let i=0,N=MOB()?6:12;i<N;i++){const f=document.createElement('div'),c=document.createElement('div'),z=28+Math.random()*72;
- f.className='fl';c.className='cu';c.style.setProperty('--s',z+'px');c.style.animationDuration=16+Math.random()*26+'s';c.style.animationDelay=-Math.random()*20+'s';
- f.style.cssText=`left:${Math.random()*94}%;top:${Math.random()*90}%;animation-duration:${9+Math.random()*9}s;animation-delay:${-Math.random()*9}s;opacity:${.22+Math.random()*.35}`;
- cube(c);f.appendChild(c);bg.appendChild(f)}
-setTimeout(()=>$('#sp')?.classList.add('x'),1500);setTimeout(()=>$('#sp')?.remove(),2300);
-let L=null;const rs=()=>{if(L)L.style.transform='';L=null};
-document.addEventListener('pointermove',e=>{if(e.pointerType!='mouse')return;const t=e.target.closest('.k,.card:not(.nt)');if(L&&L!=t)rs();if(!t)return;L=t;
- const r=t.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
- t.style.transform=`perspective(700px) rotateX(${-y*9}deg) rotateY(${x*9}deg) translateZ(10px)`});
-document.addEventListener('mouseout',e=>{if(!e.relatedTarget)rs()});
-})();
+document.querySelectorAll('[data-i]').forEach(b=>b.innerHTML=ic(b.dataset.i));
+setTimeout(()=>$('#sp')?.classList.add('x'),1100);setTimeout(()=>$('#sp')?.remove(),1800);
 
-const H=document.documentElement,lbl=()=>{const b=$('#th'),d=H.dataset.t=='dark';b.textContent=d?'☀️':'🌙';b.title=d?'Passer au thème clair':'Passer au thème sombre';b.setAttribute('aria-label',b.title)};
+const H=document.documentElement,lbl=()=>{const b=$('#th'),d=H.dataset.t=='dark';b.innerHTML=ic(d?'sun':'moon');b.title=d?'Passer au thème clair':'Passer au thème sombre';b.setAttribute('aria-label',b.title)};
 function th(){if(H.dataset.t=='dark')delete H.dataset.t;else H.dataset.t='dark';try{localStorage.setItem('ptua_theme',H.dataset.t||'')}catch(e){}lbl()}
 try{if(localStorage.getItem('ptua_theme')=='dark')H.dataset.t='dark'}catch(e){}lbl();
 function tick(){const d=new Date();$('#ht').textContent=d.toLocaleTimeString('fr-FR');$('#hdt').textContent=d.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long',year:'numeric'})}
@@ -424,7 +446,7 @@ function banner(){
  const n=db.garanties.filter(g=>{const a=gal(g);return a&&a.j<=30}).length,nA=db.assurances.filter(a=>{const x=galA(a);return x&&x.j<=30}).length;let le=0;try{le=+localStorage.getItem('ptua_exp')||0}catch(e){}
  let h='';if(nA)h+=`<div class="al r" onclick="go('assurances')">☂️ ${nA} assurance(s) à renouveler (échéance ≤ 30 jours ou dépassée) — voir les assurances</div>`;if(UPD&&cmpV(UPD.version,APPV)>0)h+=`<div class="al ${UPD.importance=='securite'?'r':'o'}" onclick="showUpd()">🔄 Mise à jour v${esc(UPD.version)} disponible${UPD.importance=='securite'?' (sécurité, recommandée)':''} — toucher pour voir et installer</div>`;if(SY&&SY.last&&Date.now()-SY.last>3*day&&(db.marches.length||db.garanties.length))h+=`<div class="al o" onclick="syncNow(true)">☁️ Sauvegarde cloud non effectuée depuis plus de 3 jours — toucher pour réessayer</div>`;if(n)h+=`<div class="al r" onclick="go('dash')">⚠️ ${n} garantie(s) à surveiller (échéance ≤ 30 jours ou dépassée) — voir le tableau de bord</div>`;
  if((db.marches.length||db.garanties.length)&&Date.now()-le>7*day&&!(SY&&SY.last&&Date.now()-SY.last<3*day))h+=`<div class="al o" onclick="expJ()">💾 Aucune sauvegarde depuis plus de 7 jours — cliquer pour exporter maintenant</div>`;
- if(!ENC&&(db.marches.length||db.garanties.length))h+=`<div class="al r" onclick="pinMenu()">🔓 Vos données ne sont pas chiffrées sur cet appareil — toucher pour activer le code et le chiffrement</div>`;const w=constats().filter(c=>c.n=='warn').length;if(w)h+=`<div class="al o" onclick="go('veille')">⚖️ ${w} point(s) de conformité à vérifier — ouvrir la veille juridique</div>`;{const cn=cfAlertN();if(cn)h+=`<div class="al o" onclick="go('conf')">✅ ${cn} point(s) de conformité à traiter (pièces en retard, garanties, assurances)</div>`}if(diff(today,D(RF().lc||RF().v))>30)h+=`<div class="al o" onclick="go('veille')">⚖️ Référentiel juridique non vérifié depuis plus de 30 jours</div>`;if(!db.marches.length&&!db.garanties.length&&snaps().length)h+=`<div class="al r" onclick="go('sauv')">💾 Aucune donnée affichée, mais ${snaps().length} point(s) de sauvegarde sont disponibles — cliquer pour restaurer</div>`;$('#al').innerHTML=h;{const A=[...$('#al').children];if(A.length>2){const d=document.createElement('details');d.className='alx';d.open=!!window.alxO;d.ontoggle=()=>window.alxO=d.open;d.innerHTML=`<summary>${A.length-2} autre(s) alerte(s)</summary>`;A.slice(2).forEach(x=>d.appendChild(x));$('#al').appendChild(d)}}document.title=(n?'('+n+') ':'')+'Gestionnaire PTUA v9.0';
+ if(!ENC&&(db.marches.length||db.garanties.length))h+=`<div class="al r" onclick="pinMenu()">🔓 Vos données ne sont pas chiffrées sur cet appareil — toucher pour activer le code et le chiffrement</div>`;const w=constats().filter(c=>c.n=='warn').length;if(w)h+=`<div class="al o" onclick="go('veille')">⚖️ ${w} point(s) de conformité à vérifier — ouvrir la veille juridique</div>`;{const cn=cfAlertN();if(cn)h+=`<div class="al o" onclick="go('conf')">✅ ${cn} point(s) de conformité à traiter (pièces en retard, garanties, assurances)</div>`}if(diff(today,D(RF().lc||RF().v))>30)h+=`<div class="al o" onclick="go('veille')">⚖️ Référentiel juridique non vérifié depuis plus de 30 jours</div>`;if(!db.marches.length&&!db.garanties.length&&snaps().length)h+=`<div class="al r" onclick="go('sauv')">💾 Aucune donnée affichée, mais ${snaps().length} point(s) de sauvegarde sont disponibles — cliquer pour restaurer</div>`;$('#al').innerHTML=h;{const A=[...$('#al').children];if(A.length>2){const d=document.createElement('details');d.className='alx';d.open=!!window.alxO;d.ontoggle=()=>window.alxO=d.open;d.innerHTML=`<summary>${A.length-2} autre(s) alerte(s)</summary>`;A.slice(2).forEach(x=>d.appendChild(x));$('#al').appendChild(d)}}document.title=(n?'('+n+') ':'')+'Gestionnaire PTUA v9.1';
 }
 function ech(){
  const it=[];db.assurances.forEach(a=>{const x=galA(a);if(x&&x.j>=0&&x.j<=90)it.push({d:D(a.echeance),t:'☂️ Échéance d’assurance',l:mn(a.marche)+' · '+a.type+(a.assureur?' · '+a.assureur:'')})});
@@ -1015,8 +1037,8 @@ function conf(){
  const ov=ms.map(x=>{const p=cfProg(x),n=cfN(x);return`<tr style="cursor:pointer" onclick="cfSel('${x.id}')"><th>${esc(x.num)}</th><td style="text-align:left">${esc(x.titulaire||'')}</td><td>${p.f}/${p.t}</td><td><span class="b ${p.late?'r':p.p==100?'g':'y'}">${p.p} %</span></td><td>${n?`<span class="b r">${n} point(s)</span>`:'<span class="b g">RAS</span>'}</td></tr>`}).join('');
  const rowsH=cfRows(m).map(p=>`<div class="card nt"><h2>${esc(p.t)}</h2>${p.it.map(i=>{const b=i.na?'<span class="b y">Sans objet</span>':i.done?'<span class="b g">'+(i.st=='f'?'Fait':'Détecté')+'</span>':i.j!=null?`<span class="b ${i.j<0?'r':i.j<=7?'o':'y'}">${i.j<0?'En retard de '+(-i.j)+' j':'Avant le '+fdd(i.dd)+' ('+i.j+' j)'}</span>`:'<span class="b y">À faire</span>';
   const red=i.red&&+m.montant?`<div><small>Montant indicatif : ${fmt(Math.round(m.montant*0.005))} FCFA (0,5 % de ${fmt(m.montant)} FCFA, si le montant saisi est hors taxes).</small></div>`:'';
-  const dt=i.pd?`<div><small>Date de notification d’approbation : <input type="date" value="${esc(an.dP)}" onchange="cfDate('${m.id}','dP',this.value)"></small></div>`:'';
-  return`<div style="padding:10px 0;border-top:1px solid var(--bd,#8883)"><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><button class="${i.done?'pri':''}" onclick="cfTog('${m.id}','${i.k}')" aria-label="Changer l’état" style="min-width:44px">${i.na?'N/A':i.done?'✓':'☐'}</button><b style="flex:1;min-width:200px">${esc(i.l)}</b>${b}</div>${i.dl&&!an[i.an]&&i.an=='dA'?`<div><small>Date de notification de l’attribution : <input type="date" onchange="cfDate('${m.id}','dA',this.value)"></small></div>`:i.an=='dA'?`<div><small>Notification de l’attribution : <input type="date" value="${esc(an.dA)}" onchange="cfDate('${m.id}','dA',this.value)"></small></div>`:''}${i.an=='dP'&&!an.dP?`<div><small>Date de notification d’approbation : <input type="date" onchange="cfDate('${m.id}','dP',this.value)"></small></div>`:''}${dt}${red}<details><summary><small>Détail et source</small></summary><div style="font-size:13px;color:var(--m)">${esc(i.n)}<br><i>Source : ${esc(i.s)}</i>${i.au?'<br>'+esc(i.au):''}</div></details></div>`}).join('')}</div>`).join('');
+  const dt=i.pd?`<div><small>Date de notification d’approbation : <input type="date" aria-label="Date de notification d’approbation" value="${esc(an.dP)}" onchange="cfDate('${m.id}','dP',this.value)"></small></div>`:'';
+  return`<div style="padding:10px 0;border-top:1px solid var(--bd,#8883)"><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><button class="${i.done?'pri':''}" onclick="cfTog('${m.id}','${i.k}')" aria-label="${esc(i.l)} : changer l’état" aria-pressed="${i.done}" style="min-width:44px">${i.na?'N/A':i.done?'✓':'☐'}</button><b style="flex:1;min-width:200px">${esc(i.l)}</b>${b}</div>${i.dl&&!an[i.an]&&i.an=='dA'?`<div><small>Date de notification de l’attribution : <input type="date" aria-label="Date de notification de l’attribution" onchange="cfDate('${m.id}','dA',this.value)"></small></div>`:i.an=='dA'?`<div><small>Notification de l’attribution : <input type="date" aria-label="Date de notification de l’attribution" value="${esc(an.dA)}" onchange="cfDate('${m.id}','dA',this.value)"></small></div>`:''}${i.an=='dP'&&!an.dP?`<div><small>Date de notification d’approbation : <input type="date" aria-label="Date de notification d’approbation" onchange="cfDate('${m.id}','dP',this.value)"></small></div>`:''}${dt}${red}<details><summary><small>Détail et source</small></summary><div style="font-size:13px;color:var(--m)">${esc(i.n)}<br><i>Source : ${esc(i.s)}</i>${i.au?'<br>'+esc(i.au):''}</div></details></div>`}).join('')}</div>`).join('');
  const gar=cfGar(m).map(x=>`<tr><td><span class="b ${bd[x[0]]}">${ic[x[0]]}</span></td><td style="text-align:left">${esc(x[1])}</td></tr>`).join('');
  const as=cfAss(m).map(x=>`<tr><td><span class="b ${bd[x[1]]}">${ic[x[1]]}</span></td><td style="text-align:left">${esc(x[2])}</td></tr>`).join('');
  const pol=db.assurances.filter(a=>a.marche==m.id).map(a=>{const k=Object.keys(ATY).find(z=>ATY[z]==a.type),cl=[...CLU,...(CLS[k]||[])],o=CFS(a).c||{},n=cl.filter((c,i)=>o[i]).length;
@@ -1210,7 +1232,7 @@ async function icsExp(){
  db.os.forEach(o=>{const f=osFin(o);if(!f||f<today)return;
   ev.push({id:'o'+o.id,d:f,t:`PTUA – Fin de durée OS ${o.num||o.type} · ${mn(o.marche)}`,x:dis?'':(o.note||''),al:[15,3]})});
  if(!ev.length)return alert('Aucune échéance future à ajouter (garanties actives avec une date d’échéance, fins prévues de marchés, durées d’OS).');
- const st=new Date().toISOString().replace(/[-:]/g,'').slice(0,15)+'Z',L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//PTUA//Gestionnaire PTUA v9.0//FR','CALSCALE:GREGORIAN','METHOD:PUBLISH','X-WR-CALNAME:PTUA – échéances'];
+ const st=new Date().toISOString().replace(/[-:]/g,'').slice(0,15)+'Z',L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//PTUA//Gestionnaire PTUA v9.1//FR','CALSCALE:GREGORIAN','METHOD:PUBLISH','X-WR-CALNAME:PTUA – échéances'];
  const al=(t,tr)=>L.push('BEGIN:VALARM','ACTION:DISPLAY','DESCRIPTION:'+icsE(t),'TRIGGER:'+tr,'END:VALARM');
  ev.forEach(e=>{L.push('BEGIN:VEVENT',`UID:ptua-${e.id}-${icd(e.d)}@ptua.app`,'DTSTAMP:'+st,'DTSTART;VALUE=DATE:'+icd(e.d),'DTEND;VALUE=DATE:'+icd(new Date(e.d.getTime()+day)),'SUMMARY:'+icsE(e.t));
   if(e.x)L.push('DESCRIPTION:'+icsE(e.x));L.push('TRANSP:TRANSPARENT');

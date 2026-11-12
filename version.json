@@ -1,6 +1,6 @@
 {
- "version": "9.0",
+ "version": "9.1",
  "date": "2026-11-12",
  "importance": "normale",
- "notes": "Nouvel onglet Conformité : pièces à fournir par l’attributaire (suivi et délais), légalité des garanties, conformité des assurances et clauses à vérifier (CIMA, loi 2026-385)."
+ "notes": "Refonte visuelle : sceau PTUA, icônes vectorielles, contrastes et cibles tactiles corrigés, erreurs de formulaire affichées en ligne, navigation clavier."
 }
