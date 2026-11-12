@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob: mediastream:; font-src 'self'; connect-src 'self' https://raw.githubusercontent.com https://rjange-96.github.io https://iofbwpzhptctyelmylkz.supabase.co; object-src 'none'; base-uri 'none'; form-action 'none'; worker-src 'self'; manifest-src 'self'">
 <meta name="referrer" content="no-referrer">
 <link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-180.png"><link rel="icon" href="icon-192.png">
-<title>Gestionnaire juridique et contractuel PTUA v8.0</title>
+<title>Gestionnaire juridique et contractuel PTUA v8.1</title>
 <style>
 :root{--bg:#eef3fb;--c:rgba(255,255,255,.74);--t:#16213a;--m:#5d6c8a;--b:rgba(60,80,130,.16);--p:#2563eb;--r:#e11d48;--o:#d97706;--y:#a16207;--g:#059669;--g1:#1e3a8a;--g2:#7c3aed;--h2:#1d4ed8;--in:rgba(255,255,255,.95);--hd:rgba(255,255,255,.78);--sh:0 14px 34px -16px rgba(37,60,120,.35);--gl:rgba(37,99,235,.2);--gl2:rgba(37,99,235,.35);--cf:rgba(37,99,235,.5);--cb:linear-gradient(135deg,rgba(37,99,235,.10),rgba(124,58,237,.16));--hv:rgba(37,99,235,.06);--dg:rgba(255,255,255,.98);--ob:#fff;--bt:#fff;--sp:radial-gradient(circle at 50% 45%,#fff,#d6e4ff);--bd:#0f1b3a66;color-scheme:light}
 [data-t=dark]{--bg:#070b17;--c:rgba(18,26,48,.62);--t:#e8eefc;--m:#8b98b8;--b:rgba(148,163,184,.2);--p:#22d3ee;--r:#ff6b81;--o:#fbbf24;--y:#facc15;--g:#34d399;--g1:#fff;--g2:#67e8f9;--h2:#a5f3fc;--in:rgba(6,10,24,.7);--hd:rgba(7,11,23,.72);--sh:0 14px 34px -12px #000a;--gl:#22d3ee55;--gl2:#22d3ee55;--cf:rgba(103,232,249,.55);--cb:linear-gradient(135deg,rgba(34,211,238,.16),rgba(99,102,241,.2));--hv:rgba(34,211,238,.07);--dg:#0c1328f2;--ob:#0f172a;--bt:#04101f;--sp:radial-gradient(circle at 50% 45%,#16205a,#050810);--bd:#02050dcc;color-scheme:dark}
@@ -112,7 +112,7 @@ button,select,a,label,summary{-webkit-tap-highlight-color:transparent;touch-acti
  .row{position:sticky;bottom:0;background:var(--dg);padding:10px 0 0}.row button{flex:1}
 }
 </style></head><body>
-<div id="bg"></div><div id="sp"><div class="cu"></div><b>PTUA</b></div><header><div class="lg"><div class="cu"></div><h1>Gestionnaire juridique et contractuel PTUA <small>v8.0 · iPhone</small> <span id="sys" onclick="go('sauv')"></span></h1></div><div class="hr"><b id="ht">--:--:--</b><small id="hdt"></small></div>
+<div id="bg"></div><div id="sp"><div class="cu"></div><b>PTUA</b></div><header><div class="lg"><div class="cu"></div><h1>Gestionnaire juridique et contractuel PTUA <small>v8.1 · iPhone</small> <span id="sys" onclick="go('sauv')"></span></h1></div><div class="hr"><b id="ht">--:--:--</b><small id="hdt"></small></div>
 <div class="bar" style="margin:0"><button id="th" onclick="th()">🌙 Sombre</button><button onclick="pinMenu()">🔒 Verrou</button><button onclick="window.print()">🖨️ Imprimer / PDF</button><button onclick="expJ()">Exporter (JSON)</button><button onclick="$('#imp').click()">Importer</button><button onclick="expC()">Exporter (CSV)</button></div>
 <input type="file" id="imp" accept=".json,application/json" hidden onchange="impJ(this)"></header>
 <div id="ins" hidden></div><nav id="nav"></nav><div id="al"></div><main id="v"></main><div id="lk" hidden><div class="lkb"><h2 style="margin:0">🔒 Application verrouillée</h2><small style="color:var(--m)">Données chiffrées sur cet appareil (AES-256)</small><form onsubmit="event.preventDefault();unl()"><input type="text" name="username" value="PTUA" autocomplete="username" hidden readonly><input id="pin" type="password" autocomplete="current-password" placeholder="Code d’accès" autocapitalize="off" spellcheck="false"><button class="pri" type="submit">Déverrouiller</button></form><small id="lke" style="color:var(--r)"></small></div></div>
@@ -120,19 +120,20 @@ button,select,a,label,summary{-webkit-tap-highlight-color:transparent;touch-acti
 <dialog id="cd"></dialog><dialog id="dlg"><h3 id="dt" style="margin-top:0"></h3><div id="df"></div><div class="row"><button onclick="$('#dlg').close()">Annuler</button><button class="pri" onclick="ok()">Enregistrer</button></div></dialog>
 <script>
 if(top!==self){try{top.location=self.location.href}catch(e){document.documentElement.innerHTML='';throw 0}}
-const APPV='8.0',MOB=()=>matchMedia('(max-width:700px)').matches,K='ptua_v3',$=s=>document.querySelector(s),day=864e5,today=new Date(new Date().toDateString());
+const APPV='8.1',MOB=()=>matchMedia('(max-width:700px)').matches,K='ptua_v3',$=s=>document.querySelector(s),day=864e5,today=new Date(new Date().toDateString());
 const S={
 marches:{t:'Marché',f:[['titulaire','Titulaire'],['num','N° marché'],['objet','Objet'],['montant','Montant (FCFA)','number'],['debut','Démarrage','date'],['delaiM','Délai (mois)','number'],['delai','Délai (jours) — s’ajoute aux mois','number'],['reception','Date de réception','date'],['taux','Pénalité (‰ / jour)','number'],['plafond','Plafond pénalités (%)','number'],['doc','Référence document / lien']]},
 garanties:{t:'Garantie',f:[['marche','Marché','ref'],['type','Type','sel',['Avance de démarrage','Bonne exécution','Retenue de garantie','Soumission']],['organisme','Organisme garant'],['montant','Montant (FCFA)','number'],['emission','Date d’émission','date'],['echeance','Date d’échéance (si fixée)','date'],['statut','Statut','sel',['Émise','Active','Expirée','Mainlevée obtenue']],['evt','Événement marquant la fin de la garantie'],['fin_ev','Événement de fin survenu','sel',['—','Remboursement intégral de l’avance de démarrage','PV de réception provisoire','PV de réception définitive','Mainlevée du Bénéficiaire']],['fin_date','Date de l’événement de fin','date'],['mainlevee','Date de mainlevée','date'],['doc','Référence document / lien']]},
 os:{t:'Ordre de service',f:[['marche','Marché','ref'],['num','N° OS'],['type','Type','sel',['Démarrage','Arrêt','Reprise','Prolongation','Autre']],['date','Date — à compter du','date'],['dureeM','Durée (mois)','number'],['jours','Durée (jours) — s’ajoute aux mois','number'],['note','Observation']]},
-avenants:{t:'Avenant',f:[['marche','Marché','ref'],['num','N° avenant'],['date','Date de signature','date'],['objet','Objet'],['montant','Variation de montant (FCFA)','number'],['delai','Délai supplémentaire (jours)','number']]}};
-const NAV=[['dash','📊 Tableau de bord'],['pres','🎤 Présentation'],['search','🔎 Recherche'],['marches','📁 Marchés'],['garanties','🛡️ Garanties'],['os','📝 Ordres de service'],['avenants','📑 Avenants'],['stats','📈 Statistiques'],['veille','⚖️ Veille juridique'],['sauv','💾 Sauvegarde'],['amel','💡 Améliorations'],['journal','🕘 Journal']];
+avenants:{t:'Avenant',f:[['marche','Marché','ref'],['num','N° avenant'],['date','Date de signature','date'],['objet','Objet'],['montant','Variation de montant (FCFA)','number'],['delai','Délai supplémentaire (jours)','number']]},
+assurances:{t:'Assurance',f:[['marche','Marché','ref'],['type','Type d’assurance','sel',['Tous risques chantier (TRC)','Responsabilité civile (RC)','Garantie décennale','Accidents du travail','Multirisque matériel / engins','Transport des marchandises','Autre']],['assureur','Compagnie d’assurance'],['police','N° de police'],['assure','Assuré / souscripteur'],['montant','Capital / montant assuré (FCFA)','number'],['prime','Prime (FCFA)','number'],['effet','Date d’effet','date'],['echeance','Date d’échéance','date'],['statut','Statut','sel',['Active','En attente de justificatif','Expirée','Résiliée']],['note','Observation'],['doc','Référence document / lien']]}};
+const NAV=[['dash','📊 Tableau de bord'],['pres','🎤 Présentation'],['search','🔎 Recherche'],['marches','📁 Marchés'],['garanties','🛡️ Garanties'],['os','📝 Ordres de service'],['avenants','📑 Avenants'],['assurances','☂️ Assurances'],['stats','📈 Statistiques'],['veille','⚖️ Veille juridique'],['sauv','💾 Sauvegarde'],['amel','💡 Améliorations'],['journal','🕘 Journal']];
 let db=null,tab='dash',q='',cur={};
 const EK='ptua_enc',IT=600000,te=new TextEncoder(),td=new TextDecoder();
 let KEY=null,SALT=null,SN=[],PQ=Promise.resolve(),ENC=(()=>{try{return !!localStorage.getItem(EK)}catch(e){return false}})();
 if(!ENC)try{db=JSON.parse(localStorage.getItem(K))}catch(e){}
 // ===== v7.6 — Assainissement des données importées (anti-XSS) =====
-const IDR=/^[A-Za-z0-9_-]{1,64}$/,ENTS=['marches','garanties','os','avenants'],nid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+const IDR=/^[A-Za-z0-9_-]{1,64}$/,ENTS=['marches','garanties','os','avenants','assurances'],nid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
 const cln=v=>String(v??'').replace(/[<>"'`\\]/g,'').slice(0,300),httpsU=u=>typeof u=='string'&&/^https:\/\/[^\s"'<>`]+$/.test(u)?u:'';
 const prim=v=>typeof v=='string'?v.slice(0,5000):typeof v=='number'&&isFinite(v)?v:typeof v=='boolean'?v:'';
 function sanFs(fs){return Array.isArray(fs)?fs.filter(f=>Array.isArray(f)&&IDR.test(f[0])).slice(0,30).map(f=>[f[0],cln(f[1]),['text','number','date'].includes(f[2])?f[2]:'text']):[]}
@@ -155,12 +156,12 @@ function sanRef(r){if(!r||typeof r!='object')return undefined;const P0={ret:[3,5
 function sanDB(d){d=d&&typeof d=='object'?d:{};const o={},map={};
  for(const e of ENTS)o[e]=(Array.isArray(d[e])?d[e]:[]).filter(x=>x&&typeof x=='object').slice(0,20000).map(x=>{const y={};for(const k of Object.keys(x))if(IDR.test(k)&&k!='id')y[k]=prim(x[k]);
   const id=IDR.test(x.id)&&!map[x.id+'|'+e]?x.id:nid();if(typeof x.id=='string')map[x.id+'|'+e]=id;y.id=id;return y});
- for(const e of ['garanties','os','avenants'])o[e].forEach(x=>{const m=map[String(x.marche)+'|marches'];x.marche=m||(IDR.test(x.marche)?x.marche:'')});
+ for(const e of ['garanties','os','avenants','assurances'])o[e].forEach(x=>{const m=map[String(x.marche)+'|marches'];x.marche=m||(IDR.test(x.marche)?x.marche:'')});
  o.journal=(Array.isArray(d.journal)?d.journal:[]).slice(0,300).map(j=>({d:String(j&&j.d||'').slice(0,40),m:String(j&&j.m||'').slice(0,500),t:+(j&&j.t)||0}));
  o.del={};if(d.del&&typeof d.del=='object')for(const k in d.del)if(IDR.test(k)&&typeof d.del[k]=='number')o.del[k]=d.del[k];
  const rf=sanRef(d.ref);if(rf)o.ref=rf;return o}
 if(db)db=sanDB(db);
-db=db||{marches:[],garanties:[],os:[],journal:[]};db.avenants=db.avenants||[];
+db=db||{marches:[],garanties:[],os:[],journal:[]};db.avenants=db.avenants||[];db.assurances=db.assurances||[];
 const esc=s=>String(s??'').replace(/[&<>"'`]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;','`':'&#96;'}[c]));
 const save=()=>{if(db.ref)db.ref._u=Date.now();if(typeof SY!='undefined'&&SY){SY.dc=(SY.dc||0)+1;syLater()}try{if(!ENC)localStorage.setItem(K,JSON.stringify(db));localStorage.setItem('ptua_ls',Date.now());snap(false);if(ENC)persist()}catch(e){alert('Sauvegarde automatique impossible : pensez à exporter vos données (JSON).')}};
 const D=s=>s?new Date(s+'T00:00:00'):null,diff=(a,b)=>Math.round((a-b)/day);
@@ -185,6 +186,8 @@ function gal(g){
  if(!g.echeance)return{j:9999,c:'g'};
  const j=diff(D(g.echeance),today);return{j,c:j<=7?'r':j<=15?'o':j<=30?'y':'g'};
 }
+const galA=a=>{if(a.statut!='Active'&&a.statut!='En attente de justificatif')return null;if(!a.echeance)return{j:9999,c:'g'};const j=diff(D(a.echeance),today);return{j,c:j<=7?'r':j<=15?'o':j<=30?'y':'g'}};
+const badgeA=a=>{const x=galA(a);return x?(x.j>=9999?'<span class="b y">Sans échéance</span>':`<span class="b ${x.c}">${x.j<0?'Expirée depuis '+(-x.j)+' j':x.j+' j restants'}</span>`)+(a.statut=='En attente de justificatif'?' <span class="b o">Justificatif attendu</span>':''):`<span class="b ${a.statut=='Expirée'?'r':'y'}">${esc(a.statut||'—')}</span>`};
 const badge=g=>{const a=gal(g);return endedG(g)?`<span class="b g">Terminée · ${esc(g.fin_ev)}</span>`:a&&a.j>=9999?'<span class="b g">En cours · fin sur événement</span>':a?`<span class="b ${a.c}">${a.j<0?'Échue depuis '+(-a.j)+' j':a.j+' j restants'}</span>`:`<span class="b ${g.statut=='Mainlevée obtenue'?'g':'y'}">${esc(g.statut)}</span>`};
 
 function render(){banner();
@@ -199,7 +202,7 @@ function render(){banner();
  else if(tab=='stats')$('#v').innerHTML=stats();
  else if(tab=='journal')$('#v').innerHTML=`<div class="w"><table><tr><th>Date</th><th>Action</th></tr>${db.journal.map(j=>`<tr><td>${esc(j.d)}</td><td>${esc(j.m)}</td></tr>`).join('')||'<tr><td class="e" colspan="2">Aucune action enregistrée.</td></tr>'}</table></div>`;
  else{
-  $('#v').innerHTML=`<div class="bar"><input id="q" placeholder="Rechercher…" value="${esc(q)}" oninput="q=this.value.toLowerCase();$('#tb').innerHTML=rows(tab)">${fsel()}${tsel()}<button onclick="$('#vp').hidden=!$('#vp').hidden">⚙️ Affichage</button>${tab=='garanties'||tab=='marches'||tab=='os'?'<button onclick="icsExp()">📅 Calendrier</button>':''}<button class="pri" onclick="edit('${tab}')">+ ${S[tab].t}</button></div><div id="vp" class="card nt" hidden>${vpanel()}</div><div class="w ${VW(tab).mode=='compact'?'cp':''}"><table id="tb"></table></div>`;
+  $('#v').innerHTML=`<div class="bar"><input id="q" placeholder="Rechercher…" value="${esc(q)}" oninput="q=this.value.toLowerCase();$('#tb').innerHTML=rows(tab)">${fsel()}${tsel()}<button onclick="$('#vp').hidden=!$('#vp').hidden">⚙️ Affichage</button>${tab=='garanties'||tab=='marches'||tab=='os'||tab=='assurances'?'<button onclick="icsExp()">📅 Calendrier</button>':''}<button class="pri" onclick="edit('${tab}')">+ ${S[tab].t}</button></div><div id="vp" class="card nt" hidden>${vpanel()}</div><div class="w ${VW(tab).mode=='compact'?'cp':''}"><table id="tb"></table></div>`;
   $('#tb').innerHTML=rows(tab);
  }
 }
@@ -211,14 +214,14 @@ function rows(e){
  if(e=='garanties')a.sort((x,y)=>(x.echeance||'9')<(y.echeance||'9')?-1:1);
  if(sk&&s.f.some(f=>f[0]==sk))a.sort((x,y)=>{const ty=s.f.find(f=>f[0]==sk)[2];let u=x[sk]??'',v=y[sk]??'';if(u===''||v==='')return u===v?0:u===''?1:-1;if(ty=='number'){u=+u;v=+v}else if(ty=='ref'){u=mn(u);v=mn(v)}return(typeof u=='number'?u-v:String(u).localeCompare(String(v),'fr',{numeric:true,sensitivity:'base'}))*sd});
  if(sk=='@az')azSort(e,a);else if(sk[0]=='@')a.sort((x,y)=>(sv(e,sk,x)-sv(e,sk,y))*sd);
- const ex=e=='marches'?['Fin prévue','Retard (j)','Pénalités']:e=='garanties'?['Alerte']:e=='os'?['Fin de la durée']:[];
+ const ex=e=='marches'?['Fin prévue','Retard (j)','Pénalités']:e=='garanties'||e=='assurances'?['Alerte']:e=='os'?['Fin de la durée']:[];
  let h='<tr>'+F.map(f=>`<th class="st" onclick="srt('${f[0]}')">${esc(f[1])}${sk==f[0]?(sd>0?' ▲':' ▼'):''}</th>`).concat(ex.map(x=>`<th>${x}</th>`)).join('')+'<th></th></tr>';
  if(!a.length)return h+`<tr><td class="e" colspan="${F.length+ex.length+1}">Aucun élément.</td></tr>`;
  if(V.mode=='cards')return cards(e,a,F);
  return h+a.map(x=>{
   let c=F.map(([k,,t])=>`<td class="${t=='number'?'n':''}">${t=='ref'?esc(mt(x[k])):t=='number'?fmt(x[k]):t=='date'?fd(x[k]):k=='doc'&&/^https?:\/\//.test(x[k])?`<a href="${esc(x[k])}" target="_blank" rel="noopener">🔗 Ouvrir</a>`:esc(x[k])}</td>`).join('');
   if(e=='marches'){const r=calc(x);c+=r?`<td>${fdd(r.fin)}${r.arret?' (+'+r.arret+' j arrêt)':''}</td><td class="n">${r.retard||'—'}</td><td class="n">${r.pen?fmt(r.pen):'—'}</td>`:'<td colspan="3">Renseigner démarrage et délai</td>'}
-  if(e=='garanties')c+=`<td>${badge(x)}</td>`;
+  if(e=='garanties')c+=`<td>${badge(x)}</td>`;if(e=='assurances')c+=`<td>${badgeA(x)}</td>`;
   if(e=='os'){const f=osFin(x);c+=`<td>${f?fdd(f):'—'}</td>`}
   return `${lh(e,x)}<tr>${c}<td><button onclick="edit('${e}','${x.id}')">Modifier</button> <button onclick="dup('${e}','${x.id}')">Dupliquer</button> <button onclick="del('${e}','${x.id}')">Suppr.</button></td></tr>`}).join('');
 }
@@ -228,7 +231,7 @@ function dash(){
  const pen=db.marches.reduce((s,m)=>s+(calc(m)?.pen||0),0);
  return `<div class="kpis"><div class="k"><b>${db.marches.length}</b><span>Marchés</span></div><div class="k"><b>${act.length}</b><span>Garanties actives</span></div><div class="k"><b>${fmt(act.reduce((s,g)=>s+(+g.montant||0),0))}</b><span>Montant garanti actif</span></div><div class="k"><b style="color:var(--${al.length?'r':'g'})">${al.length}</b><span>Alertes ≤ 30 j</span></div><div class="k"><b>${fmt(pen)}</b><span>Pénalités estimées</span></div></div>
  <div class="card"><h2>Garanties à surveiller (échéance ≤ 30 jours ou dépassée)</h2>${al.length?`<table>${al.map(g=>`<tr><td>${esc(mn(g.marche))}</td><td>${esc(g.type)}</td><td>${esc(g.organisme)}</td><td>${fd(g.echeance)}</td><td>${badge(g)}</td></tr>`).join('')}</table>`:'<div class="e">Aucune alerte.</div>'}</div>
- <div class="card"><h2>Marchés en retard</h2>${late.length?`<table>${late.map(({m,r})=>`<tr><td>${esc(m.num)}</td><td>${esc(m.titulaire)}</td><td>Fin prévue ${fdd(r.fin)}</td><td>${r.retard} j</td><td>${fmt(r.pen)} FCFA</td></tr>`).join('')}</table>`:'<div class="e">Aucun retard détecté.</div>'}</div>
+ ${(()=>{const A=db.assurances.filter(a=>{const x=galA(a);return x&&x.j<=30}).sort((a,b)=>a.echeance<b.echeance?-1:1);return db.assurances.length?`<div class="card"><h2>☂️ Assurances à renouveler (échéance ≤ 30 jours ou dépassée)</h2>${A.length?`<table>${A.map(a=>`<tr><td>${esc(mn(a.marche))}</td><td>${esc(a.type)}</td><td>${esc(a.assureur)}</td><td>${fd(a.echeance)}</td><td>${badgeA(a)}</td></tr>`).join('')}</table>`:'<div class="e">Aucune assurance à renouveler.</div>'}</div>`:''})()}<div class="card"><h2>Marchés en retard</h2>${late.length?`<table>${late.map(({m,r})=>`<tr><td>${esc(m.num)}</td><td>${esc(m.titulaire)}</td><td>Fin prévue ${fdd(r.fin)}</td><td>${r.retard} j</td><td>${fmt(r.pen)} FCFA</td></tr>`).join('')}</table>`:'<div class="e">Aucun retard détecté.</div>'}</div>
  ${ech()}<p class="e">Les données sont enregistrées dans ce navigateur. Exportez régulièrement un JSON de sauvegarde.</p>`;
 }
 function edit(e,id){
@@ -261,7 +264,7 @@ function del(e,id){
  const x=db[e].find(i=>i.id==id);
  if(!confirm('Supprimer « '+lab(e,x)+' » ?'+(e=='marches'?'\nLes garanties et OS liés seront aussi supprimés.':'')))return;
  db[e]=db[e].filter(i=>i.id!=id);tomb(id);
- if(e=='marches'){['garanties','os','avenants'].forEach(k=>{db[k].filter(z=>z.marche==id).forEach(z=>tomb(z.id));db[k]=db[k].filter(z=>z.marche!=id)})}
+ if(e=='marches'){['garanties','os','avenants','assurances'].forEach(k=>{db[k].filter(z=>z.marche==id).forEach(z=>tomb(z.id));db[k]=db[k].filter(z=>z.marche!=id)})}
  log('Suppression '+S[e].t+' : '+lab(e,x));save();render();
 }
 const IOS=/iP(hone|ad|od)/.test(navigator.userAgent)||(navigator.maxTouchPoints>1&&/Mac/.test(navigator.userAgent));
@@ -338,13 +341,14 @@ const fsel=()=>{const f=FK(tab);return f?`<select style="width:auto" onchange="s
 function srt(k){sd=sk==k?-sd:1;sk=k;sApply()}
 function dup(e,id){const x=db[e].find(i=>i.id==id),n={...x,id:Date.now().toString(36)+Math.random().toString(36).slice(2,5),_u:Date.now()};if(e=='marches')n.num+=' (copie)';db[e].push(n);log('Duplication '+S[e].t+' : '+lab(e,x));save();render()}
 function banner(){
- const n=db.garanties.filter(g=>{const a=gal(g);return a&&a.j<=30}).length;let le=0;try{le=+localStorage.getItem('ptua_exp')||0}catch(e){}
- let h='';if(UPD&&cmpV(UPD.version,APPV)>0)h+=`<div class="al ${UPD.importance=='securite'?'r':'o'}" onclick="showUpd()">🔄 Mise à jour v${esc(UPD.version)} disponible${UPD.importance=='securite'?' (sécurité, recommandée)':''} — toucher pour voir et installer</div>`;if(SY&&SY.last&&Date.now()-SY.last>3*day&&(db.marches.length||db.garanties.length))h+=`<div class="al o" onclick="syncNow(true)">☁️ Sauvegarde cloud non effectuée depuis plus de 3 jours — toucher pour réessayer</div>`;if(n)h+=`<div class="al r" onclick="go('dash')">⚠️ ${n} garantie(s) à surveiller (échéance ≤ 30 jours ou dépassée) — voir le tableau de bord</div>`;
+ const n=db.garanties.filter(g=>{const a=gal(g);return a&&a.j<=30}).length,nA=db.assurances.filter(a=>{const x=galA(a);return x&&x.j<=30}).length;let le=0;try{le=+localStorage.getItem('ptua_exp')||0}catch(e){}
+ let h='';if(nA)h+=`<div class="al r" onclick="go('assurances')">☂️ ${nA} assurance(s) à renouveler (échéance ≤ 30 jours ou dépassée) — voir les assurances</div>`;if(UPD&&cmpV(UPD.version,APPV)>0)h+=`<div class="al ${UPD.importance=='securite'?'r':'o'}" onclick="showUpd()">🔄 Mise à jour v${esc(UPD.version)} disponible${UPD.importance=='securite'?' (sécurité, recommandée)':''} — toucher pour voir et installer</div>`;if(SY&&SY.last&&Date.now()-SY.last>3*day&&(db.marches.length||db.garanties.length))h+=`<div class="al o" onclick="syncNow(true)">☁️ Sauvegarde cloud non effectuée depuis plus de 3 jours — toucher pour réessayer</div>`;if(n)h+=`<div class="al r" onclick="go('dash')">⚠️ ${n} garantie(s) à surveiller (échéance ≤ 30 jours ou dépassée) — voir le tableau de bord</div>`;
  if((db.marches.length||db.garanties.length)&&Date.now()-le>7*day&&!(SY&&SY.last&&Date.now()-SY.last<3*day))h+=`<div class="al o" onclick="expJ()">💾 Aucune sauvegarde depuis plus de 7 jours — cliquer pour exporter maintenant</div>`;
- if(!ENC&&(db.marches.length||db.garanties.length))h+=`<div class="al r" onclick="pinMenu()">🔓 Vos données ne sont pas chiffrées sur cet appareil — toucher pour activer le code et le chiffrement</div>`;const w=constats().filter(c=>c.n=='warn').length;if(w)h+=`<div class="al o" onclick="go('veille')">⚖️ ${w} point(s) de conformité à vérifier — ouvrir la veille juridique</div>`;if(diff(today,D(RF().lc||RF().v))>30)h+=`<div class="al o" onclick="go('veille')">⚖️ Référentiel juridique non vérifié depuis plus de 30 jours</div>`;if(!db.marches.length&&!db.garanties.length&&snaps().length)h+=`<div class="al r" onclick="go('sauv')">💾 Aucune donnée affichée, mais ${snaps().length} point(s) de sauvegarde sont disponibles — cliquer pour restaurer</div>`;$('#al').innerHTML=h;document.title=(n?'('+n+') ':'')+'Gestionnaire PTUA v8.0';
+ if(!ENC&&(db.marches.length||db.garanties.length))h+=`<div class="al r" onclick="pinMenu()">🔓 Vos données ne sont pas chiffrées sur cet appareil — toucher pour activer le code et le chiffrement</div>`;const w=constats().filter(c=>c.n=='warn').length;if(w)h+=`<div class="al o" onclick="go('veille')">⚖️ ${w} point(s) de conformité à vérifier — ouvrir la veille juridique</div>`;if(diff(today,D(RF().lc||RF().v))>30)h+=`<div class="al o" onclick="go('veille')">⚖️ Référentiel juridique non vérifié depuis plus de 30 jours</div>`;if(!db.marches.length&&!db.garanties.length&&snaps().length)h+=`<div class="al r" onclick="go('sauv')">💾 Aucune donnée affichée, mais ${snaps().length} point(s) de sauvegarde sont disponibles — cliquer pour restaurer</div>`;$('#al').innerHTML=h;document.title=(n?'('+n+') ':'')+'Gestionnaire PTUA v8.1';
 }
 function ech(){
- const it=[];db.garanties.forEach(g=>{const a=gal(g);if(a&&a.j>=0&&a.j<=90)it.push({d:D(g.echeance),t:'🛡️ Échéance de garantie',l:mn(g.marche)+' · '+g.type})});
+ const it=[];db.assurances.forEach(a=>{const x=galA(a);if(x&&x.j>=0&&x.j<=90)it.push({d:D(a.echeance),t:'☂️ Échéance d’assurance',l:mn(a.marche)+' · '+a.type+(a.assureur?' · '+a.assureur:'')})});
+ db.garanties.forEach(g=>{const a=gal(g);if(a&&a.j>=0&&a.j<=90)it.push({d:D(g.echeance),t:'🛡️ Échéance de garantie',l:mn(g.marche)+' · '+g.type})});
  db.marches.forEach(m=>{const r=calc(m);if(r&&!m.reception){const j=diff(r.fin,today);if(j>=0&&j<=90)it.push({d:r.fin,t:'📁 Fin prévue du marché',l:m.num+(m.titulaire?' · '+m.titulaire:'')})}});
  it.sort((a,b)=>a.d-b.d);
  return `<div class="card"><div class="sh" style="margin:0 0 10px"><h2>Échéancier — 90 prochains jours</h2><button class="pri" onclick="icsExp()">📅 Ajouter au calendrier</button></div>${it.length?`<table>${it.map(x=>`<tr><td>${fdd(x.d)}</td><td>dans ${diff(x.d,today)} j</td><td>${x.t}</td><td>${esc(x.l)}</td></tr>`).join('')}</table>`:'<div class="e">Rien à l’horizon.</div>'}</div>`;
@@ -380,7 +384,7 @@ function syGen(){const r=crypto.getRandomValues(new Uint8Array(24));return [...r
 async function syK(code){const base=await crypto.subtle.importKey('raw',te.encode('PTUA-SYNC-v1:'+code),'HKDF',false,['deriveBits','deriveKey']),P=i=>({name:'HKDF',hash:'SHA-256',salt:te.encode('ptua-sync'),info:te.encode(i)});
  return{id:hex(await crypto.subtle.deriveBits(P('id'),base,256)),auth:hex(await crypto.subtle.deriveBits(P('auth'),base,256)),key:await crypto.subtle.deriveKey(P('enc'),base,{name:'AES-GCM',length:256},false,['encrypt','decrypt'])}}
 async function rpc(fn,a){const r=await fetch(SB+'/rest/v1/rpc/'+fn,{method:'POST',headers:{apikey:SBK,'Content-Type':'application/json'},body:JSON.stringify(a),credentials:'omit',cache:'no-store',referrerPolicy:'no-referrer'});if(!r.ok)throw new Error('HTTP '+r.status);return r.json()}
-function syData(){const r=db.ref?JSON.parse(JSON.stringify(db.ref)):undefined;if(r){delete r.view;delete r.use}return{marches:db.marches,garanties:db.garanties,os:db.os,avenants:db.avenants,journal:db.journal,del:db.del||{},ref:r}}
+function syData(){const r=db.ref?JSON.parse(JSON.stringify(db.ref)):undefined;if(r){delete r.view;delete r.use}return{marches:db.marches,garanties:db.garanties,os:db.os,avenants:db.avenants,assurances:db.assurances,journal:db.journal,del:db.del||{},ref:r}}
 async function encS(k){const iv=crypto.getRandomValues(new Uint8Array(12)),ct=await crypto.subtle.encrypt({name:'AES-GCM',iv},k,te.encode(JSON.stringify(syData())));return JSON.stringify({v:1,iv:b64(iv),ct:b64(ct)})}
 async function decS(k,blob){const e=JSON.parse(blob);return JSON.parse(td.decode(await crypto.subtle.decrypt({name:'AES-GCM',iv:ub(e.iv)},k,ub(e.ct))))}
 function mergeDB(L,Rm){const del={...(L.del||{})};for(const k in Rm.del||{})del[k]=Math.max(del[k]||0,Rm.del[k]);const o={del},u=x=>+x._u||0;
@@ -469,7 +473,7 @@ function syCard(){const st=!SY?'':syLast=='err'?'⚠️ Dernier essai en échec 
 addEventListener('online',()=>syLater(500));addEventListener('offline',()=>setSy('off'));
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)syLater(400)});
 setInterval(()=>{if(SY&&KEY&&!document.hidden)syncNow()},45000);
-const blank=()=>({marches:[],garanties:[],os:[],avenants:[],journal:[]});
+const blank=()=>({marches:[],garanties:[],os:[],avenants:[],assurances:[],journal:[]});
 function ask(t,fs,note){return new Promise(r=>{const d=$('#cd');
  d.innerHTML=`<h3 style="margin-top:0">${t}</h3>${note?`<p style="margin:0 0 12px;color:var(--m);font-size:13px">${note}</p>`:''}${`<input type="text" name="username" value="PTUA" autocomplete="username" hidden readonly>`+fs.map(f=>`<label>${f[1]}<input name="${f[0]}" type="password" autocapitalize="off" spellcheck="false" ${f[2]||'autocomplete="current-password"'}></label>`).join('')}<div class="row"><button data-v="0">Annuler</button><button class="pri" data-v="1">Valider</button></div>`;
  const done=v=>{d.close();r(v)};
@@ -506,7 +510,7 @@ setInterval(()=>{if((ENC||gp())&&Date.now()-ia>3e5&&$('#lk').hidden)lock()},1500
 
 let gq='',gF='';
 const nz=s=>String(s??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
-const EN={marches:'Marchés',garanties:'Garanties',os:'Ordres de service',avenants:'Avenants',journal:'Journal'};
+const EN={marches:'Marchés',garanties:'Garanties',os:'Ordres de service',avenants:'Avenants',assurances:'Assurances',journal:'Journal'};
 const cvl=(x,f)=>{const k=f[0],t=f[2];return t=='ref'?mn(x[k]):t=='number'?fmt(x[k]):t=='date'?fd(x[k]):(x[k]??'')};
 const hay=(e,x)=>nz(S[e].f.map(f=>f[2]=='date'?(x[f[0]]||'')+' '+fd(x[f[0]]):f[2]=='number'?(x[f[0]]||'')+' '+fmt(x[f[0]]):cvl(x,f)).join(' ')+(e=='marches'?'':' '+(mk(x.marche)?.titulaire||'')+' '+(mk(x.marche)?.objet||'')));
 const sUI=()=>`<div class="bar"><input id="gq" placeholder="Rechercher partout : n° de marché, titulaire, organisme, objet, date…" value="${esc(gq)}" oninput="gq=this.value;sRes()"><select style="width:auto" onchange="gF=this.value;sRes()"><option value="">Tout</option>${Object.keys(EN).map(k=>`<option value="${k}" ${k==gF?'selected':''}>${EN[k]}</option>`).join('')}</select></div><div id="sr"></div>`;
@@ -660,10 +664,10 @@ function amel(){
 }
 
 const VW=e=>{const R=RF(),v=R.view||(R.view={});return v[e]||(v[e]={mode:MOB()?'cards':'table',hide:[],sk:'',sd:1})};
-function sv(e,k,x){if(e=='marches'){const r=calc(x);return k=='@fin'?(r?r.fin.getTime():9e15):(r?r.pen:-1)}const a=gal(x);return a?a.j:99999}
+function sv(e,k,x){if(e=='marches'){const r=calc(x);return k=='@fin'?(r?r.fin.getTime():9e15):(r?r.pen:-1)}const a=e=='assurances'?galA(x):gal(x);return a?a.j:99999}
 function sApply(){const V=VW(tab);V.sk=sk;V.sd=sd;save();$('#tb').innerHTML=rows(tab);const b=$('#sdb');if(b)b.textContent=dlab();const t=$('#ssel');if(t)t.value=sk}
 const srtSel=v=>{sk=v;sApply()},srtDir=()=>{sd=-sd;sApply()};
-const tsel=()=>{const x=tab=='marches'?[['@fin','Fin prévue'],['@pen','Pénalités']]:tab=='garanties'?[['@j','Jours avant échéance']]:[];
+const tsel=()=>{const x=tab=='marches'?[['@fin','Fin prévue'],['@pen','Pénalités']]:tab=='garanties'||tab=='assurances'?[['@j','Jours avant échéance']]:[];
  return `<select id="ssel" style="width:auto" title="Trier par" onchange="srtSel(this.value)"><option value="">Tri : par défaut</option><option value="@az" ${sk=='@az'?'selected':''}>🔤 Ordre alphabétique</option>${S[tab].f.map(c=>[c[0],c[1]]).concat(x).map(c=>`<option value="${c[0]}" ${sk==c[0]?'selected':''}>Trier par : ${esc(c[1])}</option>`).join('')}</select><button id="sdb" title="Sens du tri" onclick="srtDir()">${dlab()}</button>`};
 function vpanel(){const V=VW(tab),M={table:'Tableau',compact:'Tableau compact',cards:'Cartes'};
  return `<h2>⚙️ Affichage</h2><div class="bar"><select style="width:auto" onchange="vset('mode',this.value)">${Object.keys(M).map(k=>`<option value="${k}" ${V.mode==k?'selected':''}>${M[k]}</option>`).join('')}</select><button onclick="vres()">Réinitialiser tri et affichage</button></div><p style="margin:6px 0;color:var(--m);font-size:12px">Colonnes affichées (mode tableau) et champs montrés (mode cartes) :</p><div style="display:flex;flex-wrap:wrap;gap:6px 16px">${S[tab].f.map(f=>`<label style="margin:0;display:flex;gap:6px;align-items:center;color:var(--t)"><input type="checkbox" style="width:auto;margin:0" ${V.hide.includes(f[0])?'':'checked'} onchange="vcol('${f[0]}',this.checked)">${esc(f[1])}</label>`).join('')}</div>`}
@@ -671,10 +675,10 @@ function vref(){const V=VW(tab),t=$('#tb');t.parentElement.classList.toggle('cp'
 const vset=(k,v)=>{VW(tab)[k]=v;save();vref()},vcol=(k,on)=>{const V=VW(tab);V.hide=V.hide.filter(x=>x!=k);if(!on)V.hide.push(k);save();vref()};
 function vres(){RF().view[tab]={mode:MOB()?'cards':'table',hide:[],sk:'',sd:1};sk='';sd=1;save();render()}
 function cards(e,a,F){
- const hd=x=>e=='marches'?(x.titulaire?x.titulaire+' · ':'')+(x.num||''):mt(x.marche)+' · '+(x.type||x.num||''),ex=e=='marches'?['titulaire','num']:e=='garanties'?['marche','type']:['marche','num'];
+ const hd=x=>e=='marches'?(x.titulaire?x.titulaire+' · ':'')+(x.num||''):mt(x.marche)+' · '+(x.type||x.num||''),ex=e=='marches'?['titulaire','num']:e=='garanties'||e=='assurances'?['marche','type']:['marche','num'];
  return `<tr><td colspan="99" style="white-space:normal;padding:12px"><div class="cg">${a.map(x=>{const lhd=sk=='@az'&&ltr(e,x)!=LL?(LL=ltr(e,x),`<div class="lh">${LL=='#'?'Divers':LL}</div>`):'',r=e=='marches'?calc(x):null,
   L=F.filter(f=>!ex.includes(f[0])&&x[f[0]]!==undefined&&x[f[0]]!==''&&x[f[0]]!=='—').map(f=>`<div><small>${esc(f[1])} :</small> ${esc(cvl(x,f))}</div>`).join('');
-  return `${lhd}<div class="ci"><b>${esc(hd(x))}</b>${e=='garanties'?`<div>${badge(x)}</div>`:''}${r?`<div><small>Fin prévue :</small> ${fdd(r.fin)}${r.retard?` <span class="b r">${r.retard} j de retard</span>`:''}</div>`:''}${e=='os'&&osFin(x)?`<div><small>Fin de la durée :</small> ${fdd(osFin(x))}</div>`:''}${L}<div class="ca"><button onclick="edit('${e}','${x.id}')">Modifier</button><button onclick="dup('${e}','${x.id}')">Dupliquer</button><button onclick="del('${e}','${x.id}')">Suppr.</button></div></div>`}).join('')}</div></td></tr>`}
+  return `${lhd}<div class="ci"><b>${esc(hd(x))}</b>${e=='garanties'?`<div>${badge(x)}</div>`:e=='assurances'?`<div>${badgeA(x)}</div>`:''}${r?`<div><small>Fin prévue :</small> ${fdd(r.fin)}${r.retard?` <span class="b r">${r.retard} j de retard</span>`:''}</div>`:''}${e=='os'&&osFin(x)?`<div><small>Fin de la durée :</small> ${fdd(osFin(x))}</div>`:''}${L}<div class="ca"><button onclick="edit('${e}','${x.id}')">Modifier</button><button onclick="dup('${e}','${x.id}')">Dupliquer</button><button onclick="del('${e}','${x.id}')">Suppr.</button></div></div>`}).join('')}</div></td></tr>`}
 
 const mt=id=>{const m=mk(id);return m?(m.titulaire?m.titulaire+' · ':'')+m.num:'?'};
 let LL='';
@@ -758,10 +762,11 @@ async function icsExp(){
   ev.push({id:'g'+g.id,d:D(g.echeance),t:`PTUA – Échéance garantie ${g.type} · ${mn(g.marche)}`,x:dis?'Détail dans l’application PTUA.':`Organisme : ${g.organisme||'—'}\nMontant : ${fmt(g.montant)} FCFA\nTitulaire : ${m?.titulaire||'—'}\nÀ faire : renouvellement, prorogation ou mainlevée.`,al:[30,15,7,1]})});
  db.marches.forEach(m=>{const r=calc(m);if(!r||m.reception||r.fin<today)return;
   ev.push({id:'m'+m.id,d:r.fin,t:`PTUA – Fin prévue du marché ${m.num}`,x:dis?'Détail dans l’application PTUA.':`Titulaire : ${m.titulaire||'—'}\nObjet : ${m.objet||'—'}`,al:[30,7]})});
+ db.assurances.forEach(a=>{const x=galA(a);if(!x||x.j<0||x.j>=9999)return;ev.push({id:'a'+a.id,d:D(a.echeance),t:`PTUA – Échéance assurance ${a.type} · ${mn(a.marche)}`,x:dis?'Détail dans l’application PTUA.':`Assureur : ${a.assureur||'—'}\nPolice : ${a.police||'—'}\nCapital assuré : ${fmt(a.montant)} FCFA\nÀ faire : renouvellement ou attestation à jour.`,al:[30,15,7,1]})});
  db.os.forEach(o=>{const f=osFin(o);if(!f||f<today)return;
   ev.push({id:'o'+o.id,d:f,t:`PTUA – Fin de durée OS ${o.num||o.type} · ${mn(o.marche)}`,x:dis?'':(o.note||''),al:[15,3]})});
  if(!ev.length)return alert('Aucune échéance future à ajouter (garanties actives avec une date d’échéance, fins prévues de marchés, durées d’OS).');
- const st=new Date().toISOString().replace(/[-:]/g,'').slice(0,15)+'Z',L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//PTUA//Gestionnaire PTUA v8.0//FR','CALSCALE:GREGORIAN','METHOD:PUBLISH','X-WR-CALNAME:PTUA – échéances'];
+ const st=new Date().toISOString().replace(/[-:]/g,'').slice(0,15)+'Z',L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//PTUA//Gestionnaire PTUA v8.1//FR','CALSCALE:GREGORIAN','METHOD:PUBLISH','X-WR-CALNAME:PTUA – échéances'];
  const al=(t,tr)=>L.push('BEGIN:VALARM','ACTION:DISPLAY','DESCRIPTION:'+icsE(t),'TRIGGER:'+tr,'END:VALARM');
  ev.forEach(e=>{L.push('BEGIN:VEVENT',`UID:ptua-${e.id}-${icd(e.d)}@ptua.app`,'DTSTAMP:'+st,'DTSTART;VALUE=DATE:'+icd(e.d),'DTEND;VALUE=DATE:'+icd(new Date(e.d.getTime()+day)),'SUMMARY:'+icsE(e.t));
   if(e.x)L.push('DESCRIPTION:'+icsE(e.x));L.push('TRANSP:TRANSPARENT');
