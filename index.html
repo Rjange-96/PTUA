@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="PTUA">
+<meta name="theme-color" content="#eef3fb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#070b17" media="(prefers-color-scheme: dark)">
+<meta name="format-detection" content="telephone=no">
+<link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-180.png"><link rel="icon" href="icon-192.png">
+<title>Gestionnaire juridique et contractuel PTUA v7.4</title>
+<style>
+:root{--bg:#eef3fb;--c:rgba(255,255,255,.74);--t:#16213a;--m:#5d6c8a;--b:rgba(60,80,130,.16);--p:#2563eb;--r:#e11d48;--o:#d97706;--y:#a16207;--g:#059669;--g1:#1e3a8a;--g2:#7c3aed;--h2:#1d4ed8;--in:rgba(255,255,255,.95);--hd:rgba(255,255,255,.78);--sh:0 14px 34px -16px rgba(37,60,120,.35);--gl:rgba(37,99,235,.2);--gl2:rgba(37,99,235,.35);--cf:rgba(37,99,235,.5);--cb:linear-gradient(135deg,rgba(37,99,235,.10),rgba(124,58,237,.16));--hv:rgba(37,99,235,.06);--dg:rgba(255,255,255,.98);--ob:#fff;--bt:#fff;--sp:radial-gradient(circle at 50% 45%,#fff,#d6e4ff);--bd:#0f1b3a66;color-scheme:light}
+[data-t=dark]{--bg:#070b17;--c:rgba(18,26,48,.62);--t:#e8eefc;--m:#8b98b8;--b:rgba(148,163,184,.2);--p:#22d3ee;--r:#ff6b81;--o:#fbbf24;--y:#facc15;--g:#34d399;--g1:#fff;--g2:#67e8f9;--h2:#a5f3fc;--in:rgba(6,10,24,.7);--hd:rgba(7,11,23,.72);--sh:0 14px 34px -12px #000a;--gl:#22d3ee55;--gl2:#22d3ee55;--cf:rgba(103,232,249,.55);--cb:linear-gradient(135deg,rgba(34,211,238,.16),rgba(99,102,241,.2));--hv:rgba(34,211,238,.07);--dg:#0c1328f2;--ob:#0f172a;--bt:#04101f;--sp:radial-gradient(circle at 50% 45%,#16205a,#050810);--bd:#02050dcc;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font:15px/1.5 'Segoe UI',system-ui,-apple-system,sans-serif;color:var(--t);background:radial-gradient(900px 600px at 10% -10%,#bfd4ff88,transparent),radial-gradient(800px 600px at 100% 0,#c3f1ff88,transparent),radial-gradient(700px 500px at 50% 120%,#e4d4ff77,transparent),var(--bg);background-attachment:fixed;overflow-x:hidden}
+[data-t=dark] body{background:radial-gradient(900px 600px at 12% -10%,#27358a66,transparent),radial-gradient(800px 600px at 100% 5%,#0e7c8f55,transparent),radial-gradient(700px 500px at 50% 120%,#7c3aed33,transparent),var(--bg)}
+#bg{position:fixed;inset:0;perspective:900px;z-index:-1;overflow:hidden;pointer-events:none}
+.fl{position:absolute;animation:fl 12s ease-in-out infinite alternate}
+@keyframes fl{from{transform:translate3d(0,-26px,0)}to{transform:translate3d(18px,30px,-60px)}}
+.cu{--s:40px;--h:calc(var(--s)/2);width:var(--s);height:var(--s);position:relative;transform-style:preserve-3d;animation:spin 16s linear infinite}
+.cu i{position:absolute;inset:0;border:1.5px solid var(--cf);background:var(--cb);box-shadow:inset 0 0 14px var(--gl)}
+.cu i:nth-child(1){transform:translateZ(var(--h))}.cu i:nth-child(2){transform:rotateY(180deg) translateZ(var(--h))}
+.cu i:nth-child(3){transform:rotateY(90deg) translateZ(var(--h))}.cu i:nth-child(4){transform:rotateY(-90deg) translateZ(var(--h))}
+.cu i:nth-child(5){transform:rotateX(90deg) translateZ(var(--h))}.cu i:nth-child(6){transform:rotateX(-90deg) translateZ(var(--h))}
+@keyframes spin{from{transform:rotateX(-20deg) rotateY(0)}to{transform:rotateX(340deg) rotateY(360deg)}}
+#sp{position:fixed;inset:0;z-index:99;background:var(--sp);display:flex;flex-direction:column;gap:46px;align-items:center;justify-content:center;perspective:700px;transition:opacity .7s,transform .7s}
+#sp.x{opacity:0;transform:scale(1.15);pointer-events:none}
+#sp .cu{--s:110px;animation-duration:5s}#sp b{font-size:26px;letter-spacing:.5em;text-indent:.5em;background:linear-gradient(90deg,var(--g1),var(--g2));-webkit-background-clip:text;color:transparent;animation:rise .9s backwards .2s}
+header{position:sticky;top:0;z-index:5;background:var(--hd);backdrop-filter:blur(16px);border-bottom:1px solid var(--b);padding:10px 18px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;box-shadow:0 6px 24px -14px rgba(37,60,120,.3)}
+.lg{display:flex;align-items:center;gap:16px;perspective:300px}.lg .cu{--s:24px;animation-duration:9s;margin:6px}
+h1{font-size:17px;margin:0;background:linear-gradient(90deg,var(--g1),var(--g2));-webkit-background-clip:text;color:transparent}h1 small{color:var(--m);-webkit-text-fill-color:var(--m);font-weight:400;font-size:12px}
+nav{display:flex;gap:8px;flex-wrap:wrap;padding:16px 18px;perspective:600px}
+button{font:inherit;color:var(--t);background:var(--in);border:1px solid var(--b);padding:8px 15px;border-radius:999px;cursor:pointer;box-shadow:0 2px 6px -2px rgba(37,60,120,.2);transition:transform .18s,box-shadow .18s,border-color .18s}
+button:hover{transform:translateY(-2px) translateZ(10px);border-color:var(--p);box-shadow:0 10px 22px -8px var(--gl2)}button:active{transform:translateY(1px)}
+button.on,button.pri{background:linear-gradient(135deg,#2563eb,#7c3aed);color:var(--bt);font-weight:600;border-color:transparent;box-shadow:0 8px 22px -6px rgba(79,70,229,.55)}
+[data-t=dark] button.on,[data-t=dark] button.pri{background:linear-gradient(135deg,#22d3ee,#6366f1)}
+main{padding:0 18px 50px;max-width:1200px;margin:auto;perspective:1200px}
+main>*{animation:rise .7s cubic-bezier(.2,.8,.2,1) backwards}main>*:nth-child(2){animation-delay:.08s}main>*:nth-child(3){animation-delay:.16s}main>*:nth-child(4){animation-delay:.24s}
+@keyframes rise{from{opacity:0;transform:translateY(26px) rotateX(-14deg)}}
+.bar{display:flex;gap:8px;flex-wrap:wrap;margin:4px 0 14px}.bar input{flex:1;min-width:160px;width:auto}
+input,select{font:inherit;width:100%;padding:10px 13px;border:1px solid var(--b);border-radius:12px;background:var(--in);color:var(--t);outline:none;transition:border-color .2s,box-shadow .2s}
+input:focus,select:focus{border-color:var(--p);box-shadow:0 0 0 3px var(--gl)}select option{background:var(--ob);color:var(--t)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:18px}
+.k,.card,.w{background:var(--c);backdrop-filter:blur(14px);border:1px solid var(--b);border-radius:18px;box-shadow:var(--sh),inset 0 1px 0 rgba(255,255,255,.5)}
+.k,.card{transition:transform .18s ease-out,box-shadow .25s}.k:hover,.card:hover{box-shadow:0 26px 46px -16px var(--gl2)}
+.k{padding:16px;position:relative;overflow:hidden;border-top:3px solid var(--a,#2563eb)}.k:nth-child(2){--a:#7c3aed}.k:nth-child(3){--a:#0891b2}.k:nth-child(4){--a:#e11d48}.k:nth-child(5){--a:#d97706}
+.k::after{content:"";position:absolute;right:-30px;top:-30px;width:100px;height:100px;border-radius:50%;background:radial-gradient(var(--gl),transparent 70%)}
+.k b{display:block;font-size:26px;line-height:1.2;background:linear-gradient(90deg,var(--g1),var(--g2));-webkit-background-clip:text;color:transparent}.k span{color:var(--m);font-size:11.5px;letter-spacing:.05em;text-transform:uppercase}
+.card{padding:16px;margin-bottom:18px}.card h2{font-size:15px;margin:0 0 10px;color:var(--h2)}
+.w{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:13.5px}th,td{padding:11px 12px;border-bottom:1px solid var(--b);text-align:left;white-space:nowrap}
+th{color:var(--m);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.06em}td.n{text-align:right}tr:hover td{background:var(--hv)}
+.b{padding:2px 10px;border-radius:99px;font-size:12px;font-weight:600;border:1px solid currentColor;background:color-mix(in srgb,currentColor 10%,transparent)}.b.r{color:var(--r)}.b.o{color:var(--o)}.b.y{color:var(--y)}.b.g{color:var(--g)}
+.e{color:var(--m);padding:20px;text-align:center}
+dialog{border:1px solid var(--b);border-radius:20px;background:var(--dg);color:var(--t);width:min(480px,94vw);padding:20px;box-shadow:0 30px 80px -20px rgba(15,27,58,.5)}
+dialog[open]{animation:flip .5s cubic-bezier(.2,.8,.2,1)}@keyframes flip{from{opacity:0;transform:perspective(900px) rotateX(-28deg) scale(.9)}}
+dialog::backdrop{background:var(--bd);backdrop-filter:blur(4px)}
+label{display:block;font-size:12px;color:var(--m);margin-bottom:12px}label input,label select{margin-top:4px}.row{display:flex;gap:8px;justify-content:flex-end;margin-top:10px}
+.hr{display:flex;flex-direction:column;align-items:center;line-height:1.15;padding:5px 18px;border:1px solid var(--b);border-radius:14px;background:var(--in);box-shadow:0 6px 18px -8px var(--gl2)}.hr b{font-size:21px;font-variant-numeric:tabular-nums;letter-spacing:.05em;background:linear-gradient(90deg,var(--g1),var(--g2));-webkit-background-clip:text;color:transparent}.hr small{font-size:11px;color:var(--m);text-transform:capitalize}
+.mx th,.mx td{white-space:normal}.mx td.c,.mx th.c{text-align:center}.mx th:first-child{text-transform:none;color:var(--t);font-size:13px;text-align:left}.mx small{color:var(--m)}.mx td.t{font-weight:600;background:var(--hv)}.mx b{font-size:15px}.w2{overflow-x:auto}
+.al{margin:0 18px 10px;padding:10px 14px;border-radius:14px;cursor:pointer;font-weight:600;border:1px solid currentColor;background:color-mix(in srgb,currentColor 10%,var(--in))}.al.r{color:var(--r)}.al.o{color:var(--o)}
+th.st{cursor:pointer;user-select:none}a{color:var(--p)}
+.bar3{display:grid;grid-template-columns:110px 1fr auto;gap:10px;align-items:center;margin:7px 0;font-size:13px}.bar3 i{display:block;height:12px;border-radius:99px;background:linear-gradient(90deg,#2563eb,#7c3aed)}.bar3 em{font-style:normal;color:var(--m)}
+#lk{position:fixed;inset:0;z-index:200;background:var(--sp);display:flex;align-items:center;justify-content:center}#lk[hidden]{display:none}.lkb{background:var(--dg);border:1px solid var(--b);border-radius:20px;padding:26px;display:flex;flex-direction:column;gap:12px;width:min(340px,92vw);box-shadow:0 30px 80px -20px rgba(15,27,58,.5)}
+@media print{#bg,#sp,#lk,#al,nav,dialog,button,.hr{display:none!important}:root,[data-t=dark]{--t:#000;--m:#444;--c:#fff;--b:#bbb;--g1:#000;--g2:#000;--h2:#000;--hv:transparent;--in:#fff;--hd:#fff}body{background:#fff!important}header{position:static;box-shadow:none}.k,.card,.w{box-shadow:none!important;backdrop-filter:none;break-inside:avoid}main>*{animation:none!important}.w,.w2{overflow:visible}}
+.hit{background:color-mix(in srgb,#facc15 38%,transparent);border-radius:4px}tr.cl{cursor:pointer}.sh{display:flex;justify-content:space-between;align-items:center;margin:16px 0 8px}.sh h2{font-size:15px;margin:0;color:var(--h2)}
+dialog{max-height:92vh;overflow:auto}summary{outline:none}
+.cp th,.cp td{padding:4px 8px;font-size:12px}.cg{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}.ci{background:var(--in);border:1px solid var(--b);border-radius:14px;padding:12px;font-size:13px}.ci b{font-size:14px;display:block;margin-bottom:6px}.ci div{margin:3px 0}.ci small{color:var(--m)}.ca{margin-top:8px;display:flex;gap:6px;flex-wrap:wrap}
+.lt td{background:var(--hv);font-weight:700;color:var(--h2);padding:4px 12px}.lh{grid-column:1/-1;font-weight:700;color:var(--h2);border-bottom:1px solid var(--b);padding-top:6px}
+
+.pt{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:4px 0 12px}#pn{min-width:56px;text-align:center;color:var(--m)}
+.sl{display:none;background:var(--c);backdrop-filter:blur(14px);border:1px solid var(--b);border-radius:22px;padding:26px 30px 14px;min-height:470px;box-shadow:var(--sh)}
+.sl.on{display:block;animation:rise .5s cubic-bezier(.2,.8,.2,1)}.sl h2{font-size:26px;margin:0;color:var(--h2)}.sub{color:var(--m);margin:4px 0 18px;font-size:15px}
+.ft{display:flex;justify-content:space-between;color:var(--m);font-size:11px;border-top:1px solid var(--b);margin-top:18px;padding-top:8px}
+.dots{display:flex;gap:7px;justify-content:center;margin-top:12px}.dots i{width:9px;height:9px;border-radius:50%;background:var(--b);cursor:pointer}.dots i.on{background:var(--p);transform:scale(1.35)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}@media(max-width:760px){.g2{grid-template-columns:1fr}}
+.kg{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px}.kp{background:var(--in);border:1px solid var(--b);border-radius:16px;padding:16px;border-top:4px solid var(--a,#2563eb)}.kp b{display:block;font-size:30px;line-height:1.15}.kp span{color:var(--m);font-size:12px;text-transform:uppercase;letter-spacing:.05em}.kp small{display:block;color:var(--m);margin-top:4px}
+.dw{display:flex;gap:20px;align-items:center;flex-wrap:wrap}.dn{width:190px;height:190px;border-radius:50%;position:relative;display:grid;place-items:center;flex:none}.dn::before{content:"";position:absolute;inset:28px;border-radius:50%;background:var(--dg)}.dn div{position:relative;text-align:center}.dn b{display:block;font-size:30px}.dn small{color:var(--m);font-size:11px}
+.lg2{flex:1;min-width:200px}.lg2 div{display:grid;grid-template-columns:14px 1fr auto auto;gap:8px;align-items:center;margin:6px 0;font-size:13px}.lg2 i{width:12px;height:12px;border-radius:4px}.lg2 small{color:var(--m)}
+.hbr{display:grid;grid-template-columns:minmax(120px,210px) 1fr minmax(90px,auto);gap:12px;align-items:center;margin:8px 0;font-size:13px}.tk{height:14px;background:var(--b);border-radius:99px;overflow:hidden}.tk i{display:block;height:100%;border-radius:99px}.hbr em{font-style:normal;color:var(--m);text-align:right}
+.mb{display:flex;align-items:flex-end;gap:8px;height:200px;padding-top:6px}.mb div{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;font-size:11px;color:var(--m)}.mb i{width:100%;max-width:46px;border-radius:8px 8px 3px 3px;background:linear-gradient(180deg,#2563eb,#7c3aed);min-height:2px}.mb b{font-size:10.5px;color:var(--t);margin-bottom:3px}
+.gr{display:grid;grid-template-columns:minmax(120px,210px) 1fr;gap:12px;align-items:center;margin:7px 0;font-size:13px}.gk{height:16px;position:relative;background:var(--b);border-radius:8px}.gk i{position:absolute;top:0;bottom:0;border-radius:8px}.td{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--r);z-index:2}
+.cv{text-align:center;padding:26px 0}.cv h1{font-size:44px;margin:14px 0 4px}.pc{perspective:400px;height:100px;display:flex;justify-content:center;align-items:center}
+.ac{display:flex;gap:14px;align-items:center;background:var(--in);border:1px solid var(--b);border-radius:14px;padding:12px 16px;margin:10px 0}.ac b{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff}
+#st:fullscreen{background:var(--bg);padding:22px;overflow:auto;display:flex;flex-direction:column;justify-content:center}
+@media print{@page{size:A4 landscape;margin:10mm}:root,[data-t=dark]{--dg:#fff}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}.pt,.dots{display:none!important}.sl{display:block!important;break-after:page;page-break-after:always;box-shadow:none;min-height:0;border:1px solid #ccc}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}#sp{display:none}}
+/* v7.3 — iPhone */
+.card{overflow-x:auto}.w,.w2,.card{-webkit-overflow-scrolling:touch}
+header{padding-top:max(10px,env(safe-area-inset-top));padding-left:max(18px,env(safe-area-inset-left));padding-right:max(18px,env(safe-area-inset-right))}
+main{padding-bottom:calc(50px + env(safe-area-inset-bottom))}
+button,select,a,label,summary{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+#ins{margin:10px 18px 0;padding:12px 14px;border-radius:14px;border:1px solid var(--p);background:color-mix(in srgb,var(--p) 9%,var(--in));color:var(--t);font-size:14px;line-height:1.45}#ins[hidden]{display:none}#ins button{margin-top:8px}
+@media(max-width:700px){
+ input,select{font-size:16px}
+ header{position:static;padding:10px 12px;gap:8px}h1{font-size:15px}.hr{padding:4px 12px}.hr b{font-size:17px}
+ header .bar{flex-wrap:nowrap;overflow-x:auto;width:100%;padding-bottom:4px;scrollbar-width:none}header .bar button{flex:none}
+ nav{position:sticky;top:0;z-index:6;flex-wrap:nowrap;overflow-x:auto;padding:10px 12px;background:var(--hd);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--b);scrollbar-width:none}
+ header .bar::-webkit-scrollbar,nav::-webkit-scrollbar{display:none}nav button{flex:none}
+ main{padding-left:12px;padding-right:12px}.al{margin:8px 12px}#ins{margin:10px 12px 0}
+ button{padding:9px 14px;min-height:40px}.bar input{min-width:100%}
+ .sl{padding:16px 14px 10px;min-height:0}.sl h2{font-size:21px}.cv h1{font-size:32px}.kp b{font-size:24px}
+ .hbr,.gr{grid-template-columns:minmax(90px,130px) 1fr}.hbr em{grid-column:2;text-align:left}
+ .cg{grid-template-columns:1fr}
+ .bar select{flex:1 1 40%;min-width:0;width:auto!important}
+ dialog{width:100vw;max-width:100vw;margin:auto 0 0;border-radius:20px 20px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom));max-height:92dvh}
+ .row{position:sticky;bottom:0;background:var(--dg);padding:10px 0 0}.row button{flex:1}
+}
+</style></head><body>
+<div id="bg"></div><div id="sp"><div class="cu"></div><b>PTUA</b></div><header><div class="lg"><div class="cu"></div><h1>Gestionnaire juridique et contractuel PTUA <small>v7.4 · iPhone</small></h1></div><div class="hr"><b id="ht">--:--:--</b><small id="hdt"></small></div>
+<div class="bar" style="margin:0"><button id="th" onclick="th()">🌙 Sombre</button><button onclick="pinMenu()">🔒 Verrou</button><button onclick="window.print()">🖨️ Imprimer / PDF</button><button onclick="expJ()">Exporter (JSON)</button><button onclick="$('#imp').click()">Importer</button><button onclick="expC()">Exporter (CSV)</button></div>
+<input type="file" id="imp" accept=".json,application/json" hidden onchange="impJ(this)"></header>
+<div id="ins" hidden></div><nav id="nav"></nav><div id="al"></div><main id="v"></main><div id="lk" hidden><div class="lkb"><h2 style="margin:0">🔒 Application verrouillée</h2><small style="color:var(--m)">Données chiffrées sur cet appareil (AES-256)</small><input id="pin" type="password" inputmode="numeric" placeholder="Code d’accès" onkeydown="if(event.key=='Enter')unl()"><button class="pri" onclick="unl()">Déverrouiller</button><small id="lke" style="color:var(--r)"></small></div></div>
+<datalist id="orgs"></datalist>
+<dialog id="cd"></dialog><dialog id="dlg"><h3 id="dt" style="margin-top:0"></h3><div id="df"></div><div class="row"><button onclick="$('#dlg').close()">Annuler</button><button class="pri" onclick="ok()">Enregistrer</button></div></dialog>
+<script>
+const MOB=()=>matchMedia('(max-width:700px)').matches,K='ptua_v3',$=s=>document.querySelector(s),day=864e5,today=new Date(new Date().toDateString());
+const S={
+marches:{t:'Marché',f:[['titulaire','Titulaire'],['num','N° marché'],['objet','Objet'],['montant','Montant (FCFA)','number'],['debut','Démarrage','date'],['delaiM','Délai (mois)','number'],['delai','Délai (jours) — s’ajoute aux mois','number'],['reception','Date de réception','date'],['taux','Pénalité (‰ / jour)','number'],['plafond','Plafond pénalités (%)','number'],['doc','Référence document / lien']]},
+garanties:{t:'Garantie',f:[['marche','Marché','ref'],['type','Type','sel',['Avance de démarrage','Bonne exécution','Retenue de garantie','Soumission']],['organisme','Organisme garant'],['montant','Montant (FCFA)','number'],['emission','Date d’émission','date'],['echeance','Date d’échéance (si fixée)','date'],['statut','Statut','sel',['Émise','Active','Expirée','Mainlevée obtenue']],['evt','Événement marquant la fin de la garantie'],['fin_ev','Événement de fin survenu','sel',['—','Remboursement intégral de l’avance de démarrage','PV de réception provisoire','PV de réception définitive','Mainlevée du Bénéficiaire']],['fin_date','Date de l’événement de fin','date'],['mainlevee','Date de mainlevée','date'],['doc','Référence document / lien']]},
+os:{t:'Ordre de service',f:[['marche','Marché','ref'],['num','N° OS'],['type','Type','sel',['Démarrage','Arrêt','Reprise','Prolongation','Autre']],['date','Date — à compter du','date'],['dureeM','Durée (mois)','number'],['jours','Durée (jours) — s’ajoute aux mois','number'],['note','Observation']]},
+avenants:{t:'Avenant',f:[['marche','Marché','ref'],['num','N° avenant'],['date','Date de signature','date'],['objet','Objet'],['montant','Variation de montant (FCFA)','number'],['delai','Délai supplémentaire (jours)','number']]}};
+const NAV=[['dash','📊 Tableau de bord'],['pres','🎤 Présentation'],['search','🔎 Recherche'],['marches','📁 Marchés'],['garanties','🛡️ Garanties'],['os','📝 Ordres de service'],['avenants','📑 Avenants'],['stats','📈 Statistiques'],['veille','⚖️ Veille juridique'],['sauv','💾 Sauvegarde'],['amel','💡 Améliorations'],['journal','🕘 Journal']];
+let db=null,tab='dash',q='',cur={};
+const EK='ptua_enc',IT=600000,te=new TextEncoder(),td=new TextDecoder();
+let KEY=null,SALT=null,SN=[],PQ=Promise.resolve(),ENC=(()=>{try{return !!localStorage.getItem(EK)}catch(e){return false}})();
+if(!ENC)try{db=JSON.parse(localStorage.getItem(K))}catch(e){}
+db=db||{marches:[],garanties:[],os:[],journal:[]};db.avenants=db.avenants||[];
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const save=()=>{try{if(!ENC)localStorage.setItem(K,JSON.stringify(db));localStorage.setItem('ptua_ls',Date.now());snap(false);if(ENC)persist()}catch(e){alert('Sauvegarde automatique impossible : pensez à exporter vos données (JSON).')}};
+const D=s=>s?new Date(s+'T00:00:00'):null,diff=(a,b)=>Math.round((a-b)/day);
+const fmt=n=>(+n||0).toLocaleString('fr-FR'),fdd=d=>d.toLocaleDateString('fr-FR'),fd=s=>s?fdd(D(s)):'—';
+const mk=id=>db.marches.find(m=>m.id==id),mn=id=>mk(id)?.num||'?';
+const log=m=>{db.journal.unshift({d:new Date().toLocaleString('fr-FR'),m});db.journal=db.journal.slice(0,300)};
+const lab=(e,o)=>e=='marches'?o.num:mn(o.marche)+' · '+(o.type||o.num||'');
+
+function calc(m){
+ if(!m.debut||!(+m.delai||+m.delaiM))return null;
+ const av=db.avenants.filter(a=>a.marche==m.id),M=(+m.montant||0)+av.reduce((t,a)=>t+(+a.montant||0),0),ref=m.reception?D(m.reception):today;let arret=0,st=null;
+ const ev=db.os.filter(o=>o.marche==m.id&&(o.type=='Arrêt'||o.type=='Reprise')&&o.date).sort((a,b)=>a.date<b.date?-1:1);
+ for(const o of ev){if(o.type=='Arrêt'&&!st)st=D(o.date);else if(o.type=='Reprise'&&st){arret+=diff(D(o.date),st);st=null}}
+ if(st)arret+=Math.max(0,diff(ref,st));
+ const d0=D(m.debut),wm=Math.trunc(+m.delaiM||0),x=new Date(d0);x.setMonth(x.getMonth()+wm);if(x.getDate()!=d0.getDate())x.setDate(0);const fin=new Date(x.getTime()+((+m.delai||0)+Math.round(((+m.delaiM||0)-wm)*30)+arret+av.reduce((t,a)=>t+(+a.delai||0),0)+db.os.filter(o=>o.marche==m.id&&o.type=='Prolongation').reduce((t,o)=>t+osDays(o),0))*day),retard=Math.max(0,diff(ref,fin));
+ const plaf=M*(+m.plafond||0)/100;let pen=M*(+m.taux||0)/1000*retard;if(plaf)pen=Math.min(pen,plaf);pen=Math.min(pen,M);
+ return{arret,fin,retard,pen,plaf,M};
+}
+function gal(g){
+ if(endedG(g)||!['Émise','Active'].includes(g.statut))return null;
+ if(!g.echeance)return{j:9999,c:'g'};
+ const j=diff(D(g.echeance),today);return{j,c:j<=7?'r':j<=15?'o':j<=30?'y':'g'};
+}
+const badge=g=>{const a=gal(g);return endedG(g)?`<span class="b g">Terminée · ${esc(g.fin_ev)}</span>`:a&&a.j>=9999?'<span class="b g">En cours · fin sur événement</span>':a?`<span class="b ${a.c}">${a.j<0?'Échue depuis '+(-a.j)+' j':a.j+' j restants'}</span>`:`<span class="b ${g.statut=='Mainlevée obtenue'?'g':'y'}">${esc(g.statut)}</span>`};
+
+function render(){banner();
+ $('#nav').innerHTML=NAV.map(([k,l])=>`<button class="${k==tab?'on':''}" onclick="go('${k}')">${l}${k=='amel'?amN():''}</button>`).join('');
+ $('#orgs').innerHTML=[...new Set(db.garanties.map(g=>g.organisme).filter(Boolean))].map(o=>`<option value="${esc(o)}">`).join('');
+ if(tab=='dash')$('#v').innerHTML=dash();
+ else if(tab=='search'){$('#v').innerHTML=sUI();sRes();$('#gq')?.focus()}
+ else if(tab=='pres')$('#v').innerHTML=pres();
+ else if(tab=='amel')$('#v').innerHTML=amel();
+ else if(tab=='sauv')$('#v').innerHTML=sauv();
+ else if(tab=='veille')$('#v').innerHTML=veille();
+ else if(tab=='stats')$('#v').innerHTML=stats();
+ else if(tab=='journal')$('#v').innerHTML=`<div class="w"><table><tr><th>Date</th><th>Action</th></tr>${db.journal.map(j=>`<tr><td>${esc(j.d)}</td><td>${esc(j.m)}</td></tr>`).join('')||'<tr><td class="e" colspan="2">Aucune action enregistrée.</td></tr>'}</table></div>`;
+ else{
+  $('#v').innerHTML=`<div class="bar"><input id="q" placeholder="Rechercher…" value="${esc(q)}" oninput="q=this.value.toLowerCase();$('#tb').innerHTML=rows(tab)">${fsel()}${tsel()}<button onclick="$('#vp').hidden=!$('#vp').hidden">⚙️ Affichage</button><button class="pri" onclick="edit('${tab}')">+ ${S[tab].t}</button></div><div id="vp" class="card nt" hidden>${vpanel()}</div><div class="w ${VW(tab).mode=='compact'?'cp':''}"><table id="tb"></table></div>`;
+  $('#tb').innerHTML=rows(tab);
+ }
+}
+function go(t){try{const u=RF().use||(RF().use={});u[t]=(u[t]||0)+1}catch(e){}tab=t;q='';sk=S[t]?VW(t).sk:'';sd=S[t]?VW(t).sd:1;sf='';render()}
+function rows(e){
+ const s=S[e],V=VW(e),F=s.f.filter(f=>!V.hide.includes(f[0]));LL='';
+ let a=db[e].filter(x=>!q||(JSON.stringify(x)+mn(x.marche)).toLowerCase().includes(q));
+ const fk=FK(e);if(sf&&fk)a=a.filter(x=>x[fk[0]]==sf);
+ if(e=='garanties')a.sort((x,y)=>(x.echeance||'9')<(y.echeance||'9')?-1:1);
+ if(sk&&s.f.some(f=>f[0]==sk))a.sort((x,y)=>{const ty=s.f.find(f=>f[0]==sk)[2];let u=x[sk]??'',v=y[sk]??'';if(u===''||v==='')return u===v?0:u===''?1:-1;if(ty=='number'){u=+u;v=+v}else if(ty=='ref'){u=mn(u);v=mn(v)}return(typeof u=='number'?u-v:String(u).localeCompare(String(v),'fr',{numeric:true,sensitivity:'base'}))*sd});
+ if(sk=='@az')azSort(e,a);else if(sk[0]=='@')a.sort((x,y)=>(sv(e,sk,x)-sv(e,sk,y))*sd);
+ const ex=e=='marches'?['Fin prévue','Retard (j)','Pénalités']:e=='garanties'?['Alerte']:e=='os'?['Fin de la durée']:[];
+ let h='<tr>'+F.map(f=>`<th class="st" onclick="srt('${f[0]}')">${f[1]}${sk==f[0]?(sd>0?' ▲':' ▼'):''}</th>`).concat(ex.map(x=>`<th>${x}</th>`)).join('')+'<th></th></tr>';
+ if(!a.length)return h+`<tr><td class="e" colspan="${F.length+ex.length+1}">Aucun élément.</td></tr>`;
+ if(V.mode=='cards')return cards(e,a,F);
+ return h+a.map(x=>{
+  let c=F.map(([k,,t])=>`<td class="${t=='number'?'n':''}">${t=='ref'?esc(mt(x[k])):t=='number'?fmt(x[k]):t=='date'?fd(x[k]):k=='doc'&&/^https?:\/\//.test(x[k])?`<a href="${esc(x[k])}" target="_blank" rel="noopener">🔗 Ouvrir</a>`:esc(x[k])}</td>`).join('');
+  if(e=='marches'){const r=calc(x);c+=r?`<td>${fdd(r.fin)}${r.arret?' (+'+r.arret+' j arrêt)':''}</td><td class="n">${r.retard||'—'}</td><td class="n">${r.pen?fmt(r.pen):'—'}</td>`:'<td colspan="3">Renseigner démarrage et délai</td>'}
+  if(e=='garanties')c+=`<td>${badge(x)}</td>`;
+  if(e=='os'){const f=osFin(x);c+=`<td>${f?fdd(f):'—'}</td>`}
+  return `${lh(e,x)}<tr>${c}<td><button onclick="edit('${e}','${x.id}')">Modifier</button> <button onclick="dup('${e}','${x.id}')">Dupliquer</button> <button onclick="del('${e}','${x.id}')">Suppr.</button></td></tr>`}).join('');
+}
+function dash(){
+ const gs=db.garanties,act=gs.filter(g=>gal(g)&&gal(g).j>=0),al=gs.filter(g=>gal(g)&&gal(g).j<=30).sort((a,b)=>a.echeance<b.echeance?-1:1);
+ const late=db.marches.map(m=>({m,r:calc(m)})).filter(x=>x.r&&x.r.retard>0);
+ const pen=db.marches.reduce((s,m)=>s+(calc(m)?.pen||0),0);
+ return `<div class="kpis"><div class="k"><b>${db.marches.length}</b><span>Marchés</span></div><div class="k"><b>${act.length}</b><span>Garanties actives</span></div><div class="k"><b>${fmt(act.reduce((s,g)=>s+(+g.montant||0),0))}</b><span>Montant garanti actif</span></div><div class="k"><b style="color:var(--${al.length?'r':'g'})">${al.length}</b><span>Alertes ≤ 30 j</span></div><div class="k"><b>${fmt(pen)}</b><span>Pénalités estimées</span></div></div>
+ <div class="card"><h2>Garanties à surveiller (échéance ≤ 30 jours ou dépassée)</h2>${al.length?`<table>${al.map(g=>`<tr><td>${esc(mn(g.marche))}</td><td>${esc(g.type)}</td><td>${esc(g.organisme)}</td><td>${fd(g.echeance)}</td><td>${badge(g)}</td></tr>`).join('')}</table>`:'<div class="e">Aucune alerte.</div>'}</div>
+ <div class="card"><h2>Marchés en retard</h2>${late.length?`<table>${late.map(({m,r})=>`<tr><td>${esc(m.num)}</td><td>${esc(m.titulaire)}</td><td>Fin prévue ${fdd(r.fin)}</td><td>${r.retard} j</td><td>${fmt(r.pen)} FCFA</td></tr>`).join('')}</table>`:'<div class="e">Aucun retard détecté.</div>'}</div>
+ ${ech()}<p class="e">Les données sont enregistrées dans ce navigateur. Exportez régulièrement un JSON de sauvegarde.</p>`;
+}
+function edit(e,id){
+ const s=S[e],it=id?db[e].find(x=>x.id==id):{};cur={e,id};
+ $('#dt').textContent=(id?'Modifier – ':'Nouveau – ')+s.t;
+ $('#df').innerHTML=s.f.map(([k,l,t,o])=>{const v=it[k]??'';let i;
+  if(t=='ref')i=`<select name="${k}"><option value="">— choisir —</option>${db.marches.map(m=>`<option value="${m.id}" ${m.id==v?'selected':''}>${esc(m.num)}</option>`).join('')}</select>`;
+  else if(t=='sel')i=`<select name="${k}">${o.map(x=>`<option ${x==v?'selected':''}>${x}</option>`).join('')}</select>`;
+  else i=`<input name="${k}" type="${t||'text'}" value="${esc(v)}" ${k=='organisme'?'list="orgs"':''} ${t=='number'?'step="any"':''}>`;
+  return `<label>${l}${i}</label>`}).join('');
+if(e=='marches'){const E=['num','objet','titulaire','montant'],L=[...$('#df').children].filter(l=>!E.includes(l.querySelector('[name]').name)),d=document.createElement('details');
+  d.open=!!id;d.innerHTML='<summary style="cursor:pointer;margin:4px 0 14px;font-weight:600;color:var(--p)">＋ Plus d’informations (à compléter plus tard)</summary>';L.forEach(l=>d.appendChild(l));$('#df').appendChild(d);
+  if(!id)$('#df').insertAdjacentHTML('afterbegin','<p style="margin:0 0 12px;color:var(--m);font-size:13px">Seul le <b>N° de marché</b> est obligatoire : enregistrez maintenant et complétez le reste plus tard (délai en mois ou en jours, dates, montants…).</p>')}
+ if(e=='garanties'){const ty=$('#df [name=type]'),ev=$('#df [name=evt]'),fill=()=>{if(!ev.value||Object.values(EVT).includes(ev.value))ev.value=EVT[ty.value]||''};fill();ty.onchange=fill}
+ if(e=='os'){const pv=document.createElement('p');pv.id='pv';pv.style.cssText='margin:0 0 10px;font-weight:600;color:var(--p)';$('#df').appendChild(pv);
+  const up=()=>{const f=osFin(fo());pv.textContent=f?'➜ La durée court du '+fd(fo().date)+' au '+fdd(f):'Saisissez la date et une durée (mois et/ou jours) pour voir la date de fin.'};
+  $('#df').oninput=up;$('#df').onchange=up;up()}
+ $('#dlg').showModal();
+}
+function ok(){
+ const s=S[cur.e],o={};$('#df').querySelectorAll('[name]').forEach(x=>o[x.name]=x.value.trim());
+ const rq=cur.e=='marches'?s.f.find(f=>f[0]=='num'):s.f[0];if(!o[rq[0]]){alert('Le champ « '+rq[1]+' » est obligatoire.');return}
+ if(cur.e=='marches'&&db.marches.some(m=>m.num==o.num&&m.id!=cur.id)){alert('Ce numéro de marché existe déjà.');return}
+ if(cur.id){Object.assign(db[cur.e].find(x=>x.id==cur.id),o);log('Modification '+s.t+' : '+lab(cur.e,o))}
+ else{o.id=Date.now().toString(36)+Math.random().toString(36).slice(2,5);db[cur.e].push(o);log('Ajout '+s.t+' : '+lab(cur.e,o))}
+ save();$('#dlg').close();render();
+}
+function del(e,id){
+ const x=db[e].find(i=>i.id==id);
+ if(!confirm('Supprimer « '+lab(e,x)+' » ?'+(e=='marches'?'\nLes garanties et OS liés seront aussi supprimés.':'')))return;
+ db[e]=db[e].filter(i=>i.id!=id);
+ if(e=='marches'){db.garanties=db.garanties.filter(g=>g.marche!=id);db.os=db.os.filter(o=>o.marche!=id);db.avenants=db.avenants.filter(a=>a.marche!=id)}
+ log('Suppression '+S[e].t+' : '+lab(e,x));save();render();
+}
+const IOS=/iP(hone|ad|od)/.test(navigator.userAgent)||(navigator.maxTouchPoints>1&&/Mac/.test(navigator.userAgent));
+async function dl(name,txt,type){const blob=new Blob([txt],{type});
+ if(IOS){try{const f=new File([blob],name,{type});if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f]});return}}catch(e){if(e&&e.name=='AbortError')return}}
+ const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),4e3)}
+const stamp=()=>new Date().toISOString().slice(0,10);
+async function expJ(){
+ if(!crypto.subtle)return alert('Chiffrement indisponible : ouvrez l’application depuis son adresse https.');
+ const a=await ask('⬇️ Exporter une sauvegarde',[['a','Mot de passe de la sauvegarde (6 caractères minimum)'],['b','Confirmer le mot de passe']],'Le fichier sera <b>chiffré (AES-256)</b> : ce mot de passe sera demandé pour l’importer. <b>Mot de passe oublié = sauvegarde illisible.</b> Laissez vide pour un fichier non chiffré (déconseillé).');
+ if(!a)return;let txt,msg;
+ if(a.a){if(a.a.length<6)return alert('Mot de passe trop court (6 caractères minimum).');if(a.a!==a.b)return alert('Les deux mots de passe ne correspondent pas.');
+  const sl=crypto.getRandomValues(new Uint8Array(16)),k=await dk(a.a,sl),e=await encO(k,sl,db);e.ptua='sauvegarde-chiffree';e.date=stamp();txt=JSON.stringify(e);msg='Sauvegarde chiffrée prête'}
+ else{if(!confirm('Exporter SANS chiffrement ?\nToute personne qui obtient ce fichier pourra lire vos données.'))return;txt=JSON.stringify(db,null,1);msg='Sauvegarde non chiffrée prête'}
+ try{localStorage.setItem('ptua_exp',Date.now())}catch(e){}
+ offer('PTUA_sauvegarde_'+stamp()+'.json',txt,'application/json',msg);setTimeout(banner,300)}
+function expC(){
+ const e=S[tab]?tab:'marches',s=S[e],c=v=>'"'+String(v??'').replace(/"/g,'""')+'"';
+ const t=[s.f.map(f=>c(f[1])).join(';')].concat(db[e].map(x=>s.f.map(([k,,ty])=>c(ty=='ref'?mn(x[k]):x[k])).join(';'))).join('\n');
+ dl('PTUA_'+e+'_'+stamp()+'.csv','\ufeff'+t,'text/csv');
+}
+function impJ(inp){
+ const f=inp.files[0];if(!f)return;const r=new FileReader();
+ r.onload=async()=>{try{let d=JSON.parse(r.result);
+  if(d&&d.ct&&d.iv&&d.salt){const a=await ask('🔐 Sauvegarde chiffrée',[['p','Mot de passe de la sauvegarde']]);if(!a)return;try{d=(await openE(a.p,d)).o}catch(e){return alert('Mot de passe incorrect.')}}
+  if(!Array.isArray(d.marches)||!Array.isArray(d.garanties)||!Array.isArray(d.os))throw 0;
+  if(!confirm('Remplacer toutes les données actuelles par ce fichier ?'))return;
+  db={marches:d.marches,garanties:d.garanties,os:d.os,avenants:d.avenants||[],journal:d.journal||[],ref:d.ref};applyAll();log('Import d’une sauvegarde');save();render()}catch(e){alert('Fichier invalide.')}};
+ r.readAsText(f);inp.value='';
+}
+
+(()=>{const cube=e=>e.innerHTML='<i></i><i></i><i></i><i></i><i></i><i></i>';
+document.querySelectorAll('.cu').forEach(cube);
+const bg=$('#bg');
+for(let i=0,N=MOB()?6:12;i<N;i++){const f=document.createElement('div'),c=document.createElement('div'),z=28+Math.random()*72;
+ f.className='fl';c.className='cu';c.style.setProperty('--s',z+'px');c.style.animationDuration=16+Math.random()*26+'s';c.style.animationDelay=-Math.random()*20+'s';
+ f.style.cssText=`left:${Math.random()*94}%;top:${Math.random()*90}%;animation-duration:${9+Math.random()*9}s;animation-delay:${-Math.random()*9}s;opacity:${.22+Math.random()*.35}`;
+ cube(c);f.appendChild(c);bg.appendChild(f)}
+setTimeout(()=>$('#sp')?.classList.add('x'),1500);setTimeout(()=>$('#sp')?.remove(),2300);
+let L=null;const rs=()=>{if(L)L.style.transform='';L=null};
+document.addEventListener('pointermove',e=>{if(e.pointerType!='mouse')return;const t=e.target.closest('.k,.card:not(.nt)');if(L&&L!=t)rs();if(!t)return;L=t;
+ const r=t.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+ t.style.transform=`perspective(700px) rotateX(${-y*9}deg) rotateY(${x*9}deg) translateZ(10px)`});
+document.addEventListener('mouseout',e=>{if(!e.relatedTarget)rs()});
+})();
+
+const H=document.documentElement,lbl=()=>$('#th').textContent=H.dataset.t=='dark'?'☀️ Clair':'🌙 Sombre';
+function th(){if(H.dataset.t=='dark')delete H.dataset.t;else H.dataset.t='dark';try{localStorage.setItem('ptua_theme',H.dataset.t||'')}catch(e){}lbl()}
+try{if(localStorage.getItem('ptua_theme')=='dark')H.dataset.t='dark'}catch(e){}lbl();
+function tick(){const d=new Date();$('#ht').textContent=d.toLocaleTimeString('fr-FR');$('#hdt').textContent=d.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long',year:'numeric'})}
+tick();setInterval(tick,1000);
+
+function mat(t,cn,R,C,fn){
+ const mx=Math.max(1,...R.flatMap(r=>C.map(c=>fn(r,c).length)));
+ const cell=a=>a.length?`<b>${a.length}</b><br><small>${fmt(a.reduce((s,x)=>s+(+x.montant||0),0))}</small>`:'·';
+ const hd=`<tr><th>${cn}</th>${C.map(c=>`<th class="c">${esc(c)}</th>`).join('')}<th class="c">Total</th></tr>`;
+ const body=R.map(r=>`<tr><th>${esc(r)}</th>${C.map(c=>{const a=fn(r,c);return `<td class="c" style="background:color-mix(in srgb,var(--p) ${Math.round(a.length/mx*34)}%,transparent)">${cell(a)}</td>`}).join('')}<td class="c t">${cell(C.flatMap(c=>fn(r,c)))}</td></tr>`).join('');
+ const foot=`<tr><th>Total</th>${C.map(c=>`<td class="c t">${cell(R.flatMap(r=>fn(r,c)))}</td>`).join('')}<td class="c t">${cell(R.flatMap(r=>C.flatMap(c=>fn(r,c))))}</td></tr>`;
+ return `<div class="card nt"><h2>${t}</h2><div class="w2"><table class="mx">${hd}${body}${foot}</table></div></div>`}
+function stats(){
+ const gs=db.garanties,TY=S.garanties.f[1][3],ST=S.garanties.f[6][3];
+ if(!db.marches.length)return '<div class="card nt"><div class="e">Ajoutez des marchés et des garanties pour voir les matrices statistiques.</div></div>';
+ const orgs=[...new Set(gs.map(g=>g.organisme||'(non renseigné)'))];
+ const fiche=`<div class="card nt"><h2>Fiche synthétique par marché</h2><div class="w2"><table class="mx"><tr><th>Marché</th><th class="c">Montant</th><th class="c">Garanti actif</th><th class="c">Couverture</th><th class="c">OS</th><th class="c">Jours d’arrêt</th><th class="c">Retard (j)</th><th class="c">Pénalités</th></tr>${db.marches.map(m=>{const r=calc(m),ga=gs.filter(g=>g.marche==m.id&&gal(g)&&gal(g).j>=0).reduce((s,g)=>s+(+g.montant||0),0),MM=r?r.M:+m.montant,cv=MM?Math.round(ga/MM*100):0;return `<tr><th>${esc(m.num)}</th><td class="c">${fmt(MM)}</td><td class="c">${fmt(ga)}</td><td class="c"><span class="b ${cv>0?'g':'r'}">${cv} %</span></td><td class="c">${db.os.filter(o=>o.marche==m.id).length}</td><td class="c">${r?r.arret:'—'}</td><td class="c">${r?r.retard:'—'}</td><td class="c">${r&&r.pen?fmt(r.pen):'—'}</td></tr>`}).join('')}</table></div></div>`;
+ const bars=(()=>{const a=db.marches.map(m=>({n:m.num,v:gs.filter(g=>g.marche==m.id&&gal(g)&&gal(g).j>=0).reduce((t,g)=>t+(+g.montant||0),0)})),mx=Math.max(1,...a.map(x=>x.v));return `<div class="card nt"><h2>Montant garanti actif par marché</h2>${a.map(x=>`<div class="bar3"><span>${esc(x.n)}</span><i style="width:${Math.max(1,x.v/mx*100)}%"></i><em>${fmt(x.v)}</em></div>`).join('')}</div>`})();
+ return bars+fiche
+  +mat('Garanties par type et statut <small>(nombre · montant FCFA)</small>','Type \\ Statut',TY,ST,(r,c)=>gs.filter(g=>g.type==r&&g.statut==c))
+  +mat('Garanties par marché et type','Marché \\ Type',db.marches.map(m=>m.num),TY,(r,c)=>gs.filter(g=>mn(g.marche)==r&&g.type==c))
+  +(gs.length?mat('Garanties par organisme garant et statut','Organisme \\ Statut',orgs,ST,(r,c)=>gs.filter(g=>(g.organisme||'(non renseigné)')==r&&g.statut==c)):'');
+}
+
+let sk='',sd=1,sf='';
+const FK=e=>S[e].f.find(f=>f[0]=='statut')||S[e].f.find(f=>f[0]=='type'&&f[2]=='sel');
+const fsel=()=>{const f=FK(tab);return f?`<select style="width:auto" onchange="sf=this.value;$('#tb').innerHTML=rows(tab)"><option value="">Tous (${f[1].toLowerCase()})</option>${f[3].map(o=>`<option ${o==sf?'selected':''}>${o}</option>`).join('')}</select>`:''};
+function srt(k){sd=sk==k?-sd:1;sk=k;sApply()}
+function dup(e,id){const x=db[e].find(i=>i.id==id),n={...x,id:Date.now().toString(36)+Math.random().toString(36).slice(2,5)};if(e=='marches')n.num+=' (copie)';db[e].push(n);log('Duplication '+S[e].t+' : '+lab(e,x));save();render()}
+function banner(){
+ const n=db.garanties.filter(g=>{const a=gal(g);return a&&a.j<=30}).length;let le=0;try{le=+localStorage.getItem('ptua_exp')||0}catch(e){}
+ let h='';if(n)h+=`<div class="al r" onclick="go('dash')">⚠️ ${n} garantie(s) à surveiller (échéance ≤ 30 jours ou dépassée) — voir le tableau de bord</div>`;
+ if((db.marches.length||db.garanties.length)&&Date.now()-le>7*day)h+=`<div class="al o" onclick="expJ()">💾 Aucune sauvegarde depuis plus de 7 jours — cliquer pour exporter maintenant</div>`;
+ const w=constats().filter(c=>c.n=='warn').length;if(w)h+=`<div class="al o" onclick="go('veille')">⚖️ ${w} point(s) de conformité à vérifier — ouvrir la veille juridique</div>`;if(diff(today,D(RF().lc||RF().v))>30)h+=`<div class="al o" onclick="go('veille')">⚖️ Référentiel juridique non vérifié depuis plus de 30 jours</div>`;if(!db.marches.length&&!db.garanties.length&&snaps().length)h+=`<div class="al r" onclick="go('sauv')">💾 Aucune donnée affichée, mais ${snaps().length} point(s) de sauvegarde sont disponibles — cliquer pour restaurer</div>`;$('#al').innerHTML=h;document.title=(n?'('+n+') ':'')+'Gestionnaire PTUA v7.4';
+}
+function ech(){
+ const it=[];db.garanties.forEach(g=>{const a=gal(g);if(a&&a.j>=0&&a.j<=90)it.push({d:D(g.echeance),t:'🛡️ Échéance de garantie',l:mn(g.marche)+' · '+g.type})});
+ db.marches.forEach(m=>{const r=calc(m);if(r&&!m.reception){const j=diff(r.fin,today);if(j>=0&&j<=90)it.push({d:r.fin,t:'📁 Fin prévue du marché',l:m.num+(m.titulaire?' · '+m.titulaire:'')})}});
+ it.sort((a,b)=>a.d-b.d);
+ return `<div class="card"><h2>Échéancier — 90 prochains jours</h2>${it.length?`<table>${it.map(x=>`<tr><td>${fdd(x.d)}</td><td>dans ${diff(x.d,today)} j</td><td>${x.t}</td><td>${esc(x.l)}</td></tr>`).join('')}</table>`:'<div class="e">Rien à l’horizon.</div>'}</div>`;
+}
+const hs=(s,a=0)=>{let h1=0xdeadbeef^a,h2=0x41c6ce57^a;for(let i=0,c;i<s.length;i++){c=s.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}h1=Math.imul(h1^h1>>>16,2246822507)^Math.imul(h2^h2>>>13,3266489909);h2=Math.imul(h2^h2>>>16,2246822507)^Math.imul(h1^h1>>>13,3266489909);return String(4294967296*(2097151&h2)+(h1>>>0))};
+// ===== Chiffrement (v7.4) : PBKDF2-SHA256 600 000 itérations + AES-256-GCM (WebCrypto) =====
+const b64=u=>{let x='';new Uint8Array(u).forEach(c=>x+=String.fromCharCode(c));return btoa(x)},ub=x=>Uint8Array.from(atob(x),c=>c.charCodeAt(0));
+async function dk(pw,salt,it=IT){const b=await crypto.subtle.importKey('raw',te.encode(pw),'PBKDF2',false,['deriveKey']);return crypto.subtle.deriveKey({name:'PBKDF2',salt,iterations:it,hash:'SHA-256'},b,{name:'AES-GCM',length:256},false,['encrypt','decrypt'])}
+async function encO(k,salt,o){const iv=crypto.getRandomValues(new Uint8Array(12)),ct=await crypto.subtle.encrypt({name:'AES-GCM',iv},k,te.encode(JSON.stringify(o)));return{v:1,alg:'AES-256-GCM',kdf:'PBKDF2-SHA256',it:IT,salt:b64(salt),iv:b64(iv),ct:b64(ct)}}
+const decO=async(k,e)=>JSON.parse(td.decode(await crypto.subtle.decrypt({name:'AES-GCM',iv:ub(e.iv)},k,ub(e.ct))));
+async function openE(pw,e){const k=await dk(pw,ub(e.salt),e.it||IT);return{k,o:await decO(k,e)}}
+const stE=()=>JSON.parse(localStorage.getItem(EK));
+async function wr(k,sl){const e=await encO(k,sl,{db,snaps:SN});localStorage.setItem(EK,JSON.stringify(e));await decO(k,stE())}
+function persist(){if(!ENC||!KEY)return PQ;const k=KEY,sl=SALT;PQ=PQ.then(()=>wr(k,sl)).catch(()=>alert('Enregistrement chiffré impossible (mémoire pleine ?) : exportez vos données.'));return PQ}
+async function enableEnc(pw){const sl=crypto.getRandomValues(new Uint8Array(16)),k=await dk(pw,sl);SN=snaps();await wr(k,sl);
+ KEY=k;SALT=sl;ENC=true;try{[K,SK,'ptua_pin'].forEach(x=>localStorage.removeItem(x))}catch(e){}log('Chiffrement des données activé');await persist()}
+async function reKey(pw){await PQ;const sl=crypto.getRandomValues(new Uint8Array(16)),k=await dk(pw,sl);await wr(k,sl);KEY=k;SALT=sl}
+async function disableEnc(){await PQ;localStorage.setItem(K,JSON.stringify(db));localStorage.setItem(SK,JSON.stringify(SN.slice(0,10)));ENC=false;KEY=null;SALT=null;localStorage.removeItem(EK)}
+const blank=()=>({marches:[],garanties:[],os:[],avenants:[],journal:[]});
+function ask(t,fs,note){return new Promise(r=>{const d=$('#cd');
+ d.innerHTML=`<h3 style="margin-top:0">${t}</h3>${note?`<p style="margin:0 0 12px;color:var(--m);font-size:13px">${note}</p>`:''}${fs.map(f=>`<label>${f[1]}<input name="${f[0]}" type="password" autocomplete="off" ${f[2]||''}></label>`).join('')}<div class="row"><button data-v="0">Annuler</button><button class="pri" data-v="1">Valider</button></div>`;
+ const done=v=>{d.close();r(v)};
+ d.querySelectorAll('.row button').forEach(b=>b.onclick=()=>{if(b.dataset.v=='0')return done(null);const o={};d.querySelectorAll('input').forEach(i=>o[i.name]=i.value);done(o)});
+ d.onkeydown=e=>{if(e.key=='Enter'){e.preventDefault();d.querySelector('.pri').click()}};d.oncancel=e=>{e.preventDefault();done(null)};d.showModal();setTimeout(()=>d.querySelector('input')?.focus(),80)})}
+function choose(t,opts){return new Promise(r=>{const d=$('#cd');d.innerHTML=`<h3 style="margin-top:0">${t}</h3><div style="display:flex;flex-direction:column;gap:8px">${opts.map((o,i)=>`<button data-i="${i}" ${i?'':'class="pri"'}>${o}</button>`).join('')}<button data-i="-1">Annuler</button></div>`;
+ d.querySelectorAll('button').forEach(b=>b.onclick=()=>{d.close();r(+b.dataset.i)});d.onkeydown=null;d.oncancel=e=>{e.preventDefault();d.close();r(-1)};d.showModal()})}
+function offer(n,txt,type,msg){const d=$('#cd');d.innerHTML=`<h3 style="margin-top:0">✅ ${msg}</h3><p style="margin:0 0 12px;color:var(--m);font-size:13px">Sur iPhone : touchez « Enregistrer le fichier », puis <b>Enregistrer dans Fichiers</b> (iCloud Drive conseillé). Évitez de l’envoyer par messagerie.</p><div class="row"><button data-v="0">Fermer</button><button class="pri" data-v="1">💾 Enregistrer le fichier</button></div>`;
+ d.querySelectorAll('.row button').forEach(b=>b.onclick=()=>{if(b.dataset.v=='1')dl(n,txt,type);d.close()});d.onkeydown=null;d.oncancel=null;d.showModal()}
+const gp=()=>{try{return localStorage.getItem('ptua_pin')}catch(e){return null}}; // ancien code (avant v7.4), remplacé par le chiffrement au déverrouillage
+function lock(){if(!ENC&&!gp())return;$('#pin').value='';$('#lke').textContent='';$('#lk').hidden=false;if($('#dlg').open)$('#dlg').close();if($('#cd').open)$('#cd').close();
+ if(ENC&&KEY)PQ.then(()=>{KEY=null;SALT=null;db=blank();SN=[];render()});setTimeout(()=>$('#pin').focus(),80)}
+async function unl(){const v=$('#pin').value,e=$('#lke');if(!v)return;e.style.color='var(--m)';e.textContent='Vérification…';
+ try{if(ENC){const st=stE(),{k,o}=await openE(v,st);KEY=k;SALT=ub(st.salt);db=o.db;db.avenants=db.avenants||[];SN=o.snaps||[];applyAll()}
+  else if(hs(v)==gp()){if(v.length<6){$('#lk').hidden=true;e.textContent='';ia=Date.now();alert('Nouvelle protection : choisissez un code de 6 caractères minimum pour activer le chiffrement.');localStorage.removeItem('ptua_pin');return pinMenu()}await enableEnc(v)}
+  else throw 0;
+  $('#lk').hidden=true;e.textContent='';$('#pin').value='';ia=Date.now();render()}
+ catch(x){e.style.color='var(--r)';e.textContent='Code incorrect.'}}
+async function pinMenu(){
+ if(!crypto.subtle)return alert('Chiffrement indisponible : ouvrez l’application depuis son adresse https.');
+ if(!ENC){const a=await ask('🔒 Code d’accès + chiffrement',[['a','Nouveau code (6 caractères minimum)','inputmode="numeric"'],['b','Confirmer le code','inputmode="numeric"']],'Vos données seront <b>chiffrées (AES-256)</b> sur cet appareil. Le code sera demandé à chaque ouverture et après 5 minutes d’inactivité.<br><b>Code oublié = données de cet appareil perdues</b> : exportez d’abord une sauvegarde.');
+  if(!a)return;if(a.a.length<6)return alert('Code trop court (6 caractères minimum).');if(a.a!==a.b)return alert('Les deux codes ne correspondent pas.');
+  try{await enableEnc(a.a);alert('✅ Chiffrement activé. Vos données sont maintenant chiffrées sur cet appareil.')}catch(e){ENC=false;KEY=null;alert('Activation impossible : vos données n’ont pas été modifiées.')}render();return}
+ const c=await choose('🔒 Code d’accès',['Verrouiller maintenant','Changer le code','Supprimer le code et le chiffrement']);if(c<0)return;if(c==0)return lock();
+ const a=await ask(c==1?'Changer le code':'Supprimer le code',c==1?[['c','Code actuel'],['n','Nouveau code (6 caractères minimum)','inputmode="numeric"'],['n2','Confirmer le nouveau code','inputmode="numeric"']]:[['c','Code actuel']],c==2?'Les données seront de nouveau enregistrées <b>en clair</b> sur cet appareil.':'');
+ if(!a)return;try{await openE(a.c,stE())}catch(e){return alert('Code incorrect.')}
+ if(c==1){if(a.n.length<6)return alert('Code trop court (6 caractères minimum).');if(a.n!==a.n2)return alert('Les deux codes ne correspondent pas.');await reKey(a.n);log('Code d’accès modifié');save();alert('✅ Code modifié.')}
+ else{await disableEnc();log('Chiffrement désactivé');save();alert('Code et chiffrement supprimés.')}render()}
+let ia=Date.now(),hid=0;['pointermove','keydown','click','touchstart'].forEach(v=>addEventListener(v,()=>ia=Date.now(),{passive:true}));
+document.addEventListener('visibilitychange',()=>{if(document.hidden)hid=Date.now();else if((ENC||gp())&&hid&&Date.now()-hid>3e5&&$('#lk').hidden)lock()});
+setInterval(()=>{if((ENC||gp())&&Date.now()-ia>3e5&&$('#lk').hidden)lock()},15000);
+
+let gq='',gF='';
+const nz=s=>String(s??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+const EN={marches:'Marchés',garanties:'Garanties',os:'Ordres de service',avenants:'Avenants',journal:'Journal'};
+const cvl=(x,f)=>{const k=f[0],t=f[2];return t=='ref'?mn(x[k]):t=='number'?fmt(x[k]):t=='date'?fd(x[k]):(x[k]??'')};
+const hay=(e,x)=>nz(S[e].f.map(f=>f[2]=='date'?(x[f[0]]||'')+' '+fd(x[f[0]]):f[2]=='number'?(x[f[0]]||'')+' '+fmt(x[f[0]]):cvl(x,f)).join(' ')+(e=='marches'?'':' '+(mk(x.marche)?.titulaire||'')+' '+(mk(x.marche)?.objet||'')));
+const sUI=()=>`<div class="bar"><input id="gq" placeholder="Rechercher partout : n° de marché, titulaire, organisme, objet, date…" value="${esc(gq)}" oninput="gq=this.value;sRes()"><select style="width:auto" onchange="gF=this.value;sRes()"><option value="">Tout</option>${Object.keys(EN).map(k=>`<option value="${k}" ${k==gF?'selected':''}>${EN[k]}</option>`).join('')}</select></div><div id="sr"></div>`;
+function sRes(){
+ const T=nz(gq).split(/\s+/).filter(Boolean),o=$('#sr');
+ if(!T.length){o.innerHTML=`<div class="card nt"><div class="e">Tapez un ou plusieurs mots (ex. : « acme garantie 2026 »). Raccourci : touche / ou Ctrl+K depuis n’importe quelle page.<br>Base actuelle : ${db.marches.length} marché(s), ${db.garanties.length} garantie(s), ${db.os.length} OS, ${db.avenants.length} avenant(s).</div></div>`;return}
+ let tot=0,h='';
+ for(const e of Object.keys(EN)){
+  if(gF&&gF!=e)continue;
+  if(e=='journal'){const a=db.journal.filter(j=>T.every(t=>nz(j.d+' '+j.m).includes(t)));if(!a.length)continue;tot+=a.length;h+=`<div class="sh"><h2>${EN[e]} (${a.length})</h2></div><div class="w"><table>${a.slice(0,50).map(j=>`<tr><td>${esc(j.d)}</td><td>${esc(j.m)}</td></tr>`).join('')}</table></div>`;continue}
+  const a=db[e].filter(x=>{const H=hay(e,x);return T.every(t=>H.includes(t))});
+  if(!a.length)continue;tot+=a.length;const f=S[e].f;
+  h+=`<div class="sh"><h2>${EN[e]} (${a.length})</h2><button onclick="go('${e}');q=gq.toLowerCase();render()">Voir dans l’onglet →</button></div><div class="w"><table><tr>${f.map(c=>`<th>${c[1]}</th>`).join('')}</tr>${a.slice(0,50).map(x=>`<tr class="cl" onclick="edit('${e}','${x.id}')">${f.map(c=>{const v=cvl(x,c);return `<td class="${T.some(t=>nz(v).includes(t))?'hit':''}">${esc(v)}</td>`}).join('')}</tr>`).join('')}</table></div>${a.length>50?`<div class="e">… et ${a.length-50} autre(s) : affinez la recherche.</div>`:''}`;
+ }
+ o.innerHTML=`<p class="e" style="padding:6px">${tot} résultat(s) — cliquez sur une ligne pour la modifier</p>`+(h||'<div class="card nt"><div class="e">Aucun résultat.</div></div>');
+}
+document.addEventListener('keydown',ev=>{if((ev.key=='/'&&!/INPUT|SELECT|TEXTAREA/.test(ev.target.tagName)&&!$('dialog[open]'))||((ev.ctrlKey||ev.metaKey)&&ev.key.toLowerCase()=='k')){ev.preventDefault();go('search')}});
+
+const REF0={v:'2026-11-11',base:'Côte d’Ivoire — Ordonnance n° 2019-679 du 24 juillet 2019 portant Code des marchés publics (version consolidée consultée) et guides ARCOP de juin 2024',
+p:{ret:[3,5],gbe:[3,5],av1:15,av2:15,avt:30,pen:10,mlGbe:15},
+r:[['Garantie de soumission','Mainlevée au plus tard 15 jours après l’attribution définitive, et seulement après constitution complète de la garantie de bonne exécution.','Art. 96 · DGMP','En vigueur'],
+['Garantie de bonne exécution','Montant fixé au marché ; 3 % à 5 % du montant du marché, avenants inclus, selon les guides ARCOP ; à compléter en cas d’avenant ; à fournir sous 15 jours ouvrables après la notification d’approbation.','Art. 97 · guides ARCOP 2024','En vigueur'],
+['Dispense de garantie','Dispense ponctuelle accordée par la structure de contrôle ; dispense permanente par arrêté ministériel ; à mentionner au CCAP.','Art. 97.5','En vigueur'],
+['Libération des garanties','Garantie de bonne exécution libérée au plus tard 15 jours après la réception provisoire (ou la réception s’il n’y a pas de délai de garantie), si le titulaire a rempli ses obligations.','Art. 99','En vigueur'],
+['Retenue de garantie','Entre 3 % et 5 % de chaque paiement lorsque le marché comporte un délai de garantie.','Art. 98','En vigueur'],
+['Avances','Avance forfaitaire ≤ 15 % du montant initial ; avance facultative ≤ 15 % ; cumul ≤ 30 % du marché et de ses avenants.','Art. 129 à 131','En vigueur'],
+['Garanties d’avances','Mainlevée partielle sous 15 jours, à mesure du remboursement des avances.','Art. 101','En vigueur'],
+['Pénalités de retard','Taux fixé au CCAP ; montant ≤ montant non révisé du marché et avenants ; à 10 % cumulés, l’autorité contractante peut demander la résiliation ; remise possible après avis conforme de la structure de contrôle.','Art. 91','En vigueur'],
+['Régulation','L’ARCOP remplace l’ANRMP (ordonnance n° 2025-32 du 15 janvier 2025). Le projet de loi de ratification a été adopté en commission du Sénat le 8 juin 2026 : adoption définitive à vérifier.','Ord. 2025-32 · AIP 8/06/2026','À vérifier']],
+props:[
+{id:'p1',op:'add',ent:'marches',after:'plafond',fs:[['retenue','Retenue de garantie (%)','number'],['avance','Avance forfaitaire (FCFA)','number'],['avancef','Avance facultative (FCFA)','number']],title:'Ajouter la retenue de garantie et les avances au marché',why:'Permet de contrôler la fourchette et les plafonds légaux (art. 98, 129 à 131).'},
+{id:'p2',op:'add',ent:'marches',after:'reception',fs:[['notif','Date de notification d’approbation','date']],title:'Ajouter la date de notification d’approbation',why:'Permet de contrôler le délai de constitution de la garantie de bonne exécution (guides ARCOP).'},
+{id:'p3',op:'rename',ent:'marches',key:'reception',label:'Date de réception provisoire',title:'Préciser « Date de réception provisoire »',why:'La libération de la garantie de bonne exécution court à partir de la réception provisoire (art. 99).'},
+{id:'p4',op:'rename',ent:'marches',key:'plafond',label:'Plafond fixé au CCAP (%) — facultatif',title:'Clarifier le champ « Plafond pénalités »',why:'Le Code ne fixe pas de plafond de 10 % : à 10 % cumulés, la résiliation devient possible (art. 91). L’application alerte désormais à ce seuil.'}],
+s:[['DGMP — réglementation','https://www.marchespublics.ci/reglementation'],['ARCOP','https://arcop.ci'],['Code 2019 (AfricanLII)','https://agp.africanlii.org/en/akn/ci/act/ord/2019/679/fra@2023-05-12']]};
+const RF=()=>db.ref||(db.ref=Object.assign(JSON.parse(JSON.stringify(REF0)),{applied:[],lc:'',url:''}));
+function applyP(p){const f=S[p.ent]?.f;if(!f)return;
+ if(p.op=='add'){const i=f.findIndex(x=>x[0]==p.after);p.fs.forEach((x,k)=>{if(!f.some(y=>y[0]==x[0]))f.splice(i<0?f.length:i+1+k,0,x)})}
+ else if(p.op=='rename'){const x=f.find(y=>y[0]==p.key);if(x)x[1]=p.label}
+ else if(p.op=='remove'){const i=f.findIndex(y=>y[0]==p.key);if(i>0)f.splice(i,1)}}
+const applyAll=()=>RF().props.filter(p=>RF().applied.includes(p.id)).forEach(applyP);
+function appP(id){const R=RF(),p=R.props.find(x=>x.id==id);if(!p||R.applied.includes(id))return;R.applied.push(id);applyP(p);log('Évolution appliquée : '+p.title);save();render()}
+function constats(){
+ const P=RF().p,out=[],add=(m,n,t,a)=>out.push({m:m.num,n,t,a}),A=['Émise','Active'];
+ db.marches.forEach(m=>{
+  const k=out.length,r=calc(m),M=r?r.M:+m.montant||0,gs=db.garanties.filter(g=>g.marche==m.id),isB=g=>g.type=='Bonne exécution';
+  const gb=gs.filter(g=>isB(g)&&A.includes(g.statut)&&!endedG(g)).reduce((t,g)=>t+(+g.montant||0),0);
+  if(M&&!gs.some(isB))add(m,'warn','Aucune garantie de bonne exécution enregistrée (sauf dispense mentionnée au CCAP).','Art. 97');
+  else if(M&&gb){const p=gb/M*100;add(m,p>=P.gbe[0]&&p<=P.gbe[1]?'ok':'warn',`Garantie de bonne exécution active : ${p.toFixed(1)} % du marché (fourchette ${P.gbe[0]}–${P.gbe[1]} %, guides ARCOP).`,'Art. 97')}
+  if(gb&&db.avenants.some(a=>a.marche==m.id&&+a.montant>0))add(m,'info','Avenant avec incidence financière : vérifier que la garantie de bonne exécution a été complétée.','Guides ARCOP');
+  if(m.retenue){const x=+m.retenue;add(m,x>=P.ret[0]&&x<=P.ret[1]?'ok':'warn',`Retenue de garantie : ${x} % (fourchette ${P.ret[0]}–${P.ret[1]} %).`,'Art. 98')}
+  if(m.avance||m.avancef){const a1=+m.avance||0,a2=+m.avancef||0,mi=+m.montant||0,n0=out.length;
+   if(a1>mi*P.av1/100)add(m,'warn',`Avance forfaitaire supérieure à ${P.av1} % du montant initial.`,'Art. 129');
+   if(a2>M*P.av2/100)add(m,'warn',`Avance facultative supérieure à ${P.av2} % du montant du marché.`,'Art. 130');
+   if(a1+a2>M*P.avt/100)add(m,'warn',`Cumul des avances supérieur à ${P.avt} % du marché et de ses avenants.`,'Art. 131');
+   if(out.length==n0)add(m,'ok','Avances dans les plafonds légaux.','Art. 129 à 131')}
+  if(r&&M){const x=r.pen/M*100;
+   if(x>=P.pen)add(m,'warn',`Pénalités cumulées estimées : ${x.toFixed(1)} % — seuil de ${P.pen} % atteint : l’autorité contractante peut demander la résiliation.`,'Art. 91');
+   else if(x>0)add(m,'info',`Pénalités cumulées estimées : ${x.toFixed(1)} % du marché (seuil de résiliation : ${P.pen} %).`,'Art. 91')}
+  if(m.reception){const j=diff(today,D(m.reception));if(j>P.mlGbe&&gs.some(g=>isB(g)&&A.includes(g.statut)&&!endedG(g)))add(m,'warn',`Réception le ${fd(m.reception)} : la mainlevée de la garantie de bonne exécution est due sous ${P.mlGbe} jours (dépassé de ${j-P.mlGbe} j).`,'Art. 99')}
+  if(m.notif&&!gs.some(isB)){const j=diff(today,D(m.notif));if(j>21)add(m,'warn',`Aucune garantie de bonne exécution ${j} jours après la notification d’approbation (délai : 15 jours ouvrables, soit environ 21 jours).`,'Guides ARCOP')}
+  if(m.fin_garantie&&D(m.fin_garantie)<=today)add(m,'info',`Délai de garantie expiré le ${fd(m.fin_garantie)} : vérifier la restitution de la retenue de garantie et la mainlevée des garanties.`,'Art. 98');
+  if(out.length==k)add(m,'info','Données insuffisantes : renseignez montant, garanties, retenue et avances pour activer les contrôles.','—');
+ });return out}
+const okRef=d=>d&&typeof d.v=='string'&&d.p&&Array.isArray(d.r)&&Array.isArray(d.props);
+function mergeRef(d){const R=RF();if(!confirm('Importer le référentiel du '+d.v+' (actuel : '+R.v+') ?'))return;R.v=d.v;R.base=d.base||R.base;R.p=Object.assign({},R.p,d.p);R.r=d.r;R.props=d.props.concat(R.props.filter(p=>String(p.id).startsWith('u-')));if(d.am)R.am=d.am;R.s=d.s||R.s;R.lc=stamp();log('Référentiel juridique mis à jour : '+d.v);save();render()}
+function impRef(inp){const f=inp.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const d=JSON.parse(r.result);if(!okRef(d))throw 0;mergeRef(d)}catch(e){alert('Fichier de référentiel invalide.')}};r.readAsText(f);inp.value=''}
+async function chkUrl(){const u=$('#ru').value.trim();if(!/^https:\/\//.test(u)){alert('Saisissez une adresse commençant par https://');return}
+ RF().url=u;save();try{const d=await(await fetch(u,{cache:'no-store'})).json();if(!okRef(d))throw 0;if(d.v<=RF().v){RF().lc=stamp();save();alert('Référentiel déjà à jour ('+RF().v+').');render();return}mergeRef(d)}catch(e){alert('Vérification impossible : hors ligne, adresse incorrecte ou site qui n’autorise pas la lecture.')}}
+function veille(){
+ const R=RF(),C=constats(),bd={ok:['g','Conforme'],warn:['r','À vérifier'],info:['y','Info']},T={add:'Ajout',rename:'Modification',remove:'Retrait'};
+ return `<div class="card nt"><h2>⚖️ Référentiel juridique — version du ${fdd(D(R.v))}</h2><p style="margin:0 0 10px;color:var(--m)">${esc(R.base)}.<br>Dernière vérification manuelle : ${R.lc?fdd(D(R.lc)):'jamais'}.</p>
+ <div class="bar"><button class="pri" onclick="RF().lc=stamp();save();render()">✅ J’ai vérifié les textes aujourd’hui</button><button onclick="$('#ri').click()">📥 Importer un référentiel (JSON)</button></div>
+ <div class="bar"><input id="ru" placeholder="Adresse https:// d’un référentiel JSON (optionnel)" value="${esc(R.url||'')}"><button onclick="chkUrl()">🌐 Vérifier en ligne</button></div>
+ <div class="bar">${R.s.map(x=>`<a href="${esc(x[1])}" target="_blank" rel="noopener">🔗 ${esc(x[0])}</a>`).join(' · ')}</div><input type="file" id="ri" accept=".json,application/json" hidden onchange="impRef(this)"></div>
+ <div class="card nt"><h2>Contrôle de conformité de vos marchés</h2>${C.length?`<div class="w2"><table class="mx">${C.map(c=>`<tr><th>${esc(c.m)}</th><td><span class="b ${bd[c.n][0]}">${bd[c.n][1]}</span></td><td style="text-align:left">${esc(c.t)}</td><td>${esc(c.a)}</td></tr>`).join('')}</table></div>`:'<div class="e">Ajoutez des marchés pour lancer les contrôles.</div>'}</div>
+ <div class="card nt"><h2>Propositions d’évolution de l’application</h2><div class="w2"><table class="mx">${R.props.map(p=>`<tr><td><span class="b ${p.op=='remove'?'r':p.op=='add'?'g':'y'}">${T[p.op]||p.op}</span></td><td style="text-align:left"><b>${esc(p.title)}</b><br><small>${esc(p.why)}</small></td><td>${R.applied.includes(p.id)?'✓ Appliqué':`<button class="pri" onclick="appP('${p.id}')">Appliquer</button>`}</td></tr>`).join('')||'<tr><td class="e">Aucune proposition.</td></tr>'}</table></div>${R.props.some(p=>p.op=='remove')?'':'<p class="e" style="padding:8px">Retraits : d’après le référentiel actuel, aucun élément de l’application n’est devenu obsolète.</p>'}</div>
+ <div class="card nt"><h2>Règles du référentiel</h2><div class="w2"><table class="mx">${R.r.map(x=>`<tr><th>${esc(x[0])}</th><td style="text-align:left">${esc(x[1])}</td><td>${esc(x[2])}</td><td><span class="b ${x[3]=='En vigueur'?'g':'y'}">${esc(x[3])}</span></td></tr>`).join('')}</table></div></div>
+ <p class="e">Aide à la veille et au contrôle, qui ne remplace pas une vérification des textes officiels (Journal officiel, DGMP, ARCOP). Les constats reposent sur les données saisies.</p>`;
+}
+applyAll();
+const EVT={'Avance de démarrage':'Expire à l’issue du remboursement intégral de l’avance de démarrage consentie à l’entrepreneur, ou par la mainlevée donnée par le Bénéficiaire.','Bonne exécution':'Expire à la date d’établissement du procès-verbal de réception provisoire des travaux, ou par la mainlevée donnée au Bénéficiaire.','Retenue de garantie':'Expire à la date d’établissement du procès-verbal de réception définitive des travaux, ou par la mainlevée donnée par le Bénéficiaire.'};
+const endedG=g=>g.fin_ev&&g.fin_ev!='—'&&g.fin_date&&D(g.fin_date)<=today;
+const SK='ptua_snaps',snaps=()=>{if(ENC)return SN;try{return JSON.parse(localStorage.getItem(SK))||[]}catch(e){return[]}};
+function setSnaps(a){if(ENC){SN=a;persist();return}try{localStorage.setItem(SK,JSON.stringify(a))}catch(e){try{localStorage.setItem(SK,JSON.stringify(a.slice(0,3)))}catch(e2){}}}
+function snap(man){
+ const a=snaps();if(!man&&a[0]&&Date.now()-a[0].t<6e5)return;
+ a.unshift({t:Date.now(),n:[db.marches.length,db.garanties.length,db.os.length,db.avenants.length],d:JSON.stringify(db)});setSnaps(a.slice(0,10));
+}
+function rest(i){const x=snaps()[i];if(!x||!confirm('Restaurer le point du '+new Date(x.t).toLocaleString('fr-FR')+' ?\nLes données actuelles seront remplacées (un point de sauvegarde de l’état actuel est créé avant).'))return;
+ snap(true);db=JSON.parse(x.d);db.avenants=db.avenants||[];applyAll();log('Restauration d’un point de sauvegarde');save();render()}
+function delS(i){const a=snaps().slice();a.splice(i,1);setSnaps(a);render()}
+function sauv(){
+ const a=snaps(),ls=+localStorage.getItem('ptua_ls')||0,le=+localStorage.getItem('ptua_exp')||0,f=t=>t?new Date(t).toLocaleString('fr-FR'):'jamais';
+ setTimeout(()=>navigator.storage?.persisted?.().then(p=>{const e=$('#ps');if(e)e.textContent=p?'activée ✅':'non activée'}).catch(()=>{}),0);
+ return `<div class="card nt"><h2>🔐 Protection des données</h2><p style="margin:0 0 8px">${ENC?'Chiffrement <b style="color:var(--g)">activé ✅</b> : vos données sont chiffrées sur cet appareil (AES-256-GCM, clé dérivée de votre code par PBKDF2-SHA256, 600 000 itérations). Verrouillage automatique après 5 minutes d’inactivité.':'Chiffrement <b style="color:var(--r)">non activé</b> : vos données sont lisibles en clair dans la mémoire de ce navigateur.'}</p><div class="bar" style="margin:0"><button class="${ENC?'':'pri'}" onclick="pinMenu()">🔒 ${ENC?'Gérer le code d’accès':'Activer le code et le chiffrement'}</button></div><p style="margin:8px 0 0;color:var(--m);font-size:12px">Les exports JSON sont chiffrés par un mot de passe que vous choisissez. Les exports CSV et l’impression ne sont jamais chiffrés.</p></div>
+ <div class="card nt"><h2>💾 Vos données sont enregistrées automatiquement</h2><p style="margin:0 0 8px">À chaque ajout, modification ou suppression, tout est écrit dans la mémoire de ce navigateur : <b>fermer la page ou l’onglet n’efface rien</b>. Rouvrez simplement l’application (icône PTUA) ou la page, sur le même appareil.</p>
+ <p style="margin:0;color:var(--m)">Dernier enregistrement : ${f(ls)} · Taille : ${(JSON.stringify(db).length/1024).toFixed(1)} Ko · ${db.marches.length} marché(s), ${db.garanties.length} garantie(s), ${db.os.length} OS, ${db.avenants.length} avenant(s)<br>Conservation durable demandée au navigateur : <span id="ps">…</span> <button onclick="navigator.storage?.persist?.().then(()=>go('sauv'))">🔐 La demander</button></p></div>
+ <div class="card nt"><h2>⚠️ Ce qui peut quand même tout effacer</h2><p style="margin:0;color:var(--m)">Vider les données du site ou l’historique, la navigation privée, un autre navigateur ou appareil, et sur iPhone, dans Safari, un site resté longtemps inutilisé (l’application installée sur l’écran d’accueil n’est en principe pas concernée). Attention : l’application installée et Safari ont <b>chacun leurs propres données</b>. Seul un <b>fichier exporté</b> protège contre cela : exportez-en un régulièrement et gardez-le ailleurs (Fichiers, Drive, clé USB).</p>
+ <div class="bar" style="margin-top:10px"><button class="pri" onclick="expJ().then(()=>go('sauv'))">⬇️ Exporter une sauvegarde (JSON)</button><button onclick="$('#imp').click()">📥 Importer une sauvegarde</button><button onclick="expC()">Exporter en CSV</button></div><p style="margin:0;color:var(--m)">Dernier export : ${f(le)}</p></div>
+ <div class="card nt"><h2>🕘 Points de sauvegarde automatiques (${a.length}/10)</h2><p style="margin:0 0 8px;color:var(--m)">Une copie est faite automatiquement au plus toutes les 10 minutes d’utilisation. Elles sont stockées dans le même navigateur : utiles contre une erreur de manipulation, pas contre un effacement du site.</p>
+ <div class="bar"><button onclick="snap(true);render()">+ Créer un point maintenant</button></div>
+ ${a.length?`<div class="w2"><table class="mx">${a.map((x,i)=>`<tr><th>${f(x.t)}</th><td>${x.n[0]} marché(s) · ${x.n[1]} garantie(s) · ${x.n[2]} OS · ${x.n[3]} avenant(s)</td><td><button onclick="rest(${i})">Restaurer</button> <button onclick="delS(${i})">Supprimer</button></td></tr>`).join('')}</table></div>`:'<div class="e">Aucun point pour le moment.</div>'}</div>`;
+}
+snap(false);
+REF0.am=[
+{id:'am1',pays:'CI',titre:'Référence SIGOMAP / BOMP du marché',why:'Le SIGOMAP est la plateforme dématérialisée de gestion des marchés publics (DGMP) : relier chaque marché à son dossier facilite les rapprochements.',src:'DGMP · SIGOMAP',op:'add',ent:'marches',after:'doc',fs:[['sigomap','Référence SIGOMAP / BOMP']]},
+{id:'am2',pays:'CI',titre:'Délai de paiement prévu au CCAP (jours)',why:'Le marché fixe le délai de paiement, qui ne peut excéder 90 jours selon le glossaire de la DGMP : base d’un futur calcul des intérêts moratoires.',src:'DGMP · glossaire',op:'add',ent:'marches',after:'taux',fs:[['delaiPaie','Délai de paiement du CCAP (jours)','number']]},
+{id:'am3',pays:'CI',titre:'Suivi des décomptes et intérêts moratoires',why:'Dus pour retard de paiement des prestations (pas des avances). La DGMP les subordonne à une demande motivée et chiffrée, le guide ARCOP les dit exigibles sans rappel : point à confirmer avant d’automatiser.',src:'DGMP · guides ARCOP 2024'},
+{id:'am4',pays:'FR',titre:'Fin du délai de garantie du marché',why:'En France, la retenue de garantie (5 % maximum) est remboursée 30 jours après l’expiration du délai de garantie. Cette date déclenche ici un contrôle de restitution de la retenue et de mainlevée.',src:'Code de la commande publique, R2191-32 à R2191-35',op:'add',ent:'marches',after:'reception',fs:[['fin_garantie','Fin du délai de garantie','date']]},
+{id:'am5',pays:'FR',titre:'Suivi des factures : délai global de 30 jours',why:'Modèle français : 30 jours, intérêts moratoires (taux BCE + 8 points) et indemnité forfaitaire de 40 € par facture en retard. Non applicable tel quel en Côte d’Ivoire, mais bon modèle de tableau de suivi.',src:'Code de la commande publique, R2192-10 et s.'},
+{id:'am6',pays:'FR',titre:'Avance et garantie à première demande',why:'En France, l’avance est de 5 à 30 % (marchés > 50 000 € HT et > 2 mois) et peut être garantie en tout ou partie par une garantie à première demande : modèle pour suivre le remboursement d’une avance.',src:'Code de la commande publique · fiche DAJ « avances »'},
+{id:'am7',pays:'GEN',titre:'Suivi du remboursement de l’avance de démarrage',why:'La garantie d’avance s’éteint au remboursement intégral : saisir les remboursements permettrait de la passer automatiquement en « Terminée » et de proposer la mainlevée partielle.',src:'Art. 101 · votre clause de fin d’avance'},
+{id:'am8',pays:'GEN',titre:'Contrôle des organismes garants (liste DA 2025)',why:'Importer la liste des organismes habilités permettrait d’alerter si une garantie vient d’un organisme non listé.',src:'Votre liste DA 2025'},
+{id:'am9',pays:'GEN',titre:'Fiche marché en PDF et rappels dans le calendrier',why:'Document prêt à joindre aux dossiers, et alertes d’échéance directement dans le téléphone (fichier .ics).',src:'—'}];
+const AM=()=>RF().am||REF0.am;
+function amSt(id,v){const R=RF();(R.amst||(R.amst={}))[id]=v;save();render()}
+function amAp(id){const p=AM().find(x=>x.id==id),R=RF();if(!p||!p.op)return;const pid='am-'+id;
+ if(!R.props.some(x=>x.id==pid))R.props.push({id:pid,op:p.op,ent:p.ent,after:p.after,fs:p.fs,key:p.key,label:p.label,title:p.titre,why:p.why});
+ (R.amst||(R.amst={}))[id]='adopté';appP(pid)}
+function rmF(ent,key){const R=RF(),id='u-'+ent+'-'+key,f=S[ent].f.find(x=>x[0]==key);if(!f||!confirm('Retirer le champ « '+f[1]+' » du formulaire ? Les données déjà saisies ne sont pas supprimées.'))return;
+ if(!R.props.some(p=>p.id==id))R.props.push({id,op:'remove',ent,key,title:'Retirer le champ « '+f[1]+' »',why:'Champ jamais renseigné (analyse de vos données).'});appP(id)}
+function fixExp(){db.garanties.forEach(g=>{if(['Émise','Active'].includes(g.statut)&&g.echeance&&D(g.echeance)<today&&!endedG(g))g.statut='Expirée'});log('Garanties échues passées au statut Expirée');save();render()}
+function analyse(){
+ const o=[],A=['Émise','Active'],R=RF();
+ const e1=db.garanties.filter(g=>A.includes(g.statut)&&g.echeance&&D(g.echeance)<today&&!endedG(g)).length;
+ if(e1)o.push({t:`${e1} garantie(s) dont l’échéance est dépassée sont encore au statut Émise/Active.`,b:'Passer en « Expirée »',f:'fixExp()'});
+ const e2=db.marches.filter(m=>!m.debut||!(+m.delai||+m.delaiM)).length;
+ if(e2)o.push({t:`${e2} marché(s) sans date de démarrage ou sans délai (mois ou jours) : fin prévue et pénalités non calculables.`,b:'Ouvrir les marchés',f:"go('marches')"});
+ const e3=db.garanties.filter(g=>!g.organisme).length;
+ if(e3)o.push({t:`${e3} garantie(s) sans organisme garant.`,b:'Ouvrir les garanties',f:"go('garanties')"});
+ const e4=db.os.filter(x=>x.type=='Arrêt'&&x.date&&diff(today,D(x.date))>60&&!db.os.some(y=>y.marche==x.marche&&y.type=='Reprise'&&y.date>x.date)).length;
+ if(e4)o.push({t:`${e4} arrêt(s) de plus de 60 jours sans ordre de reprise : à confirmer.`,b:'Ouvrir les OS',f:"go('os')"});
+ const P=new Set(['marche','num','objet','titulaire','montant','debut','delai','echeance','statut','type','organisme','evt','fin_ev','fin_date','mainlevee','retenue','avance','avancef','notif','reception','taux','plafond','emission']);
+ ['marches','garanties'].forEach(e=>{const n=db[e].length;if(n<3)return;S[e].f.forEach(f=>{if(!P.has(f[0])&&db[e].every(x=>!x[f[0]]))o.push({t:`Le champ « ${f[1]} » (${e}) n’est jamais renseigné (${n} éléments) : peut-être inutile.`,b:'Retirer ce champ',f:`rmF('${e}','${f[0]}')`})})});
+ const u=R.use||{},nu=NAV.filter(x=>!u[x[0]]).map(x=>x[1]);
+ if(Object.keys(u).length>=4&&nu.length)o.push({t:'Onglets jamais ouverts : '+nu.join(', ')+'.'});
+ return o;
+}
+const amN=()=>{const n=analyse().length+AM().filter(p=>!(RF().amst||{})[p.id]).length;return n?' ('+n+')':''};
+function addIdea(){const t=$('#ib').value.trim();if(!t)return;(RF().ideas||(RF().ideas=[])).unshift({d:stamp(),t});log('Idée ajoutée à la boîte à idées');save();render()}
+function delIdea(i){RF().ideas.splice(i,1);save();render()}
+function expAm(){const R=RF();dl('PTUA_demande_amelioration_'+stamp()+'.json',JSON.stringify({application:'Gestionnaire juridique et contractuel PTUA',version:'v7.4',referentiel:R.v,date:stamp(),idees:R.ideas||[],propositions:R.amst||{},suggestions:analyse().map(x=>x.t),points_conformite_a_verifier:constats().filter(x=>x.n=='warn').length,usage_onglets:R.use||{},volumes:{marches:db.marches.length,garanties:db.garanties.length,os:db.os.length,avenants:db.avenants.length}},null,1),'application/json')}
+function amel(){
+ const R=RF(),an=analyse(),st=R.amst||{},F={CI:'🇨🇮',FR:'🇫🇷',GEN:'🌐'},us=Object.entries(R.use||{}).sort((a,b)=>b[1]-a[1]).slice(0,4).map(x=>x[0]+' ('+x[1]+')').join(', ');
+ return `<div class="card nt"><h2>💡 Amélioration continue</h2><p style="margin:0 0 8px">L’application <b>analyse vos données à chaque action</b> et propose des corrections, des champs à ajouter ou à retirer, et des idées inspirées des pratiques de la Côte d’Ivoire et de la France. Elle n’apprend pas seule sur Internet : pour qu’une idée devienne une vraie fonction, exportez votre demande et envoyez-la à Claude.</p>
+ <div class="bar"><button class="pri" onclick="render()">🔄 Relancer l’analyse</button><button onclick="expAm()">⬇️ Exporter ma demande d’amélioration</button></div><p style="margin:0;color:var(--m)">Dernière analyse : ${new Date().toLocaleTimeString('fr-FR')}${us?' · Onglets les plus utilisés : '+esc(us):''}</p></div>
+ <div class="card nt"><h2>Suggestions tirées de vos données (${an.length})</h2>${an.length?`<div class="w2"><table class="mx">${an.map(x=>`<tr><td style="text-align:left">${esc(x.t)}</td><td>${x.b?`<button onclick="${x.f}">${esc(x.b)}</button>`:''}</td></tr>`).join('')}</table></div>`:'<div class="e">Rien à signaler : vos données sont cohérentes. ✅</div>'}</div>
+ <div class="card nt"><h2>Propositions inspirées de la Côte d’Ivoire et de la France</h2><div class="w2"><table class="mx">${AM().map(p=>`<tr><td>${F[p.pays]||''}</td><td style="text-align:left"><b>${esc(p.titre)}</b><br><small>${esc(p.why)}<br>Source : ${esc(p.src)}</small></td><td><span class="b ${p.op?'g':'y'}">${p.op?'Applicable ici':'Nouvelle version'}</span></td><td>${st[p.id]=='adopté'?'✓ Adopté':`${p.op?`<button class="pri" onclick="amAp('${p.id}')">Appliquer</button> `:''}<button onclick="amSt('${p.id}','${st[p.id]=='à étudier'?'':'à étudier'}')">${st[p.id]=='à étudier'?'★ À étudier':'☆ À étudier'}</button> <button onclick="amSt('${p.id}','ignoré')">Ignorer</button>${st[p.id]=='ignoré'?' <small>(ignoré)</small>':''}`}</td></tr>`).join('')}</table></div></div>
+ <div class="card nt"><h2>🗒️ Boîte à idées</h2><div class="bar"><input id="ib" placeholder="Décrivez une amélioration souhaitée…"><button class="pri" onclick="addIdea()">Ajouter</button></div>${(R.ideas||[]).map((x,i)=>`<div style="display:flex;gap:8px;justify-content:space-between;align-items:center;padding:6px 0;border-top:1px solid var(--b)"><span>${fd(x.d)} — ${esc(x.t)}</span><button onclick="delIdea(${i})">✕</button></div>`).join('')||'<div class="e">Aucune idée pour le moment.</div>'}</div>`;
+}
+
+const VW=e=>{const R=RF(),v=R.view||(R.view={});return v[e]||(v[e]={mode:MOB()?'cards':'table',hide:[],sk:'',sd:1})};
+function sv(e,k,x){if(e=='marches'){const r=calc(x);return k=='@fin'?(r?r.fin.getTime():9e15):(r?r.pen:-1)}const a=gal(x);return a?a.j:99999}
+function sApply(){const V=VW(tab);V.sk=sk;V.sd=sd;save();$('#tb').innerHTML=rows(tab);const b=$('#sdb');if(b)b.textContent=dlab();const t=$('#ssel');if(t)t.value=sk}
+const srtSel=v=>{sk=v;sApply()},srtDir=()=>{sd=-sd;sApply()};
+const tsel=()=>{const x=tab=='marches'?[['@fin','Fin prévue'],['@pen','Pénalités']]:tab=='garanties'?[['@j','Jours avant échéance']]:[];
+ return `<select id="ssel" style="width:auto" title="Trier par" onchange="srtSel(this.value)"><option value="">Tri : par défaut</option><option value="@az" ${sk=='@az'?'selected':''}>🔤 Ordre alphabétique</option>${S[tab].f.map(c=>[c[0],c[1]]).concat(x).map(c=>`<option value="${c[0]}" ${sk==c[0]?'selected':''}>Trier par : ${esc(c[1])}</option>`).join('')}</select><button id="sdb" title="Sens du tri" onclick="srtDir()">${dlab()}</button>`};
+function vpanel(){const V=VW(tab),M={table:'Tableau',compact:'Tableau compact',cards:'Cartes'};
+ return `<h2>⚙️ Affichage</h2><div class="bar"><select style="width:auto" onchange="vset('mode',this.value)">${Object.keys(M).map(k=>`<option value="${k}" ${V.mode==k?'selected':''}>${M[k]}</option>`).join('')}</select><button onclick="vres()">Réinitialiser tri et affichage</button></div><p style="margin:6px 0;color:var(--m);font-size:12px">Colonnes affichées (mode tableau) et champs montrés (mode cartes) :</p><div style="display:flex;flex-wrap:wrap;gap:6px 16px">${S[tab].f.map(f=>`<label style="margin:0;display:flex;gap:6px;align-items:center;color:var(--t)"><input type="checkbox" style="width:auto;margin:0" ${V.hide.includes(f[0])?'':'checked'} onchange="vcol('${f[0]}',this.checked)">${f[1]}</label>`).join('')}</div>`}
+function vref(){const V=VW(tab),t=$('#tb');t.parentElement.classList.toggle('cp',V.mode=='compact');t.innerHTML=rows(tab)}
+const vset=(k,v)=>{VW(tab)[k]=v;save();vref()},vcol=(k,on)=>{const V=VW(tab);V.hide=V.hide.filter(x=>x!=k);if(!on)V.hide.push(k);save();vref()};
+function vres(){RF().view[tab]={mode:MOB()?'cards':'table',hide:[],sk:'',sd:1};sk='';sd=1;save();render()}
+function cards(e,a,F){
+ const hd=x=>e=='marches'?(x.titulaire?x.titulaire+' · ':'')+(x.num||''):mt(x.marche)+' · '+(x.type||x.num||''),ex=e=='marches'?['titulaire','num']:e=='garanties'?['marche','type']:['marche','num'];
+ return `<tr><td colspan="99" style="white-space:normal;padding:12px"><div class="cg">${a.map(x=>{const lhd=sk=='@az'&&ltr(e,x)!=LL?(LL=ltr(e,x),`<div class="lh">${LL=='#'?'Divers':LL}</div>`):'',r=e=='marches'?calc(x):null,
+  L=F.filter(f=>!ex.includes(f[0])&&x[f[0]]!==undefined&&x[f[0]]!==''&&x[f[0]]!=='—').map(f=>`<div><small>${esc(f[1])} :</small> ${esc(cvl(x,f))}</div>`).join('');
+  return `${lhd}<div class="ci"><b>${esc(hd(x))}</b>${e=='garanties'?`<div>${badge(x)}</div>`:''}${r?`<div><small>Fin prévue :</small> ${fdd(r.fin)}${r.retard?` <span class="b r">${r.retard} j de retard</span>`:''}</div>`:''}${e=='os'&&osFin(x)?`<div><small>Fin de la durée :</small> ${fdd(osFin(x))}</div>`:''}${L}<div class="ca"><button onclick="edit('${e}','${x.id}')">Modifier</button><button onclick="dup('${e}','${x.id}')">Dupliquer</button><button onclick="del('${e}','${x.id}')">Suppr.</button></div></div>`}).join('')}</div></td></tr>`}
+
+const mt=id=>{const m=mk(id);return m?(m.titulaire?m.titulaire+' · ':'')+m.num:'?'};
+let LL='';
+const dlab=()=>sk=='@az'?(sd>0?'A → Z':'Z → A'):(sd>0?'↑ Croissant':'↓ Décroissant');
+function azs(e,x){const m=e=='marches'?x:mk(x.marche),t=m?.titulaire;if(!t)return '';return t+' '+(m.num||'')+' '+(e=='marches'?'':(x.type||'')+' '+(x.num||''))}
+function azSort(e,a){a.sort((x,y)=>{const p=azs(e,x),r=azs(e,y);if(!p||!r)return p===r?0:!p?1:-1;return p.localeCompare(r,'fr',{numeric:true,sensitivity:'base'})*sd})}
+const ltr=(e,x)=>{const t=azs(e,x),c=t?nz(t.trim())[0].toUpperCase():'#';return /[A-Z]/.test(c)?c:'#'};
+const lh=(e,x)=>{if(sk!='@az')return '';const c=ltr(e,x);if(c==LL)return '';LL=c;return `<tr class="lt"><td colspan="99">${c=='#'?'Sans titulaire / divers':c}</td></tr>`};
+
+let pi=0,pd='all';
+const DK={all:['cover','synth','gstat','gech','couv','gantt','os','att','act'],g:['cover','synth','gstat','gech','couv','att','act'],m:['cover','synth','gantt','couv','att','act'],o:['cover','os','att','act']};
+const fm=n=>n>=1e9?(n/1e9).toFixed(2).replace('.',',')+' Md':n>=1e6?(n/1e6).toFixed(1).replace('.',',')+' M':fmt(n);
+const CS={Active:'#10b981',Émise:'#3b82f6',Échue:'#ef4444',Expirée:'#f59e0b','Mainlevée obtenue':'#14b8a6',Terminée:'#8b5cf6'},TC={'Avance de démarrage':'#6366f1','Bonne exécution':'#0ea5e9','Retenue de garantie':'#f59e0b',Soumission:'#ec4899'},OC={Démarrage:'#10b981',Arrêt:'#ef4444',Reprise:'#3b82f6',Prolongation:'#f59e0b',Autre:'#94a3b8'};
+const nm=m=>(m.titulaire?m.titulaire+' · ':'')+m.num;
+function donut(it,c1,c2){it=it.filter(x=>x.v>0);const T=it.reduce((t,x)=>t+x.v,0);if(!T)return '<div class="e">Aucune donnée</div>';let a=0;
+ const sp=it.map(x=>{const b=a;a+=x.v/T*100;return `${x.c} ${b}% ${a}%`}).join(',');
+ return `<div class="dw"><div class="dn" style="background:conic-gradient(${sp})"><div><b>${c1}</b><small>${c2}</small></div></div><div class="lg2">${it.map(x=>`<div><i style="background:${x.c}"></i><span>${esc(x.l)}</span><b>${x.v}</b>${x.m!=null?`<small>${fm(x.m)} FCFA</small>`:'<small></small>'}</div>`).join('')}</div></div>`}
+const hb=(l,p,t,c)=>`<div class="hbr"><span>${esc(l)}</span><div class="tk"><i style="width:${Math.max(1,Math.min(100,p))}%;background:${c}"></i></div><em>${t}</em></div>`;
+function kd(){
+ const G=db.garanties,mo=g=>+g.montant||0,sm=a=>a.reduce((t,g)=>t+mo(g),0),stt=g=>endedG(g)?'Terminée':(gal(g)&&gal(g).j<0)?'Échue':g.statut,jj=g=>{const a=gal(g);return a?a.j:null};
+ const act=G.filter(g=>jj(g)!==null&&jj(g)>=0),e30=act.filter(g=>jj(g)<=30),ech=G.filter(g=>jj(g)!==null&&jj(g)<0);
+ const M=db.marches.map(m=>{const r=calc(m);return{m,r,M:r?r.M:+m.montant||0,ga:sm(act.filter(g=>g.marche==m.id))}});
+ return{G,mo,sm,stt,jj,act,e30,ech,M,C:constats()}}
+const SL={
+cover:()=>({c:1,b:`<div class="cv"><div class="pc"><div class="cu" style="--s:64px"><i></i><i></i><i></i><i></i><i></i><i></i></div></div><h1>Point de situation</h1><p class="sub" style="font-size:19px">Garanties, marchés et ordres de service</p><p>${new Date().toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long',year:'numeric'})}</p></div>`}),
+synth:d=>{const tm=d.M.reduce((t,x)=>t+x.M,0),w=d.C.filter(c=>c.n=='warn').length;
+ return{t:'Synthèse',s:`${db.marches.length} marché(s) pour ${fm(tm)} FCFA, couverts par ${d.act.length} garantie(s) active(s) (${fm(d.sm(d.act))} FCFA). ${d.e30.length?d.e30.length+' échéance(s) sous 30 jours.':'Aucune échéance sous 30 jours.'}`,
+ b:`<div class="kg"><div class="kp"><span>Marchés</span><b>${db.marches.length}</b><small>${fm(tm)} FCFA</small></div><div class="kp" style="--a:#10b981"><span>Garanties actives</span><b>${d.act.length}</b><small>${fm(d.sm(d.act))} FCFA garantis</small></div><div class="kp" style="--a:#f59e0b"><span>Échéances ≤ 30 j</span><b>${d.e30.length}</b><small>${fm(d.sm(d.e30))} FCFA</small></div><div class="kp" style="--a:#ef4444"><span>Garanties échues</span><b>${d.ech.length}</b><small>à régulariser</small></div><div class="kp" style="--a:#7c3aed"><span>Ordres de service</span><b>${db.os.length}</b><small>${db.avenants.length} avenant(s)</small></div><div class="kp" style="--a:#0891b2"><span>Conformité</span><b>${w}</b><small>point(s) à vérifier</small></div></div>`}},
+gstat:d=>{const g=(f,C)=>Object.keys(C).map(k=>{const a=d.G.filter(x=>f(x)==k);return{l:k,v:a.length,m:d.sm(a),c:C[k]}});
+ return{t:'État des garanties',s:`${d.act.length} garantie(s) active(s) sur ${d.G.length}`+(d.ech.length?` — ${d.ech.length} échue(s) à régulariser.`:' — aucune échéance dépassée.'),
+ b:`<div class="g2"><div><h3 style="margin:0 0 10px">Par statut</h3>${donut(g(d.stt,CS),d.G.length,'garanties')}</div><div><h3 style="margin:0 0 10px">Par type</h3>${donut(g(x=>x.type,TC),fm(d.sm(d.G)),'FCFA')}</div></div>`}},
+gech:d=>{const B=[...Array(12)].map((_,i)=>{const x=new Date(today.getFullYear(),today.getMonth()+i,1);return{k:x.getFullYear()+'-'+String(x.getMonth()+1).padStart(2,'0'),l:x.toLocaleDateString('fr-FR',{month:'short'}),v:0}});
+ d.act.forEach(g=>{const b=g.echeance&&B.find(x=>x.k==g.echeance.slice(0,7));if(b)b.v+=d.mo(g)});
+ const mx=Math.max(1,...B.map(x=>x.v)),sf=d.act.filter(g=>!g.echeance),U=d.e30.slice().sort((a,b)=>a.echeance<b.echeance?-1:1).slice(0,5);
+ return{t:'Échéancier des garanties',s:`Montants arrivant à échéance dans les 12 prochains mois${sf.length?` — ${sf.length} garantie(s) sans date fixe (fin sur événement) : ${fm(d.sm(sf))} FCFA`:''}.`,
+ b:`<div class="mb">${B.map((x,i)=>`<div>${x.v?`<b>${fm(x.v)}</b>`:''}<i style="height:${x.v/mx*85}%${i==0&&x.v?';background:linear-gradient(180deg,#f59e0b,#ef4444)':''}"></i>${x.l}</div>`).join('')}</div>
+ <h3 style="margin:16px 0 6px">À traiter sous 30 jours</h3>${U.length?`<table class="mx">${U.map(g=>`<tr><th>${esc(mt(g.marche))}</th><td>${esc(g.type)}</td><td>${fd(g.echeance)}</td><td>${badge(g)}</td><td>${fm(d.mo(g))} FCFA</td></tr>`).join('')}</table>`:'<div class="e">✅ Aucune échéance sous 30 jours.</div>'}`}},
+couv:d=>{const R=d.M.filter(x=>x.M).sort((a,b)=>b.M-a.M).slice(0,8),n0=d.M.filter(x=>x.M&&!x.ga).length;
+ return{t:'Couverture par marché',s:n0?`${n0} marché(s) sans garantie active : à vérifier.`:'Tous les marchés renseignés disposent d’une garantie active.',
+ b:R.length?R.map(x=>{const p=x.ga/x.M*100;return hb(nm(x.m),p,x.ga?`${fm(x.ga)} · ${p.toFixed(p<10?1:0)} %`:'Aucune garantie',x.ga?'linear-gradient(90deg,#10b981,#0ea5e9)':'#ef4444')}).join('')+'<p class="sub" style="margin-top:14px;font-size:12px">Lecture : la barre montre le montant garanti actif rapporté au montant du marché (avenants inclus).</p>':'<div class="e">Renseignez les montants des marchés.</div>'}},
+gantt:d=>{const R=d.M.filter(x=>x.r&&x.m.debut).slice(0,10),nd=d.M.length-d.M.filter(x=>x.r).length;
+ if(!R.length)return{t:'Calendrier des marchés',s:'Dates à renseigner.',b:'<div class="e">Renseignez la date de démarrage et le délai des marchés pour afficher le calendrier.</div>'};
+ const S0=R.map(x=>D(x.m.debut).getTime()),E0=R.map(x=>x.r.fin.getTime()),a=Math.min(...S0,+today),b=Math.max(...E0,+today),sp=b-a||1,late=R.filter(x=>x.r.retard>0&&!x.m.reception).length;
+ return{t:'Calendrier des marchés',s:late?`${late} marché(s) en retard sur le délai prévu.`:'Aucun marché en retard sur le délai prévu.',
+ b:R.map((x,i)=>{const s=S0[i],e=E0[i],pw=Math.max(0,Math.min(100,(+today-s)/((e-s)||1)*100)),c=x.m.reception?'#14b8a6':x.r.retard>0?'#ef4444':'#3b82f6';
+  return `<div class="gr"><span>${esc(nm(x.m))}<br><small style="color:var(--m)">${fd(x.m.debut)} → ${fdd(x.r.fin)}${x.r.retard&&!x.m.reception?` · <b style="color:var(--r)">${x.r.retard} j de retard</b>`:''}</small></span><div class="gk"><i style="left:${(s-a)/sp*100}%;width:${Math.max(1.5,(e-s)/sp*100)}%;background:color-mix(in srgb,${c} 28%,transparent)"></i><i style="left:${(s-a)/sp*100}%;width:${Math.max(.5,(e-s)/sp*100*pw/100)}%;background:${c}"></i><span class="td" style="left:${(+today-a)/sp*100}%"></span></div></div>`}).join('')+`<p class="sub" style="margin:12px 0 0;font-size:12px">Trait rouge : aujourd’hui · bleu : en cours · rouge : en retard · vert : réceptionné.${nd?` ${nd} marché(s) sans dates ne figurent pas ici.`:''}</p>`}},
+os:d=>{const O=db.os,ar=O.filter(x=>x.type=='Arrêt'&&!O.some(y=>y.marche==x.marche&&y.type=='Reprise'&&y.date>x.date)).length,by=db.marches.map(m=>({m,n:O.filter(o=>o.marche==m.id).length})).filter(x=>x.n).sort((a,b)=>b.n-a.n).slice(0,8),mx=Math.max(1,...by.map(x=>x.n));
+ return{t:'Ordres de service',s:`${O.length} ordre(s) de service enregistré(s)${ar?` — ${ar} arrêt(s) en cours sans reprise.`:' — aucun arrêt en cours.'}`,
+ b:`<div class="g2"><div><h3 style="margin:0 0 10px">Par type</h3>${donut(Object.keys(OC).map(k=>({l:k,v:O.filter(o=>o.type==k).length,c:OC[k]})),O.length,'OS')}</div><div><h3 style="margin:0 0 10px">Par marché</h3>${by.length?by.map(x=>hb(nm(x.m),x.n/mx*100,x.n+' OS','linear-gradient(90deg,#6366f1,#a855f7)')).join(''):'<div class="e">Aucun OS.</div>'}</div></div>`}},
+att:d=>{const W=d.C.filter(c=>c.n=='warn').slice(0,8),A=analyse().slice(0,4);
+ return{t:'Points d’attention',s:W.length||A.length?`${W.length} point(s) de conformité et ${A.length} suggestion(s) de qualité des données.`:'Aucun point d’attention.',
+ b:W.length||A.length?W.map(c=>`<div class="ac"><span class="b r">À vérifier</span><span><b style="all:unset;font-weight:700">${esc(c.m)}</b> — ${esc(c.t)} <small style="color:var(--m)">(${esc(c.a)})</small></span></div>`).join('')+A.map(x=>`<div class="ac"><span class="b y">Données</span><span>${esc(x.t)}</span></div>`).join(''):'<div class="e">✅ Situation saine.</div>'}},
+act:d=>{const A=[],ml=d.C.filter(c=>c.n=='warn'&&/mainlevée/.test(c.t)).length,ng=d.M.filter(x=>x.M&&!x.ga).length,lt=d.M.filter(x=>x.r&&x.r.retard>0&&!x.m.reception).length,pn=d.M.reduce((t,x)=>t+(x.r?x.r.pen:0),0),ic=db.marches.filter(m=>!m.debut||!(+m.delai||+m.delaiM)).length;
+ if(d.ech.length)A.push(`Régulariser ${d.ech.length} garantie(s) échue(s) (${fm(d.sm(d.ech))} FCFA) : prorogation ou mainlevée.`);
+ if(d.e30.length)A.push(`Anticiper ${d.e30.length} échéance(s) sous 30 jours (${fm(d.sm(d.e30))} FCFA) : renouvellement ou mainlevée.`);
+ if(ml)A.push(`Demander la mainlevée de ${ml} garantie(s) dont l’événement de fin est intervenu.`);
+ if(ng)A.push(`Vérifier la couverture de ${ng} marché(s) sans garantie active.`);
+ if(lt)A.push(`Suivre ${lt} marché(s) en retard et les pénalités estimées (${fm(pn)} FCFA).`);
+ if(ic)A.push(`Compléter la fiche de ${ic} marché(s) (date de démarrage, délai).`);
+ if(!A.length)A.push('Aucune action urgente : situation maîtrisée.');
+ return{t:'Actions proposées',s:'Décisions et suivis recommandés à partir de l’état actuel des données.',b:A.map((x,i)=>`<div class="ac"><b>${i+1}</b><span>${esc(x)}</span></div>`).join('')}}};
+function pres(){
+ const d=kd(),P=DK[pd].map(k=>SL[k](d)),n=P.length,dt=new Date().toLocaleDateString('fr-FR');pi=Math.min(pi,n-1);
+ return `<div id="st"><div class="pt"><select style="width:auto" onchange="pd=this.value;pi=0;render()">${[['all','Présentation complète'],['g','Point sur les garanties'],['m','Point sur les marchés'],['o','Point sur les OS']].map(x=>`<option value="${x[0]}" ${pd==x[0]?'selected':''}>${x[1]}</option>`).join('')}</select><button onclick="psl(-1)">◀</button><span id="pn">${pi+1} / ${n}</span><button onclick="psl(1)">▶</button>${document.fullscreenEnabled?`<button onclick="$('#st').requestFullscreen()">⛶ Plein écran</button>`:''}<button class="pri" onclick="window.print()">🖨️ Exporter en PDF</button></div>${P.map((x,i)=>`<section class="sl ${i==pi?'on':''}">${x.c?'':`<h2>${x.t}</h2><p class="sub">${x.s}</p>`}${x.b}<div class="ft"><span>Gestionnaire PTUA</span><span>${dt}</span><span>${i+1} / ${n}</span></div></section>`).join('')}<div class="dots">${P.map((x,i)=>`<i class="${i==pi?'on':''}" onclick="pi=${i};psl(0)"></i>`).join('')}</div></div>`}
+function psl(k){const L=[...document.querySelectorAll('#st .sl')];if(!L.length)return;pi=Math.max(0,Math.min(L.length-1,pi+k));L.forEach((s,i)=>s.classList.toggle('on',i==pi));document.querySelectorAll('#st .dots i').forEach((x,i)=>x.classList.toggle('on',i==pi));$('#pn').textContent=(pi+1)+' / '+L.length}
+document.addEventListener('keydown',e=>{if(tab!='pres'||/INPUT|SELECT|TEXTAREA/.test(e.target.tagName))return;if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();psl(1)}if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();psl(-1)}});
+
+function addDur(d0,m,j){m=+m||0;j=+j||0;const wm=Math.trunc(m),x=new Date(d0);x.setMonth(x.getMonth()+wm);if(x.getDate()!=d0.getDate())x.setDate(0);return new Date(x.getTime()+(j+Math.round((m-wm)*30))*day)}
+function osFin(o){return o&&o.date&&(+o.dureeM||+o.jours)?addDur(D(o.date),o.dureeM,o.jours):null}
+function osDays(o){const f=osFin(o);return f?Math.max(0,diff(f,D(o.date))):(+o.jours||0)+Math.round((+o.dureeM||0)*30)}
+function fo(){const o={};$('#df').querySelectorAll('[name]').forEach(x=>o[x.name]=x.value);return o}
+let tx=null;
+document.addEventListener('touchstart',e=>{tx=tab=='pres'&&e.target.closest('.sl')&&!e.target.closest('.w2,.w,table')?[e.touches[0].clientX,e.touches[0].clientY]:null},{passive:true});
+document.addEventListener('touchend',e=>{if(!tx)return;const dx=e.changedTouches[0].clientX-tx[0],dy=e.changedTouches[0].clientY-tx[1];tx=null;if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.5)psl(dx<0?1:-1)},{passive:true});
+function insX(){$('#ins').hidden=true;try{localStorage.setItem('ptua_ins',Date.now())}catch(e){}}
+(()=>{const sa=navigator.standalone||matchMedia('(display-mode: standalone)').matches,b=$('#ins');let k=0;try{k=+localStorage.getItem('ptua_ins')||0}catch(e){}
+ if(sa){navigator.storage?.persist?.().catch(()=>{});
+  if(!ENC&&!db.marches.length&&!db.garanties.length&&!k){b.innerHTML='👋 <b>Bienvenue dans PTUA sur iPhone.</b> L’application installée a sa propre mémoire : pour retrouver vos données, touchez <b>Importer</b> (en haut) et choisissez votre fichier <i>PTUA_sauvegarde_….json</i>.<br><button class="pri" onclick="insX();$(\'#imp\').click()">📥 Importer maintenant</button> <button onclick="insX()">Plus tard</button>';b.hidden=false}}
+ else if(IOS&&Date.now()-k>3*day){b.innerHTML='📲 <b>Installer PTUA sur l’iPhone :</b> dans Safari, touchez <b>Partager</b> (le carré avec une flèche ↑, parfois dans le menu <b>⋯</b>), puis <b>« Sur l’écran d’accueil »</b> et <b>Ajouter</b>.<br><button onclick="insX()">Compris</button>';b.hidden=false}
+ if('serviceWorker' in navigator&&location.protocol=='https:')navigator.serviceWorker.register('sw.js').catch(()=>{});
+})();
+render();lock();
+</script></body></html>
