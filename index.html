@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob: mediastream:; font-src 'self'; connect-src 'self' https://raw.githubusercontent.com https://rjange-96.github.io https://iofbwpzhptctyelmylkz.supabase.co; object-src 'none'; base-uri 'none'; form-action 'none'; worker-src 'self'; manifest-src 'self'">
 <meta name="referrer" content="no-referrer">
 <link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-180.png"><link rel="icon" href="icon-192.png">
-<title>Gestionnaire juridique et contractuel PTUA v8.2</title>
+<title>Gestionnaire juridique et contractuel PTUA v8.3</title>
 <style>
 :root{--bg:#eef3fb;--c:rgba(255,255,255,.74);--t:#16213a;--m:#5d6c8a;--b:rgba(60,80,130,.16);--p:#2563eb;--r:#e11d48;--o:#d97706;--y:#a16207;--g:#059669;--g1:#1e3a8a;--g2:#7c3aed;--h2:#1d4ed8;--in:rgba(255,255,255,.95);--hd:rgba(255,255,255,.78);--sh:0 14px 34px -16px rgba(37,60,120,.35);--gl:rgba(37,99,235,.2);--gl2:rgba(37,99,235,.35);--cf:rgba(37,99,235,.5);--cb:linear-gradient(135deg,rgba(37,99,235,.10),rgba(124,58,237,.16));--hv:rgba(37,99,235,.06);--dg:rgba(255,255,255,.98);--ob:#fff;--bt:#fff;--sp:radial-gradient(circle at 50% 45%,#fff,#d6e4ff);--bd:#0f1b3a66;color-scheme:light}
 [data-t=dark]{--bg:#070b17;--c:rgba(18,26,48,.62);--t:#e8eefc;--m:#8b98b8;--b:rgba(148,163,184,.2);--p:#22d3ee;--r:#ff6b81;--o:#fbbf24;--y:#facc15;--g:#34d399;--g1:#fff;--g2:#67e8f9;--h2:#a5f3fc;--in:rgba(6,10,24,.7);--hd:rgba(7,11,23,.72);--sh:0 14px 34px -12px #000a;--gl:#22d3ee55;--gl2:#22d3ee55;--cf:rgba(103,232,249,.55);--cb:linear-gradient(135deg,rgba(34,211,238,.16),rgba(99,102,241,.2));--hv:rgba(34,211,238,.07);--dg:#0c1328f2;--ob:#0f172a;--bt:#04101f;--sp:radial-gradient(circle at 50% 45%,#16205a,#050810);--bd:#02050dcc;color-scheme:dark}
@@ -166,16 +166,25 @@ nav i{font-style:normal}nav .sh,nav .more{display:none}
  main{padding:12px 14px calc(96px + env(safe-area-inset-bottom))}.al{margin:10px 14px 0}#ins{margin:10px 14px 0}
 }
 @media print{body{padding:0!important;font-feature-settings:normal}.hb{display:none!important}}
+
+/* v8.3 — documents joints */
+.dl{display:flex;flex-direction:column;gap:8px}.di{display:flex;gap:8px;align-items:center;border:1px solid var(--b);border-radius:12px;padding:10px 12px;background:var(--in)}.di>div{flex:1;min-width:0}.di b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:14px}.di small{color:var(--m)}
+#dv{width:100vw;max-width:100vw;height:100dvh;max-height:100dvh;margin:0;padding:0;border:0;border-radius:0;background:var(--c);animation:none;overflow:hidden}#dv[open]{display:flex;flex-direction:column}
+.vt{display:flex;gap:6px;align-items:center;padding:max(8px,env(safe-area-inset-top)) 12px 8px;border-bottom:1px solid var(--b);flex:none}.vn{flex:1;min-width:0;display:flex;flex-direction:column}.vn b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.vn small{color:var(--m)}
+.vt button{min-width:40px;height:40px;padding:0 12px}
+.vb{flex:1;overflow:auto;background:#566074;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}.vz{margin:0 auto;padding:4px 10px calc(16px + env(safe-area-inset-bottom));box-sizing:border-box}
+.vh{color:#fff;font-weight:600;font-size:13px;padding:10px 2px 6px}.ve{color:#fff;background:#0006;border-radius:10px;padding:12px;margin:6px 0}
+.pg{background:#fff;margin:0 0 10px;box-shadow:0 2px 10px #0005}.pg canvas,.pg img{display:block;width:100%;height:auto}
 </style></head><body>
-<div id="bg"></div><div id="sp"><div class="cu"></div><b>PTUA</b></div><header><div class="lg"><div class="cu"></div><h1>Gestionnaire juridique et contractuel PTUA <small>v8.2</small> <span id="sys" onclick="go('sauv')"></span></h1></div><div class="hr"><b id="ht">--:--:--</b><small id="hdt"></small></div>
+<div id="bg"></div><div id="sp"><div class="cu"></div><b>PTUA</b></div><header><div class="lg"><div class="cu"></div><h1>Gestionnaire juridique et contractuel PTUA <small>v8.3</small> <span id="sys" onclick="go('sauv')"></span></h1></div><div class="hr"><b id="ht">--:--:--</b><small id="hdt"></small></div>
 <div class="hb"><button onclick="go('search')" aria-label="Rechercher" title="Rechercher">🔎</button><button id="th" onclick="th()"></button><button onclick="pinMenu()" aria-label="Code d’accès et verrouillage" title="Code d’accès et verrouillage">🔒</button><button onclick="menu()" aria-label="Autres actions" title="Autres actions">⋯</button></div>
 <input type="file" id="imp" accept=".json,application/json" hidden onchange="impJ(this)"></header>
 <div id="ins" hidden></div><nav id="nav"></nav><div id="al"></div><main id="v"></main><div id="lk" hidden><div class="lkb"><h2 style="margin:0">🔒 Application verrouillée</h2><small style="color:var(--m)">Données chiffrées sur cet appareil (AES-256)</small><form onsubmit="event.preventDefault();unl()"><input type="text" name="username" value="PTUA" autocomplete="username" hidden readonly><input id="pin" type="password" autocomplete="current-password" placeholder="Code d’accès" autocapitalize="off" spellcheck="false"><button class="pri" type="submit">Déverrouiller</button></form><small id="lke" style="color:var(--r)"></small></div></div>
 <datalist id="orgs"></datalist>
-<dialog id="cd"></dialog><dialog id="dlg"><h3 id="dt" style="margin-top:0"></h3><div id="df"></div><div class="row"><button onclick="$('#dlg').close()">Annuler</button><button class="pri" onclick="ok()">Enregistrer</button></div></dialog>
+<dialog id="cd"></dialog><dialog id="dv"></dialog><dialog id="dlg"><h3 id="dt" style="margin-top:0"></h3><div id="df"></div><div class="row"><button onclick="$('#dlg').close()">Annuler</button><button class="pri" onclick="ok()">Enregistrer</button></div></dialog>
 <script>
 if(top!==self){try{top.location=self.location.href}catch(e){document.documentElement.innerHTML='';throw 0}}
-const APPV='8.2',MOB=()=>matchMedia('(max-width:700px)').matches,K='ptua_v3',$=s=>document.querySelector(s),day=864e5,today=new Date(new Date().toDateString());
+const APPV='8.3',MOB=()=>matchMedia('(max-width:700px)').matches,K='ptua_v3',$=s=>document.querySelector(s),day=864e5,today=new Date(new Date().toDateString());
 const S={
 marches:{t:'Marché',f:[['titulaire','Titulaire'],['num','N° marché'],['objet','Objet'],['montant','Montant (FCFA)','number'],['debut','Démarrage','date'],['delaiM','Délai (mois)','number'],['delai','Délai (jours) — s’ajoute aux mois','number'],['reception','Date de réception','date'],['taux','Pénalité (‰ / jour)','number'],['plafond','Plafond pénalités (%)','number'],['doc','Référence document / lien']]},
 garanties:{t:'Garantie',f:[['marche','Marché','ref'],['type','Type','sel',['Avance de démarrage','Bonne exécution','Retenue de garantie','Soumission']],['organisme','Organisme garant'],['montant','Montant (FCFA)','number'],['emission','Date d’émission','date'],['echeance','Date d’échéance (si fixée)','date'],['statut','Statut','sel',['Émise','Active','Expirée','Mainlevée obtenue']],['evt','Événement marquant la fin de la garantie'],['fin_ev','Événement de fin survenu','sel',['—','Remboursement intégral de l’avance de démarrage','PV de réception provisoire','PV de réception définitive','Mainlevée du Bénéficiaire']],['fin_date','Date de l’événement de fin','date'],['mainlevee','Date de mainlevée','date'],['doc','Référence document / lien']]},
@@ -209,11 +218,13 @@ function sanRef(r){if(!r||typeof r!='object')return undefined;const P0={ret:[3,5
  if(r.view&&typeof r.view=='object'){o.view={};for(const e of ENTS){const v=r.view[e];if(v&&typeof v=='object')o.view[e]={mode:['table','compact','cards'].includes(v.mode)?v.mode:'table',hide:(Array.isArray(v.hide)?v.hide:[]).filter(x=>IDR.test(x)),sk:/^@?[A-Za-z0-9_-]{0,64}$/.test(v.sk||'')?v.sk||'':'',sd:v.sd==-1?-1:1}}}
  if(r.use&&typeof r.use=='object'){o.use={};for(const k in r.use)if(IDR.test(k)&&typeof r.use[k]=='number')o.use[k]=r.use[k]}
  return o}
+const sanFiles=a=>Array.isArray(a)?a.filter(f=>f&&IDR.test(f.id)&&typeof f.k=='string'&&/^[A-Za-z0-9+/]{43}=$/.test(f.k)&&['image/jpeg','application/pdf'].includes(f.t)).slice(0,30).map(f=>({id:f.id,n:cln(f.n)||'document',t:f.t,s:+f.s||0,d:+f.d||0,k:f.k})):[];
 function sanDB(d){d=d&&typeof d=='object'?d:{};const o={},map={};
- for(const e of ENTS)o[e]=(Array.isArray(d[e])?d[e]:[]).filter(x=>x&&typeof x=='object').slice(0,20000).map(x=>{const y={};for(const k of Object.keys(x))if(IDR.test(k)&&k!='id')y[k]=prim(x[k]);
+ for(const e of ENTS)o[e]=(Array.isArray(d[e])?d[e]:[]).filter(x=>x&&typeof x=='object').slice(0,20000).map(x=>{const y={};for(const k of Object.keys(x))if(IDR.test(k)&&k!='id')y[k]=k=='files'?sanFiles(x[k]):prim(x[k]);
   const id=IDR.test(x.id)&&!map[x.id+'|'+e]?x.id:nid();if(typeof x.id=='string')map[x.id+'|'+e]=id;y.id=id;return y});
  for(const e of ['garanties','os','avenants','assurances'])o[e].forEach(x=>{const m=map[String(x.marche)+'|marches'];x.marche=m||(IDR.test(x.marche)?x.marche:'')});
  o.journal=(Array.isArray(d.journal)?d.journal:[]).slice(0,300).map(j=>({d:String(j&&j.d||'').slice(0,40),m:String(j&&j.m||'').slice(0,500),t:+(j&&j.t)||0}));
+ o.fdel={};if(d.fdel&&typeof d.fdel=='object')for(const k in d.fdel)if(IDR.test(k)&&typeof d.fdel[k]=='number')o.fdel[k]=d.fdel[k];
  o.del={};if(d.del&&typeof d.del=='object')for(const k in d.del)if(IDR.test(k)&&typeof d.del[k]=='number')o.del[k]=d.del[k];
  const rf=sanRef(d.ref);if(rf)o.ref=rf;return o}
 if(db)db=sanDB(db);
@@ -279,7 +290,7 @@ function rows(e){
   if(e=='marches'){const r=calc(x);c+=r?`<td>${fdd(r.fin)}${r.arret?' (+'+r.arret+' j arrêt)':''}</td><td class="n">${r.retard||'—'}</td><td class="n">${r.pen?fmt(r.pen):'—'}</td>`:'<td colspan="3">Renseigner démarrage et délai</td>'}
   if(e=='garanties')c+=`<td>${badge(x)}</td>`;if(e=='assurances')c+=`<td>${badgeA(x)}</td>`;
   if(e=='os'){const f=osFin(x);c+=`<td>${f?fdd(f):'—'}</td>`}
-  return `${lh(e,x)}<tr>${c}<td><button onclick="edit('${e}','${x.id}')">Modifier</button> <button onclick="dup('${e}','${x.id}')">Dupliquer</button> <button onclick="del('${e}','${x.id}')">Suppr.</button></td></tr>`}).join('');
+  return `${lh(e,x)}<tr>${c}<td><button onclick="docs('${e}','${x.id}')" title="Documents joints">📎${(x.files||[]).length?' '+x.files.length:''}</button><button onclick="edit('${e}','${x.id}')">Modifier</button> <button onclick="dup('${e}','${x.id}')">Dupliquer</button> <button onclick="del('${e}','${x.id}')">Suppr.</button></td></tr>`}).join('');
 }
 function dash(){
  const gs=db.garanties,act=gs.filter(g=>gal(g)&&gal(g).j>=0),al=gs.filter(g=>gal(g)&&gal(g).j<=30).sort((a,b)=>a.echeance<b.echeance?-1:1);
@@ -305,6 +316,7 @@ if(e=='marches'){const E=['num','objet','titulaire','montant'],L=[...$('#df').ch
  if(e=='os'){const pv=document.createElement('p');pv.id='pv';pv.style.cssText='margin:0 0 10px;font-weight:600;color:var(--p)';$('#df').appendChild(pv);
   const up=()=>{const f=osFin(fo());pv.textContent=f?'➜ La durée court du '+fd(fo().date)+' au '+fdd(f):'Saisissez la date et une durée (mois et/ou jours) pour voir la date de fin.'};
   $('#df').oninput=up;$('#df').onchange=up;up()}
+ $('#df').insertAdjacentHTML('beforeend',`<label>📎 Joindre le scan du document (photo ou PDF)${it.files&&it.files.length?` — ${it.files.length} déjà joint(s)`:''}<input type="file" id="fa" accept="image/*,application/pdf" multiple></label>`);
  $('#dlg').showModal();
 }
 function ok(){
@@ -314,13 +326,14 @@ function ok(){
  o._u=Date.now();
  if(cur.id){Object.assign(db[cur.e].find(x=>x.id==cur.id),o);log('Modification '+s.t+' : '+lab(cur.e,o))}
  else{o.id=Date.now().toString(36)+Math.random().toString(36).slice(2,5);db[cur.e].push(o);log('Ajout '+s.t+' : '+lab(cur.e,o))}
- save();$('#dlg').close();render();
+ const fl=[...($('#fa')?.files||[])],rid=cur.id||o.id,re=cur.e;
+ save();$('#dlg').close();render();if(fl.length)addFiles(re,rid,fl);
 }
 function del(e,id){
  const x=db[e].find(i=>i.id==id);
  if(!confirm('Supprimer « '+lab(e,x)+' » ?'+(e=='marches'?'\nLes garanties et OS liés seront aussi supprimés.':'')))return;
- db[e]=db[e].filter(i=>i.id!=id);tomb(id);
- if(e=='marches'){['garanties','os','avenants','assurances'].forEach(k=>{db[k].filter(z=>z.marche==id).forEach(z=>tomb(z.id));db[k]=db[k].filter(z=>z.marche!=id)})}
+ fTomb(x);db[e]=db[e].filter(i=>i.id!=id);tomb(id);
+ if(e=='marches'){['garanties','os','avenants','assurances'].forEach(k=>{db[k].filter(z=>z.marche==id).forEach(z=>{tomb(z.id);fTomb(z)});db[k]=db[k].filter(z=>z.marche!=id)})}
  log('Suppression '+S[e].t+' : '+lab(e,x));save();render();
 }
 const IOS=/iP(hone|ad|od)/.test(navigator.userAgent)||(navigator.maxTouchPoints>1&&/Mac/.test(navigator.userAgent));
@@ -396,12 +409,12 @@ let sk='',sd=1,sf='';
 const FK=e=>S[e].f.find(f=>f[0]=='statut')||S[e].f.find(f=>f[0]=='type'&&f[2]=='sel');
 const fsel=()=>{const f=FK(tab);return f?`<select style="width:auto" onchange="sf=this.value;$('#tb').innerHTML=rows(tab)"><option value="">Tous (${esc(f[1].toLowerCase())})</option>${f[3].map(o=>`<option ${o==sf?'selected':''}>${esc(o)}</option>`).join('')}</select>`:''};
 function srt(k){sd=sk==k?-sd:1;sk=k;sApply()}
-function dup(e,id){const x=db[e].find(i=>i.id==id),n={...x,id:Date.now().toString(36)+Math.random().toString(36).slice(2,5),_u:Date.now()};if(e=='marches')n.num+=' (copie)';db[e].push(n);log('Duplication '+S[e].t+' : '+lab(e,x));save();render()}
+function dup(e,id){const x=db[e].find(i=>i.id==id),n={...x,id:Date.now().toString(36)+Math.random().toString(36).slice(2,5),_u:Date.now(),files:[]};if(e=='marches')n.num+=' (copie)';db[e].push(n);log('Duplication '+S[e].t+' : '+lab(e,x));save();render()}
 function banner(){
  const n=db.garanties.filter(g=>{const a=gal(g);return a&&a.j<=30}).length,nA=db.assurances.filter(a=>{const x=galA(a);return x&&x.j<=30}).length;let le=0;try{le=+localStorage.getItem('ptua_exp')||0}catch(e){}
  let h='';if(nA)h+=`<div class="al r" onclick="go('assurances')">☂️ ${nA} assurance(s) à renouveler (échéance ≤ 30 jours ou dépassée) — voir les assurances</div>`;if(UPD&&cmpV(UPD.version,APPV)>0)h+=`<div class="al ${UPD.importance=='securite'?'r':'o'}" onclick="showUpd()">🔄 Mise à jour v${esc(UPD.version)} disponible${UPD.importance=='securite'?' (sécurité, recommandée)':''} — toucher pour voir et installer</div>`;if(SY&&SY.last&&Date.now()-SY.last>3*day&&(db.marches.length||db.garanties.length))h+=`<div class="al o" onclick="syncNow(true)">☁️ Sauvegarde cloud non effectuée depuis plus de 3 jours — toucher pour réessayer</div>`;if(n)h+=`<div class="al r" onclick="go('dash')">⚠️ ${n} garantie(s) à surveiller (échéance ≤ 30 jours ou dépassée) — voir le tableau de bord</div>`;
  if((db.marches.length||db.garanties.length)&&Date.now()-le>7*day&&!(SY&&SY.last&&Date.now()-SY.last<3*day))h+=`<div class="al o" onclick="expJ()">💾 Aucune sauvegarde depuis plus de 7 jours — cliquer pour exporter maintenant</div>`;
- if(!ENC&&(db.marches.length||db.garanties.length))h+=`<div class="al r" onclick="pinMenu()">🔓 Vos données ne sont pas chiffrées sur cet appareil — toucher pour activer le code et le chiffrement</div>`;const w=constats().filter(c=>c.n=='warn').length;if(w)h+=`<div class="al o" onclick="go('veille')">⚖️ ${w} point(s) de conformité à vérifier — ouvrir la veille juridique</div>`;if(diff(today,D(RF().lc||RF().v))>30)h+=`<div class="al o" onclick="go('veille')">⚖️ Référentiel juridique non vérifié depuis plus de 30 jours</div>`;if(!db.marches.length&&!db.garanties.length&&snaps().length)h+=`<div class="al r" onclick="go('sauv')">💾 Aucune donnée affichée, mais ${snaps().length} point(s) de sauvegarde sont disponibles — cliquer pour restaurer</div>`;$('#al').innerHTML=h;{const A=[...$('#al').children];if(A.length>2){const d=document.createElement('details');d.className='alx';d.open=!!window.alxO;d.ontoggle=()=>window.alxO=d.open;d.innerHTML=`<summary>${A.length-2} autre(s) alerte(s)</summary>`;A.slice(2).forEach(x=>d.appendChild(x));$('#al').appendChild(d)}}document.title=(n?'('+n+') ':'')+'Gestionnaire PTUA v8.2';
+ if(!ENC&&(db.marches.length||db.garanties.length))h+=`<div class="al r" onclick="pinMenu()">🔓 Vos données ne sont pas chiffrées sur cet appareil — toucher pour activer le code et le chiffrement</div>`;const w=constats().filter(c=>c.n=='warn').length;if(w)h+=`<div class="al o" onclick="go('veille')">⚖️ ${w} point(s) de conformité à vérifier — ouvrir la veille juridique</div>`;if(diff(today,D(RF().lc||RF().v))>30)h+=`<div class="al o" onclick="go('veille')">⚖️ Référentiel juridique non vérifié depuis plus de 30 jours</div>`;if(!db.marches.length&&!db.garanties.length&&snaps().length)h+=`<div class="al r" onclick="go('sauv')">💾 Aucune donnée affichée, mais ${snaps().length} point(s) de sauvegarde sont disponibles — cliquer pour restaurer</div>`;$('#al').innerHTML=h;{const A=[...$('#al').children];if(A.length>2){const d=document.createElement('details');d.className='alx';d.open=!!window.alxO;d.ontoggle=()=>window.alxO=d.open;d.innerHTML=`<summary>${A.length-2} autre(s) alerte(s)</summary>`;A.slice(2).forEach(x=>d.appendChild(x));$('#al').appendChild(d)}}document.title=(n?'('+n+') ':'')+'Gestionnaire PTUA v8.3';
 }
 function ech(){
  const it=[];db.assurances.forEach(a=>{const x=galA(a);if(x&&x.j>=0&&x.j<=90)it.push({d:D(a.echeance),t:'☂️ Échéance d’assurance',l:mn(a.marche)+' · '+a.type+(a.assureur?' · '+a.assureur:'')})});
@@ -441,10 +454,10 @@ function syGen(){const r=crypto.getRandomValues(new Uint8Array(24));return [...r
 async function syK(code){const base=await crypto.subtle.importKey('raw',te.encode('PTUA-SYNC-v1:'+code),'HKDF',false,['deriveBits','deriveKey']),P=i=>({name:'HKDF',hash:'SHA-256',salt:te.encode('ptua-sync'),info:te.encode(i)});
  return{id:hex(await crypto.subtle.deriveBits(P('id'),base,256)),auth:hex(await crypto.subtle.deriveBits(P('auth'),base,256)),key:await crypto.subtle.deriveKey(P('enc'),base,{name:'AES-GCM',length:256},false,['encrypt','decrypt'])}}
 async function rpc(fn,a){const r=await fetch(SB+'/rest/v1/rpc/'+fn,{method:'POST',headers:{apikey:SBK,'Content-Type':'application/json'},body:JSON.stringify(a),credentials:'omit',cache:'no-store',referrerPolicy:'no-referrer'});if(!r.ok)throw new Error('HTTP '+r.status);return r.json()}
-function syData(){const r=db.ref?JSON.parse(JSON.stringify(db.ref)):undefined;if(r){delete r.view;delete r.use}return{marches:db.marches,garanties:db.garanties,os:db.os,avenants:db.avenants,assurances:db.assurances,journal:db.journal,del:db.del||{},ref:r}}
+function syData(){const r=db.ref?JSON.parse(JSON.stringify(db.ref)):undefined;if(r){delete r.view;delete r.use}return{marches:db.marches,garanties:db.garanties,os:db.os,avenants:db.avenants,assurances:db.assurances,journal:db.journal,del:db.del||{},fdel:db.fdel||{},ref:r}}
 async function encS(k){const iv=crypto.getRandomValues(new Uint8Array(12)),ct=await crypto.subtle.encrypt({name:'AES-GCM',iv},k,te.encode(JSON.stringify(syData())));return JSON.stringify({v:1,iv:b64(iv),ct:b64(ct)})}
 async function decS(k,blob){const e=JSON.parse(blob);return JSON.parse(td.decode(await crypto.subtle.decrypt({name:'AES-GCM',iv:ub(e.iv)},k,ub(e.ct))))}
-function mergeDB(L,Rm){const del={...(L.del||{})};for(const k in Rm.del||{})del[k]=Math.max(del[k]||0,Rm.del[k]);const o={del},u=x=>+x._u||0;
+function mergeDB(L,Rm){const del={...(L.del||{})};for(const k in Rm.del||{})del[k]=Math.max(del[k]||0,Rm.del[k]);const o={del,fdel:{...(L.fdel||{}),...(Rm.fdel||{})}},u=x=>+x._u||0;
  for(const e of ENTS){const m=new Map();(L[e]||[]).forEach(x=>m.set(x.id,x));(Rm[e]||[]).forEach(y=>{const x=m.get(y.id);if(!x||u(y)>u(x))m.set(y.id,y)});o[e]=[...m.values()].filter(x=>!(del[x.id]>=u(x)))}
  const J=new Map();[...(L.journal||[]),...(Rm.journal||[])].forEach(j=>J.set((j.t||j.d)+'|'+j.m,j));o.journal=[...J.values()].sort((a,b)=>(b.t||0)-(a.t||0)).slice(0,300);
  const lr=L.ref,rr=Rm.ref;let rf=lr;if(rr&&(!lr||(+rr._u||0)>(+lr._u||0))){rf=JSON.parse(JSON.stringify(rr));if(lr){rf.view=lr.view;rf.use=lr.use}}
@@ -462,7 +475,7 @@ async function syncNow(force){if(!SY||!KEY)return;if(!navigator.onLine){setSy('o
    if(!row||me.dc||me.join){const dc=me.dc||0,nv=await rpc('ptua_put',{p_id:k.id,p_auth:k.auth,p_blob:await encS(k.key),p_ver:rv});if(SY!==me)throw 'lock';
     if(+nv===-1)continue;me.ver=+nv;me.dc=Math.max(0,(me.dc||0)-dc);delete me.join}
    break}
-  me.last=Date.now();me.err=0;persist();if(changed){render();banner()}setSy('ok');if(me.dc)syLater(800)}
+  me.last=Date.now();me.err=0;persist();fSync();if(changed){render();banner()}setSy('ok');if(me.dc)syLater(800)}
  catch(e){if(e==='lock')return;if(e&&e.message=='cle'){SY=null;persist();setSy('');alert('Aucune donnée trouvée pour cette clé. Vérifiez la saisie (24 caractères) et que la synchronisation est bien activée sur l’autre appareil.');render();return}
   me.err=(me.err||0)+1;setSy(navigator.onLine?'err':'off');if(force)alert('Synchronisation impossible pour le moment ('+(e&&e.message||e)+'). Vos données restent enregistrées sur cet appareil ; nouvel essai automatique.');syLater(Math.min(3e5,15e3*2**Math.min(me.err,4)))}
  finally{syBusy=false}}
@@ -522,6 +535,70 @@ async function doUpd(){updating=true;try{await PQ;if(SY&&SY.dc)await syncNow()}c
 navigator.serviceWorker?.addEventListener('controllerchange',()=>{if(updating)location.reload()});
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&Date.now()-(+localStorage.getItem('ptua_updchk')||0)>6*36e5)chkUpd()});
 function updCard(){return `<div class="card nt"><h2>🔄 Mises à jour</h2><p style="margin:0 0 10px">Version installée : <b>v${APPV}</b>${UPD?` — <b style="color:var(--${UPD.importance=='securite'?'r':'o'})">v${esc(UPD.version)} disponible</b>`:' — à jour ✅'}</p><p style="margin:0 0 10px;color:var(--m);font-size:12px">Les mises à jour (correctifs de sécurité, nouvelles fonctions) vous sont <b>proposées</b> : rien n’est installé sans votre accord. Les correctifs de sécurité s’affichent dès l’ouverture.</p><div class="bar" style="margin:0">${UPD?'<button class="pri" onclick="showUpd()">Voir et installer</button>':''}<button onclick="chkUpd(true)">🔄 Rechercher une mise à jour</button></div></div>`}
+
+// ===== v8.3 — Documents joints (scans) : chiffrés, stockés sur l'appareil (IndexedDB), synchronisés à la demande =====
+let idbP=null,fBusy=false,DVW=null,pdfP=null;
+function idb(){return idbP||(idbP=new Promise((ok,ko)=>{const r=indexedDB.open('ptua_files',1);r.onupgradeneeded=()=>{r.result.createObjectStore('f');r.result.createObjectStore('st')};r.onsuccess=()=>ok(r.result);r.onerror=()=>{idbP=null;ko(r.error)}}))}
+async function idbOp(st,mode,fn){const d=await idb();return new Promise((ok,ko)=>{const t=d.transaction(st,mode),q=fn(t.objectStore(st));t.oncomplete=()=>ok(q&&q.result);t.onerror=t.onabort=()=>ko(t.error)})}
+const fGet=id=>idbOp('f','readonly',s=>s.get(id)),fPut=(id,v)=>idbOp('f','readwrite',s=>s.put(v,id)),fDel=id=>idbOp('f','readwrite',s=>s.delete(id)),stGet=k=>idbOp('st','readonly',s=>s.get(k)),stPut=(k,v)=>idbOp('st','readwrite',s=>s.put(v,k));
+const allF=()=>ENTS.flatMap(e=>(db[e]||[]).flatMap(x=>x.files||[])),ko=n=>n>1048576?(n/1048576).toFixed(1).replace('.',',')+' Mo':Math.max(1,Math.round(n/1024))+' Ko';
+function fTomb(x){(x.files||[]).forEach(f=>{(db.fdel||(db.fdel={}))[f.id]=Date.now();fDel(f.id).catch(()=>{})})}
+async function fEnc(bytes){const kr=crypto.getRandomValues(new Uint8Array(32)),k=await crypto.subtle.importKey('raw',kr,'AES-GCM',false,['encrypt']),iv=crypto.getRandomValues(new Uint8Array(12)),ct=new Uint8Array(await crypto.subtle.encrypt({name:'AES-GCM',iv},k,bytes)),out=new Uint8Array(12+ct.length);out.set(iv);out.set(ct,12);return{k:b64(kr),data:out}}
+async function fDec(f,data){data=new Uint8Array(data);const k=await crypto.subtle.importKey('raw',ub(f.k),'AES-GCM',false,['decrypt']);return new Uint8Array(await crypto.subtle.decrypt({name:'AES-GCM',iv:data.slice(0,12)},k,data.slice(12)))}
+async function shrink(file){const nm=cln(file.name).slice(0,80)||'document';
+ if(file.type=='application/pdf'||/\.pdf$/i.test(file.name)){if(file.size>4e6)throw new Error('« '+nm+' » dépasse 4 Mo : réduisez le PDF ou joignez des photos des pages.');const b=new Uint8Array(await file.arrayBuffer());if(td.decode(b.slice(0,5))!='%PDF-')throw new Error('« '+nm+' » n’est pas un PDF valide.');return{bytes:b,t:'application/pdf',n:nm}}
+ const bmp=await createImageBitmap(file,{imageOrientation:'from-image'}).catch(()=>null);if(!bmp)throw new Error('« '+nm+' » : format non pris en charge (photo ou PDF uniquement).');
+ const sc=Math.min(1,2000/Math.max(bmp.width,bmp.height)),c=document.createElement('canvas');c.width=Math.round(bmp.width*sc);c.height=Math.round(bmp.height*sc);const g=c.getContext('2d');g.fillStyle='#fff';g.fillRect(0,0,c.width,c.height);g.drawImage(bmp,0,0,c.width,c.height);
+ const bl=await new Promise(r=>c.toBlob(r,'image/jpeg',.82));c.width=0;return{bytes:new Uint8Array(await bl.arrayBuffer()),t:'image/jpeg',n:nm.replace(/\.[A-Za-z0-9]{2,5}$/,'')+'.jpg'}}
+async function addFiles(e,id,files,reopen){if(!crypto.subtle)return alert('Ouvrez l’application depuis son adresse https pour joindre des documents.');const errs=[];let n=0;
+ for(const file of files){try{const x=db[e].find(i=>i.id==id);if(!x)break;if((x.files||[]).length>=20){errs.push('20 documents maximum par fiche.');break}
+   const r=await shrink(file),en=await fEnc(r.bytes),fid='f'+nid();await fPut(fid,en.data);
+   const y=db[e].find(i=>i.id==id);if(!y){await fDel(fid);break}(y.files||(y.files=[])).push({id:fid,n:r.n,t:r.t,s:r.bytes.length,d:Date.now(),k:en.k});y._u=Date.now();n++}
+  catch(er){errs.push(er&&er.message||'Fichier illisible.')}}
+ if(n){const x=db[e].find(i=>i.id==id);log(`Document joint (${n}) : ${S[e].t} ${x?lab(e,x):''}`);save();render();fSync()}
+ if(errs.length)alert(errs.join('\n'));if(reopen&&db[e].some(i=>i.id==id))docs(e,id)}
+async function fSync(){if(fBusy||!SY||!KEY||!navigator.onLine)return;fBusy=true;const me=SY;
+ try{const k=await syK(me.code);
+  for(const f of allF()){if(SY!==me)return;if(await stGet('u:'+f.id))continue;const data=await fGet(f.id);if(!data)continue;await rpc('ptua_file_put',{p_id:k.id,p_auth:k.auth,p_fid:f.id,p_blob:b64(data)});await stPut('u:'+f.id,1)}
+  for(const id of Object.keys(db.fdel||{})){if(SY!==me)return;if(await stGet('d:'+id))continue;await fDel(id);await rpc('ptua_file_del',{p_id:k.id,p_auth:k.auth,p_fid:id});await stPut('d:'+id,1)}}
+ catch(e){}finally{fBusy=false}}
+async function fLoad(f){let data=await fGet(f.id);
+ if(!data){if(!SY)throw new Error('Ce document n’est pas enregistré sur cet appareil.');if(!navigator.onLine)throw new Error('Hors ligne : ce document n’a pas encore été téléchargé sur cet appareil.');
+  const k=await syK(SY.code),b=await rpc('ptua_file_get',{p_id:k.id,p_auth:k.auth,p_fid:f.id});if(!b)throw new Error('Document pas encore disponible : ouvrez PTUA avec Internet sur l’appareil où il a été ajouté pour terminer l’envoi.');
+  data=ub(b);await fPut(f.id,data);await stPut('u:'+f.id,1)}
+ return fDec(f,data)}
+function pdfLib(){return pdfP||(pdfP=import('./lib/pdf.min.mjs').then(m=>{m.GlobalWorkerOptions.workerSrc='lib/pdf.worker.min.mjs';return m}).catch(e=>{pdfP=null;throw new Error('Lecteur PDF non chargé (hors ligne ?).')}))}
+function docs(e,id){const x=db[e].find(i=>i.id==id);if(!x)return;const F=x.files||[],d=$('#cd'),touch=matchMedia('(pointer:coarse)').matches;
+ d.innerHTML=`<h3 style="margin-top:0">📎 Documents — ${esc(S[e].t)} ${esc(lab(e,x))}</h3>${F.length?`<div class="dl">${F.map(f=>`<div class="di"><div><b>${f.t=='application/pdf'?'📄':'🖼️'} ${esc(f.n)}</b><small>${ko(f.s)} — ajouté le ${new Date(f.d).toLocaleDateString('fr-FR')}</small></div><button data-o="${f.id}">Ouvrir</button><button data-x="${f.id}">Retirer</button></div>`).join('')}</div>`:'<div class="e">Aucun document joint. Ajoutez le scan de la pièce : photo ou PDF.</div>'}
+ <div class="bar" style="margin:12px 0 0">${F.length>1?'<button class="pri" data-o="">👁️ Tout parcourir</button>':''}${touch?`<button data-a="c" class="${F.length?'':'pri'}">📷 Photographier</button>`:''}<button data-a="f" class="${F.length||touch?'':'pri'}">📁 Choisir un fichier</button></div>
+ <input type="file" id="fc" accept="image/*" capture="environment" hidden><input type="file" id="ff" accept="image/*,application/pdf" multiple hidden>
+ <p style="margin:10px 0 0;color:var(--m);font-size:12px">Photos et PDF (4 Mo maximum par PDF, 20 documents par fiche). Chaque document est chiffré${SY?' puis sauvegardé avec la synchronisation ; les autres appareils le téléchargent à la première ouverture.':'. ⚠️ Sans synchronisation, il reste uniquement sur cet appareil : il n’est pas inclus dans l’export JSON.'}</p>
+ <div class="row"><button data-a="x">Fermer</button></div>`;
+ d.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>view(e,id,b.dataset.o));
+ d.querySelectorAll('[data-x]').forEach(b=>b.onclick=()=>rmFile(e,id,b.dataset.x));
+ d.querySelectorAll('[data-a]').forEach(b=>b.onclick=()=>{const a=b.dataset.a;if(a=='x'){d.close();render()}else $(a=='c'?'#fc':'#ff').click()});
+ ['#fc','#ff'].forEach(q=>$(q).onchange=ev=>{const fl=[...ev.target.files];if(!fl.length)return;d.querySelector('.bar').innerHTML='<span class="e" style="padding:8px">Chiffrement et enregistrement en cours…</span>';addFiles(e,id,fl,true)});
+ d.onkeydown=null;d.oncancel=null;if(!d.open)d.showModal()}
+function rmFile(e,id,fid){const x=db[e].find(i=>i.id==id),f=x&&(x.files||[]).find(z=>z.id==fid);if(!f||!confirm('Retirer « '+f.n+' » ?\nLe document sera supprimé de tous vos appareils.'))return;
+ x.files=x.files.filter(z=>z.id!=fid);x._u=Date.now();(db.fdel||(db.fdel={}))[fid]=Date.now();fDel(fid).catch(()=>{});log('Document retiré : '+f.n);save();fSync();docs(e,id)}
+function vClose(){if(DVW){DVW.io&&DVW.io.disconnect();DVW.urls.forEach(u=>URL.revokeObjectURL(u));DVW.docs.forEach(x=>{try{x.destroy()}catch(e){}});DVW=null}const d=$('#dv');if(d){d.innerHTML='';if(d.open)d.close()}}
+async function view(e,id,fid){const x=db[e].find(i=>i.id==id),F=x&&x.files||[];if(!F.length)return;vClose();const d=$('#dv');
+ d.innerHTML=`<div class="vt"><div class="vn"><b>${esc(S[e].t)} ${esc(lab(e,x))}</b><small id="vpg">Ouverture…</small></div><button data-a="o" title="Réduire" aria-label="Réduire">−</button><button data-a="i" title="Agrandir" aria-label="Agrandir">＋</button><button data-a="s" title="Enregistrer ou partager ce document" aria-label="Enregistrer ou partager ce document">⬇️</button><button data-a="x" class="pri">Fermer</button></div><div class="vb" id="vb"><div class="vz" id="vz"></div></div>`;
+ const me=DVW={urls:[],docs:[],z:1,files:{},cur:F[0].id,io:null},vz=$('#vz'),vb=$('#vb'),zoom=()=>vz.style.width=`min(${me.z*100}%,${me.z*900}px)`;zoom();
+ const upd=()=>{if(DVW!==me)return;const P=[...vz.querySelectorAll('.pg')];if(!P.length)return;const top=vb.getBoundingClientRect().top+80;let i=P.findIndex(p=>p.getBoundingClientRect().bottom>top);if(i<0)i=P.length-1;me.cur=P[i].dataset.f;$('#vpg').textContent=`Page ${i+1} sur ${P.length}`};
+ d.querySelectorAll('.vt button').forEach(b=>b.onclick=()=>{const a=b.dataset.a;if(a=='x')return vClose();if(a=='s'){const c=me.files[me.cur];if(c)dl(c.f.n,c.bytes,c.f.t);return}me.z=Math.min(3,Math.max(1,me.z+(a=='i'?.5:-.5)));zoom()});
+ d.oncancel=ev=>{ev.preventDefault();vClose()};d.showModal();let rq=0;vb.onscroll=()=>{cancelAnimationFrame(rq);rq=requestAnimationFrame(upd)};
+ me.io=new IntersectionObserver(es=>es.forEach(en=>{const p=en.target;if(en.isIntersecting){if(!p.firstChild)p._r()}else if(p.firstChild){p.firstChild.width=0;p.textContent=''}}),{root:vb,rootMargin:'150% 0px'});
+ for(const f of F){if(DVW!==me)return;const h=document.createElement('div');h.className='vh';h.textContent=`${f.n} — ${ko(f.s)}`;vz.appendChild(h);
+  try{const bytes=await fLoad(f);if(DVW!==me)return;me.files[f.id]={f,bytes};
+   if(f.t=='application/pdf'){const lib=await pdfLib(),doc=await lib.getDocument({data:bytes.slice(),isEvalSupported:false}).promise;if(DVW!==me){doc.destroy();return}me.docs.push(doc);
+    for(let n=1;n<=Math.min(doc.numPages,200);n++){const pg=await doc.getPage(n);if(DVW!==me)return;const v1=pg.getViewport({scale:1}),p=document.createElement('div');p.className='pg';p.dataset.f=f.id;p.style.aspectRatio=v1.width+' / '+v1.height;
+     p._r=async()=>{const c=document.createElement('canvas'),vp=pg.getViewport({scale:Math.min(1500,Math.max(vb.clientWidth,500)*Math.min(devicePixelRatio||1,2))/v1.width});c.width=vp.width;c.height=vp.height;p.appendChild(c);try{await pg.render({canvasContext:c.getContext('2d'),viewport:vp}).promise}catch(_){}};
+     vz.appendChild(p);me.io.observe(p)}}
+   else{const u=URL.createObjectURL(new Blob([bytes],{type:f.t}));me.urls.push(u);const p=document.createElement('div');p.className='pg';p.dataset.f=f.id;const im=new Image();im.alt=f.n;im.onload=upd;im.src=u;p.appendChild(im);vz.appendChild(p)}}
+  catch(er){const m=document.createElement('div');m.className='ve';m.textContent='⚠️ '+(er&&er.message||'Document illisible.');vz.appendChild(m)}
+  if(f.id==fid&&fid!=F[0].id)h.scrollIntoView();upd()}
+ if(DVW===me&&!vz.querySelector('.pg'))$('#vpg').textContent='Aucune page à afficher'}
 function syStop(){if(!confirm('Déconnecter cet appareil de la synchronisation ?\nVos données restent sur cet appareil ; elles ne seront simplement plus mises à jour avec les autres.'))return;SY=null;clearTimeout(syT);persist();setSy('');log('Synchronisation désactivée sur cet appareil');save();render()}
 function syCard(){const st=!SY?'':syLast=='err'?'⚠️ Dernier essai en échec — nouvel essai automatique':syLast=='off'?'📴 Hors ligne — synchronisation au retour du réseau':syLast=='sync'?'⏳ Synchronisation en cours…':SY.last?'✅ À jour — dernière synchronisation : '+new Date(SY.last).toLocaleString('fr-FR'):'⏳ En attente';
  return `<div class="card nt"><h2>☁️ Synchronisation PC ↔ iPhone</h2><p style="margin:0 0 8px">${SY?st:'Chaque ajout, modification ou suppression est envoyé automatiquement à vos autres appareils (quelques secondes, avec Internet).'}</p>
@@ -542,7 +619,7 @@ function offer(n,txt,type,msg,tip,cb){const d=$('#cd');d.innerHTML=`<h3 style="m
  d.querySelectorAll('.row button').forEach(b=>b.onclick=()=>{if(b.dataset.v=='1'){dl(n,txt,type);cb&&cb()}d.close()});d.onkeydown=null;d.oncancel=null;d.showModal()}
 const gp=()=>{try{return localStorage.getItem('ptua_pin')}catch(e){return null}}; // ancien code (avant v7.4), remplacé par le chiffrement au déverrouillage
 function lock(){if(!ENC&&!gp())return;$('#pin').value='';$('#lke').textContent='';$('#lk').hidden=false;if($('#dlg').open)$('#dlg').close();if($('#cd').open)$('#cd').close();
- if(ENC&&KEY)PQ.then(()=>{KEY=null;SALT=null;SY=null;clearTimeout(syT);setSy('');db=blank();SN=[];cur={};q='';gq='';$('#df').innerHTML='';$('#cd').innerHTML='';$('#v').innerHTML='';render()});setTimeout(()=>$('#pin').focus(),80)}
+ if(ENC&&KEY)PQ.then(()=>{KEY=null;SALT=null;SY=null;clearTimeout(syT);setSy('');db=blank();SN=[];vClose();cur={};q='';gq='';$('#df').innerHTML='';$('#cd').innerHTML='';$('#v').innerHTML='';render()});setTimeout(()=>$('#pin').focus(),80)}
 async function unl(){const v=$('#pin').value,e=$('#lke');if(!v)return;const w=+(localStorage.getItem('ptua_until')||0)-Date.now();if(w>0){e.style.color='var(--r)';e.textContent=`Trop d’essais : réessayez dans ${Math.ceil(w/1000)} s.`;return}e.style.color='var(--m)';e.textContent='Vérification…';
  try{if(ENC){const st=stE(),{k,o}=await openE(v,st);KEY=k;SALT=ub(st.salt);db=sanDB(o.db);SN=Array.isArray(o.snaps)?o.snaps:[];SY=o.sync&&typeof o.sync.code=='string'?o.sync:null;applyAll();if(SY)setTimeout(syncNow,300)}
   else if(hs(v)==gp()){if(v.length<8){$('#lk').hidden=true;e.textContent='';ia=Date.now();alert('Nouvelle protection : choisissez un code de 8 caractères minimum pour activer le chiffrement.');localStorage.removeItem('ptua_pin');return pinMenu()}await enableEnc(v)}
@@ -735,7 +812,7 @@ function cards(e,a,F){
  const hd=x=>e=='marches'?(x.titulaire?x.titulaire+' · ':'')+(x.num||''):mt(x.marche)+' · '+(x.type||x.num||''),ex=e=='marches'?['titulaire','num']:e=='garanties'||e=='assurances'?['marche','type']:['marche','num'];
  return `<tr><td colspan="99" style="white-space:normal;padding:12px"><div class="cg">${a.map(x=>{const lhd=sk=='@az'&&ltr(e,x)!=LL?(LL=ltr(e,x),`<div class="lh">${LL=='#'?'Divers':LL}</div>`):'',r=e=='marches'?calc(x):null,
   L=F.filter(f=>!ex.includes(f[0])&&x[f[0]]!==undefined&&x[f[0]]!==''&&x[f[0]]!=='—').map(f=>`<div><small>${esc(f[1])} :</small> ${esc(cvl(x,f))}</div>`).join('');
-  return `${lhd}<div class="ci"><b>${esc(hd(x))}</b>${e=='garanties'?`<div>${badge(x)}</div>`:e=='assurances'?`<div>${badgeA(x)}</div>`:''}${r?`<div><small>Fin prévue :</small> ${fdd(r.fin)}${r.retard?` <span class="b r">${r.retard} j de retard</span>`:''}</div>`:''}${e=='os'&&osFin(x)?`<div><small>Fin de la durée :</small> ${fdd(osFin(x))}</div>`:''}${L}<div class="ca"><button onclick="edit('${e}','${x.id}')">Modifier</button><button onclick="dup('${e}','${x.id}')">Dupliquer</button><button onclick="del('${e}','${x.id}')">Suppr.</button></div></div>`}).join('')}</div></td></tr>`}
+  return `${lhd}<div class="ci"><b>${esc(hd(x))}</b>${e=='garanties'?`<div>${badge(x)}</div>`:e=='assurances'?`<div>${badgeA(x)}</div>`:''}${r?`<div><small>Fin prévue :</small> ${fdd(r.fin)}${r.retard?` <span class="b r">${r.retard} j de retard</span>`:''}</div>`:''}${e=='os'&&osFin(x)?`<div><small>Fin de la durée :</small> ${fdd(osFin(x))}</div>`:''}${L}<div class="ca"><button onclick="docs('${e}','${x.id}')">📎 Documents${(x.files||[]).length?' ('+x.files.length+')':''}</button><button onclick="edit('${e}','${x.id}')">Modifier</button><button onclick="dup('${e}','${x.id}')">Dupliquer</button><button onclick="del('${e}','${x.id}')">Suppr.</button></div></div>`}).join('')}</div></td></tr>`}
 
 const mt=id=>{const m=mk(id);return m?(m.titulaire?m.titulaire+' · ':'')+m.num:'?'};
 let LL='';
@@ -830,7 +907,7 @@ async function icsExp(){
  db.os.forEach(o=>{const f=osFin(o);if(!f||f<today)return;
   ev.push({id:'o'+o.id,d:f,t:`PTUA – Fin de durée OS ${o.num||o.type} · ${mn(o.marche)}`,x:dis?'':(o.note||''),al:[15,3]})});
  if(!ev.length)return alert('Aucune échéance future à ajouter (garanties actives avec une date d’échéance, fins prévues de marchés, durées d’OS).');
- const st=new Date().toISOString().replace(/[-:]/g,'').slice(0,15)+'Z',L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//PTUA//Gestionnaire PTUA v8.2//FR','CALSCALE:GREGORIAN','METHOD:PUBLISH','X-WR-CALNAME:PTUA – échéances'];
+ const st=new Date().toISOString().replace(/[-:]/g,'').slice(0,15)+'Z',L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//PTUA//Gestionnaire PTUA v8.3//FR','CALSCALE:GREGORIAN','METHOD:PUBLISH','X-WR-CALNAME:PTUA – échéances'];
  const al=(t,tr)=>L.push('BEGIN:VALARM','ACTION:DISPLAY','DESCRIPTION:'+icsE(t),'TRIGGER:'+tr,'END:VALARM');
  ev.forEach(e=>{L.push('BEGIN:VEVENT',`UID:ptua-${e.id}-${icd(e.d)}@ptua.app`,'DTSTAMP:'+st,'DTSTART;VALUE=DATE:'+icd(e.d),'DTEND;VALUE=DATE:'+icd(new Date(e.d.getTime()+day)),'SUMMARY:'+icsE(e.t));
   if(e.x)L.push('DESCRIPTION:'+icsE(e.x));L.push('TRANSP:TRANSPARENT');
