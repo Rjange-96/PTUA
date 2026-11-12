@@ -4,8 +4,10 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="PTUA">
 <meta name="theme-color" content="#eef3fb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#070b17" media="(prefers-color-scheme: dark)">
 <meta name="format-detection" content="telephone=no">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' https://raw.githubusercontent.com https://rjange-96.github.io; object-src 'none'; base-uri 'none'; form-action 'none'; worker-src 'self'; manifest-src 'self'">
+<meta name="referrer" content="no-referrer">
 <link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-180.png"><link rel="icon" href="icon-192.png">
-<title>Gestionnaire juridique et contractuel PTUA v7.5</title>
+<title>Gestionnaire juridique et contractuel PTUA v7.6</title>
 <style>
 :root{--bg:#eef3fb;--c:rgba(255,255,255,.74);--t:#16213a;--m:#5d6c8a;--b:rgba(60,80,130,.16);--p:#2563eb;--r:#e11d48;--o:#d97706;--y:#a16207;--g:#059669;--g1:#1e3a8a;--g2:#7c3aed;--h2:#1d4ed8;--in:rgba(255,255,255,.95);--hd:rgba(255,255,255,.78);--sh:0 14px 34px -16px rgba(37,60,120,.35);--gl:rgba(37,99,235,.2);--gl2:rgba(37,99,235,.35);--cf:rgba(37,99,235,.5);--cb:linear-gradient(135deg,rgba(37,99,235,.10),rgba(124,58,237,.16));--hv:rgba(37,99,235,.06);--dg:rgba(255,255,255,.98);--ob:#fff;--bt:#fff;--sp:radial-gradient(circle at 50% 45%,#fff,#d6e4ff);--bd:#0f1b3a66;color-scheme:light}
 [data-t=dark]{--bg:#070b17;--c:rgba(18,26,48,.62);--t:#e8eefc;--m:#8b98b8;--b:rgba(148,163,184,.2);--p:#22d3ee;--r:#ff6b81;--o:#fbbf24;--y:#facc15;--g:#34d399;--g1:#fff;--g2:#67e8f9;--h2:#a5f3fc;--in:rgba(6,10,24,.7);--hd:rgba(7,11,23,.72);--sh:0 14px 34px -12px #000a;--gl:#22d3ee55;--gl2:#22d3ee55;--cf:rgba(103,232,249,.55);--cb:linear-gradient(135deg,rgba(34,211,238,.16),rgba(99,102,241,.2));--hv:rgba(34,211,238,.07);--dg:#0c1328f2;--ob:#0f172a;--bt:#04101f;--sp:radial-gradient(circle at 50% 45%,#16205a,#050810);--bd:#02050dcc;color-scheme:dark}
@@ -83,6 +85,8 @@ dialog{max-height:92vh;overflow:auto}summary{outline:none}
 @media print{@page{size:A4 landscape;margin:10mm}:root,[data-t=dark]{--dg:#fff}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}.pt,.dots{display:none!important}.sl{display:block!important;break-after:page;page-break-after:always;box-shadow:none;min-height:0;border:1px solid #ccc}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}#sp{display:none}}
 /* v7.3 — iPhone */
+body.priv main,body.priv nav,body.priv #al,body.priv header .hr,body.priv dialog{filter:blur(22px)!important}
+#lk form{display:flex;flex-direction:column;gap:12px}
 .card{overflow-x:auto}.w,.w2,.card{-webkit-overflow-scrolling:touch}
 header{padding-top:max(10px,env(safe-area-inset-top));padding-left:max(18px,env(safe-area-inset-left));padding-right:max(18px,env(safe-area-inset-right))}
 main{padding-bottom:calc(50px + env(safe-area-inset-bottom))}
@@ -104,13 +108,14 @@ button,select,a,label,summary{-webkit-tap-highlight-color:transparent;touch-acti
  .row{position:sticky;bottom:0;background:var(--dg);padding:10px 0 0}.row button{flex:1}
 }
 </style></head><body>
-<div id="bg"></div><div id="sp"><div class="cu"></div><b>PTUA</b></div><header><div class="lg"><div class="cu"></div><h1>Gestionnaire juridique et contractuel PTUA <small>v7.5 · iPhone</small></h1></div><div class="hr"><b id="ht">--:--:--</b><small id="hdt"></small></div>
+<div id="bg"></div><div id="sp"><div class="cu"></div><b>PTUA</b></div><header><div class="lg"><div class="cu"></div><h1>Gestionnaire juridique et contractuel PTUA <small>v7.6 · iPhone</small></h1></div><div class="hr"><b id="ht">--:--:--</b><small id="hdt"></small></div>
 <div class="bar" style="margin:0"><button id="th" onclick="th()">🌙 Sombre</button><button onclick="pinMenu()">🔒 Verrou</button><button onclick="window.print()">🖨️ Imprimer / PDF</button><button onclick="expJ()">Exporter (JSON)</button><button onclick="$('#imp').click()">Importer</button><button onclick="expC()">Exporter (CSV)</button></div>
 <input type="file" id="imp" accept=".json,application/json" hidden onchange="impJ(this)"></header>
-<div id="ins" hidden></div><nav id="nav"></nav><div id="al"></div><main id="v"></main><div id="lk" hidden><div class="lkb"><h2 style="margin:0">🔒 Application verrouillée</h2><small style="color:var(--m)">Données chiffrées sur cet appareil (AES-256)</small><input id="pin" type="password" inputmode="numeric" placeholder="Code d’accès" onkeydown="if(event.key=='Enter')unl()"><button class="pri" onclick="unl()">Déverrouiller</button><small id="lke" style="color:var(--r)"></small></div></div>
+<div id="ins" hidden></div><nav id="nav"></nav><div id="al"></div><main id="v"></main><div id="lk" hidden><div class="lkb"><h2 style="margin:0">🔒 Application verrouillée</h2><small style="color:var(--m)">Données chiffrées sur cet appareil (AES-256)</small><form onsubmit="event.preventDefault();unl()"><input type="text" name="username" value="PTUA" autocomplete="username" hidden readonly><input id="pin" type="password" autocomplete="current-password" placeholder="Code d’accès" autocapitalize="off" spellcheck="false"><button class="pri" type="submit">Déverrouiller</button></form><small id="lke" style="color:var(--r)"></small></div></div>
 <datalist id="orgs"></datalist>
 <dialog id="cd"></dialog><dialog id="dlg"><h3 id="dt" style="margin-top:0"></h3><div id="df"></div><div class="row"><button onclick="$('#dlg').close()">Annuler</button><button class="pri" onclick="ok()">Enregistrer</button></div></dialog>
 <script>
+if(top!==self){try{top.location=self.location.href}catch(e){document.documentElement.innerHTML='';throw 0}}
 const MOB=()=>matchMedia('(max-width:700px)').matches,K='ptua_v3',$=s=>document.querySelector(s),day=864e5,today=new Date(new Date().toDateString());
 const S={
 marches:{t:'Marché',f:[['titulaire','Titulaire'],['num','N° marché'],['objet','Objet'],['montant','Montant (FCFA)','number'],['debut','Démarrage','date'],['delaiM','Délai (mois)','number'],['delai','Délai (jours) — s’ajoute aux mois','number'],['reception','Date de réception','date'],['taux','Pénalité (‰ / jour)','number'],['plafond','Plafond pénalités (%)','number'],['doc','Référence document / lien']]},
@@ -122,8 +127,36 @@ let db=null,tab='dash',q='',cur={};
 const EK='ptua_enc',IT=600000,te=new TextEncoder(),td=new TextDecoder();
 let KEY=null,SALT=null,SN=[],PQ=Promise.resolve(),ENC=(()=>{try{return !!localStorage.getItem(EK)}catch(e){return false}})();
 if(!ENC)try{db=JSON.parse(localStorage.getItem(K))}catch(e){}
+// ===== v7.6 — Assainissement des données importées (anti-XSS) =====
+const IDR=/^[A-Za-z0-9_-]{1,64}$/,ENTS=['marches','garanties','os','avenants'],nid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+const cln=v=>String(v??'').replace(/[<>"'`\\]/g,'').slice(0,300),httpsU=u=>typeof u=='string'&&/^https:\/\/[^\s"'<>`]+$/.test(u)?u:'';
+const prim=v=>typeof v=='string'?v.slice(0,5000):typeof v=='number'&&isFinite(v)?v:typeof v=='boolean'?v:'';
+function sanFs(fs){return Array.isArray(fs)?fs.filter(f=>Array.isArray(f)&&IDR.test(f[0])).slice(0,30).map(f=>[f[0],cln(f[1]),['text','number','date'].includes(f[2])?f[2]:'text']):[]}
+function sanProp(p){if(!p||typeof p!='object'||!IDR.test(p.id)||!['add','rename','remove'].includes(p.op)||!ENTS.includes(p.ent))return null;
+ return{id:p.id,op:p.op,ent:p.ent,after:IDR.test(p.after)?p.after:'',key:IDR.test(p.key)?p.key:'',label:cln(p.label),fs:sanFs(p.fs),title:cln(p.title),why:cln(p.why),titre:cln(p.titre),src:cln(p.src),pays:['CI','FR','GEN'].includes(p.pays)?p.pays:'GEN'}}
+const nums=(a,d)=>Array.isArray(a)&&a.length==2&&a.every(x=>typeof x=='number'&&isFinite(x))?a:d;
+function sanP(p,d){p=p&&typeof p=='object'?p:{};const o={};for(const k of Object.keys(d))o[k]=Array.isArray(d[k])?nums(p[k],d[k]):(typeof p[k]=='number'&&isFinite(p[k])?p[k]:d[k]);return o}
+const dt=v=>typeof v=='string'&&/^\d{4}-\d{2}-\d{2}$/.test(v)?v:'';
+function sanRef(r){if(!r||typeof r!='object')return undefined;const P0={ret:[3,5],gbe:[3,5],av1:15,av2:15,avt:30,pen:10,mlGbe:15},o={
+ v:dt(r.v)||'2026-11-11',base:cln(r.base),p:sanP(r.p,P0),
+ r:Array.isArray(r.r)?r.r.filter(Array.isArray).slice(0,100).map(x=>[0,1,2,3].map(i=>String(x[i]??'').slice(0,1500))):[],
+ props:(Array.isArray(r.props)?r.props:[]).map(sanProp).filter(Boolean),applied:(Array.isArray(r.applied)?r.applied:[]).filter(x=>IDR.test(x)),
+ lc:dt(r.lc),url:httpsU(r.url),s:(Array.isArray(r.s)?r.s:[]).filter(x=>Array.isArray(x)&&httpsU(x[1])).slice(0,20).map(x=>[cln(x[0]),x[1]])};
+ if(Array.isArray(r.am))o.am=r.am.map(sanProp).filter(Boolean);
+ if(r.amst&&typeof r.amst=='object'){o.amst={};for(const k in r.amst)if(IDR.test(k)&&['adopté','à étudier','ignoré',''].includes(r.amst[k]))o.amst[k]=r.amst[k]}
+ if(Array.isArray(r.ideas))o.ideas=r.ideas.slice(0,200).map(x=>({d:dt(x&&x.d),t:String(x&&x.t||'').slice(0,1000)}));
+ if(r.view&&typeof r.view=='object'){o.view={};for(const e of ENTS){const v=r.view[e];if(v&&typeof v=='object')o.view[e]={mode:['table','compact','cards'].includes(v.mode)?v.mode:'table',hide:(Array.isArray(v.hide)?v.hide:[]).filter(x=>IDR.test(x)),sk:/^@?[A-Za-z0-9_-]{0,64}$/.test(v.sk||'')?v.sk||'':'',sd:v.sd==-1?-1:1}}}
+ if(r.use&&typeof r.use=='object'){o.use={};for(const k in r.use)if(IDR.test(k)&&typeof r.use[k]=='number')o.use[k]=r.use[k]}
+ return o}
+function sanDB(d){d=d&&typeof d=='object'?d:{};const o={},map={};
+ for(const e of ENTS)o[e]=(Array.isArray(d[e])?d[e]:[]).filter(x=>x&&typeof x=='object').slice(0,20000).map(x=>{const y={};for(const k of Object.keys(x))if(IDR.test(k)&&k!='id')y[k]=prim(x[k]);
+  const id=IDR.test(x.id)&&!map[x.id+'|'+e]?x.id:nid();if(typeof x.id=='string')map[x.id+'|'+e]=id;y.id=id;return y});
+ for(const e of ['garanties','os','avenants'])o[e].forEach(x=>{const m=map[String(x.marche)+'|marches'];x.marche=m||(IDR.test(x.marche)?x.marche:'')});
+ o.journal=(Array.isArray(d.journal)?d.journal:[]).slice(0,300).map(j=>({d:String(j&&j.d||'').slice(0,40),m:String(j&&j.m||'').slice(0,500)}));
+ const rf=sanRef(d.ref);if(rf)o.ref=rf;return o}
+if(db)db=sanDB(db);
 db=db||{marches:[],garanties:[],os:[],journal:[]};db.avenants=db.avenants||[];
-const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const esc=s=>String(s??'').replace(/[&<>"'`]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;','`':'&#96;'}[c]));
 const save=()=>{try{if(!ENC)localStorage.setItem(K,JSON.stringify(db));localStorage.setItem('ptua_ls',Date.now());snap(false);if(ENC)persist()}catch(e){alert('Sauvegarde automatique impossible : pensez à exporter vos données (JSON).')}};
 const D=s=>s?new Date(s+'T00:00:00'):null,diff=(a,b)=>Math.round((a-b)/day);
 const fmt=n=>(+n||0).toLocaleString('fr-FR'),fdd=d=>d.toLocaleDateString('fr-FR'),fd=s=>s?fdd(D(s)):'—';
@@ -173,7 +206,7 @@ function rows(e){
  if(sk&&s.f.some(f=>f[0]==sk))a.sort((x,y)=>{const ty=s.f.find(f=>f[0]==sk)[2];let u=x[sk]??'',v=y[sk]??'';if(u===''||v==='')return u===v?0:u===''?1:-1;if(ty=='number'){u=+u;v=+v}else if(ty=='ref'){u=mn(u);v=mn(v)}return(typeof u=='number'?u-v:String(u).localeCompare(String(v),'fr',{numeric:true,sensitivity:'base'}))*sd});
  if(sk=='@az')azSort(e,a);else if(sk[0]=='@')a.sort((x,y)=>(sv(e,sk,x)-sv(e,sk,y))*sd);
  const ex=e=='marches'?['Fin prévue','Retard (j)','Pénalités']:e=='garanties'?['Alerte']:e=='os'?['Fin de la durée']:[];
- let h='<tr>'+F.map(f=>`<th class="st" onclick="srt('${f[0]}')">${f[1]}${sk==f[0]?(sd>0?' ▲':' ▼'):''}</th>`).concat(ex.map(x=>`<th>${x}</th>`)).join('')+'<th></th></tr>';
+ let h='<tr>'+F.map(f=>`<th class="st" onclick="srt('${f[0]}')">${esc(f[1])}${sk==f[0]?(sd>0?' ▲':' ▼'):''}</th>`).concat(ex.map(x=>`<th>${x}</th>`)).join('')+'<th></th></tr>';
  if(!a.length)return h+`<tr><td class="e" colspan="${F.length+ex.length+1}">Aucun élément.</td></tr>`;
  if(V.mode=='cards')return cards(e,a,F);
  return h+a.map(x=>{
@@ -199,7 +232,7 @@ function edit(e,id){
   if(t=='ref')i=`<select name="${k}"><option value="">— choisir —</option>${db.marches.map(m=>`<option value="${m.id}" ${m.id==v?'selected':''}>${esc(m.num)}</option>`).join('')}</select>`;
   else if(t=='sel')i=`<select name="${k}">${o.map(x=>`<option ${x==v?'selected':''}>${x}</option>`).join('')}</select>`;
   else i=`<input name="${k}" type="${t||'text'}" value="${esc(v)}" ${k=='organisme'?'list="orgs"':''} ${t=='number'?'step="any"':''}>`;
-  return `<label>${l}${i}</label>`}).join('');
+  return `<label>${esc(l)}${i}</label>`}).join('');
 if(e=='marches'){const E=['num','objet','titulaire','montant'],L=[...$('#df').children].filter(l=>!E.includes(l.querySelector('[name]').name)),d=document.createElement('details');
   d.open=!!id;d.innerHTML='<summary style="cursor:pointer;margin:4px 0 14px;font-weight:600;color:var(--p)">＋ Plus d’informations (à compléter plus tard)</summary>';L.forEach(l=>d.appendChild(l));$('#df').appendChild(d);
   if(!id)$('#df').insertAdjacentHTML('afterbegin','<p style="margin:0 0 12px;color:var(--m);font-size:13px">Seul le <b>N° de marché</b> est obligatoire : enregistrez maintenant et complétez le reste plus tard (délai en mois ou en jours, dates, montants…).</p>')}
@@ -231,25 +264,24 @@ async function dl(name,txt,type){const blob=new Blob([txt],{type});
 const stamp=()=>new Date().toISOString().slice(0,10);
 async function expJ(){
  if(!crypto.subtle)return alert('Chiffrement indisponible : ouvrez l’application depuis son adresse https.');
- const a=await ask('⬇️ Exporter une sauvegarde',[['a','Mot de passe de la sauvegarde (6 caractères minimum)'],['b','Confirmer le mot de passe']],'Le fichier sera <b>chiffré (AES-256)</b> : ce mot de passe sera demandé pour l’importer. <b>Mot de passe oublié = sauvegarde illisible.</b> Laissez vide pour un fichier non chiffré (déconseillé).');
+ const a=await ask('⬇️ Exporter une sauvegarde',[['a','Mot de passe de la sauvegarde (8 caractères minimum)','autocomplete="new-password" oninput="pw(this)"'],['b','Confirmer le mot de passe','autocomplete="new-password"']],'Le fichier sera <b>chiffré (AES-256)</b> : ce mot de passe sera demandé pour l’importer. <b>Mot de passe oublié = sauvegarde illisible.</b> Laissez vide pour un fichier non chiffré (déconseillé).');
  if(!a)return;let txt,msg;
- if(a.a){if(a.a.length<6)return alert('Mot de passe trop court (6 caractères minimum).');if(a.a!==a.b)return alert('Les deux mots de passe ne correspondent pas.');
+ if(a.a){if(!okPw(a.a,a.b))return;
   const sl=crypto.getRandomValues(new Uint8Array(16)),k=await dk(a.a,sl),e=await encO(k,sl,db);e.ptua='sauvegarde-chiffree';e.date=stamp();txt=JSON.stringify(e);msg='Sauvegarde chiffrée prête'}
  else{if(!confirm('Exporter SANS chiffrement ?\nToute personne qui obtient ce fichier pourra lire vos données.'))return;txt=JSON.stringify(db,null,1);msg='Sauvegarde non chiffrée prête'}
- try{localStorage.setItem('ptua_exp',Date.now())}catch(e){}
- offer('PTUA_sauvegarde_'+stamp()+'.json',txt,'application/json',msg);setTimeout(banner,300)}
+ offer('PTUA_sauvegarde_'+stamp()+'.json',txt,'application/json',msg,'',()=>{try{localStorage.setItem('ptua_exp',Date.now())}catch(e){}});setTimeout(banner,300)}
 function expC(){
- const e=S[tab]?tab:'marches',s=S[e],c=v=>'"'+String(v??'').replace(/"/g,'""')+'"';
+ const e=S[tab]?tab:'marches',s=S[e],c=v=>{v=String(v??'');if(/^[=+\-@\t\r]/.test(v)&&!/^-?\d+([.,]\d+)?$/.test(v))v="'"+v;return '"'+v.replace(/"/g,'""')+'"'};
  const t=[s.f.map(f=>c(f[1])).join(';')].concat(db[e].map(x=>s.f.map(([k,,ty])=>c(ty=='ref'?mn(x[k]):x[k])).join(';'))).join('\n');
  dl('PTUA_'+e+'_'+stamp()+'.csv','\ufeff'+t,'text/csv');
 }
 function impJ(inp){
- const f=inp.files[0];if(!f)return;const r=new FileReader();
+ const f=inp.files[0];if(!f)return;if(f.size>25e6){inp.value='';return alert('Fichier trop volumineux (25 Mo maximum).')}const r=new FileReader();
  r.onload=async()=>{try{let d=JSON.parse(r.result);
   if(d&&d.ct&&d.iv&&d.salt){const a=await ask('🔐 Sauvegarde chiffrée',[['p','Mot de passe de la sauvegarde']]);if(!a)return;try{d=(await openE(a.p,d)).o}catch(e){return alert('Mot de passe incorrect.')}}
-  if(!Array.isArray(d.marches)||!Array.isArray(d.garanties)||!Array.isArray(d.os))throw 0;
+  if(!Array.isArray(d.marches)||!Array.isArray(d.garanties)||!Array.isArray(d.os))throw 0;d=sanDB(d);
   if(!confirm('Remplacer toutes les données actuelles par ce fichier ?'))return;
-  db={marches:d.marches,garanties:d.garanties,os:d.os,avenants:d.avenants||[],journal:d.journal||[],ref:d.ref};applyAll();log('Import d’une sauvegarde');save();render()}catch(e){alert('Fichier invalide.')}};
+  db=d;applyAll();log('Import d’une sauvegarde');save();render()}catch(e){alert('Fichier invalide.')}};
  r.readAsText(f);inp.value='';
 }
 
@@ -295,14 +327,14 @@ function stats(){
 
 let sk='',sd=1,sf='';
 const FK=e=>S[e].f.find(f=>f[0]=='statut')||S[e].f.find(f=>f[0]=='type'&&f[2]=='sel');
-const fsel=()=>{const f=FK(tab);return f?`<select style="width:auto" onchange="sf=this.value;$('#tb').innerHTML=rows(tab)"><option value="">Tous (${f[1].toLowerCase()})</option>${f[3].map(o=>`<option ${o==sf?'selected':''}>${o}</option>`).join('')}</select>`:''};
+const fsel=()=>{const f=FK(tab);return f?`<select style="width:auto" onchange="sf=this.value;$('#tb').innerHTML=rows(tab)"><option value="">Tous (${esc(f[1].toLowerCase())})</option>${f[3].map(o=>`<option ${o==sf?'selected':''}>${esc(o)}</option>`).join('')}</select>`:''};
 function srt(k){sd=sk==k?-sd:1;sk=k;sApply()}
 function dup(e,id){const x=db[e].find(i=>i.id==id),n={...x,id:Date.now().toString(36)+Math.random().toString(36).slice(2,5)};if(e=='marches')n.num+=' (copie)';db[e].push(n);log('Duplication '+S[e].t+' : '+lab(e,x));save();render()}
 function banner(){
  const n=db.garanties.filter(g=>{const a=gal(g);return a&&a.j<=30}).length;let le=0;try{le=+localStorage.getItem('ptua_exp')||0}catch(e){}
  let h='';if(n)h+=`<div class="al r" onclick="go('dash')">⚠️ ${n} garantie(s) à surveiller (échéance ≤ 30 jours ou dépassée) — voir le tableau de bord</div>`;
  if((db.marches.length||db.garanties.length)&&Date.now()-le>7*day)h+=`<div class="al o" onclick="expJ()">💾 Aucune sauvegarde depuis plus de 7 jours — cliquer pour exporter maintenant</div>`;
- const w=constats().filter(c=>c.n=='warn').length;if(w)h+=`<div class="al o" onclick="go('veille')">⚖️ ${w} point(s) de conformité à vérifier — ouvrir la veille juridique</div>`;if(diff(today,D(RF().lc||RF().v))>30)h+=`<div class="al o" onclick="go('veille')">⚖️ Référentiel juridique non vérifié depuis plus de 30 jours</div>`;if(!db.marches.length&&!db.garanties.length&&snaps().length)h+=`<div class="al r" onclick="go('sauv')">💾 Aucune donnée affichée, mais ${snaps().length} point(s) de sauvegarde sont disponibles — cliquer pour restaurer</div>`;$('#al').innerHTML=h;document.title=(n?'('+n+') ':'')+'Gestionnaire PTUA v7.5';
+ if(!ENC&&(db.marches.length||db.garanties.length))h+=`<div class="al r" onclick="pinMenu()">🔓 Vos données ne sont pas chiffrées sur cet appareil — toucher pour activer le code et le chiffrement</div>`;const w=constats().filter(c=>c.n=='warn').length;if(w)h+=`<div class="al o" onclick="go('veille')">⚖️ ${w} point(s) de conformité à vérifier — ouvrir la veille juridique</div>`;if(diff(today,D(RF().lc||RF().v))>30)h+=`<div class="al o" onclick="go('veille')">⚖️ Référentiel juridique non vérifié depuis plus de 30 jours</div>`;if(!db.marches.length&&!db.garanties.length&&snaps().length)h+=`<div class="al r" onclick="go('sauv')">💾 Aucune donnée affichée, mais ${snaps().length} point(s) de sauvegarde sont disponibles — cliquer pour restaurer</div>`;$('#al').innerHTML=h;document.title=(n?'('+n+') ':'')+'Gestionnaire PTUA v7.6';
 }
 function ech(){
  const it=[];db.garanties.forEach(g=>{const a=gal(g);if(a&&a.j>=0&&a.j<=90)it.push({d:D(g.echeance),t:'🛡️ Échéance de garantie',l:mn(g.marche)+' · '+g.type})});
@@ -324,37 +356,44 @@ async function enableEnc(pw){const sl=crypto.getRandomValues(new Uint8Array(16))
  KEY=k;SALT=sl;ENC=true;try{[K,SK,'ptua_pin'].forEach(x=>localStorage.removeItem(x))}catch(e){}log('Chiffrement des données activé');await persist()}
 async function reKey(pw){await PQ;const sl=crypto.getRandomValues(new Uint8Array(16)),k=await dk(pw,sl);await wr(k,sl);KEY=k;SALT=sl}
 async function disableEnc(){await PQ;localStorage.setItem(K,JSON.stringify(db));localStorage.setItem(SK,JSON.stringify(SN.slice(0,10)));ENC=false;KEY=null;SALT=null;localStorage.removeItem(EK)}
+function pwScore(v){let s=0;if(v.length>=8)s++;if(v.length>=12)s++;if(/[a-z]/.test(v)&&/[A-Z]/.test(v))s++;if(/\d/.test(v))s++;if(/[^A-Za-z0-9]/.test(v))s++;if(/^\d+$/.test(v))s=Math.min(s,1);return s}
+function pw(i){let m=i.parentElement.querySelector('.pwm');if(!m){m=document.createElement('small');m.className='pwm';m.style.display='block';m.style.marginTop='4px';i.parentElement.appendChild(m)}
+ const s=pwScore(i.value),L=[['Très faible','var(--r)'],['Faible','var(--r)'],['Moyen','var(--o)'],['Bon','var(--g)'],['Fort','var(--g)'],['Très fort','var(--g)']][s];m.textContent='Robustesse : '+L[0]+(/^\d+$/.test(i.value)?' — uniquement des chiffres : facile à casser':'');m.style.color=L[1]}
+function okPw(a,b){if(a.length<8){alert('Trop court : 8 caractères minimum.');return false}if(a!==b){alert('Les deux saisies ne correspondent pas.');return false}
+ if(pwScore(a)<3&&!confirm('Ce code est faible'+(/^\d+$/.test(a)?' (uniquement des chiffres)':'')+' : quelqu’un qui copie la mémoire du téléphone pourrait le retrouver en quelques heures.\nMélangez lettres, chiffres et symboles (12 caractères ou plus), ou laissez le Trousseau iCloud en générer un.\n\nGarder ce code quand même ?'))return false;return true}
 const blank=()=>({marches:[],garanties:[],os:[],avenants:[],journal:[]});
 function ask(t,fs,note){return new Promise(r=>{const d=$('#cd');
- d.innerHTML=`<h3 style="margin-top:0">${t}</h3>${note?`<p style="margin:0 0 12px;color:var(--m);font-size:13px">${note}</p>`:''}${fs.map(f=>`<label>${f[1]}<input name="${f[0]}" type="password" autocomplete="off" ${f[2]||''}></label>`).join('')}<div class="row"><button data-v="0">Annuler</button><button class="pri" data-v="1">Valider</button></div>`;
+ d.innerHTML=`<h3 style="margin-top:0">${t}</h3>${note?`<p style="margin:0 0 12px;color:var(--m);font-size:13px">${note}</p>`:''}${`<input type="text" name="username" value="PTUA" autocomplete="username" hidden readonly>`+fs.map(f=>`<label>${f[1]}<input name="${f[0]}" type="password" autocapitalize="off" spellcheck="false" ${f[2]||'autocomplete="current-password"'}></label>`).join('')}<div class="row"><button data-v="0">Annuler</button><button class="pri" data-v="1">Valider</button></div>`;
  const done=v=>{d.close();r(v)};
- d.querySelectorAll('.row button').forEach(b=>b.onclick=()=>{if(b.dataset.v=='0')return done(null);const o={};d.querySelectorAll('input').forEach(i=>o[i.name]=i.value);done(o)});
+ d.querySelectorAll('.row button').forEach(b=>b.onclick=()=>{if(b.dataset.v=='0')return done(null);const o={};d.querySelectorAll('input[type=password]').forEach(i=>o[i.name]=i.value);done(o)});
  d.onkeydown=e=>{if(e.key=='Enter'){e.preventDefault();d.querySelector('.pri').click()}};d.oncancel=e=>{e.preventDefault();done(null)};d.showModal();setTimeout(()=>d.querySelector('input')?.focus(),80)})}
 function choose(t,opts){return new Promise(r=>{const d=$('#cd');d.innerHTML=`<h3 style="margin-top:0">${t}</h3><div style="display:flex;flex-direction:column;gap:8px">${opts.map((o,i)=>`<button data-i="${i}" ${i?'':'class="pri"'}>${o}</button>`).join('')}<button data-i="-1">Annuler</button></div>`;
  d.querySelectorAll('button').forEach(b=>b.onclick=()=>{d.close();r(+b.dataset.i)});d.onkeydown=null;d.oncancel=e=>{e.preventDefault();d.close();r(-1)};d.showModal()})}
-function offer(n,txt,type,msg,tip){const d=$('#cd');d.innerHTML=`<h3 style="margin-top:0">✅ ${msg}</h3><p style="margin:0 0 12px;color:var(--m);font-size:13px">${tip||'Sur iPhone : touchez « Enregistrer le fichier », puis <b>Enregistrer dans Fichiers</b> (iCloud Drive conseillé). Évitez de l’envoyer par messagerie.'}</p><div class="row"><button data-v="0">Fermer</button><button class="pri" data-v="1">💾 Enregistrer le fichier</button></div>`;
- d.querySelectorAll('.row button').forEach(b=>b.onclick=()=>{if(b.dataset.v=='1')dl(n,txt,type);d.close()});d.onkeydown=null;d.oncancel=null;d.showModal()}
+function offer(n,txt,type,msg,tip,cb){const d=$('#cd');d.innerHTML=`<h3 style="margin-top:0">✅ ${msg}</h3><p style="margin:0 0 12px;color:var(--m);font-size:13px">${tip||'Sur iPhone : touchez « Enregistrer le fichier », puis <b>Enregistrer dans Fichiers</b> (iCloud Drive conseillé). Évitez de l’envoyer par messagerie.'}</p><div class="row"><button data-v="0">Fermer</button><button class="pri" data-v="1">💾 Enregistrer le fichier</button></div>`;
+ d.querySelectorAll('.row button').forEach(b=>b.onclick=()=>{if(b.dataset.v=='1'){dl(n,txt,type);cb&&cb()}d.close()});d.onkeydown=null;d.oncancel=null;d.showModal()}
 const gp=()=>{try{return localStorage.getItem('ptua_pin')}catch(e){return null}}; // ancien code (avant v7.4), remplacé par le chiffrement au déverrouillage
 function lock(){if(!ENC&&!gp())return;$('#pin').value='';$('#lke').textContent='';$('#lk').hidden=false;if($('#dlg').open)$('#dlg').close();if($('#cd').open)$('#cd').close();
- if(ENC&&KEY)PQ.then(()=>{KEY=null;SALT=null;db=blank();SN=[];render()});setTimeout(()=>$('#pin').focus(),80)}
-async function unl(){const v=$('#pin').value,e=$('#lke');if(!v)return;e.style.color='var(--m)';e.textContent='Vérification…';
- try{if(ENC){const st=stE(),{k,o}=await openE(v,st);KEY=k;SALT=ub(st.salt);db=o.db;db.avenants=db.avenants||[];SN=o.snaps||[];applyAll()}
-  else if(hs(v)==gp()){if(v.length<6){$('#lk').hidden=true;e.textContent='';ia=Date.now();alert('Nouvelle protection : choisissez un code de 6 caractères minimum pour activer le chiffrement.');localStorage.removeItem('ptua_pin');return pinMenu()}await enableEnc(v)}
+ if(ENC&&KEY)PQ.then(()=>{KEY=null;SALT=null;db=blank();SN=[];cur={};q='';gq='';$('#df').innerHTML='';$('#cd').innerHTML='';$('#v').innerHTML='';render()});setTimeout(()=>$('#pin').focus(),80)}
+async function unl(){const v=$('#pin').value,e=$('#lke');if(!v)return;const w=+(localStorage.getItem('ptua_until')||0)-Date.now();if(w>0){e.style.color='var(--r)';e.textContent=`Trop d’essais : réessayez dans ${Math.ceil(w/1000)} s.`;return}e.style.color='var(--m)';e.textContent='Vérification…';
+ try{if(ENC){const st=stE(),{k,o}=await openE(v,st);KEY=k;SALT=ub(st.salt);db=sanDB(o.db);SN=Array.isArray(o.snaps)?o.snaps:[];applyAll()}
+  else if(hs(v)==gp()){if(v.length<8){$('#lk').hidden=true;e.textContent='';ia=Date.now();alert('Nouvelle protection : choisissez un code de 8 caractères minimum pour activer le chiffrement.');localStorage.removeItem('ptua_pin');return pinMenu()}await enableEnc(v)}
   else throw 0;
-  $('#lk').hidden=true;e.textContent='';$('#pin').value='';ia=Date.now();render()}
- catch(x){e.style.color='var(--r)';e.textContent='Code incorrect.'}}
+  try{localStorage.removeItem('ptua_fail');localStorage.removeItem('ptua_until')}catch(_){}$('#lk').hidden=true;e.textContent='';$('#pin').value='';ia=Date.now();render()}
+ catch(x){const n=+(localStorage.getItem('ptua_fail')||0)+1;localStorage.setItem('ptua_fail',n);let m='Code incorrect.';
+  if(n>=5){const s=30*2**Math.min(n-5,7);localStorage.setItem('ptua_until',Date.now()+s*1e3);m+=` ${n} essais ratés : attendez ${s} s.`}else m+=` Encore ${5-n} essai(s) avant blocage temporaire.`;e.style.color='var(--r)';e.textContent=m;$('#pin').value=''}}
 async function pinMenu(){
  if(!crypto.subtle)return alert('Chiffrement indisponible : ouvrez l’application depuis son adresse https.');
- if(!ENC){const a=await ask('🔒 Code d’accès + chiffrement',[['a','Nouveau code (6 caractères minimum)','inputmode="numeric"'],['b','Confirmer le code','inputmode="numeric"']],'Vos données seront <b>chiffrées (AES-256)</b> sur cet appareil. Le code sera demandé à chaque ouverture et après 5 minutes d’inactivité.<br><b>Code oublié = données de cet appareil perdues</b> : exportez d’abord une sauvegarde.');
-  if(!a)return;if(a.a.length<6)return alert('Code trop court (6 caractères minimum).');if(a.a!==a.b)return alert('Les deux codes ne correspondent pas.');
+ if(!ENC){const a=await ask('🔒 Code d’accès + chiffrement',[['a','Nouveau code (8 caractères minimum, lettres + chiffres conseillés)','autocomplete="new-password" oninput="pw(this)"'],['b','Confirmer le code','autocomplete="new-password"']],'Vos données seront <b>chiffrées (AES-256)</b> sur cet appareil. Le code sera demandé à chaque ouverture, après 5 minutes d’inactivité et après 1 minute hors de l’application.<br>💡 Sur iPhone, laissez le <b>Trousseau iCloud</b> proposer un mot de passe fort : il sera ensuite rempli par <b>Face ID</b>.<br><b>Code oublié = données de cet appareil perdues</b> : exportez d’abord une sauvegarde.');
+  if(!a)return;if(!okPw(a.a,a.b))return;
   try{await enableEnc(a.a);alert('✅ Chiffrement activé. Vos données sont maintenant chiffrées sur cet appareil.')}catch(e){ENC=false;KEY=null;alert('Activation impossible : vos données n’ont pas été modifiées.')}render();return}
  const c=await choose('🔒 Code d’accès',['Verrouiller maintenant','Changer le code','Supprimer le code et le chiffrement']);if(c<0)return;if(c==0)return lock();
- const a=await ask(c==1?'Changer le code':'Supprimer le code',c==1?[['c','Code actuel'],['n','Nouveau code (6 caractères minimum)','inputmode="numeric"'],['n2','Confirmer le nouveau code','inputmode="numeric"']]:[['c','Code actuel']],c==2?'Les données seront de nouveau enregistrées <b>en clair</b> sur cet appareil.':'');
+ const a=await ask(c==1?'Changer le code':'Supprimer le code',c==1?[['c','Code actuel'],['n','Nouveau code (8 caractères minimum)','autocomplete="new-password" oninput="pw(this)"'],['n2','Confirmer le nouveau code','autocomplete="new-password"']]:[['c','Code actuel']],c==2?'Les données seront de nouveau enregistrées <b>en clair</b> sur cet appareil.':'');
  if(!a)return;try{await openE(a.c,stE())}catch(e){return alert('Code incorrect.')}
- if(c==1){if(a.n.length<6)return alert('Code trop court (6 caractères minimum).');if(a.n!==a.n2)return alert('Les deux codes ne correspondent pas.');await reKey(a.n);log('Code d’accès modifié');save();alert('✅ Code modifié.')}
+ if(c==1){if(!okPw(a.n,a.n2))return;await reKey(a.n);log('Code d’accès modifié');save();alert('✅ Code modifié.')}
  else{await disableEnc();log('Chiffrement désactivé');save();alert('Code et chiffrement supprimés.')}render()}
 let ia=Date.now(),hid=0;['pointermove','keydown','click','touchstart'].forEach(v=>addEventListener(v,()=>ia=Date.now(),{passive:true}));
-document.addEventListener('visibilitychange',()=>{if(document.hidden)hid=Date.now();else if((ENC||gp())&&hid&&Date.now()-hid>3e5&&$('#lk').hidden)lock()});
+document.addEventListener('visibilitychange',()=>{if(document.hidden){hid=Date.now();document.body.classList.add('priv')}else{if((ENC||gp())&&hid&&Date.now()-hid>6e4&&$('#lk').hidden)lock();document.body.classList.remove('priv')}});
+addEventListener('pagehide',()=>document.body.classList.add('priv'));addEventListener('pageshow',()=>document.body.classList.remove('priv'));
 setInterval(()=>{if((ENC||gp())&&Date.now()-ia>3e5&&$('#lk').hidden)lock()},15000);
 
 let gq='',gF='';
@@ -372,7 +411,7 @@ function sRes(){
   if(e=='journal'){const a=db.journal.filter(j=>T.every(t=>nz(j.d+' '+j.m).includes(t)));if(!a.length)continue;tot+=a.length;h+=`<div class="sh"><h2>${EN[e]} (${a.length})</h2></div><div class="w"><table>${a.slice(0,50).map(j=>`<tr><td>${esc(j.d)}</td><td>${esc(j.m)}</td></tr>`).join('')}</table></div>`;continue}
   const a=db[e].filter(x=>{const H=hay(e,x);return T.every(t=>H.includes(t))});
   if(!a.length)continue;tot+=a.length;const f=S[e].f;
-  h+=`<div class="sh"><h2>${EN[e]} (${a.length})</h2><button onclick="go('${e}');q=gq.toLowerCase();render()">Voir dans l’onglet →</button></div><div class="w"><table><tr>${f.map(c=>`<th>${c[1]}</th>`).join('')}</tr>${a.slice(0,50).map(x=>`<tr class="cl" onclick="edit('${e}','${x.id}')">${f.map(c=>{const v=cvl(x,c);return `<td class="${T.some(t=>nz(v).includes(t))?'hit':''}">${esc(v)}</td>`}).join('')}</tr>`).join('')}</table></div>${a.length>50?`<div class="e">… et ${a.length-50} autre(s) : affinez la recherche.</div>`:''}`;
+  h+=`<div class="sh"><h2>${EN[e]} (${a.length})</h2><button onclick="go('${e}');q=gq.toLowerCase();render()">Voir dans l’onglet →</button></div><div class="w"><table><tr>${f.map(c=>`<th>${esc(c[1])}</th>`).join('')}</tr>${a.slice(0,50).map(x=>`<tr class="cl" onclick="edit('${e}','${x.id}')">${f.map(c=>{const v=cvl(x,c);return `<td class="${T.some(t=>nz(v).includes(t))?'hit':''}">${esc(v)}</td>`}).join('')}</tr>`).join('')}</table></div>${a.length>50?`<div class="e">… et ${a.length-50} autre(s) : affinez la recherche.</div>`:''}`;
  }
  o.innerHTML=`<p class="e" style="padding:6px">${tot} résultat(s) — cliquez sur une ligne pour la modifier</p>`+(h||'<div class="card nt"><div class="e">Aucun résultat.</div></div>');
 }
@@ -425,16 +464,16 @@ function constats(){
   if(out.length==k)add(m,'info','Données insuffisantes : renseignez montant, garanties, retenue et avances pour activer les contrôles.','—');
  });return out}
 const okRef=d=>d&&typeof d.v=='string'&&d.p&&Array.isArray(d.r)&&Array.isArray(d.props);
-function mergeRef(d){const R=RF();if(!confirm('Importer le référentiel du '+d.v+' (actuel : '+R.v+') ?'))return;R.v=d.v;R.base=d.base||R.base;R.p=Object.assign({},R.p,d.p);R.r=d.r;R.props=d.props.concat(R.props.filter(p=>String(p.id).startsWith('u-')));if(d.am)R.am=d.am;R.s=d.s||R.s;R.lc=stamp();log('Référentiel juridique mis à jour : '+d.v);save();render()}
+function mergeRef(d){d=Object.assign(sanRef(d)||{},{v:dt(d.v)});if(!d.v)return alert('Référentiel invalide.');const R=RF();if(!confirm('Importer le référentiel du '+d.v+' (actuel : '+R.v+') ?'))return;R.v=d.v;R.base=d.base||R.base;R.p=Object.assign({},R.p,d.p);R.r=d.r;R.props=d.props.concat(R.props.filter(p=>String(p.id).startsWith('u-')));if(d.am)R.am=d.am;R.s=d.s.length?d.s:R.s;R.lc=stamp();log('Référentiel juridique mis à jour : '+d.v);save();render()}
 function impRef(inp){const f=inp.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const d=JSON.parse(r.result);if(!okRef(d))throw 0;mergeRef(d)}catch(e){alert('Fichier de référentiel invalide.')}};r.readAsText(f);inp.value=''}
-async function chkUrl(){const u=$('#ru').value.trim();if(!/^https:\/\//.test(u)){alert('Saisissez une adresse commençant par https://');return}
- RF().url=u;save();try{const d=await(await fetch(u,{cache:'no-store'})).json();if(!okRef(d))throw 0;if(d.v<=RF().v){RF().lc=stamp();save();alert('Référentiel déjà à jour ('+RF().v+').');render();return}mergeRef(d)}catch(e){alert('Vérification impossible : hors ligne, adresse incorrecte ou site qui n’autorise pas la lecture.')}}
+async function chkUrl(){const u=$('#ru').value.trim();if(!/^https:\/\/(raw\.githubusercontent\.com|rjange-96\.github\.io)\//.test(u)){alert('Par sécurité, seules les adresses https://raw.githubusercontent.com/… et https://rjange-96.github.io/… sont acceptées.');return}
+ RF().url=u;save();try{const rs=await fetch(u,{cache:'no-store',credentials:'omit',referrerPolicy:'no-referrer'});if(+(rs.headers.get('content-length')||0)>2e6)throw 0;const d=await rs.json();if(!okRef(d))throw 0;if(d.v<=RF().v){RF().lc=stamp();save();alert('Référentiel déjà à jour ('+RF().v+').');render();return}mergeRef(d)}catch(e){alert('Vérification impossible : hors ligne, adresse incorrecte ou site qui n’autorise pas la lecture.')}}
 function veille(){
  const R=RF(),C=constats(),bd={ok:['g','Conforme'],warn:['r','À vérifier'],info:['y','Info']},T={add:'Ajout',rename:'Modification',remove:'Retrait'};
  return `<div class="card nt"><h2>⚖️ Référentiel juridique — version du ${fdd(D(R.v))}</h2><p style="margin:0 0 10px;color:var(--m)">${esc(R.base)}.<br>Dernière vérification manuelle : ${R.lc?fdd(D(R.lc)):'jamais'}.</p>
  <div class="bar"><button class="pri" onclick="RF().lc=stamp();save();render()">✅ J’ai vérifié les textes aujourd’hui</button><button onclick="$('#ri').click()">📥 Importer un référentiel (JSON)</button></div>
  <div class="bar"><input id="ru" placeholder="Adresse https:// d’un référentiel JSON (optionnel)" value="${esc(R.url||'')}"><button onclick="chkUrl()">🌐 Vérifier en ligne</button></div>
- <div class="bar">${R.s.map(x=>`<a href="${esc(x[1])}" target="_blank" rel="noopener">🔗 ${esc(x[0])}</a>`).join(' · ')}</div><input type="file" id="ri" accept=".json,application/json" hidden onchange="impRef(this)"></div>
+ <div class="bar">${R.s.map(x=>`<a href="${esc(httpsU(x[1]))}" target="_blank" rel="noopener noreferrer">🔗 ${esc(x[0])}</a>`).join(' · ')}</div><input type="file" id="ri" accept=".json,application/json" hidden onchange="impRef(this)"></div>
  <div class="card nt"><h2>Contrôle de conformité de vos marchés</h2>${C.length?`<div class="w2"><table class="mx">${C.map(c=>`<tr><th>${esc(c.m)}</th><td><span class="b ${bd[c.n][0]}">${bd[c.n][1]}</span></td><td style="text-align:left">${esc(c.t)}</td><td>${esc(c.a)}</td></tr>`).join('')}</table></div>`:'<div class="e">Ajoutez des marchés pour lancer les contrôles.</div>'}</div>
  <div class="card nt"><h2>Propositions d’évolution de l’application</h2><div class="w2"><table class="mx">${R.props.map(p=>`<tr><td><span class="b ${p.op=='remove'?'r':p.op=='add'?'g':'y'}">${T[p.op]||p.op}</span></td><td style="text-align:left"><b>${esc(p.title)}</b><br><small>${esc(p.why)}</small></td><td>${R.applied.includes(p.id)?'✓ Appliqué':`<button class="pri" onclick="appP('${p.id}')">Appliquer</button>`}</td></tr>`).join('')||'<tr><td class="e">Aucune proposition.</td></tr>'}</table></div>${R.props.some(p=>p.op=='remove')?'':'<p class="e" style="padding:8px">Retraits : d’après le référentiel actuel, aucun élément de l’application n’est devenu obsolète.</p>'}</div>
  <div class="card nt"><h2>Règles du référentiel</h2><div class="w2"><table class="mx">${R.r.map(x=>`<tr><th>${esc(x[0])}</th><td style="text-align:left">${esc(x[1])}</td><td>${esc(x[2])}</td><td><span class="b ${x[3]=='En vigueur'?'g':'y'}">${esc(x[3])}</span></td></tr>`).join('')}</table></div></div>
@@ -450,7 +489,7 @@ function snap(man){
  a.unshift({t:Date.now(),n:[db.marches.length,db.garanties.length,db.os.length,db.avenants.length],d:JSON.stringify(db)});setSnaps(a.slice(0,10));
 }
 function rest(i){const x=snaps()[i];if(!x||!confirm('Restaurer le point du '+new Date(x.t).toLocaleString('fr-FR')+' ?\nLes données actuelles seront remplacées (un point de sauvegarde de l’état actuel est créé avant).'))return;
- snap(true);db=JSON.parse(x.d);db.avenants=db.avenants||[];applyAll();log('Restauration d’un point de sauvegarde');save();render()}
+ snap(true);db=sanDB(JSON.parse(x.d));applyAll();log('Restauration d’un point de sauvegarde');save();render()}
 function delS(i){const a=snaps().slice();a.splice(i,1);setSnaps(a);render()}
 function sauv(){
  const a=snaps(),ls=+localStorage.getItem('ptua_ls')||0,le=+localStorage.getItem('ptua_exp')||0,f=t=>t?new Date(t).toLocaleString('fr-FR'):'jamais';
@@ -502,7 +541,7 @@ function analyse(){
 const amN=()=>{const n=analyse().length+AM().filter(p=>!(RF().amst||{})[p.id]).length;return n?' ('+n+')':''};
 function addIdea(){const t=$('#ib').value.trim();if(!t)return;(RF().ideas||(RF().ideas=[])).unshift({d:stamp(),t});log('Idée ajoutée à la boîte à idées');save();render()}
 function delIdea(i){RF().ideas.splice(i,1);save();render()}
-function expAm(){const R=RF();dl('PTUA_demande_amelioration_'+stamp()+'.json',JSON.stringify({application:'Gestionnaire juridique et contractuel PTUA',version:'v7.5',referentiel:R.v,date:stamp(),idees:R.ideas||[],propositions:R.amst||{},suggestions:analyse().map(x=>x.t),points_conformite_a_verifier:constats().filter(x=>x.n=='warn').length,usage_onglets:R.use||{},volumes:{marches:db.marches.length,garanties:db.garanties.length,os:db.os.length,avenants:db.avenants.length}},null,1),'application/json')}
+function expAm(){const R=RF();dl('PTUA_demande_amelioration_'+stamp()+'.json',JSON.stringify({application:'Gestionnaire juridique et contractuel PTUA',version:'v7.6',referentiel:R.v,date:stamp(),idees:R.ideas||[],propositions:R.amst||{},suggestions:analyse().map(x=>x.t),points_conformite_a_verifier:constats().filter(x=>x.n=='warn').length,usage_onglets:R.use||{},volumes:{marches:db.marches.length,garanties:db.garanties.length,os:db.os.length,avenants:db.avenants.length}},null,1),'application/json')}
 function amel(){
  const R=RF(),an=analyse(),st=R.amst||{},F={CI:'🇨🇮',FR:'🇫🇷',GEN:'🌐'},us=Object.entries(R.use||{}).sort((a,b)=>b[1]-a[1]).slice(0,4).map(x=>x[0]+' ('+x[1]+')').join(', ');
  return `<div class="card nt"><h2>💡 Amélioration continue</h2><p style="margin:0 0 8px">L’application <b>analyse vos données à chaque action</b> et propose des corrections, des champs à ajouter ou à retirer, et des idées inspirées des pratiques de la Côte d’Ivoire et de la France. Elle n’apprend pas seule sur Internet : pour qu’une idée devienne une vraie fonction, exportez votre demande et envoyez-la à Claude.</p>
@@ -519,7 +558,7 @@ const srtSel=v=>{sk=v;sApply()},srtDir=()=>{sd=-sd;sApply()};
 const tsel=()=>{const x=tab=='marches'?[['@fin','Fin prévue'],['@pen','Pénalités']]:tab=='garanties'?[['@j','Jours avant échéance']]:[];
  return `<select id="ssel" style="width:auto" title="Trier par" onchange="srtSel(this.value)"><option value="">Tri : par défaut</option><option value="@az" ${sk=='@az'?'selected':''}>🔤 Ordre alphabétique</option>${S[tab].f.map(c=>[c[0],c[1]]).concat(x).map(c=>`<option value="${c[0]}" ${sk==c[0]?'selected':''}>Trier par : ${esc(c[1])}</option>`).join('')}</select><button id="sdb" title="Sens du tri" onclick="srtDir()">${dlab()}</button>`};
 function vpanel(){const V=VW(tab),M={table:'Tableau',compact:'Tableau compact',cards:'Cartes'};
- return `<h2>⚙️ Affichage</h2><div class="bar"><select style="width:auto" onchange="vset('mode',this.value)">${Object.keys(M).map(k=>`<option value="${k}" ${V.mode==k?'selected':''}>${M[k]}</option>`).join('')}</select><button onclick="vres()">Réinitialiser tri et affichage</button></div><p style="margin:6px 0;color:var(--m);font-size:12px">Colonnes affichées (mode tableau) et champs montrés (mode cartes) :</p><div style="display:flex;flex-wrap:wrap;gap:6px 16px">${S[tab].f.map(f=>`<label style="margin:0;display:flex;gap:6px;align-items:center;color:var(--t)"><input type="checkbox" style="width:auto;margin:0" ${V.hide.includes(f[0])?'':'checked'} onchange="vcol('${f[0]}',this.checked)">${f[1]}</label>`).join('')}</div>`}
+ return `<h2>⚙️ Affichage</h2><div class="bar"><select style="width:auto" onchange="vset('mode',this.value)">${Object.keys(M).map(k=>`<option value="${k}" ${V.mode==k?'selected':''}>${M[k]}</option>`).join('')}</select><button onclick="vres()">Réinitialiser tri et affichage</button></div><p style="margin:6px 0;color:var(--m);font-size:12px">Colonnes affichées (mode tableau) et champs montrés (mode cartes) :</p><div style="display:flex;flex-wrap:wrap;gap:6px 16px">${S[tab].f.map(f=>`<label style="margin:0;display:flex;gap:6px;align-items:center;color:var(--t)"><input type="checkbox" style="width:auto;margin:0" ${V.hide.includes(f[0])?'':'checked'} onchange="vcol('${f[0]}',this.checked)">${esc(f[1])}</label>`).join('')}</div>`}
 function vref(){const V=VW(tab),t=$('#tb');t.parentElement.classList.toggle('cp',V.mode=='compact');t.innerHTML=rows(tab)}
 const vset=(k,v)=>{VW(tab)[k]=v;save();vref()},vcol=(k,on)=>{const V=VW(tab);V.hide=V.hide.filter(x=>x!=k);if(!on)V.hide.push(k);save();vref()};
 function vres(){RF().view[tab]={mode:MOB()?'cards':'table',hide:[],sk:'',sd:1};sk='';sd=1;save();render()}
@@ -614,7 +653,7 @@ async function icsExp(){
  db.os.forEach(o=>{const f=osFin(o);if(!f||f<today)return;
   ev.push({id:'o'+o.id,d:f,t:`PTUA – Fin de durée OS ${o.num||o.type} · ${mn(o.marche)}`,x:dis?'':(o.note||''),al:[15,3]})});
  if(!ev.length)return alert('Aucune échéance future à ajouter (garanties actives avec une date d’échéance, fins prévues de marchés, durées d’OS).');
- const st=new Date().toISOString().replace(/[-:]/g,'').slice(0,15)+'Z',L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//PTUA//Gestionnaire PTUA v7.5//FR','CALSCALE:GREGORIAN','METHOD:PUBLISH','X-WR-CALNAME:PTUA – échéances'];
+ const st=new Date().toISOString().replace(/[-:]/g,'').slice(0,15)+'Z',L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//PTUA//Gestionnaire PTUA v7.6//FR','CALSCALE:GREGORIAN','METHOD:PUBLISH','X-WR-CALNAME:PTUA – échéances'];
  const al=(t,tr)=>L.push('BEGIN:VALARM','ACTION:DISPLAY','DESCRIPTION:'+icsE(t),'TRIGGER:'+tr,'END:VALARM');
  ev.forEach(e=>{L.push('BEGIN:VEVENT',`UID:ptua-${e.id}-${icd(e.d)}@ptua.app`,'DTSTAMP:'+st,'DTSTART;VALUE=DATE:'+icd(e.d),'DTEND;VALUE=DATE:'+icd(new Date(e.d.getTime()+day)),'SUMMARY:'+icsE(e.t));
   if(e.x)L.push('DESCRIPTION:'+icsE(e.x));L.push('TRANSP:TRANSPARENT');
