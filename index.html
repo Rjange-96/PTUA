@@ -176,7 +176,7 @@ nav i{font-style:normal}nav .sh,nav .more{display:none}
 .vh{color:#fff;font-weight:600;font-size:13px;padding:10px 2px 6px}.ve{color:#fff;background:#0006;border-radius:10px;padding:12px;margin:6px 0}
 .pg{background:#fff;margin:0 0 10px;box-shadow:0 2px 10px #0005}.pg canvas,.pg img{display:block;width:100%;height:auto}
 </style></head><body>
-<div id="bg"></div><div id="sp"><div class="cu"></div><b>PTUA</b></div><header><div class="lg"><div class="cu"></div><h1>Gestionnaire juridique et contractuel PTUA <small>v8.9</small> <span id="sys" onclick="go('sauv')"></span></h1></div><div class="hr"><b id="ht">--:--:--</b><small id="hdt"></small></div>
+<div id="bg"></div><div id="sp"><div class="cu"></div><b>PTUA</b></div><header><div class="lg"><div class="cu"></div><h1>Gestionnaire juridique et contractuel PTUA <small>v9.0</small> <span id="sys" onclick="go('sauv')"></span></h1></div><div class="hr"><b id="ht">--:--:--</b><small id="hdt"></small></div>
 <div class="hb"><button onclick="go('search')" aria-label="Rechercher" title="Rechercher">🔎</button><button id="th" onclick="th()"></button><button onclick="pinMenu()" aria-label="Code d’accès et verrouillage" title="Code d’accès et verrouillage">🔒</button><button onclick="menu()" aria-label="Autres actions" title="Autres actions">⋯</button></div>
 <input type="file" id="imp" hidden onchange="impJ(this)"></header>
 <div id="ins" hidden></div><nav id="nav"></nav><div id="al"></div><main id="v"></main><div id="lk" hidden><div class="lkb"><h2 style="margin:0">🔒 Application verrouillée</h2><small style="color:var(--m)">Données chiffrées sur cet appareil (AES-256)</small><button type="button" class="pri" id="fb" hidden onclick="unlFid()">🙂 Déverrouiller avec Face ID</button><form onsubmit="event.preventDefault();unl()"><input type="text" name="username" value="PTUA" autocomplete="username" hidden readonly><input id="pin" type="password" autocomplete="current-password" placeholder="Code d’accès" autocapitalize="off" spellcheck="false"><button class="pri" type="submit">Déverrouiller</button></form><small id="lke" style="color:var(--r)"></small></div></div>
@@ -184,7 +184,7 @@ nav i{font-style:normal}nav .sh,nav .more{display:none}
 <dialog id="cd"></dialog><dialog id="dv"></dialog><dialog id="dlg"><h3 id="dt" style="margin-top:0"></h3><div id="df"></div><div class="row"><button onclick="$('#dlg').close()">Annuler</button><button class="pri" onclick="ok()">Enregistrer</button></div></dialog>
 <script>
 if(top!==self){try{top.location=self.location.href}catch(e){document.documentElement.innerHTML='';throw 0}}
-const APPV='8.9',MOB=()=>matchMedia('(max-width:700px)').matches,K='ptua_v3',$=s=>document.querySelector(s),day=864e5,today=new Date(new Date().toDateString());
+const APPV='9.0',MOB=()=>matchMedia('(max-width:700px)').matches,K='ptua_v3',$=s=>document.querySelector(s),day=864e5,today=new Date(new Date().toDateString());
 // ===== v8.7 — Moniteur d’activité : métadonnées uniquement (heure, serveur, taille), jamais le contenu des données =====
 const MON={net:[],ev:[],t0:Date.now(),sent:0,recv:0,hosts:{}};
 (()=>{const f0=window.fetch.bind(window);window.fetch=async(u,o)=>{const t=performance.now(),rec={at:Date.now(),m:(o&&o.method)||'GET',host:'?',path:'',bl:0,st:0,ms:0,rl:0};
@@ -199,7 +199,7 @@ garanties:{t:'Garantie',f:[['marche','Marché','ref'],['type','Type','sel',['Ava
 os:{t:'Ordre de service',f:[['marche','Marché','ref'],['num','N° OS'],['type','Type','sel',['Démarrage','Arrêt','Reprise','Prolongation','Autre']],['date','Date — à compter du','date'],['dureeM','Durée (mois)','number'],['jours','Durée (jours) — s’ajoute aux mois','number'],['note','Observation']]},
 avenants:{t:'Avenant',f:[['marche','Marché','ref'],['num','N° avenant'],['date','Date de signature','date'],['objet','Objet'],['montant','Variation de montant (FCFA)','number'],['delai','Délai supplémentaire (jours)','number']]},
 assurances:{t:'Assurance',f:[['marche','Marché','ref'],['type','Type d’assurance','sel',['Tous risques chantier (TRC)','Responsabilité civile (RC)','Garantie décennale','Accidents du travail','Multirisque matériel / engins','Transport des marchandises','Autre']],['assureur','Compagnie d’assurance'],['police','N° de police'],['assure','Assuré / souscripteur'],['montant','Capital / montant assuré (FCFA)','number'],['prime','Prime (FCFA)','number'],['effet','Date d’effet','date'],['echeance','Date d’échéance','date'],['statut','Statut','sel',['Active','En attente de justificatif','Expirée','Résiliée']],['note','Observation'],['doc','Référence document / lien']]}};
-const NAV=[['dash','📊 Tableau de bord'],['marches','📁 Marchés'],['garanties','🛡️ Garanties'],['assurances','☂️ Assurances'],['os','📝 Ordres de service'],['avenants','📑 Avenants'],['search','🔎 Recherche'],['stats','📈 Statistiques'],['pres','🎤 Présentation'],['veille','⚖️ Veille juridique'],['sauv','💾 Sauvegarde'],['act','📡 Activité'],['amel','💡 Améliorations'],['journal','🕘 Journal']];
+const NAV=[['dash','📊 Tableau de bord'],['marches','📁 Marchés'],['garanties','🛡️ Garanties'],['assurances','☂️ Assurances'],['conf','✅ Conformité'],['os','📝 Ordres de service'],['avenants','📑 Avenants'],['search','🔎 Recherche'],['stats','📈 Statistiques'],['pres','🎤 Présentation'],['veille','⚖️ Veille juridique'],['sauv','💾 Sauvegarde'],['act','📡 Activité'],['amel','💡 Améliorations'],['journal','🕘 Journal']];
 const PRIM=['dash','marches','garanties','assurances'],GRP={dash:'Suivi',search:'Analyse',sauv:'Application'},SH={dash:'Accueil'};
 let db=null,tab='dash',q='',cur={};
 const EK='ptua_enc',IT=600000,te=new TextEncoder(),td=new TextDecoder();
@@ -275,6 +275,7 @@ function render(){banner();
  else if(tab=='sauv')$('#v').innerHTML=sauv();
  else if(tab=='act')$('#v').innerHTML=act();
  else if(tab=='veille')$('#v').innerHTML=veille();
+ else if(tab=='conf')$('#v').innerHTML=conf();
  else if(tab=='stats')$('#v').innerHTML=stats();
  else if(tab=='journal')$('#v').innerHTML=`<div class="w"><table><tr><th>Date</th><th>Action</th></tr>${db.journal.map(j=>`<tr><td>${esc(j.d)}</td><td>${esc(j.m)}</td></tr>`).join('')||'<tr><td class="e" colspan="2">Aucune action enregistrée.</td></tr>'}</table></div>`;
  else{
@@ -423,7 +424,7 @@ function banner(){
  const n=db.garanties.filter(g=>{const a=gal(g);return a&&a.j<=30}).length,nA=db.assurances.filter(a=>{const x=galA(a);return x&&x.j<=30}).length;let le=0;try{le=+localStorage.getItem('ptua_exp')||0}catch(e){}
  let h='';if(nA)h+=`<div class="al r" onclick="go('assurances')">☂️ ${nA} assurance(s) à renouveler (échéance ≤ 30 jours ou dépassée) — voir les assurances</div>`;if(UPD&&cmpV(UPD.version,APPV)>0)h+=`<div class="al ${UPD.importance=='securite'?'r':'o'}" onclick="showUpd()">🔄 Mise à jour v${esc(UPD.version)} disponible${UPD.importance=='securite'?' (sécurité, recommandée)':''} — toucher pour voir et installer</div>`;if(SY&&SY.last&&Date.now()-SY.last>3*day&&(db.marches.length||db.garanties.length))h+=`<div class="al o" onclick="syncNow(true)">☁️ Sauvegarde cloud non effectuée depuis plus de 3 jours — toucher pour réessayer</div>`;if(n)h+=`<div class="al r" onclick="go('dash')">⚠️ ${n} garantie(s) à surveiller (échéance ≤ 30 jours ou dépassée) — voir le tableau de bord</div>`;
  if((db.marches.length||db.garanties.length)&&Date.now()-le>7*day&&!(SY&&SY.last&&Date.now()-SY.last<3*day))h+=`<div class="al o" onclick="expJ()">💾 Aucune sauvegarde depuis plus de 7 jours — cliquer pour exporter maintenant</div>`;
- if(!ENC&&(db.marches.length||db.garanties.length))h+=`<div class="al r" onclick="pinMenu()">🔓 Vos données ne sont pas chiffrées sur cet appareil — toucher pour activer le code et le chiffrement</div>`;const w=constats().filter(c=>c.n=='warn').length;if(w)h+=`<div class="al o" onclick="go('veille')">⚖️ ${w} point(s) de conformité à vérifier — ouvrir la veille juridique</div>`;if(diff(today,D(RF().lc||RF().v))>30)h+=`<div class="al o" onclick="go('veille')">⚖️ Référentiel juridique non vérifié depuis plus de 30 jours</div>`;if(!db.marches.length&&!db.garanties.length&&snaps().length)h+=`<div class="al r" onclick="go('sauv')">💾 Aucune donnée affichée, mais ${snaps().length} point(s) de sauvegarde sont disponibles — cliquer pour restaurer</div>`;$('#al').innerHTML=h;{const A=[...$('#al').children];if(A.length>2){const d=document.createElement('details');d.className='alx';d.open=!!window.alxO;d.ontoggle=()=>window.alxO=d.open;d.innerHTML=`<summary>${A.length-2} autre(s) alerte(s)</summary>`;A.slice(2).forEach(x=>d.appendChild(x));$('#al').appendChild(d)}}document.title=(n?'('+n+') ':'')+'Gestionnaire PTUA v8.9';
+ if(!ENC&&(db.marches.length||db.garanties.length))h+=`<div class="al r" onclick="pinMenu()">🔓 Vos données ne sont pas chiffrées sur cet appareil — toucher pour activer le code et le chiffrement</div>`;const w=constats().filter(c=>c.n=='warn').length;if(w)h+=`<div class="al o" onclick="go('veille')">⚖️ ${w} point(s) de conformité à vérifier — ouvrir la veille juridique</div>`;{const cn=cfAlertN();if(cn)h+=`<div class="al o" onclick="go('conf')">✅ ${cn} point(s) de conformité à traiter (pièces en retard, garanties, assurances)</div>`}if(diff(today,D(RF().lc||RF().v))>30)h+=`<div class="al o" onclick="go('veille')">⚖️ Référentiel juridique non vérifié depuis plus de 30 jours</div>`;if(!db.marches.length&&!db.garanties.length&&snaps().length)h+=`<div class="al r" onclick="go('sauv')">💾 Aucune donnée affichée, mais ${snaps().length} point(s) de sauvegarde sont disponibles — cliquer pour restaurer</div>`;$('#al').innerHTML=h;{const A=[...$('#al').children];if(A.length>2){const d=document.createElement('details');d.className='alx';d.open=!!window.alxO;d.ontoggle=()=>window.alxO=d.open;d.innerHTML=`<summary>${A.length-2} autre(s) alerte(s)</summary>`;A.slice(2).forEach(x=>d.appendChild(x));$('#al').appendChild(d)}}document.title=(n?'('+n+') ':'')+'Gestionnaire PTUA v9.0';
 }
 function ech(){
  const it=[];db.assurances.forEach(a=>{const x=galA(a);if(x&&x.j>=0&&x.j<=90)it.push({d:D(a.echeance),t:'☂️ Échéance d’assurance',l:mn(a.marche)+' · '+a.type+(a.assureur?' · '+a.assureur:'')})});
@@ -892,6 +893,141 @@ function veille(){
  <div class="card nt"><h2>Règles du référentiel</h2><div class="w2"><table class="mx">${R.r.map(x=>`<tr><th>${esc(x[0])}</th><td style="text-align:left">${esc(x[1])}</td><td>${esc(x[2])}</td><td><span class="b ${x[3]=='En vigueur'?'g':'y'}">${esc(x[3])}</span></td></tr>`).join('')}</table></div></div>
  <p class="e">Aide à la veille et au contrôle, qui ne remplace pas une vérification des textes officiels (Journal officiel, DGMP, ARCOP). Les constats reposent sur les données saisies.</p>`;
 }
+// ===== v9.0 — Conformité : pièces à fournir par l’attributaire, légalité des garanties, conformité des assurances =====
+// Sources : Guide des entrepreneurs ARCOP (§4.1 à 5.8), Loi n° 2026-385 du 19/06/2026 (Code de la construction, art. 236-237), Code CIMA (art. 6 à 8, 13). À vérifier avec le DAO, le CCAP et les textes officiels.
+var cfm='';
+const CFSRC='Guide des entrepreneurs ARCOP',CFLOI='Loi n° 2026-385 du 19/06/2026 (CCH art. 236-237)';
+const CFS=x=>{try{const o=JSON.parse(x.cf||'{}');return o&&typeof o=='object'&&!Array.isArray(o)?o:{}}catch(e){return{}}};
+const cfPut=(x,o)=>{x.cf=JSON.stringify(o).slice(0,4800);x._u=Date.now()};
+const ATY={TRC:'Tous risques chantier (TRC)',RC:'Responsabilité civile (RC)',DEC:'Garantie décennale',AT:'Accidents du travail'};
+const CFP=[
+ {t:'1 · Notification de l’attribution',it:[
+  {k:'fisc',l:'Attestation fiscale en cours de validité',dl:15,an:'dA',s:CFSRC+' §4.1',n:'À fournir en cours de validité à la date de notification. Au-delà de 15 jours, le marché peut être retiré en vue d’une réattribution.'},
+  {k:'soc',l:'Attestation sociale en cours de validité',dl:15,an:'dA',s:CFSRC+' §4.1',n:'Même délai que l’attestation fiscale.'},
+  {k:'dao',l:'Autres pièces exigées par le DAO ou la lettre de notification',s:'DAO (propre à chaque marché)',n:'Relever la liste dans la lettre de notification : elle prime sur cette liste générale.'}]},
+ {t:'2 · Signature et approbation',it:[
+  {k:'sig',l:'Projet de marché signé',s:CFSRC+' §4.2',n:'L’autorité contractante attend 7 jours ouvrables après la publication ou la notification des résultats, puis fait signer. Elle doit prouver que le financement est disponible et réservé.'},
+  {k:'apr',l:'Notification d’approbation reçue',s:CFSRC+' §4.3',n:'Par lettre recommandée avec accusé de réception ou tout moyen donnant date certaine. Cette date déclenche le délai de la garantie de bonne exécution.',pd:1},
+  {k:'enr',l:'Marché enregistré aux impôts',s:CFSRC+' §4.5',n:'Formalité à la charge du titulaire (droits fixes et proportionnels), payée au centre des impôts. Le guide ne donne pas le taux : à confirmer auprès de la DGI.'},
+  {k:'red',l:'Redevance de régulation payée',s:CFSRC+' §4.6',red:1,n:'0,5 % du montant HT du marché, payable au régulateur. Sans paiement, pas d’attestation de non-redevance.'}]},
+ {t:'3 · Garanties financières',it:[
+  {k:'gbe',l:'Garantie de bonne exécution remise',dl:21,an:'dP',au:'Bonne exécution',s:CFSRC+' §4.4',n:'Délai : 15 jours ouvrables (environ 21 jours) après la notification d’approbation. 3 % à 5 % du montant du marché (taux exact : DPAO et CCAP), sur le formulaire du DAO. Son absence peut entraîner la résiliation et la saisie de la garantie de soumission. À reconstituer si elle est prélevée, à compléter en cas d’avenant.'},
+  {k:'avg',l:'Garantie de restitution d’avance (si avance)',au:'Avance de démarrage',s:CFSRC+' §5.4',n:'Avance forfaitaire en principe limitée à 15 %, avance facultative jusqu’à 15 %, cumul maximum 30 % du marché et de ses avenants. L’avance est versée après constitution de la garantie prévue par le CCAG.'},
+  {k:'ret',l:'Retenue de garantie (ou caution de remplacement)',au:'Retenue de garantie',s:CFSRC+' §5.8',n:'Taux fixé par le CCAP, entre 3 % et 5 %, prélevée sur chaque règlement. Remboursée, ou caution libérée, au plus tard 30 jours après la réception définitive.'}]},
+ {t:'4 · Assurances',it:[
+  {k:'trc',l:'Tous risques chantier (TRC)',as:'TRC',s:CFLOI+' ; '+CFSRC+' §4.7',n:'Obligatoire pour tout constructeur dès l’ouverture du chantier (art. 236 nouveau).'},
+  {k:'dec',l:'Responsabilité civile décennale',as:'DEC',s:CFLOI+' ; '+CFSRC+' §4.7',n:'Obligatoire pour le constructeur (art. 236 nouveau). Le guide ARCOP exige une couverture intégrale.'},
+  {k:'rc',l:'Responsabilité civile (dommages aux tiers)',as:'RC',s:CFSRC+' §4.7',n:'Dommages corporels et matériels aux tiers, y compris pendant le délai de garantie.'},
+  {k:'at',l:'Accidents du travail',as:'AT',s:CFSRC+' §4.7',n:'Exigé par le guide. En pratique, vérifier si la couverture relève de la caisse de sécurité sociale ou d’une police complémentaire de l’employeur.'}]},
+ {t:'5 · Démarrage',it:[
+  {k:'osd',l:'Ordre de service de démarrage reçu',au2:'Démarrage',s:CFSRC+' §5.2',n:'Il fixe le début des délais d’exécution. Sa délivrance est subordonnée à la production de la garantie de bonne exécution.'}]},
+ {t:'6 · Réception et clôture',it:[
+  {k:'mlg',l:'Mainlevée de la garantie de bonne exécution',dl:21,an:'rec',s:CFSRC+' §4.4',n:'Libération au plus tard 15 jours ouvrables (environ 21 jours) après la réception provisoire, si les obligations sont remplies.'},
+  {k:'rdr',l:'Retenue de garantie remboursée ou caution libérée',dl:30,an:'fg',s:CFSRC+' §5.8',n:'Au plus tard 30 jours après la réception définitive.'}]}
+];
+const CLU=[ // clauses de toute police (Code CIMA)
+ ['Identité et domicile des parties contractantes','CIMA art. 8'],['Chose ou personne assurée','CIMA art. 8'],['Nature des risques garantis','CIMA art. 8'],
+ ['Date de prise d’effet de la garantie et durée','CIMA art. 8'],['Montant de la garantie','CIMA art. 8'],['Prime ou cotisation','CIMA art. 8'],
+ ['Conditions de la tacite reconduction, si prévue','CIMA art. 8'],['Cas et conditions de prorogation, résiliation ou fin des effets','CIMA art. 8'],
+ ['Obligations de l’assuré : déclaration du risque et des autres assurances','CIMA art. 8'],['Conditions et modalités de déclaration du sinistre','CIMA art. 8'],
+ ['Délai de paiement des indemnités','CIMA art. 8'],['Procédure et principes d’estimation des dommages (hors assurance de responsabilité)','CIMA art. 8'],
+ ['Prescription des actions nées du contrat','CIMA art. 8'],['Formes de résiliation et délai de préavis','CIMA art. 8'],
+ ['Contrat écrit, en caractères apparents ; nullités, déchéances et exclusions en caractères très apparents','CIMA art. 7 et 8'],
+ ['Prime payée : quittance ou attestation de paiement (le non-paiement peut suspendre la garantie)','CIMA art. 13 (à vérifier)']];
+const USG='Usage du marché : à confirmer au CCAP/DAO (non imposé par le CIMA)';
+const CLS={
+ TRC:[['Garantie souscrite dès l’ouverture du chantier (effet au plus tard à l’ordre de service de démarrage)',CFLOI+' art. 236'],
+  ['Couverture des risques liés à l’exécution des travaux',CFLOI+' art. 236'],
+  ['Responsabilité civile professionnelle : dommages causés aux tiers pendant toute la durée des travaux',CFLOI+' art. 237'],
+  ['Dommages corporels des travailleurs présents sur le chantier sous la responsabilité du constructeur, y compris les temporaires',CFLOI+' art. 237'],
+  ['Dommages de chantier, y compris vice de conception et événements naturels',CFSRC+' §4.7'],
+  ['Capital assuré au moins égal à la valeur des travaux',USG],['Maître d’ouvrage désigné comme assuré ou bénéficiaire',USG],['Période de maintenance couvrant le délai de garantie',USG]],
+ DEC:[['Responsabilité du constructeur pour les dommages matériels',CFLOI+' art. 237'],
+  ['Dommages compromettant l’intégrité de l’ouvrage ou le rendant impropre à sa destination (art. 230 al. 1)',CFLOI+' art. 237'],
+  ['Garantie de dix ans à compter de la réception','Communiqué du Conseil des ministres du 03/12/2025 et AIP (durée absente du texte reproduit : à vérifier au JO)'],
+  ['Catégories de bâtiments concernées par le décret d’application','Décret en Conseil des ministres annoncé (art. 237) : non trouvé'],
+  ['Couverture intégrale',CFSRC+' §4.7'],['Ouvrage ou chantier identifié et activités déclarées',USG]],
+ RC:[['Dommages corporels et matériels causés aux tiers',CFSRC+' §4.7'],['Garantie maintenue pendant le délai de garantie',CFSRC+' §4.7'],['Plafond de garantie adapté au marché',USG]],
+ AT:[['Accidents du travail du personnel de l’entreprise',CFSRC+' §4.7'],['Personnel temporaire ou sous-traitants couverts',CFLOI+' art. 237 (pour la TRC)']]};
+// --- état d’un marché
+function cfAnch(m){const o=CFS(m),r=calc(m);return{dA:o.dA||'',dP:o.dP||m.notif||'',rec:m.reception||'',fg:m.fin_garantie||''}}
+function cfAuto(m,it){
+ if(it.au){const a=db.garanties.filter(g=>g.marche==m.id&&g.type==it.au&&g.statut!='Expirée');return a.length?'Détectée : '+a.length+' garantie(s)':''}
+ if(it.as){const t=ATY[it.as],a=db.assurances.filter(x=>x.marche==m.id&&x.type==t&&x.statut!='Expirée'&&!(x.echeance&&D(x.echeance)<today));return a.length?'Détectée : '+a.length+' police(s)':''}
+ if(it.au2)return db.os.some(o=>o.marche==m.id&&o.type==it.au2)?'Détecté dans vos ordres de service':'';
+ return''}
+function cfRows(m){const o=CFS(m),an=cfAnch(m),s=o.s||{};
+ return CFP.map(ph=>({t:ph.t,it:ph.it.map(it=>{const st=s[it.k]||'',au=cfAuto(m,it),done=st=='f'||(!!au&&st!='n'),na=st=='n';
+  let dd=null;if(it.dl&&an[it.an]){dd=new Date(D(an[it.an]).getTime()+it.dl*day)}
+  const j=dd?diff(dd,today):null;return{...it,st,au,done,na,dd,j}})}))}
+function cfProg(m){let t=0,f=0,late=0;cfRows(m).forEach(p=>p.it.forEach(i=>{if(i.na)return;t++;if(i.done)f++;else if(i.j!=null&&i.j<0)late++}));return{t,f,late,p:t?Math.round(f/t*100):0}}
+// --- légalité des garanties
+function cfGar(m){const out=[],P=RF().p,r=calc(m),M=r?r.M:+m.montant||0,gs=db.garanties.filter(g=>g.marche==m.id),an=cfAnch(m),by=t=>gs.filter(g=>g.type==t),has=g=>(g.files&&g.files.length)||g.doc;
+ const pc=(g)=>M&&+g.montant?+g.montant/M*100:null;
+ by('Bonne exécution').forEach(g=>{const lb='Bonne exécution'+(g.organisme?' ('+g.organisme+')':'')+' : ',p=pc(g);
+  if(p==null)out.push(['info',lb+'montant du marché ou de la garantie manquant, taux non contrôlable.']);
+  else out.push(p>=P.gbe[0]&&p<=P.gbe[1]?['ok',lb+p.toFixed(1)+' % du marché, dans la fourchette '+P.gbe[0]+' à '+P.gbe[1]+' %.']:['warn',lb+p.toFixed(1)+' % du marché, hors de la fourchette '+P.gbe[0]+' à '+P.gbe[1]+' % : vérifier le DPAO et le CCAP.']);
+  if(an.dP&&g.emission){const j=diff(D(g.emission),D(an.dP));out.push(j<=21?['ok',lb+'émise '+Math.max(j,0)+' jour(s) après la notification d’approbation (délai : 15 jours ouvrables, environ 21 jours).']:['warn',lb+'émise '+j+' jours après la notification d’approbation : délai de 15 jours ouvrables (environ 21 jours) dépassé.'])}
+  else if(!an.dP)out.push(['info',lb+'date de notification d’approbation non renseignée : délai non contrôlable.']);
+  if(r&&g.echeance&&D(g.echeance)<r.fin&&!g.fin_ev)out.push(['warn',lb+'échéance du '+fd(g.echeance)+' antérieure à la fin prévue des travaux ('+fdd(r.fin)+') : la garantie doit durer jusqu’à la réception provisoire.']);
+  if(!has(g))out.push(['info',lb+'aucun original scanné ni référence : joindre le document pour pouvoir en vérifier l’authenticité.']);
+  out.push(['info',lb+'vérifier que l’organisme émetteur est habilité (banque, établissement financier ou assureur agréé) et que le modèle est celui du DAO.'])});
+ const av=by('Avance de démarrage'),sv=av.reduce((t,g)=>t+(+g.montant||0),0);
+ if(M&&sv){const p=sv/M*100;out.push(p<=P.avt?['ok','Garanties d’avance : '+p.toFixed(1)+' % du marché, sous le plafond de cumul de '+P.avt+' %.']:['warn','Garanties d’avance : '+p.toFixed(1)+' % du marché, au-dessus du plafond de cumul de '+P.avt+' %.'])}
+ by('Retenue de garantie').forEach(g=>{const p=pc(g);if(p!=null)out.push(p<=P.ret[1]?['ok','Retenue de garantie : '+p.toFixed(1)+' % du marché (maximum '+P.ret[1]+' %).']:['warn','Retenue de garantie : '+p.toFixed(1)+' % du marché, au-dessus du maximum de '+P.ret[1]+' %.'])});
+ if(by('Soumission').some(g=>['Émise','Active'].includes(g.statut))&&gs.some(g=>g.type=='Bonne exécution'))out.push(['info','Garantie de soumission encore active alors que la garantie de bonne exécution est fournie : demander sa mainlevée.']);
+ if(m.reception&&by('Bonne exécution').some(g=>['Émise','Active'].includes(g.statut)&&!endedG(g))){const j=diff(today,D(m.reception));if(j>P.mlGbe)out.push(['warn','Mainlevée de la garantie de bonne exécution due : '+(j-P.mlGbe)+' jour(s) de retard après la réception provisoire.'])}
+ if(!gs.length)out.push(['info','Aucune garantie enregistrée pour ce marché.']);
+ return out}
+// --- conformité des assurances
+function cfAss(m){const out=[],r=calc(m),M=r?r.M:+m.montant||0;
+ for(const k of ['TRC','DEC','RC','AT']){const t=ATY[k],as=db.assurances.filter(a=>a.marche==m.id&&a.type==t);
+  if(!as.length){out.push([k,'warn','Aucune police '+t+' enregistrée pour ce marché.']);continue}
+  as.forEach(a=>{const lb=t+(a.assureur?' ('+a.assureur+')':'')+' : ';
+   if(!a.police)out.push([k,'warn',lb+'numéro de police manquant.']);
+   if(!a.assureur)out.push([k,'warn',lb+'compagnie d’assurance non renseignée.']);
+   if(a.echeance&&D(a.echeance)<today)out.push([k,'warn',lb+'échue depuis le '+fd(a.echeance)+'.']);
+   else if(a.echeance&&diff(D(a.echeance),today)<=30)out.push([k,'warn',lb+'échéance dans '+diff(D(a.echeance),today)+' jour(s) : prévoir le renouvellement.']);
+   if(k=='TRC'&&a.effet&&m.debut&&D(a.effet)>D(m.debut))out.push([k,'warn',lb+'effet du '+fd(a.effet)+' postérieur au démarrage du '+fd(m.debut)+' : la TRC doit exister dès l’ouverture du chantier.']);
+   if(k!='DEC'&&r&&a.echeance&&D(a.echeance)<r.fin&&D(a.echeance)>=today)out.push([k,'warn',lb+'échéance antérieure à la fin prévue des travaux ('+fdd(r.fin)+').']);
+   if(k=='TRC'&&M&&+a.montant&&+a.montant<M)out.push([k,'info',lb+'capital assuré inférieur au montant du marché : à confirmer au CCAP.']);
+   if(k=='DEC')out.push([k,'info',lb+'vérifier la durée de dix ans après la réception et le décret précisant les catégories de bâtiments.']);
+   if(!((a.files&&a.files.length)||a.doc))out.push([k,'info',lb+'aucune copie de la police ou de l’attestation jointe.']);
+   if(a.statut=='En attente de justificatif')out.push([k,'warn',lb+'justificatif en attente.']);
+   if(!out.some(x=>x[0]==k&&x[2].startsWith(lb)&&x[1]=='warn'))out.push([k,'ok',lb+'données cohérentes (à compléter par le contrôle des clauses).'])})}
+ return out}
+const cfN=m=>cfGar(m).filter(x=>x[0]=='warn').length+cfAss(m).filter(x=>x[1]=='warn').length+cfProg(m).late;
+const cfAlertN=()=>db.marches.reduce((t,m)=>t+cfN(m),0);
+// --- actions
+function cfTog(mid,k){const m=mk(mid);if(!m)return;const o=CFS(m);o.s=o.s||{};const c=o.s[k]||'';const n=c==''?'f':c=='f'?'n':'';if(n)o.s[k]=n;else delete o.s[k];cfPut(m,o);save();render()}
+function cfDate(mid,f,v){const m=mk(mid);if(!m)return;const o=CFS(m);if(/^\d{4}-\d{2}-\d{2}$/.test(v))o[f]=v;else delete o[f];cfPut(m,o);save();render()}
+function cfClause(aid,i){const a=db.assurances.find(x=>x.id==aid);if(!a)return;const o=CFS(a);o.c=o.c||{};if(o.c[i])delete o.c[i];else o.c[i]=1;cfPut(a,o);save();render()}
+function cfSel(v){cfm=v;render()}
+function cfPrint(mid){const m=mk(mid);if(!m)return;const L=[];L.push('FICHE DE CONFORMITÉ — '+m.num+' — '+(m.titulaire||''));L.push((m.objet||'')+' — '+fmt(m.montant)+' FCFA');L.push('Éditée le '+fdd(today)+'. Aide au suivi : le DAO, le CCAP et les textes officiels prévalent.');L.push('');
+ cfRows(m).forEach(p=>{L.push(p.t.toUpperCase());p.it.forEach(i=>L.push((i.na?'[ N/A ] ':i.done?'[ OK  ] ':'[     ] ')+i.l+(i.dd?' — avant le '+fdd(i.dd):'')+(i.au?' ('+i.au+')':'')))});
+ L.push('');L.push('CONTRÔLE DES GARANTIES');cfGar(m).forEach(x=>L.push('['+x[0].toUpperCase()+'] '+x[1]));
+ L.push('');L.push('CONTRÔLE DES ASSURANCES');cfAss(m).forEach(x=>L.push('['+x[1].toUpperCase()+'] '+x[2]));
+ $('#fs')?.remove();const f=document.createElement('div');f.id='fs';f.style.whiteSpace='pre-wrap';f.textContent=L.join('\n');document.body.appendChild(f);document.body.classList.add('pfs');const end=()=>{document.body.classList.remove('pfs');f.remove();removeEventListener('afterprint',end)};addEventListener('afterprint',end);setTimeout(end,12e4);setTimeout(()=>window.print(),150)}
+// --- affichage
+function conf(){
+ const ms=db.marches;if(!ms.length)return'<div class="card nt"><h2>✅ Conformité</h2><div class="e">Ajoutez un marché pour suivre les pièces à fournir, la légalité des garanties et la conformité des assurances.</div></div>';
+ if(!ms.find(m=>m.id==cfm))cfm=ms[0].id;const m=mk(cfm),pg=cfProg(m),an=cfAnch(m),bd={ok:'g',warn:'r',info:'y'},ic={ok:'✓',warn:'⚠',info:'ℹ'};
+ const ov=ms.map(x=>{const p=cfProg(x),n=cfN(x);return`<tr style="cursor:pointer" onclick="cfSel('${x.id}')"><th>${esc(x.num)}</th><td style="text-align:left">${esc(x.titulaire||'')}</td><td>${p.f}/${p.t}</td><td><span class="b ${p.late?'r':p.p==100?'g':'y'}">${p.p} %</span></td><td>${n?`<span class="b r">${n} point(s)</span>`:'<span class="b g">RAS</span>'}</td></tr>`}).join('');
+ const rowsH=cfRows(m).map(p=>`<div class="card nt"><h2>${esc(p.t)}</h2>${p.it.map(i=>{const b=i.na?'<span class="b y">Sans objet</span>':i.done?'<span class="b g">'+(i.st=='f'?'Fait':'Détecté')+'</span>':i.j!=null?`<span class="b ${i.j<0?'r':i.j<=7?'o':'y'}">${i.j<0?'En retard de '+(-i.j)+' j':'Avant le '+fdd(i.dd)+' ('+i.j+' j)'}</span>`:'<span class="b y">À faire</span>';
+  const red=i.red&&+m.montant?`<div><small>Montant indicatif : ${fmt(Math.round(m.montant*0.005))} FCFA (0,5 % de ${fmt(m.montant)} FCFA, si le montant saisi est hors taxes).</small></div>`:'';
+  const dt=i.pd?`<div><small>Date de notification d’approbation : <input type="date" value="${esc(an.dP)}" onchange="cfDate('${m.id}','dP',this.value)"></small></div>`:'';
+  return`<div style="padding:10px 0;border-top:1px solid var(--bd,#8883)"><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><button class="${i.done?'pri':''}" onclick="cfTog('${m.id}','${i.k}')" aria-label="Changer l’état" style="min-width:44px">${i.na?'N/A':i.done?'✓':'☐'}</button><b style="flex:1;min-width:200px">${esc(i.l)}</b>${b}</div>${i.dl&&!an[i.an]&&i.an=='dA'?`<div><small>Date de notification de l’attribution : <input type="date" onchange="cfDate('${m.id}','dA',this.value)"></small></div>`:i.an=='dA'?`<div><small>Notification de l’attribution : <input type="date" value="${esc(an.dA)}" onchange="cfDate('${m.id}','dA',this.value)"></small></div>`:''}${i.an=='dP'&&!an.dP?`<div><small>Date de notification d’approbation : <input type="date" onchange="cfDate('${m.id}','dP',this.value)"></small></div>`:''}${dt}${red}<details><summary><small>Détail et source</small></summary><div style="font-size:13px;color:var(--m)">${esc(i.n)}<br><i>Source : ${esc(i.s)}</i>${i.au?'<br>'+esc(i.au):''}</div></details></div>`}).join('')}</div>`).join('');
+ const gar=cfGar(m).map(x=>`<tr><td><span class="b ${bd[x[0]]}">${ic[x[0]]}</span></td><td style="text-align:left">${esc(x[1])}</td></tr>`).join('');
+ const as=cfAss(m).map(x=>`<tr><td><span class="b ${bd[x[1]]}">${ic[x[1]]}</span></td><td style="text-align:left">${esc(x[2])}</td></tr>`).join('');
+ const pol=db.assurances.filter(a=>a.marche==m.id).map(a=>{const k=Object.keys(ATY).find(z=>ATY[z]==a.type),cl=[...CLU,...(CLS[k]||[])],o=CFS(a).c||{},n=cl.filter((c,i)=>o[i]).length;
+  return`<details class="card nt"><summary><b>${esc(a.type)}</b> — ${esc(a.assureur||'assureur ?')} — police ${esc(a.police||'?')} <span class="b ${n==cl.length?'g':'y'}">${n}/${cl.length} clauses vérifiées</span></summary>${cl.map((c,i)=>`<label style="display:flex;gap:8px;padding:6px 0;border-top:1px solid var(--bd,#8883);align-items:flex-start"><input type="checkbox" ${o[i]?'checked':''} onchange="cfClause('${a.id}',${i})" style="margin-top:4px"><span>${esc(c[0])}<br><small style="color:var(--m)">${esc(c[1])}</small></span></label>`).join('')}</details>`}).join('')||'<div class="e">Aucune police enregistrée pour ce marché : ajoutez-la dans l’onglet Assurances.</div>';
+ return`<div class="card nt"><h2>✅ Conformité des marchés</h2><div class="w2"><table class="mx"><tr><th>Marché</th><th>Titulaire</th><th>Pièces</th><th>Avancement</th><th>Contrôles</th></tr>${ov}</table></div></div>
+ <div class="card nt"><div class="bar"><select onchange="cfSel(this.value)" aria-label="Marché">${ms.map(x=>`<option value="${x.id}" ${x.id==m.id?'selected':''}>${esc(x.num)} — ${esc(x.titulaire||'')}</option>`).join('')}</select><button onclick="cfPrint('${m.id}')">🖨️ Fiche de conformité</button></div><div><b>${pg.f} pièce(s) sur ${pg.t}</b> fournie(s)${pg.late?` · <span class="b r">${pg.late} en retard</span>`:''}<div style="height:8px;border-radius:99px;background:#8883;margin-top:6px"><div style="height:8px;border-radius:99px;width:${pg.p}%;background:var(--g,#10b981)"></div></div></div></div>
+ ${rowsH}
+ <div class="card nt"><h2>Légalité des garanties</h2><div class="w2"><table class="mx">${gar}</table></div></div>
+ <div class="card nt"><h2>Conformité des assurances</h2><div class="w2"><table class="mx">${as}</table></div></div>
+ <div class="card nt"><h2>Clauses à vérifier dans chaque police</h2><p style="margin:0 0 8px;color:var(--m);font-size:13px">Les mentions du Code CIMA valent pour toute police. Les clauses propres à la TRC et à la décennale viennent de la loi n° 2026-385 du 19 juin 2026 et du guide ARCOP. Ce qui relève de l’usage est signalé comme tel.</p>${pol}</div>
+ <p class="e">Aide au suivi, qui ne remplace ni le DAO, ni le CCAP, ni les textes officiels. Le texte de la loi n° 2026-385 a été consulté sur un site tiers (loidici.biz) : sa date d’entrée en vigueur et son décret d’application n’y figurent pas, à vérifier au Journal officiel.</p>`}
 applyAll();
 const EVT={'Avance de démarrage':'Expire à l’issue du remboursement intégral de l’avance de démarrage consentie à l’entrepreneur, ou par la mainlevée donnée par le Bénéficiaire.','Bonne exécution':'Expire à la date d’établissement du procès-verbal de réception provisoire des travaux, ou par la mainlevée donnée au Bénéficiaire.','Retenue de garantie':'Expire à la date d’établissement du procès-verbal de réception définitive des travaux, ou par la mainlevée donnée par le Bénéficiaire.'};
 const endedG=g=>g.fin_ev&&g.fin_ev!='—'&&g.fin_date&&D(g.fin_date)<=today;
@@ -1074,7 +1210,7 @@ async function icsExp(){
  db.os.forEach(o=>{const f=osFin(o);if(!f||f<today)return;
   ev.push({id:'o'+o.id,d:f,t:`PTUA – Fin de durée OS ${o.num||o.type} · ${mn(o.marche)}`,x:dis?'':(o.note||''),al:[15,3]})});
  if(!ev.length)return alert('Aucune échéance future à ajouter (garanties actives avec une date d’échéance, fins prévues de marchés, durées d’OS).');
- const st=new Date().toISOString().replace(/[-:]/g,'').slice(0,15)+'Z',L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//PTUA//Gestionnaire PTUA v8.9//FR','CALSCALE:GREGORIAN','METHOD:PUBLISH','X-WR-CALNAME:PTUA – échéances'];
+ const st=new Date().toISOString().replace(/[-:]/g,'').slice(0,15)+'Z',L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//PTUA//Gestionnaire PTUA v9.0//FR','CALSCALE:GREGORIAN','METHOD:PUBLISH','X-WR-CALNAME:PTUA – échéances'];
  const al=(t,tr)=>L.push('BEGIN:VALARM','ACTION:DISPLAY','DESCRIPTION:'+icsE(t),'TRIGGER:'+tr,'END:VALARM');
  ev.forEach(e=>{L.push('BEGIN:VEVENT',`UID:ptua-${e.id}-${icd(e.d)}@ptua.app`,'DTSTAMP:'+st,'DTSTART;VALUE=DATE:'+icd(e.d),'DTEND;VALUE=DATE:'+icd(new Date(e.d.getTime()+day)),'SUMMARY:'+icsE(e.t));
   if(e.x)L.push('DESCRIPTION:'+icsE(e.x));L.push('TRANSP:TRANSPARENT');
