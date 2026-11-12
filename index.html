@@ -5,7 +5,7 @@
 <meta name="theme-color" content="#eef3fb" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#070b17" media="(prefers-color-scheme: dark)">
 <meta name="format-detection" content="telephone=no">
 <link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-180.png"><link rel="icon" href="icon-192.png">
-<title>Gestionnaire juridique et contractuel PTUA v7.4</title>
+<title>Gestionnaire juridique et contractuel PTUA v7.5</title>
 <style>
 :root{--bg:#eef3fb;--c:rgba(255,255,255,.74);--t:#16213a;--m:#5d6c8a;--b:rgba(60,80,130,.16);--p:#2563eb;--r:#e11d48;--o:#d97706;--y:#a16207;--g:#059669;--g1:#1e3a8a;--g2:#7c3aed;--h2:#1d4ed8;--in:rgba(255,255,255,.95);--hd:rgba(255,255,255,.78);--sh:0 14px 34px -16px rgba(37,60,120,.35);--gl:rgba(37,99,235,.2);--gl2:rgba(37,99,235,.35);--cf:rgba(37,99,235,.5);--cb:linear-gradient(135deg,rgba(37,99,235,.10),rgba(124,58,237,.16));--hv:rgba(37,99,235,.06);--dg:rgba(255,255,255,.98);--ob:#fff;--bt:#fff;--sp:radial-gradient(circle at 50% 45%,#fff,#d6e4ff);--bd:#0f1b3a66;color-scheme:light}
 [data-t=dark]{--bg:#070b17;--c:rgba(18,26,48,.62);--t:#e8eefc;--m:#8b98b8;--b:rgba(148,163,184,.2);--p:#22d3ee;--r:#ff6b81;--o:#fbbf24;--y:#facc15;--g:#34d399;--g1:#fff;--g2:#67e8f9;--h2:#a5f3fc;--in:rgba(6,10,24,.7);--hd:rgba(7,11,23,.72);--sh:0 14px 34px -12px #000a;--gl:#22d3ee55;--gl2:#22d3ee55;--cf:rgba(103,232,249,.55);--cb:linear-gradient(135deg,rgba(34,211,238,.16),rgba(99,102,241,.2));--hv:rgba(34,211,238,.07);--dg:#0c1328f2;--ob:#0f172a;--bt:#04101f;--sp:radial-gradient(circle at 50% 45%,#16205a,#050810);--bd:#02050dcc;color-scheme:dark}
@@ -104,7 +104,7 @@ button,select,a,label,summary{-webkit-tap-highlight-color:transparent;touch-acti
  .row{position:sticky;bottom:0;background:var(--dg);padding:10px 0 0}.row button{flex:1}
 }
 </style></head><body>
-<div id="bg"></div><div id="sp"><div class="cu"></div><b>PTUA</b></div><header><div class="lg"><div class="cu"></div><h1>Gestionnaire juridique et contractuel PTUA <small>v7.4 · iPhone</small></h1></div><div class="hr"><b id="ht">--:--:--</b><small id="hdt"></small></div>
+<div id="bg"></div><div id="sp"><div class="cu"></div><b>PTUA</b></div><header><div class="lg"><div class="cu"></div><h1>Gestionnaire juridique et contractuel PTUA <small>v7.5 · iPhone</small></h1></div><div class="hr"><b id="ht">--:--:--</b><small id="hdt"></small></div>
 <div class="bar" style="margin:0"><button id="th" onclick="th()">🌙 Sombre</button><button onclick="pinMenu()">🔒 Verrou</button><button onclick="window.print()">🖨️ Imprimer / PDF</button><button onclick="expJ()">Exporter (JSON)</button><button onclick="$('#imp').click()">Importer</button><button onclick="expC()">Exporter (CSV)</button></div>
 <input type="file" id="imp" accept=".json,application/json" hidden onchange="impJ(this)"></header>
 <div id="ins" hidden></div><nav id="nav"></nav><div id="al"></div><main id="v"></main><div id="lk" hidden><div class="lkb"><h2 style="margin:0">🔒 Application verrouillée</h2><small style="color:var(--m)">Données chiffrées sur cet appareil (AES-256)</small><input id="pin" type="password" inputmode="numeric" placeholder="Code d’accès" onkeydown="if(event.key=='Enter')unl()"><button class="pri" onclick="unl()">Déverrouiller</button><small id="lke" style="color:var(--r)"></small></div></div>
@@ -160,7 +160,7 @@ function render(){banner();
  else if(tab=='stats')$('#v').innerHTML=stats();
  else if(tab=='journal')$('#v').innerHTML=`<div class="w"><table><tr><th>Date</th><th>Action</th></tr>${db.journal.map(j=>`<tr><td>${esc(j.d)}</td><td>${esc(j.m)}</td></tr>`).join('')||'<tr><td class="e" colspan="2">Aucune action enregistrée.</td></tr>'}</table></div>`;
  else{
-  $('#v').innerHTML=`<div class="bar"><input id="q" placeholder="Rechercher…" value="${esc(q)}" oninput="q=this.value.toLowerCase();$('#tb').innerHTML=rows(tab)">${fsel()}${tsel()}<button onclick="$('#vp').hidden=!$('#vp').hidden">⚙️ Affichage</button><button class="pri" onclick="edit('${tab}')">+ ${S[tab].t}</button></div><div id="vp" class="card nt" hidden>${vpanel()}</div><div class="w ${VW(tab).mode=='compact'?'cp':''}"><table id="tb"></table></div>`;
+  $('#v').innerHTML=`<div class="bar"><input id="q" placeholder="Rechercher…" value="${esc(q)}" oninput="q=this.value.toLowerCase();$('#tb').innerHTML=rows(tab)">${fsel()}${tsel()}<button onclick="$('#vp').hidden=!$('#vp').hidden">⚙️ Affichage</button>${tab=='garanties'||tab=='marches'||tab=='os'?'<button onclick="icsExp()">📅 Calendrier</button>':''}<button class="pri" onclick="edit('${tab}')">+ ${S[tab].t}</button></div><div id="vp" class="card nt" hidden>${vpanel()}</div><div class="w ${VW(tab).mode=='compact'?'cp':''}"><table id="tb"></table></div>`;
   $('#tb').innerHTML=rows(tab);
  }
 }
@@ -302,13 +302,13 @@ function banner(){
  const n=db.garanties.filter(g=>{const a=gal(g);return a&&a.j<=30}).length;let le=0;try{le=+localStorage.getItem('ptua_exp')||0}catch(e){}
  let h='';if(n)h+=`<div class="al r" onclick="go('dash')">⚠️ ${n} garantie(s) à surveiller (échéance ≤ 30 jours ou dépassée) — voir le tableau de bord</div>`;
  if((db.marches.length||db.garanties.length)&&Date.now()-le>7*day)h+=`<div class="al o" onclick="expJ()">💾 Aucune sauvegarde depuis plus de 7 jours — cliquer pour exporter maintenant</div>`;
- const w=constats().filter(c=>c.n=='warn').length;if(w)h+=`<div class="al o" onclick="go('veille')">⚖️ ${w} point(s) de conformité à vérifier — ouvrir la veille juridique</div>`;if(diff(today,D(RF().lc||RF().v))>30)h+=`<div class="al o" onclick="go('veille')">⚖️ Référentiel juridique non vérifié depuis plus de 30 jours</div>`;if(!db.marches.length&&!db.garanties.length&&snaps().length)h+=`<div class="al r" onclick="go('sauv')">💾 Aucune donnée affichée, mais ${snaps().length} point(s) de sauvegarde sont disponibles — cliquer pour restaurer</div>`;$('#al').innerHTML=h;document.title=(n?'('+n+') ':'')+'Gestionnaire PTUA v7.4';
+ const w=constats().filter(c=>c.n=='warn').length;if(w)h+=`<div class="al o" onclick="go('veille')">⚖️ ${w} point(s) de conformité à vérifier — ouvrir la veille juridique</div>`;if(diff(today,D(RF().lc||RF().v))>30)h+=`<div class="al o" onclick="go('veille')">⚖️ Référentiel juridique non vérifié depuis plus de 30 jours</div>`;if(!db.marches.length&&!db.garanties.length&&snaps().length)h+=`<div class="al r" onclick="go('sauv')">💾 Aucune donnée affichée, mais ${snaps().length} point(s) de sauvegarde sont disponibles — cliquer pour restaurer</div>`;$('#al').innerHTML=h;document.title=(n?'('+n+') ':'')+'Gestionnaire PTUA v7.5';
 }
 function ech(){
  const it=[];db.garanties.forEach(g=>{const a=gal(g);if(a&&a.j>=0&&a.j<=90)it.push({d:D(g.echeance),t:'🛡️ Échéance de garantie',l:mn(g.marche)+' · '+g.type})});
  db.marches.forEach(m=>{const r=calc(m);if(r&&!m.reception){const j=diff(r.fin,today);if(j>=0&&j<=90)it.push({d:r.fin,t:'📁 Fin prévue du marché',l:m.num+(m.titulaire?' · '+m.titulaire:'')})}});
  it.sort((a,b)=>a.d-b.d);
- return `<div class="card"><h2>Échéancier — 90 prochains jours</h2>${it.length?`<table>${it.map(x=>`<tr><td>${fdd(x.d)}</td><td>dans ${diff(x.d,today)} j</td><td>${x.t}</td><td>${esc(x.l)}</td></tr>`).join('')}</table>`:'<div class="e">Rien à l’horizon.</div>'}</div>`;
+ return `<div class="card"><div class="sh" style="margin:0 0 10px"><h2>Échéancier — 90 prochains jours</h2><button class="pri" onclick="icsExp()">📅 Ajouter au calendrier</button></div>${it.length?`<table>${it.map(x=>`<tr><td>${fdd(x.d)}</td><td>dans ${diff(x.d,today)} j</td><td>${x.t}</td><td>${esc(x.l)}</td></tr>`).join('')}</table>`:'<div class="e">Rien à l’horizon.</div>'}</div>`;
 }
 const hs=(s,a=0)=>{let h1=0xdeadbeef^a,h2=0x41c6ce57^a;for(let i=0,c;i<s.length;i++){c=s.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}h1=Math.imul(h1^h1>>>16,2246822507)^Math.imul(h2^h2>>>13,3266489909);h2=Math.imul(h2^h2>>>16,2246822507)^Math.imul(h1^h1>>>13,3266489909);return String(4294967296*(2097151&h2)+(h1>>>0))};
 // ===== Chiffrement (v7.4) : PBKDF2-SHA256 600 000 itérations + AES-256-GCM (WebCrypto) =====
@@ -332,7 +332,7 @@ function ask(t,fs,note){return new Promise(r=>{const d=$('#cd');
  d.onkeydown=e=>{if(e.key=='Enter'){e.preventDefault();d.querySelector('.pri').click()}};d.oncancel=e=>{e.preventDefault();done(null)};d.showModal();setTimeout(()=>d.querySelector('input')?.focus(),80)})}
 function choose(t,opts){return new Promise(r=>{const d=$('#cd');d.innerHTML=`<h3 style="margin-top:0">${t}</h3><div style="display:flex;flex-direction:column;gap:8px">${opts.map((o,i)=>`<button data-i="${i}" ${i?'':'class="pri"'}>${o}</button>`).join('')}<button data-i="-1">Annuler</button></div>`;
  d.querySelectorAll('button').forEach(b=>b.onclick=()=>{d.close();r(+b.dataset.i)});d.onkeydown=null;d.oncancel=e=>{e.preventDefault();d.close();r(-1)};d.showModal()})}
-function offer(n,txt,type,msg){const d=$('#cd');d.innerHTML=`<h3 style="margin-top:0">✅ ${msg}</h3><p style="margin:0 0 12px;color:var(--m);font-size:13px">Sur iPhone : touchez « Enregistrer le fichier », puis <b>Enregistrer dans Fichiers</b> (iCloud Drive conseillé). Évitez de l’envoyer par messagerie.</p><div class="row"><button data-v="0">Fermer</button><button class="pri" data-v="1">💾 Enregistrer le fichier</button></div>`;
+function offer(n,txt,type,msg,tip){const d=$('#cd');d.innerHTML=`<h3 style="margin-top:0">✅ ${msg}</h3><p style="margin:0 0 12px;color:var(--m);font-size:13px">${tip||'Sur iPhone : touchez « Enregistrer le fichier », puis <b>Enregistrer dans Fichiers</b> (iCloud Drive conseillé). Évitez de l’envoyer par messagerie.'}</p><div class="row"><button data-v="0">Fermer</button><button class="pri" data-v="1">💾 Enregistrer le fichier</button></div>`;
  d.querySelectorAll('.row button').forEach(b=>b.onclick=()=>{if(b.dataset.v=='1')dl(n,txt,type);d.close()});d.onkeydown=null;d.oncancel=null;d.showModal()}
 const gp=()=>{try{return localStorage.getItem('ptua_pin')}catch(e){return null}}; // ancien code (avant v7.4), remplacé par le chiffrement au déverrouillage
 function lock(){if(!ENC&&!gp())return;$('#pin').value='';$('#lke').textContent='';$('#lk').hidden=false;if($('#dlg').open)$('#dlg').close();if($('#cd').open)$('#cd').close();
@@ -502,7 +502,7 @@ function analyse(){
 const amN=()=>{const n=analyse().length+AM().filter(p=>!(RF().amst||{})[p.id]).length;return n?' ('+n+')':''};
 function addIdea(){const t=$('#ib').value.trim();if(!t)return;(RF().ideas||(RF().ideas=[])).unshift({d:stamp(),t});log('Idée ajoutée à la boîte à idées');save();render()}
 function delIdea(i){RF().ideas.splice(i,1);save();render()}
-function expAm(){const R=RF();dl('PTUA_demande_amelioration_'+stamp()+'.json',JSON.stringify({application:'Gestionnaire juridique et contractuel PTUA',version:'v7.4',referentiel:R.v,date:stamp(),idees:R.ideas||[],propositions:R.amst||{},suggestions:analyse().map(x=>x.t),points_conformite_a_verifier:constats().filter(x=>x.n=='warn').length,usage_onglets:R.use||{},volumes:{marches:db.marches.length,garanties:db.garanties.length,os:db.os.length,avenants:db.avenants.length}},null,1),'application/json')}
+function expAm(){const R=RF();dl('PTUA_demande_amelioration_'+stamp()+'.json',JSON.stringify({application:'Gestionnaire juridique et contractuel PTUA',version:'v7.5',referentiel:R.v,date:stamp(),idees:R.ideas||[],propositions:R.amst||{},suggestions:analyse().map(x=>x.t),points_conformite_a_verifier:constats().filter(x=>x.n=='warn').length,usage_onglets:R.use||{},volumes:{marches:db.marches.length,garanties:db.garanties.length,os:db.os.length,avenants:db.avenants.length}},null,1),'application/json')}
 function amel(){
  const R=RF(),an=analyse(),st=R.amst||{},F={CI:'🇨🇮',FR:'🇫🇷',GEN:'🌐'},us=Object.entries(R.use||{}).sort((a,b)=>b[1]-a[1]).slice(0,4).map(x=>x[0]+' ('+x[1]+')').join(', ');
  return `<div class="card nt"><h2>💡 Amélioration continue</h2><p style="margin:0 0 8px">L’application <b>analyse vos données à chaque action</b> et propose des corrections, des champs à ajouter ou à retirer, et des idées inspirées des pratiques de la Côte d’Ivoire et de la France. Elle n’apprend pas seule sur Internet : pour qu’une idée devienne une vraie fonction, exportez votre demande et envoyez-la à Claude.</p>
@@ -599,6 +599,30 @@ function addDur(d0,m,j){m=+m||0;j=+j||0;const wm=Math.trunc(m),x=new Date(d0);x.
 function osFin(o){return o&&o.date&&(+o.dureeM||+o.jours)?addDur(D(o.date),o.dureeM,o.jours):null}
 function osDays(o){const f=osFin(o);return f?Math.max(0,diff(f,D(o.date))):(+o.jours||0)+Math.round((+o.dureeM||0)*30)}
 function fo(){const o={};$('#df').querySelectorAll('[name]').forEach(x=>o[x.name]=x.value);return o}
+
+// ===== Rappels calendrier (.ics) — v7.5 =====
+const icsE=t=>String(t).replace(/\\/g,'\\\\').replace(/;/g,'\;').replace(/,/g,'\\,').replace(/\r?\n/g,'\\n');
+const icd=d=>d.getFullYear()+String(d.getMonth()+1).padStart(2,'0')+String(d.getDate()).padStart(2,'0');
+function fold(l){const o=[];let c='',n=0;for(const ch of l){const b=te.encode(ch).length;if(n+b>(o.length?73:75)){o.push(c);c='';n=0}c+=ch;n+=b}o.push(c);return o.join('\r\n ')}
+async function icsExp(){
+ const c=await choose('📅 Rappels dans le calendrier',['Avec les détails (titulaire, organisme, montant)','Discret : numéro de marché seulement']);if(c<0)return;
+ const dis=c==1,ev=[];
+ db.garanties.forEach(g=>{const a=gal(g);if(!a||a.j<0||a.j>=9999)return;const m=mk(g.marche);
+  ev.push({id:'g'+g.id,d:D(g.echeance),t:`PTUA – Échéance garantie ${g.type} · ${mn(g.marche)}`,x:dis?'Détail dans l’application PTUA.':`Organisme : ${g.organisme||'—'}\nMontant : ${fmt(g.montant)} FCFA\nTitulaire : ${m?.titulaire||'—'}\nÀ faire : renouvellement, prorogation ou mainlevée.`,al:[30,15,7,1]})});
+ db.marches.forEach(m=>{const r=calc(m);if(!r||m.reception||r.fin<today)return;
+  ev.push({id:'m'+m.id,d:r.fin,t:`PTUA – Fin prévue du marché ${m.num}`,x:dis?'Détail dans l’application PTUA.':`Titulaire : ${m.titulaire||'—'}\nObjet : ${m.objet||'—'}`,al:[30,7]})});
+ db.os.forEach(o=>{const f=osFin(o);if(!f||f<today)return;
+  ev.push({id:'o'+o.id,d:f,t:`PTUA – Fin de durée OS ${o.num||o.type} · ${mn(o.marche)}`,x:dis?'':(o.note||''),al:[15,3]})});
+ if(!ev.length)return alert('Aucune échéance future à ajouter (garanties actives avec une date d’échéance, fins prévues de marchés, durées d’OS).');
+ const st=new Date().toISOString().replace(/[-:]/g,'').slice(0,15)+'Z',L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//PTUA//Gestionnaire PTUA v7.5//FR','CALSCALE:GREGORIAN','METHOD:PUBLISH','X-WR-CALNAME:PTUA – échéances'];
+ const al=(t,tr)=>L.push('BEGIN:VALARM','ACTION:DISPLAY','DESCRIPTION:'+icsE(t),'TRIGGER:'+tr,'END:VALARM');
+ ev.forEach(e=>{L.push('BEGIN:VEVENT',`UID:ptua-${e.id}-${icd(e.d)}@ptua.app`,'DTSTAMP:'+st,'DTSTART;VALUE=DATE:'+icd(e.d),'DTEND;VALUE=DATE:'+icd(new Date(e.d.getTime()+day)),'SUMMARY:'+icsE(e.t));
+  if(e.x)L.push('DESCRIPTION:'+icsE(e.x));L.push('TRANSP:TRANSPARENT');
+  e.al.forEach(j=>{if(diff(e.d,today)>=j)al(`Dans ${j} jour${j>1?'s':''} : ${e.t}`,j>1?`-P${j-1}DT15H`:'-PT15H')});al(e.t,'PT9H');L.push('END:VEVENT')});
+ L.push('END:VCALENDAR');
+ offer('PTUA_echeances_'+stamp()+'.ics',L.map(fold).join('\r\n')+'\r\n','text/calendar',ev.length+' échéance(s) prête(s) pour le calendrier',
+  'Rappels à 9 h : 30, 15, 7 et 1 jour(s) avant chaque échéance de garantie, et le jour même.<br><b>Sur iPhone :</b> touchez « Enregistrer le fichier » → <b>Enregistrer dans Fichiers</b>, puis ouvrez le fichier dans l’app <b>Fichiers</b> et touchez <b>Ajouter tout</b>. Si l’option <b>Calendrier</b> apparaît directement dans le partage, choisissez-la.<br>Après des modifications, réexportez : les mêmes échéances sont mises à jour plutôt que dupliquées (sauf si la date a changé : supprimez alors l’ancien événement).')}
+
 let tx=null;
 document.addEventListener('touchstart',e=>{tx=tab=='pres'&&e.target.closest('.sl')&&!e.target.closest('.w2,.w,table')?[e.touches[0].clientX,e.touches[0].clientY]:null},{passive:true});
 document.addEventListener('touchend',e=>{if(!tx)return;const dx=e.changedTouches[0].clientX-tx[0],dy=e.changedTouches[0].clientY-tx[1];tx=null;if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.5)psl(dx<0?1:-1)},{passive:true});
