@@ -1,6 +1,6 @@
 {
- "version": "9.1",
- "date": "2026-11-12",
+ "version": "9.2",
+ "date": "2026-11-13",
  "importance": "normale",
- "notes": "Refonte visuelle : sceau PTUA, icônes vectorielles, contrastes et cibles tactiles corrigés, erreurs de formulaire affichées en ligne, navigation clavier."
+ "notes": "Nouvel onglet « Assistant sécurité » : un assistant IA de cybersécurité (analyse de liens, failles CVE, checklists). Il n’a accès à aucune donnée de PTUA ; les échanges ne sont pas enregistrés."
 }

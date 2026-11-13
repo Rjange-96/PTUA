@@ -27,5 +27,8 @@ bash tests/run_all.sh
 | t19.py | onglet Activité |
 | t20.py | vérification NextDNS |
 | t21.py | modèles de courriers (Word, impression) |
+| t22.py | conformité |
+| t23.py | interface : icônes, accessibilité, erreurs en ligne |
+| t24.py | assistant sécurité (agent IA) : accès, rien d'enregistré, effacement au verrouillage |
 
 À lancer après chaque modification, avant de publier.
