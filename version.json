@@ -1,6 +1,6 @@
 {
- "version": "9.2",
+ "version": "9.3",
  "date": "2026-11-13",
  "importance": "normale",
- "notes": "Nouvel onglet « Assistant sécurité » : un assistant IA de cybersécurité (analyse de liens, failles CVE, checklists). Il n’a accès à aucune donnée de PTUA ; les échanges ne sont pas enregistrés."
+ "notes": "Nouvel onglet « Assistant sécurité » : un assistant IA de cybersécurité (analyse de liens, failles CVE, checklists). Il n’a accès à aucune donnée de PTUA ; les échanges ne sont pas enregistrés. Le numéro de version affiché en haut de l’écran est corrigé."
 }

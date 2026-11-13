@@ -26,7 +26,7 @@ with sync_playwright() as p:
   c=b.new_context(viewport={'width':393,'height':852},is_mobile=True,has_touch=True);pg=c.new_page();pg.set_default_timeout(8000)
   pg.route('https://iofbwpzhptctyelmylkz.supabase.co/**',handle);pg.on('pageerror',lambda e:errs.append(str(e)));pg.on('console',lambda m:m.type=='error' and 'Failed to load resource' not in m.text and errs.append(m.text));pg.on('dialog',lambda d:d.accept())
   pg.goto('http://localhost:8765/');pg.wait_for_timeout(2300)
-  P('version 9.2 :',pg.evaluate("APPV"),'| onglet dans la liste :',pg.evaluate("NAV.some(n=>n[0]=='cyber')"),'| icône SVG :',pg.evaluate("!!ic('cyber')"))
+  P('version et en-tête identiques :',pg.evaluate("APPV"),pg.evaluate("document.querySelector('h1 small').textContent=='v'+APPV"),'| onglet dans la liste :',pg.evaluate("NAV.some(n=>n[0]=='cyber')"),'| icône SVG :',pg.evaluate("!!ic('cyber')"))
   pg.evaluate("go('cyber')");pg.wait_for_timeout(300)
   P('sans synchro : message + pas de saisie :',pg.evaluate("$('#v').textContent.includes('Synchronisation requise')&&!$('#cyi')"))
   pg.evaluate("db.marches.push({id:'m1',titulaire:'SOGEA SATOM',num:'2024-0153',montant:'850000000'});save()")
