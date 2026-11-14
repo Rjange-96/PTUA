@@ -1,6 +1,11 @@
 {
- "version": "9.3",
- "date": "2026-11-13",
- "importance": "normale",
- "notes": "Nouvel onglet « Assistant sécurité » : un assistant IA de cybersécurité (analyse de liens, failles CVE, checklists). Il n’a accès à aucune donnée de PTUA ; les échanges ne sont pas enregistrés. Le numéro de version affiché en haut de l’écran est corrigé."
+ "version": "9.4",
+ "date": "2026-11-14",
+ "importance": "securite",
+ "notes": [
+  "Calendrier : une donnée piégée (par exemple dans un fichier importé) ne peut plus ajouter de contenu caché aux rappels envoyés vers votre agenda.",
+  "Fonctionnement hors ligne plus robuste : PTUA n’efface plus les données d’autres applications de votre site, et se répare tout seul si une autre application efface les siennes.",
+  "Serveur : droits d’accès resserrés sur la partie « Assistant sécurité » (aucune action de votre part).",
+  "Le numéro de version affiché dans l’onglet du navigateur est corrigé."
+ ]
 }
