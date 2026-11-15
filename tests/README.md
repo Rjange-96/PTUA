@@ -32,5 +32,6 @@ bash tests/run_all.sh
 | t24.py | assistant sécurité (agent IA) : accès, rien d'enregistré, effacement au verrouillage |
 | t25.py | calendrier .ics : injection par retour chariot isolé bloquée, échappement des « ; » et « , » |
 | t26.py | service worker : caches des autres applications du domaine préservés, cache PTUA reconstitué, hors ligne |
+| t27.py | partage avec un collègue : invitation, accès séparé, documents, modifications croisées, retrait d'accès, anti-hameçonnage |
 
 À lancer après chaque modification, avant de publier.

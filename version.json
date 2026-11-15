@@ -1,11 +1,11 @@
 {
- "version": "9.4",
- "date": "2026-11-14",
- "importance": "securite",
+ "version": "9.5",
+ "date": "2026-11-15",
+ "importance": "normale",
  "notes": [
-  "Calendrier : une donnée piégée (par exemple dans un fichier importé) ne peut plus ajouter de contenu caché aux rappels envoyés vers votre agenda.",
-  "Fonctionnement hors ligne plus robuste : PTUA n’efface plus les données d’autres applications de votre site, et se répare tout seul si une autre application efface les siennes.",
-  "Serveur : droits d’accès resserrés sur la partie « Assistant sécurité » (aucune action de votre part).",
-  "Le numéro de version affiché dans l’onglet du navigateur est corrigé."
+  "Nouveau : partager vos fiches avec un collègue. Onglet Sauvegarde → « Partager avec un collègue » : il reçoit son propre code d’invitation, votre clé personnelle ne lui est jamais transmise.",
+  "Vous voyez la liste des personnes qui ont accès et vous pouvez retirer un accès à tout moment, d’un seul geste.",
+  "Le collègue consulte, ajoute et modifie les marchés, garanties et documents communs ; tout reste chiffré de bout en bout.",
+  "Par sécurité, l’application demande toujours une confirmation avant de rejoindre un espace partagé."
  ]
 }
