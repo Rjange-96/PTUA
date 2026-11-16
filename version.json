@@ -1,10 +1,10 @@
 {
- "version": "9.17",
+ "version": "9.18",
  "date": "2026-11-16",
  "importance": "normale",
  "notes": [
-  "Nouveau : les rappels sur le téléphone. Dans Sauvegarde → « Rappels sur ce téléphone », activez les notifications : vous êtes prévenu 30 jours, 7 jours et 1 jour avant, puis le jour même, de chaque échéance (assurances, garanties, fin de marché, réserves, réception définitive), même quand l’application est fermée.",
-  "Respect de la confidentialité : la notification est générique (« des échéances demandent votre attention »). Le serveur ne reçoit que l’adresse de notification de l’appareil et des dates d’alerte, sans nom, montant ni marché. Le détail se lit dans PTUA.",
-  "À savoir : sur iPhone, ajoutez d’abord PTUA à l’écran d’accueil (iOS 16.4 ou plus) et activez la synchronisation. Ouvrez l’application au moins une fois par trimestre pour que les dates d’alerte restent à jour."
+  "Lecture des scans plus rapide : plusieurs pages sont lues en même temps selon la puissance de l’appareil, et la finesse de lecture est ajustée pour gagner environ la moitié du temps sur une photo ou une page scannée.",
+  "Pendant la lecture, l’application affiche maintenant le document et la page en cours, ainsi que le temps restant estimé. Vous pouvez continuer à travailler, ou arrêter : ce qui est déjà lu est conservé.",
+  "Les PDF scannés très longs sont lus sur leurs 10 premières pages."
  ]
 }
