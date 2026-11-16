@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob: mediastream:; font-src 'self'; connect-src 'self' https://test.nextdns.io https://raw.githubusercontent.com https://rjange-96.github.io https://iofbwpzhptctyelmylkz.supabase.co; object-src 'none'; base-uri 'none'; form-action 'none'; worker-src 'self'; manifest-src 'self'">
 <meta name="referrer" content="no-referrer">
 <link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-180.png"><link rel="icon" href="icon-192.png">
-<title>Gestionnaire juridique et contractuel PTUA v9.13</title>
+<title>Gestionnaire juridique et contractuel PTUA v9.14</title>
 <style>
 :root{--bg:#eef3fb;--c:rgba(255,255,255,.74);--t:#16213a;--m:#5d6c8a;--b:rgba(60,80,130,.16);--p:#2563eb;--r:#e11d48;--o:#d97706;--y:#a16207;--g:#059669;--g1:#1e3a8a;--g2:#7c3aed;--h2:#1d4ed8;--in:rgba(255,255,255,.95);--hd:rgba(255,255,255,.78);--sh:0 14px 34px -16px rgba(37,60,120,.35);--gl:rgba(37,99,235,.2);--gl2:rgba(37,99,235,.35);--cf:rgba(37,99,235,.5);--cb:linear-gradient(135deg,rgba(37,99,235,.10),rgba(124,58,237,.16));--hv:rgba(37,99,235,.06);--dg:rgba(255,255,255,.98);--ob:#fff;--bt:#fff;--sp:radial-gradient(circle at 50% 45%,#fff,#d6e4ff);--bd:#0f1b3a66;color-scheme:light}
 [data-t=dark]{--bg:#070b17;--c:rgba(18,26,48,.62);--t:#e8eefc;--m:#8b98b8;--b:rgba(148,163,184,.2);--p:#22d3ee;--r:#ff6b81;--o:#fbbf24;--y:#facc15;--g:#34d399;--g1:#fff;--g2:#67e8f9;--h2:#a5f3fc;--in:rgba(6,10,24,.7);--hd:rgba(7,11,23,.72);--sh:0 14px 34px -12px #000a;--gl:#22d3ee55;--gl2:#22d3ee55;--cf:rgba(103,232,249,.55);--cb:linear-gradient(135deg,rgba(34,211,238,.16),rgba(99,102,241,.2));--hv:rgba(34,211,238,.07);--dg:#0c1328f2;--ob:#0f172a;--bt:#04101f;--sp:radial-gradient(circle at 50% 45%,#16205a,#050810);--bd:#02050dcc;color-scheme:dark}
@@ -273,8 +273,43 @@ th{font-size:12.5px}td,th{padding:12px 12px}
 [data-s=ninja] header h1{background:none;color:#f6ead2;-webkit-text-fill-color:#f6ead2}[data-s=pirate] header h1{background:none;color:#f8ecd0;-webkit-text-fill-color:#f8ecd0;text-shadow:0 1px 0 #2a170a}
 [data-s] nav button{border-color:transparent!important}
 @media print{[data-s] body{background:#fff!important}}
+/* ===== v9.14 — fonds d'écran animés (créations originales) et fond personnel ===== */
+#wp{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;display:none}
+html[data-s] #wp,html[data-wp] #wp{display:block}html[data-wp] #bg{display:none}
+#wp>*{position:absolute}#wp .wpi{inset:0;background-size:cover;background-position:center bottom;background-repeat:no-repeat}#wp .wpv{inset:0}
+#wp.ninja .wpv{background:linear-gradient(180deg,rgba(239,230,210,.4),rgba(239,230,210,.18) 55%,rgba(239,230,210,.05))}
+#wp.pirate .wpv{background:linear-gradient(180deg,rgba(236,223,194,.32),rgba(236,223,194,.12) 55%,rgba(236,223,194,0))}
+#wp.own .wpv{background:rgba(245,247,252,.6)}#wp.own.dk .wpv{background:rgba(13,19,32,.68)}
+html[data-s=ninja] #wp.own .wpv{background:rgba(239,230,210,.6)}html[data-s=pirate] #wp.own .wpv{background:rgba(236,223,194,.6)}
+#wp .wpm{left:0;top:38%;width:200%;height:26%;opacity:.8;background-image:radial-gradient(ellipse 30% 40% at 18% 52%,rgba(255,255,255,.6),transparent),radial-gradient(ellipse 34% 36% at 62% 42%,rgba(255,255,255,.5),transparent);background-size:50% 100%;background-repeat:repeat-x;animation:wdrift 80s linear infinite}
+#wp .wpm.m2{top:62%;height:22%;opacity:.6;animation-duration:120s;animation-direction:reverse}
+@keyframes wdrift{to{transform:translate3d(-50%,0,0)}}
+#wp .wl{left:var(--x);top:-6vh;width:var(--s);height:var(--s);border-radius:0 100% 0 100%;background:var(--k);opacity:.5;will-change:transform;animation:wfall var(--d) linear var(--dl) infinite}
+@keyframes wfall{0%{transform:translate3d(0,0,0) rotate(0)}50%{transform:translate3d(var(--dx),58vh,0) rotate(calc(var(--rt)/2))}100%{transform:translate3d(calc(var(--dx)*-.4),114vh,0) rotate(var(--rt))}}
+#wp .wsh{left:0;top:14%;width:34px;height:34px;background:var(--shur) center/contain no-repeat;opacity:0;animation:wthrow 26s linear infinite}
+#wp .wsh.s2{top:31%;width:24px;height:24px;animation-delay:-13s;animation-duration:34s}
+@keyframes wthrow{0%,78%{opacity:0;transform:translate3d(-8vw,0,0) rotate(0)}80%,97%{opacity:.4}100%{opacity:0;transform:translate3d(108vw,-8vh,0) rotate(1620deg)}}
+#wp .wsx{right:2vw;bottom:3vh;width:110px;height:110px;background:var(--shur) center/contain no-repeat;opacity:.07;animation:wspin 40s linear infinite}
+@keyframes wspin{to{transform:rotate(360deg)}}
+#wp .wsh2{right:7vw;bottom:21vh;width:min(36vw,430px);aspect-ratio:520/420;background:var(--ship) center/contain no-repeat;opacity:.5;transform-origin:50% 90%;animation:wbob 7s ease-in-out infinite alternate}
+@keyframes wbob{from{transform:translate3d(0,0,0) rotate(-1.6deg)}to{transform:translate3d(0,9px,0) rotate(1.8deg)}}
+#wp .wpc{left:2vw;bottom:2vh;width:120px;height:120px;background:var(--comp) center/contain no-repeat;opacity:.13;animation:wspin 90s linear infinite}
+#wp .wvw{left:0;bottom:0;width:calc(100% + 600px);background-position:0 0,0 70px;background-size:600px 70px,100% 100%;background-repeat:repeat-x,no-repeat;will-change:transform}
+#wp .v1{height:calc(22vh + 70px);background-image:var(--w1),linear-gradient(var(--f1),var(--f1));animation:wslide 38s linear infinite}
+#wp .v2{height:calc(14vh + 70px);background-image:var(--w2),linear-gradient(var(--f2),var(--f2));animation:wslide 27s linear infinite reverse}
+#wp .v3{height:calc(5vh + 70px);background-image:var(--w3),linear-gradient(var(--f3),var(--f3));animation:wslide 19s linear infinite}
+@keyframes wslide{to{transform:translate3d(-600px,0,0)}}
+#wp .wsp{left:var(--x);top:var(--y);width:5px;height:5px;border-radius:50%;background:#fff;opacity:0;animation:wtw var(--d) ease-in-out var(--dl) infinite}
+@keyframes wtw{0%,100%{opacity:0;transform:scale(.4)}50%{opacity:.85;transform:scale(1.25)}}
+#wp .wgl{left:0;top:var(--y);width:var(--s);height:calc(var(--s)*.4);background:var(--gull) center/contain no-repeat;opacity:.5;animation:wglide var(--d) linear var(--dl) infinite}
+@keyframes wglide{from{transform:translate3d(-10vw,0,0)}25%{transform:translate3d(20vw,-14px,0)}50%{transform:translate3d(50vw,8px,0)}75%{transform:translate3d(80vw,-12px,0)}to{transform:translate3d(112vw,4px,0)}}
+[data-s=ninja] .k,[data-s=ninja] .card,[data-s=ninja] .w{background:rgba(251,246,234,.86)}[data-s=pirate] .k,[data-s=pirate] .card,[data-s=pirate] .w{background:rgba(251,242,220,.88)}
+html.peek body>*:not(#wp){visibility:hidden!important}html.peek #wp .wpv{opacity:.2}#wp .wph{left:50%;bottom:4vh;transform:translateX(-50%);padding:8px 16px;border-radius:99px;background:rgba(0,0,0,.6);color:#fff;font:13px/1.3 sans-serif;white-space:nowrap}
+#wp.noa *,#wp.noa{animation:none!important}#wp.pz *{animation-play-state:paused!important}
+@media(prefers-reduced-motion:reduce){#wp *{animation:none!important}}
+@media print{#wp{display:none!important}}
 </style></head><body>
-<a class="skip" href="#v">Aller au contenu</a><div id="bg"></div><div id="sp"><svg class="lgo" viewBox="0 0 48 48" role="img" aria-label="PTUA"><circle cx="24" cy="24" r="22" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="24" cy="24" r="17.5" fill="none" stroke="currentColor" stroke-width="1" opacity=".55"/><text x="24" y="33" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="26" font-weight="700" fill="currentColor">§</text></svg><b>PTUA</b></div><header><div class="lg"><svg class="lgo" viewBox="0 0 48 48" role="img" aria-label="PTUA"><circle cx="24" cy="24" r="22" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="24" cy="24" r="17.5" fill="none" stroke="currentColor" stroke-width="1" opacity=".55"/><text x="24" y="33" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="26" font-weight="700" fill="currentColor">§</text></svg><h1>Gestionnaire juridique et contractuel PTUA <small>v9.13</small> <span id="sys" onclick="go('sauv')"></span></h1></div><div class="hr"><b id="ht">--:--:--</b><small id="hdt"></small></div>
+<a class="skip" href="#v">Aller au contenu</a><div id="bg"></div><div id="sp"><svg class="lgo" viewBox="0 0 48 48" role="img" aria-label="PTUA"><circle cx="24" cy="24" r="22" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="24" cy="24" r="17.5" fill="none" stroke="currentColor" stroke-width="1" opacity=".55"/><text x="24" y="33" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="26" font-weight="700" fill="currentColor">§</text></svg><b>PTUA</b></div><header><div class="lg"><svg class="lgo" viewBox="0 0 48 48" role="img" aria-label="PTUA"><circle cx="24" cy="24" r="22" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="24" cy="24" r="17.5" fill="none" stroke="currentColor" stroke-width="1" opacity=".55"/><text x="24" y="33" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="26" font-weight="700" fill="currentColor">§</text></svg><h1>Gestionnaire juridique et contractuel PTUA <small>v9.14</small> <span id="sys" onclick="go('sauv')"></span></h1></div><div class="hr"><b id="ht">--:--:--</b><small id="hdt"></small></div>
 <div class="hb"><button onclick="go('search')" aria-label="Rechercher" title="Rechercher" data-i="search"></button><button id="th" onclick="thMenu()"></button><button onclick="pinMenu()" aria-label="Code d’accès et verrouillage" title="Code d’accès et verrouillage" data-i="lock"></button><button onclick="menu()" aria-label="Autres actions" title="Autres actions" data-i="dots"></button></div>
 <input type="file" id="imp" hidden onchange="impJ(this)"></header>
 <div id="ins" hidden></div><nav id="nav"></nav><div id="al"></div><main id="v"></main><div id="lk" hidden><div class="lkb"><h2 style="margin:0">🔒 Application verrouillée</h2><small style="color:var(--m)">Données chiffrées sur cet appareil (AES-256)</small><button type="button" class="pri" id="fb" hidden onclick="unlFid()">🙂 Déverrouiller avec Face ID</button><form onsubmit="event.preventDefault();unl()"><input type="text" name="username" value="PTUA" autocomplete="username" hidden readonly><input id="pin" type="password" autocomplete="current-password" placeholder="Code d’accès" autocapitalize="off" spellcheck="false"><button class="pri" type="submit">Déverrouiller</button></form><small id="lke" style="color:var(--r)"></small></div></div>
@@ -282,7 +317,7 @@ th{font-size:12.5px}td,th{padding:12px 12px}
 <dialog id="cd"></dialog><dialog id="dv"></dialog><dialog id="dlg"><div id="dhd"><h3 id="dt"></h3><div id="dsub"></div></div><div id="df"></div><div class="row"><button onclick="$('#dlg').close()">Annuler</button><button class="pri" onclick="ok()">Enregistrer</button></div></dialog>
 <script>
 if(top!==self){try{top.location=self.location.href}catch(e){document.documentElement.innerHTML='';throw 0}}
-const APPV='9.13',MOB=()=>matchMedia('(max-width:700px)').matches,K='ptua_v3',$=s=>document.querySelector(s),day=864e5,today=new Date(new Date().toDateString());
+const APPV='9.14',MOB=()=>matchMedia('(max-width:700px)').matches,K='ptua_v3',$=s=>document.querySelector(s),day=864e5,today=new Date(new Date().toDateString());
 // ===== v8.7 — Moniteur d’activité : métadonnées uniquement (heure, serveur, taille), jamais le contenu des données =====
 const MON={net:[],ev:[],t0:Date.now(),sent:0,recv:0,hosts:{}};
 (()=>{const f0=window.fetch.bind(window);window.fetch=async(u,o)=>{const t=performance.now(),rec={at:Date.now(),m:(o&&o.method)||'GET',host:'?',path:'',bl:0,st:0,ms:0,rl:0};
@@ -496,11 +531,61 @@ const H=document.documentElement,lbl=()=>{const b=$('#th');b.innerHTML=ic('pal')
 // v9.8 — quatre thèmes : Classique clair, Classique sombre, Ninja, Pirate (préférence propre à chaque appareil)
 const THN={clair:'Classique clair',sombre:'Classique sombre',ninja:'Ninja',pirate:'Pirate'};
 const thCur=()=>H.dataset.s||(H.dataset.t=='dark'?'sombre':'clair');
-function thSet(k){if(!THN[k])k='clair';delete H.dataset.t;delete H.dataset.s;if(k=='sombre')H.dataset.t='dark';else if(k!='clair')H.dataset.s=k;try{localStorage.setItem('ptua_theme',k=='sombre'?'dark':'');localStorage.setItem('ptua_skin',k=='ninja'||k=='pirate'?k:'')}catch(e){}lbl();if(typeof render=='function'&&db)render()}
-async function thMenu(){const K=['clair','sombre','ninja','pirate'],I={clair:'☀️',sombre:'🌙',ninja:'🥷',pirate:'🏴‍☠️'},D={clair:'',sombre:'',ninja:' — encre, parchemin et flamme',pirate:' — océan, bois et parchemin'},c=thCur();
- const r=await choose('🎨 Thème de l’application',K.map(k=>`${I[k]} ${THN[k]}${D[k]}${k==c?' ✓':''}`));if(r>=0)thSet(K[r])}
+function thSet(k){if(!THN[k])k='clair';delete H.dataset.t;delete H.dataset.s;if(k=='sombre')H.dataset.t='dark';else if(k!='clair')H.dataset.s=k;try{localStorage.setItem('ptua_theme',k=='sombre'?'dark':'');localStorage.setItem('ptua_skin',k=='ninja'||k=='pirate'?k:'')}catch(e){}lbl();wpApply();if(typeof render=='function'&&db)render()}
+async function thMenu(){const K=['clair','sombre','ninja','pirate'],I={clair:'☀️',sombre:'🌙',ninja:'🥷',pirate:'🏴‍☠️'},D={clair:'',sombre:'',ninja:' — encre, parchemin et flamme (fond animé)',pirate:' — océan, bois et parchemin (fond animé)'},c=thCur(),own=!!wpGet(),A=[['🖼️ '+(own?'Changer ma photo de fond':'Mon fond d’écran (ma photo)'),wpPick]];if(own)A.push(['🚫 Retirer ma photo de fond',wpClear]);if(H.dataset.s||own)A.unshift(['🌅 Admirer le décor (masquer l’application)',wpPeek]);A.push(['✨ Animations du fond : '+(wpAnimOn()?'activées ✓ (toucher pour couper)':'coupées (toucher pour activer)'),wpToggle]);
+ const r=await choose('🎨 Thème de l’application',[...K.map(k=>`${I[k]} ${THN[k]}${D[k]}${k==c?' ✓':''}`),...A.map(x=>x[0])]);if(r<0)return;if(r<K.length)thSet(K[r]);else A[r-K.length][1]()}
 function th(){if(H.dataset.t=='dark')delete H.dataset.t;else H.dataset.t='dark';try{localStorage.setItem('ptua_theme',H.dataset.t||'')}catch(e){}lbl()}
 try{const k=localStorage.getItem('ptua_skin');if(k=='ninja'||k=='pirate')H.dataset.s=k;else if(localStorage.getItem('ptua_theme')=='dark')H.dataset.t='dark'}catch(e){}lbl();
+// ===== v9.14 — Fonds d’écran animés (créations originales) pour les thèmes Ninja et Pirate, et fond d’écran personnel (votre propre photo) =====
+// Rien n’est envoyé sur Internet : les décors sont dessinés par l’application ; la photo choisie reste sur l’appareil (elle n’est ni synchronisée ni sauvegardée dans le cloud).
+const WPK='ptua_wpimg',WPA='ptua_wpanim',WPRX=/^data:image\/jpeg;base64,[A-Za-z0-9+\/=]+$/;
+const wpU=s=>'data:image/svg+xml,'+encodeURIComponent(s);
+function wpTiers(cx,y0,n,w0){let g='';for(let i=0;i<n;i++){const w=w0-i*(w0/(n+1.4)),y=y0-i*46;g+=`<rect x="${cx-w*.55}" y="${y-34}" width="${w*1.1}" height="34"/><path d="M${cx-w} ${y-34}Q${cx-w*.45} ${y-50} ${cx} ${y-66}Q${cx+w*.45} ${y-50} ${cx+w} ${y-34}Q${cx+w*.45} ${y-42} ${cx} ${y-42}Q${cx-w*.45} ${y-42} ${cx-w} ${y-34}Z"/>`}return g+`<rect x="${cx-3}" y="${y0-n*46-60}" width="6" height="42"/>`}
+function wpBamboo(){let g='';[[56,14],[118,11],[176,13],[1520,12],[1568,15]].forEach(([x,w],k)=>{g+=`<rect x="${x}" y="0" width="${w}" height="900" rx="4"/>`;for(let y=70+k*23;y<900;y+=128)g+=`<rect x="${x-3}" y="${y}" width="${w+6}" height="6" rx="3" opacity=".8"/>`;for(let y=210+k*37;y<760;y+=210){const s=k<3?1:-1;g+=`<path d="M${x+w/2} ${y}q${46*s} -22 ${96*s} 4q${-48*s} 8 ${-96*s} -4z"/><path d="M${x+w/2} ${y+8}q${40*s} 10 ${80*s} 40q${-44*s} -14 ${-80*s} -40z"/>`}});return g}
+function wpScene(k){
+ if(k=='ninja')return wpU(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMax slice"><defs><linearGradient id="s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6ecd6"/><stop offset="1" stop-color="#ead6b0"/></linearGradient></defs><rect width="1600" height="900" fill="url(#s)"/><circle cx="1170" cy="250" r="138" fill="#b8460e" opacity=".22"/><circle cx="1170" cy="250" r="172" fill="none" stroke="#b8460e" stroke-width="2" opacity=".18"/><circle cx="1170" cy="250" r="204" fill="none" stroke="#b8460e" stroke-width="1" opacity=".12"/>
+ <path d="M0 640L120 560 210 610 340 500 470 600 560 540 700 640 820 560 960 650 1100 540 1230 640 1360 570 1480 640 1600 590V900H0Z" fill="#4a3a2e" opacity=".10"/>
+ <path d="M0 735C150 650 260 715 380 665S620 610 760 700 1020 735 1160 650 1440 650 1600 715V900H0Z" fill="#3b2f27" opacity=".15"/>
+ <g fill="#1f1a15" opacity=".30">${wpTiers(1290,690,4,118)}</g>
+ <path d="M0 815C200 760 380 800 560 780S900 750 1100 790 1450 770 1600 800V900H0Z" fill="#2a211b" opacity=".22"/>
+ <g fill="#2f4a2a" opacity=".24">${wpBamboo()}</g></svg>`);
+ if(k=='pirate')return wpU(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMax slice"><defs><linearGradient id="a" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f1e4c3"/><stop offset="1" stop-color="#f7d98c"/></linearGradient><linearGradient id="b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f7fb8"/><stop offset="1" stop-color="#0a2f52"/></linearGradient></defs><rect width="1600" height="900" fill="url(#a)"/>
+ <g fill="#fff" opacity=".55"><ellipse cx="260" cy="170" rx="150" ry="26"/><ellipse cx="350" cy="148" rx="95" ry="24"/><ellipse cx="1180" cy="250" rx="170" ry="28"/><ellipse cx="1280" cy="226" rx="100" ry="24"/></g>
+ <circle cx="520" cy="610" r="120" fill="#e8721c" opacity=".34"/><circle cx="520" cy="610" r="190" fill="#f5d77a" opacity=".22"/>
+ <g fill="#2b1d0e" opacity=".22"><path d="M30 640Q150 570 300 630 360 600 420 640Z"/><path d="M1380 640Q1450 590 1560 625L1600 640Z"/><path d="M110 610 108 560M110 560q-34 -18 -64 -2M110 560q30 -24 66 -6M110 562q4 -30 40 -38" stroke="#2b1d0e" stroke-width="5" fill="none"/></g>
+ <rect y="640" width="1600" height="260" fill="url(#b)" opacity=".5"/><rect y="638" width="1600" height="4" fill="#fff" opacity=".35"/></svg>`);
+ return''}
+const wpShip=()=>wpU(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 420"><g fill="#2b1d0e"><path d="M40 300Q70 372 150 384L420 384Q480 360 500 292L460 286 90 286Z"/><rect x="98" y="262" width="324" height="26"/><rect x="250" y="40" width="9" height="244"/><rect x="132" y="86" width="8" height="200"/><rect x="372" y="104" width="8" height="182"/><path d="M500 292 560 262 500 270Z"/>
+ <path d="M168 96Q254 132 342 96L342 224Q254 250 168 224Z" opacity=".9"/><path d="M62 130Q138 160 214 130L214 236Q138 260 62 236Z" opacity=".85"/><path d="M290 150Q372 180 450 150L450 244Q372 270 290 244Z" opacity=".85"/><path d="M259 40 L320 58 259 76Z"/></g><g fill="#fbf2dc" opacity=".35"><circle cx="170" cy="348" r="7"/><circle cx="232" cy="348" r="7"/><circle cx="294" cy="348" r="7"/><circle cx="356" cy="348" r="7"/></g></svg>`);
+const wpWave=(c,a)=>wpU(`<svg xmlns="http://www.w3.org/2000/svg" width="600" height="70" viewBox="0 0 600 70"><path d="M0 34Q75 4 150 34T300 34T450 34T600 34V70H0Z" fill="${c}" opacity="${a}"/></svg>`);
+const wpGull=()=>wpU(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 24"><path d="M2 16Q15 0 30 14Q45 0 58 16" fill="none" stroke="#2b1d0e" stroke-width="3.2" stroke-linecap="round"/></svg>`);
+const wpShur=()=>wpU(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill-rule="evenodd" fill="#1f1a15" d="M50 2 62 38 98 50 62 62 50 98 38 62 2 50 38 38ZM50 40a10 10 0 1 0 .1 0Z"/></svg>`);
+const wpComp=()=>wpU(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><g fill="none" stroke="#0d4a7a" stroke-width="3"><circle cx="100" cy="100" r="92"/><circle cx="100" cy="100" r="76" stroke-width="1.5"/></g><g fill="#0d4a7a"><path d="M100 6 112 88 194 100 112 112 100 194 88 112 6 100 88 88Z"/></g><g fill="#d4a017"><path d="M100 30 106 94 170 100 106 106 100 170 94 106 30 100 94 94Z" transform="rotate(45 100 100)"/></g></svg>`);
+function wpGet(){try{const v=localStorage.getItem(WPK);return v&&v.length<3e6&&WPRX.test(v)?v:''}catch(e){return''}}
+const wpAnimOn=()=>{try{return localStorage.getItem(WPA)!='0'}catch(e){return true}};
+const wpR=(a,b)=>a+Math.random()*(b-a);
+function wpApply(){let el=$('#wp');if(!el){document.body.insertAdjacentHTML('afterbegin','<div id="wp" aria-hidden="true"></div>');el=$('#wp')}
+ const s=H.dataset.s||'',img=wpGet(),mob=matchMedia('(max-width:700px)').matches;if(img)H.dataset.wp='1';else delete H.dataset.wp;
+ el.className=(wpAnimOn()?'':'noa ')+(img?'own':s)+(H.dataset.t=='dark'?' dk':'');let h='';
+ if(img)h+=`<div class="wpi" style="background-image:url('${img}')"></div>`;else if(s=='ninja'||s=='pirate')h+=`<div class="wpi" style="background-image:url('${wpScene(s)}')"></div>`;
+ if(!img&&s=='ninja'){h+='<div class="wpm"></div><div class="wpm m2"></div><i class="wsh"></i><i class="wsh s2"></i><div class="wsx"></div>';const n=mob?9:16,K=['#c4501a','#a3211a','#b9812a','#8a3b12'];for(let i=0;i<n;i++)h+=`<i class="wl" style="--x:${wpR(0,100).toFixed(1)}vw;--s:${wpR(9,20).toFixed(0)}px;--d:${wpR(14,28).toFixed(1)}s;--dl:-${wpR(0,26).toFixed(1)}s;--dx:${wpR(-18,22).toFixed(0)}vw;--rt:${wpR(300,900).toFixed(0)}deg;--k:${K[i%4]}"></i>`}
+ if(!img&&s=='pirate'){h+='<div class="wsh2"></div><div class="wpc"></div><div class="wvw v1"></div><div class="wvw v2"></div><div class="wvw v3"></div>';const n=mob?7:12;for(let i=0;i<n;i++)h+=`<i class="wsp" style="--x:${wpR(2,98).toFixed(1)}vw;--y:${wpR(70,98).toFixed(1)}vh;--d:${wpR(2.4,5.5).toFixed(1)}s;--dl:-${wpR(0,5).toFixed(1)}s"></i>`;
+  for(let i=0;i<(mob?2:3);i++)h+=`<i class="wgl" style="--y:${wpR(8,38).toFixed(0)}vh;--d:${wpR(38,70).toFixed(0)}s;--dl:-${wpR(0,60).toFixed(0)}s;--s:${wpR(26,44).toFixed(0)}px"></i>`}
+ h+='<div class="wpv"></div>';el.innerHTML=h;
+ const st=el.style;if(!img&&s=='ninja'){st.setProperty('--shur',`url('${wpShur()}')`)}if(!img&&s=='pirate'){st.setProperty('--ship',`url('${wpShip()}')`);st.setProperty('--f1','rgba(13,74,122,.30)');st.setProperty('--f2','rgba(31,127,184,.22)');st.setProperty('--f3','rgba(10,47,82,.34)');st.setProperty('--w1',`url('${wpWave('#0d4a7a','.30')}')`);st.setProperty('--w2',`url('${wpWave('#1f7fb8','.22')}')`);st.setProperty('--w3',`url('${wpWave('#0a2f52','.34')}')`);st.setProperty('--gull',`url('${wpGull()}')`);st.setProperty('--comp',`url('${wpComp()}')`)}}
+document.addEventListener('visibilitychange',()=>{$('#wp')?.classList.toggle('pz',document.hidden)});
+async function wpFile(f){try{if(!f||!/^image\/(jpeg|png|webp|heic|heif|gif|bmp)$/i.test(f.type||'image/jpeg'))return alert('Choisissez une photo (JPEG, PNG ou WebP).');if(f.size>40e6)return alert('Photo trop volumineuse (40 Mo maximum).');
+  let bmp;try{bmp=await createImageBitmap(f)}catch(e){bmp=await new Promise((ok,ko)=>{const u=URL.createObjectURL(f),im=new Image();im.onload=()=>{URL.revokeObjectURL(u);ok(im)};im.onerror=()=>{URL.revokeObjectURL(u);ko(new Error('Photo illisible'))};im.src=u})}
+  const w0=bmp.width||bmp.naturalWidth,h0=bmp.height||bmp.naturalHeight,mx=matchMedia('(max-width:700px)').matches?1280:1600,k=Math.min(1,mx/Math.max(w0,h0)),cv=document.createElement('canvas');cv.width=Math.max(1,Math.round(w0*k));cv.height=Math.max(1,Math.round(h0*k));cv.getContext('2d').drawImage(bmp,0,0,cv.width,cv.height);if(bmp.close)bmp.close();
+  let q=.8,out='';for(;q>=.45;q-=.1){out=cv.toDataURL('image/jpeg',q);if(out.length<1.6e6)break}
+  if(!WPRX.test(out)||out.length>=3e6)throw new Error('Photo trop lourde');
+  try{localStorage.setItem(WPK,out)}catch(e){throw new Error('Espace de stockage insuffisant sur cet appareil')}
+  wpApply();render()}catch(e){alert('Fond d’écran impossible : '+((e&&e.message)||'erreur'))}}
+function wpPick(){const i=document.createElement('input');i.type='file';i.accept='image/*';i.style.display='none';document.body.appendChild(i);i.onchange=()=>{const f=i.files[0];i.remove();if(f)wpFile(f)};i.click();setTimeout(()=>i.remove(),12e4)}
+function wpPeek(){const el=$('#wp');if(!el||H.classList.contains('peek'))return;H.classList.add('peek');const t=document.createElement('div');t.className='wph';t.textContent='Touchez l’écran pour revenir';el.appendChild(t);let tm;const end=()=>{H.classList.remove('peek');t.remove();document.removeEventListener('pointerdown',end,true);document.removeEventListener('keydown',end,true);clearTimeout(tm)};tm=setTimeout(end,3e4);setTimeout(()=>{document.addEventListener('pointerdown',end,true);document.addEventListener('keydown',end,true)},500)}
+function wpClear(){try{localStorage.removeItem(WPK)}catch(e){}wpApply()}
+function wpToggle(){try{localStorage.setItem(WPA,wpAnimOn()?'0':'1')}catch(e){}wpApply()}
+wpApply();
 function tick(){const d=new Date();$('#ht').textContent=d.toLocaleTimeString('fr-FR');$('#hdt').textContent=d.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long',year:'numeric'})}
 tick();setInterval(tick,1000);
 
@@ -1866,7 +1951,7 @@ async function icsExp(){
  db.os.forEach(o=>{const f=osFin(o);if(!f||f<today)return;
   ev.push({id:'o'+o.id,d:f,t:`PTUA – Fin de durée OS ${o.num||o.type} · ${mn(o.marche)}`,x:dis?'':(o.note||''),al:[15,3]})});
  if(!ev.length)return alert('Aucune échéance future à ajouter (garanties actives avec une date d’échéance, fins prévues de marchés, durées d’OS).');
- const st=new Date().toISOString().replace(/[-:]/g,'').slice(0,15)+'Z',L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//PTUA//Gestionnaire PTUA v9.13//FR','CALSCALE:GREGORIAN','METHOD:PUBLISH','X-WR-CALNAME:PTUA – échéances'];
+ const st=new Date().toISOString().replace(/[-:]/g,'').slice(0,15)+'Z',L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//PTUA//Gestionnaire PTUA v9.14//FR','CALSCALE:GREGORIAN','METHOD:PUBLISH','X-WR-CALNAME:PTUA – échéances'];
  const al=(t,tr)=>L.push('BEGIN:VALARM','ACTION:DISPLAY','DESCRIPTION:'+icsE(t),'TRIGGER:'+tr,'END:VALARM');
  ev.forEach(e=>{L.push('BEGIN:VEVENT',`UID:ptua-${e.id}-${icd(e.d)}@ptua.app`,'DTSTAMP:'+st,'DTSTART;VALUE=DATE:'+icd(e.d),'DTEND;VALUE=DATE:'+icd(new Date(e.d.getTime()+day)),'SUMMARY:'+icsE(e.t));
   if(e.x)L.push('DESCRIPTION:'+icsE(e.x));L.push('TRANSP:TRANSPARENT');
