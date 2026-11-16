@@ -12,9 +12,12 @@ with sync_playwright() as p:
   pg.evaluate("db.marches.push({id:'m1',num:'M-1',titulaire:'T'},{id:'m2',num:'M-2',titulaire:'T2'});db.garanties.push({id:'g1',marche:'m1',type:'Soumission',statut:'Active'});save();window.__ch=0;const c0=choose;choose=(...a)=>{window.__ch++;return c0(...a)};0")
   def attach(e,i,f,wait_s):
     pg.evaluate(f"go('{e}');edit('{e}','{i}')");pg.wait_for_timeout(300);pg.set_input_files('#fa',f);pg.evaluate("ok()")
+    pg.wait_for_timeout(500)
     for _ in range(wait_s*2):
       pg.wait_for_timeout(500)
-      if not pg.evaluate("!!$('#bz')&&$('#cd').open"):break
+      if not pg.evaluate("JOB.run"):break
+    m=pg.evaluate("JOB.msg?JOB.msg.t+'\\n'+JOB.msg.d:''")
+    if m:alerts.append(m)
   def check(e,i):
     return pg.evaluate("""async([e,i])=>{const x=db[e].find(z=>z.id==i),L=await pdfLib();let pages=0,mx=0,names=[];for(const f of x.files||[]){const b=await fLoad(f);mx=Math.max(mx,b.length);names.push(f.n);if(f.t=='application/pdf'){const d=await L.getDocument({data:b,isEvalSupported:false}).promise;pages+=d.numPages;d.destroy()}}return{n:(x.files||[]).length,pages,mx,first:names[0],last:names[names.length-1]}}""",[e,i])
   # A) 9 Mo, 12 pages : aucune question, compression et découpage automatiques
@@ -37,14 +40,16 @@ with sync_playwright() as p:
   pg.evaluate("go('marches');edit('marches','m3')");pg.wait_for_timeout(300);pg.set_input_files('#fa',D+'/b700.pdf');pg.evaluate("ok()")
   for _ in range(60):
     pg.wait_for_timeout(500)
-    if pg.evaluate("!!$('#bzs')&&/partie/.test($('#bz').textContent)"):break
-  P('   bouton Arrêter affiché :',pg.evaluate("!!$('#bzs')"),'| estimation affichée :',pg.evaluate("$('#bz').textContent")[:110])
-  pg.click('#bzs')
+    if pg.evaluate("!!$('#job [data-j=s]')&&/partie/.test($('#job').textContent)"):break
+  P('   bouton Arrêter affiché :',pg.evaluate("!!$('#job [data-j=s]')"),'| estimation affichée :',pg.evaluate("$('#job .jd').textContent")[:110])
+  pg.click('#job [data-j=s]')
   for _ in range(60):
     pg.wait_for_timeout(500)
-    if not pg.evaluate("!!$('#bz')&&$('#cd').open"):break
+    if not pg.evaluate("JOB.run"):break
+  m=pg.evaluate("JOB.msg?JOB.msg.d:''")
+  if m:alerts.append(m)
   r=check('marches','m3');P('D) arrêt : pages déjà traitées conservées :',r['pages']>0 and r['pages']<700,'(',r['pages'],') | message :',[a for a in alerts if 'arrêtée' in a][:1] and 'oui')
   # E) petit PDF et photo inchangés
-  pg.evaluate("""(async()=>{const c=document.createElement('canvas');c.width=c.height=50;const bl=await new Promise(r=>c.toBlob(r,'image/jpeg',.9));await addFiles('marches','m3',[new File([bl],'photo.jpg',{type:'image/jpeg'}),new File([mkPdf([{w:8,h:8,pw:8,ph:8,bytes:new Uint8Array(await bl.arrayBuffer())}])],'petit.pdf',{type:'application/pdf'})])})()""");pg.wait_for_timeout(2500)
+  pg.evaluate("""(async()=>{const c=document.createElement('canvas');c.width=c.height=50;const bl=await new Promise(r=>c.toBlob(r,'image/jpeg',.9));addFiles('marches','m3',[new File([bl],'photo.jpg',{type:'image/jpeg'}),new File([mkPdf([{w:8,h:8,pw:8,ph:8,bytes:new Uint8Array(await bl.arrayBuffer())}])],'petit.pdf',{type:'application/pdf'})])})()""");pg.wait_for_timeout(3500)
   P('E) photo et petit PDF joints tels quels :',pg.evaluate("db.marches.find(m=>m.id=='m3').files.slice(-2).map(f=>f.n).join(' + ')"))
   P('erreurs :',errs[:5]);b.close()

@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob: mediastream:; font-src 'self'; connect-src 'self' https://test.nextdns.io https://raw.githubusercontent.com https://rjange-96.github.io https://iofbwpzhptctyelmylkz.supabase.co; object-src 'none'; base-uri 'none'; form-action 'none'; worker-src 'self'; manifest-src 'self'">
 <meta name="referrer" content="no-referrer">
 <link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-180.png"><link rel="icon" href="icon-192.png">
-<title>Gestionnaire juridique et contractuel PTUA v9.6</title>
+<title>Gestionnaire juridique et contractuel PTUA v9.7</title>
 <style>
 :root{--bg:#eef3fb;--c:rgba(255,255,255,.74);--t:#16213a;--m:#5d6c8a;--b:rgba(60,80,130,.16);--p:#2563eb;--r:#e11d48;--o:#d97706;--y:#a16207;--g:#059669;--g1:#1e3a8a;--g2:#7c3aed;--h2:#1d4ed8;--in:rgba(255,255,255,.95);--hd:rgba(255,255,255,.78);--sh:0 14px 34px -16px rgba(37,60,120,.35);--gl:rgba(37,99,235,.2);--gl2:rgba(37,99,235,.35);--cf:rgba(37,99,235,.5);--cb:linear-gradient(135deg,rgba(37,99,235,.10),rgba(124,58,237,.16));--hv:rgba(37,99,235,.06);--dg:rgba(255,255,255,.98);--ob:#fff;--bt:#fff;--sp:radial-gradient(circle at 50% 45%,#fff,#d6e4ff);--bd:#0f1b3a66;color-scheme:light}
 [data-t=dark]{--bg:#070b17;--c:rgba(18,26,48,.62);--t:#e8eefc;--m:#8b98b8;--b:rgba(148,163,184,.2);--p:#22d3ee;--r:#ff6b81;--o:#fbbf24;--y:#facc15;--g:#34d399;--g1:#fff;--g2:#67e8f9;--h2:#a5f3fc;--in:rgba(6,10,24,.7);--hd:rgba(7,11,23,.72);--sh:0 14px 34px -12px #000a;--gl:#22d3ee55;--gl2:#22d3ee55;--cf:rgba(103,232,249,.55);--cb:linear-gradient(135deg,rgba(34,211,238,.16),rgba(99,102,241,.2));--hv:rgba(34,211,238,.07);--dg:#0c1328f2;--ob:#0f172a;--bt:#04101f;--sp:radial-gradient(circle at 50% 45%,#16205a,#050810);--bd:#02050dcc;color-scheme:dark}
@@ -211,8 +211,18 @@ th{font-size:12.5px}td,th{padding:12px 12px}
 @media(prefers-reduced-motion:reduce){#sp{display:none}}
 .card input[type=date]{width:auto;min-width:170px}
 @media(prefers-contrast:more){:root{--b:#8a94a8}[data-t=dark]{--b:#6b7894}.b{border:1px solid currentColor}}
+
+/* v9.7 — jauge de progression en arrière-plan */
+#job{position:fixed;right:20px;bottom:20px;z-index:50;width:min(360px,calc(100vw - 24px));background:var(--c);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid var(--b);border-radius:16px;box-shadow:var(--sh,0 10px 30px rgba(0,0,0,.18));padding:12px 14px;font-size:13px;color:var(--t)}
+#job[hidden]{display:none}#job.min{width:auto;padding:0;border-radius:999px}
+#job .jh{display:flex;align-items:center;gap:8px;justify-content:space-between;margin-bottom:8px}#job .jh b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#job .jx{border:0;background:transparent;padding:4px 8px;min-height:0;font-size:15px;cursor:pointer;color:var(--t)}#job.min .jx{padding:10px 16px;font-weight:700;font-size:14px}
+#job .jb{height:10px;border-radius:999px;background:color-mix(in srgb,var(--p) 14%,transparent);overflow:hidden}#job .jb i{display:block;height:100%;background:var(--p);border-radius:999px;transition:width .3s}
+#job .jd{margin:6px 0 0;color:var(--m)}#job .jr{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}#job .jr button{padding:6px 12px;min-height:0;font-size:13px}#job small{display:block;margin-top:6px;color:var(--m);font-size:11px}#job .js+.js{margin-top:12px;padding-top:10px;border-top:1px solid var(--b)}
+@media(max-width:700px){#job{left:10px;right:10px;width:auto;bottom:calc(78px + env(safe-area-inset-bottom))}#job.min{left:auto}}
+@media print{#job{display:none!important}}
 </style></head><body>
-<a class="skip" href="#v">Aller au contenu</a><div id="bg"></div><div id="sp"><svg class="lgo" viewBox="0 0 48 48" role="img" aria-label="PTUA"><circle cx="24" cy="24" r="22" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="24" cy="24" r="17.5" fill="none" stroke="currentColor" stroke-width="1" opacity=".55"/><text x="24" y="33" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="26" font-weight="700" fill="currentColor">§</text></svg><b>PTUA</b></div><header><div class="lg"><svg class="lgo" viewBox="0 0 48 48" role="img" aria-label="PTUA"><circle cx="24" cy="24" r="22" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="24" cy="24" r="17.5" fill="none" stroke="currentColor" stroke-width="1" opacity=".55"/><text x="24" y="33" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="26" font-weight="700" fill="currentColor">§</text></svg><h1>Gestionnaire juridique et contractuel PTUA <small>v9.6</small> <span id="sys" onclick="go('sauv')"></span></h1></div><div class="hr"><b id="ht">--:--:--</b><small id="hdt"></small></div>
+<a class="skip" href="#v">Aller au contenu</a><div id="bg"></div><div id="sp"><svg class="lgo" viewBox="0 0 48 48" role="img" aria-label="PTUA"><circle cx="24" cy="24" r="22" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="24" cy="24" r="17.5" fill="none" stroke="currentColor" stroke-width="1" opacity=".55"/><text x="24" y="33" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="26" font-weight="700" fill="currentColor">§</text></svg><b>PTUA</b></div><header><div class="lg"><svg class="lgo" viewBox="0 0 48 48" role="img" aria-label="PTUA"><circle cx="24" cy="24" r="22" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="24" cy="24" r="17.5" fill="none" stroke="currentColor" stroke-width="1" opacity=".55"/><text x="24" y="33" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="26" font-weight="700" fill="currentColor">§</text></svg><h1>Gestionnaire juridique et contractuel PTUA <small>v9.7</small> <span id="sys" onclick="go('sauv')"></span></h1></div><div class="hr"><b id="ht">--:--:--</b><small id="hdt"></small></div>
 <div class="hb"><button onclick="go('search')" aria-label="Rechercher" title="Rechercher" data-i="search"></button><button id="th" onclick="th()"></button><button onclick="pinMenu()" aria-label="Code d’accès et verrouillage" title="Code d’accès et verrouillage" data-i="lock"></button><button onclick="menu()" aria-label="Autres actions" title="Autres actions" data-i="dots"></button></div>
 <input type="file" id="imp" hidden onchange="impJ(this)"></header>
 <div id="ins" hidden></div><nav id="nav"></nav><div id="al"></div><main id="v"></main><div id="lk" hidden><div class="lkb"><h2 style="margin:0">🔒 Application verrouillée</h2><small style="color:var(--m)">Données chiffrées sur cet appareil (AES-256)</small><button type="button" class="pri" id="fb" hidden onclick="unlFid()">🙂 Déverrouiller avec Face ID</button><form onsubmit="event.preventDefault();unl()"><input type="text" name="username" value="PTUA" autocomplete="username" hidden readonly><input id="pin" type="password" autocomplete="current-password" placeholder="Code d’accès" autocapitalize="off" spellcheck="false"><button class="pri" type="submit">Déverrouiller</button></form><small id="lke" style="color:var(--r)"></small></div></div>
@@ -220,7 +230,7 @@ th{font-size:12.5px}td,th{padding:12px 12px}
 <dialog id="cd"></dialog><dialog id="dv"></dialog><dialog id="dlg"><h3 id="dt" style="margin-top:0"></h3><div id="df"></div><div class="row"><button onclick="$('#dlg').close()">Annuler</button><button class="pri" onclick="ok()">Enregistrer</button></div></dialog>
 <script>
 if(top!==self){try{top.location=self.location.href}catch(e){document.documentElement.innerHTML='';throw 0}}
-const APPV='9.6',MOB=()=>matchMedia('(max-width:700px)').matches,K='ptua_v3',$=s=>document.querySelector(s),day=864e5,today=new Date(new Date().toDateString());
+const APPV='9.7',MOB=()=>matchMedia('(max-width:700px)').matches,K='ptua_v3',$=s=>document.querySelector(s),day=864e5,today=new Date(new Date().toDateString());
 // ===== v8.7 — Moniteur d’activité : métadonnées uniquement (heure, serveur, taille), jamais le contenu des données =====
 const MON={net:[],ev:[],t0:Date.now(),sent:0,recv:0,hosts:{}};
 (()=>{const f0=window.fetch.bind(window);window.fetch=async(u,o)=>{const t=performance.now(),rec={at:Date.now(),m:(o&&o.method)||'GET',host:'?',path:'',bl:0,st:0,ms:0,rl:0};
@@ -452,7 +462,7 @@ function banner(){
  const n=db.garanties.filter(g=>{const a=gal(g);return a&&a.j<=30}).length,nA=db.assurances.filter(a=>{const x=galA(a);return x&&x.j<=30}).length;let le=0;try{le=+localStorage.getItem('ptua_exp')||0}catch(e){}
  let h='';if(nA)h+=`<div class="al r" onclick="go('assurances')">☂️ ${nA} assurance(s) à renouveler (échéance ≤ 30 jours ou dépassée) — voir les assurances</div>`;if(UPD&&cmpV(UPD.version,APPV)>0)h+=`<div class="al ${UPD.importance=='securite'?'r':'o'}" onclick="showUpd()">🔄 Mise à jour v${esc(UPD.version)} disponible${UPD.importance=='securite'?' (sécurité, recommandée)':''} — toucher pour voir et installer</div>`;if(SY&&SY.last&&Date.now()-SY.last>3*day&&(db.marches.length||db.garanties.length))h+=`<div class="al o" onclick="syncNow(true)">☁️ Sauvegarde cloud non effectuée depuis plus de 3 jours — toucher pour réessayer</div>`;if(n)h+=`<div class="al r" onclick="go('dash')">⚠️ ${n} garantie(s) à surveiller (échéance ≤ 30 jours ou dépassée) — voir le tableau de bord</div>`;
  if((db.marches.length||db.garanties.length)&&Date.now()-le>7*day&&!(SY&&SY.last&&Date.now()-SY.last<3*day))h+=`<div class="al o" onclick="expJ()">💾 Aucune sauvegarde depuis plus de 7 jours — cliquer pour exporter maintenant</div>`;
- if(!ENC&&(db.marches.length||db.garanties.length))h+=`<div class="al r" onclick="pinMenu()">🔓 Vos données ne sont pas chiffrées sur cet appareil — toucher pour activer le code et le chiffrement</div>`;const w=constats().filter(c=>c.n=='warn').length;if(w)h+=`<div class="al o" onclick="go('veille')">⚖️ ${w} point(s) de conformité à vérifier — ouvrir la veille juridique</div>`;{const cn=cfAlertN();if(cn)h+=`<div class="al o" onclick="go('conf')">✅ ${cn} point(s) de conformité à traiter (pièces en retard, garanties, assurances)</div>`}if(diff(today,D(RF().lc||RF().v))>30)h+=`<div class="al o" onclick="go('veille')">⚖️ Référentiel juridique non vérifié depuis plus de 30 jours</div>`;if(!db.marches.length&&!db.garanties.length&&snaps().length)h+=`<div class="al r" onclick="go('sauv')">💾 Aucune donnée affichée, mais ${snaps().length} point(s) de sauvegarde sont disponibles — cliquer pour restaurer</div>`;$('#al').innerHTML=h;{const A=[...$('#al').children];if(A.length>2){const d=document.createElement('details');d.className='alx';d.open=!!window.alxO;d.ontoggle=()=>window.alxO=d.open;d.innerHTML=`<summary>${A.length-2} autre(s) alerte(s)</summary>`;A.slice(2).forEach(x=>d.appendChild(x));$('#al').appendChild(d)}}document.title=(n?'('+n+') ':'')+'Gestionnaire PTUA v'+APPV;
+ if(!ENC&&(db.marches.length||db.garanties.length))h+=`<div class="al r" onclick="pinMenu()">🔓 Vos données ne sont pas chiffrées sur cet appareil — toucher pour activer le code et le chiffrement</div>`;const w=constats().filter(c=>c.n=='warn').length;if(w)h+=`<div class="al o" onclick="go('veille')">⚖️ ${w} point(s) de conformité à vérifier — ouvrir la veille juridique</div>`;{const cn=cfAlertN();if(cn)h+=`<div class="al o" onclick="go('conf')">✅ ${cn} point(s) de conformité à traiter (pièces en retard, garanties, assurances)</div>`}if(diff(today,D(RF().lc||RF().v))>30)h+=`<div class="al o" onclick="go('veille')">⚖️ Référentiel juridique non vérifié depuis plus de 30 jours</div>`;if(!db.marches.length&&!db.garanties.length&&snaps().length)h+=`<div class="al r" onclick="go('sauv')">💾 Aucune donnée affichée, mais ${snaps().length} point(s) de sauvegarde sont disponibles — cliquer pour restaurer</div>`;$('#al').innerHTML=h;{const A=[...$('#al').children];if(A.length>2){const d=document.createElement('details');d.className='alx';d.open=!!window.alxO;d.ontoggle=()=>window.alxO=d.open;d.innerHTML=`<summary>${A.length-2} autre(s) alerte(s)</summary>`;A.slice(2).forEach(x=>d.appendChild(x));$('#al').appendChild(d)}}TTL=(n?'('+n+') ':'')+'Gestionnaire PTUA v'+APPV;setTitle();
 }
 function ech(){
  const it=[];db.assurances.forEach(a=>{const x=galA(a);if(x&&x.j>=0&&x.j<=90)it.push({d:D(a.echeance),t:'☂️ Échéance d’assurance',l:mn(a.marche)+' · '+a.type+(a.assureur?' · '+a.assureur:'')})});
@@ -632,7 +642,7 @@ async function compressPdf(bytes,nm,slots,onPart,ctl){const IN=bytes.length,lib=
  const T=Math.max(20e3,Math.min(450e3,slots*PART*.92/N,1.1*IN/N)); /* jamais plus lourd que l'original, à 10 % près */let cur=[],size=0,first=1,parts=0,done=0,gray=0;
  const flush=async last=>{if(!cur.length)return;parts++;await onPart({bytes:mkPdf(cur),t:'application/pdf',n:`${base} – partie ${parts} (pages ${first} à ${last}).pdf`});first=last+1;cur=[];size=0};
  try{for(let n=1;n<=N;n++){if(ctl.stop)break;
-   const el=(Date.now()-t0)/1e3,rest=n>3?Math.round(el/(n-1)*(N-n+1)):0;busy(`Compression de « ${nm} » : page ${n} sur ${N}${parts?` · ${parts} partie(s) enregistrée(s)`:''}${rest>20?` · encore environ ${rest>90?Math.round(rest/60)+' min':rest+' s'}`:''}`,()=>ctl.stop=1);
+   const el=(Date.now()-t0)/1e3,rest=n>3?Math.round(el/(n-1)*(N-n+1)):0;ctl.prog&&ctl.prog(n-1,N,parts,rest);
    const pg=await doc.getPage(n),v1=pg.getViewport({scale:1}),vp=pg.getViewport({scale:Math.min(QLV[0][0]/v1.width,3)}),c=document.createElement('canvas');c.width=Math.round(vp.width);c.height=Math.round(vp.height);const g=c.getContext('2d');g.fillStyle='#fff';g.fillRect(0,0,c.width,c.height);
    await pg.render({canvasContext:g,viewport:vp}).promise;pg.cleanup();let b,w,h;
    for(let L=0;L<QLV.length;L++){const [W,q,gr]=QLV[L],sc=Math.min(1,W/c.width),k=document.createElement('canvas');k.width=Math.round(c.width*sc);k.height=Math.round(c.height*sc);const x=k.getContext('2d',{willReadFrequently:!!gr});x.drawImage(c,0,0,k.width,k.height);
@@ -649,28 +659,55 @@ async function shrink(file){const nm=cln(file.name).slice(0,80)||'document';
  const bmp=await createImageBitmap(file,{imageOrientation:'from-image'}).catch(()=>null);if(!bmp)throw new Error('« '+nm+' » : format non pris en charge (photo ou PDF uniquement).');
  const sc=Math.min(1,2000/Math.max(bmp.width,bmp.height)),c=document.createElement('canvas');c.width=Math.round(bmp.width*sc);c.height=Math.round(bmp.height*sc);const g=c.getContext('2d');g.fillStyle='#fff';g.fillRect(0,0,c.width,c.height);g.drawImage(bmp,0,0,c.width,c.height);
  const bl=await new Promise(r=>c.toBlob(r,'image/jpeg',.82));c.width=0;return[{bytes:new Uint8Array(await bl.arrayBuffer()),t:'image/jpeg',n:nm.replace(/\.[A-Za-z0-9]{2,5}$/,'')+'.jpg'}]}
-async function addFiles(e,id,files,reopen){if(!crypto.subtle)return alert('Ouvrez l’application depuis son adresse https pour joindre des documents.');const errs=[],info=[];let n=0,saved=0,orig=0;
+// v9.7 — Traitement des documents en arrière-plan avec jauge : l'application reste utilisable pendant la compression et l'envoi
+let TTL=document.title;const JOB={q:[],run:false,cur:null,ctl:null,min:false,msg:null,cloud:null,mt:0};
+const dur=s=>s>90?Math.round(s/60)+' min':s+' s';
+function setTitle(){const c=JOB.cur||JOB.cloud;document.title=(c?Math.round(c.pct||0)+' % · ':'')+TTL}
+function jobUI(){let w=$('#job');if(!w){w=document.createElement('div');w.id='job';w.setAttribute('role','status');w.setAttribute('aria-live','polite');document.body.appendChild(w)}
+ const T=[];if(JOB.cur)T.push(JOB.cur);if(JOB.cloud)T.push(JOB.cloud);setTitle();
+ if(!T.length&&!JOB.msg){w.hidden=true;w.innerHTML='';return}w.hidden=false;
+ if(T.length&&JOB.min){const p=Math.round(T[0].pct||0);w.className='min';w.innerHTML=`<button class="jx" data-j="o" aria-label="Afficher la progression (${p} %)">${T[0].ic} ${p} %</button>`}
+ else{w.className='';w.innerHTML=T.map((t,k)=>{const p=Math.max(0,Math.min(100,Math.round(t.pct||0)));return `<div class="js"><div class="jh"><b>${t.ic} ${esc(t.title)}</b>${k?'':'<button class="jx" data-j="m" aria-label="Réduire la jauge" title="Réduire">▾</button>'}</div><div class="jb" role="progressbar" aria-label="${esc(t.title)}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${p}"><i style="width:${p}%"></i></div><div class="jd">${p} % · ${esc(t.detail||'')}${!k&&JOB.cur===t&&JOB.q.length?` · ${JOB.q.length} autre(s) envoi(s) en attente`:''}</div>${t.stop?`<div class="jr"><button data-j="s" ${JOB.ctl&&JOB.ctl.stop?'disabled':''}>${JOB.ctl&&JOB.ctl.stop?'Arrêt en cours…':'⏹️ Arrêter'}</button></div>`:''}</div>`}).join('')
+  +(T.length?'<small>Vous pouvez continuer à utiliser PTUA pendant ce temps. Gardez l’application ouverte.</small>':'')
+  +(!T.length&&JOB.msg?`<div class="js"><div class="jh"><b>${esc(JOB.msg.t)}</b><button class="jx" data-j="x" aria-label="Fermer">✕</button></div><div class="jd" style="white-space:pre-line">${esc(JOB.msg.d)}</div>${JOB.msg.e&&db[JOB.msg.e]?.some(i=>i.id==JOB.msg.id)?'<div class="jr"><button data-j="v">📎 Voir les documents</button></div>':''}</div>`:'')}
+ w.querySelectorAll('[data-j]').forEach(b=>b.onclick=()=>{const a=b.dataset.j;if(a=='m')JOB.min=true;else if(a=='o')JOB.min=false;else if(a=='s'&&JOB.ctl)JOB.ctl.stop=1;else if(a=='x')JOB.msg=null;else if(a=='v'){const m=JOB.msg;JOB.msg=null;docs(m.e,m.id)}jobUI()})}
+function jobSet(o){if(!JOB.cur)return;Object.assign(JOB.cur,o);const t=Date.now();if(t-JOB.mt>250||o.pct>=100){JOB.mt=t;jobUI()}}
+function jobAbort(){JOB.q=[];if(JOB.ctl)JOB.ctl.stop=1;JOB.silent=true;JOB.msg=null;JOB.cloud=null;JOB.cur=null;jobUI()}
+addEventListener('beforeunload',e=>{if(JOB.run||JOB.cloud){e.preventDefault();e.returnValue=''}});
+function addFiles(e,id,files,reopen){if(!crypto.subtle)return alert('Ouvrez l’application depuis son adresse https pour joindre des documents.');if(!files.length)return;
+ JOB.q.push({e,id,files:[...files]});JOB.msg=null;if(JOB.run)return jobUI();jobRun()}
+async function jobRun(){JOB.run=true;JOB.silent=false;const all=[];
+ try{while(JOB.q.length){const j=JOB.q.shift();JOB.ctl={stop:0};JOB.cur={ic:'📎',title:'Préparation…',detail:'',pct:0,stop:1};jobUI();
+   const r=await jobFiles(j);if(JOB.silent)break;all.push(r);
+   if(!JOB.q.length){const err=all.reduce((a,x)=>a+x.err,0),m=all.length==1?r:{t:err?'⚠️ Envois terminés, avec des remarques':'✅ Tous les documents sont joints',err,e:r.e,id:r.id,d:all.map(x=>x.d).join('\n\n')};
+    JOB.cur=null;JOB.msg=m;jobUI();if(!m.err)setTimeout(()=>{if(JOB.msg===m){JOB.msg=null;jobUI()}},15e3)}}}
+ finally{JOB.run=false;JOB.cur=null;JOB.ctl=null;jobUI()}}
+async function jobFiles({e,id,files}){const errs=[],info=[],F=files.length,ctl=JOB.ctl;let n=0,saved=0,orig=0;
  const slotsLeft=()=>{const x=db[e].find(i=>i.id==id);return x?60-(x.files||[]).length:0};
  const addPart=async r=>{const x=db[e].find(i=>i.id==id);if(!x)throw new Error('Fiche supprimée pendant l’opération.');if(slotsLeft()<=0)throw new Error('60 documents maximum par fiche.');
   const en=await fEnc(r.bytes),fid='f'+nid();await fPut(fid,en.data);const y=db[e].find(i=>i.id==id);if(!y){await fDel(fid);throw new Error('Fiche supprimée pendant l’opération.')}
   (y.files||(y.files=[])).push({id:fid,n:r.n,t:r.t,s:r.bytes.length,d:Date.now(),k:en.k});y._u=Date.now();n++;save()};
- for(const file of files){const nm=cln(file.name).slice(0,80)||'document';try{busy(`Préparation de « ${nm} »…`);if(slotsLeft()<=0){errs.push('60 documents maximum par fiche.');break}
-   if(isPdf(file)&&file.size>4e6){const b=await pdfBytes(file,nm),ctl={stop:0};let sz=0;const sl=slotsLeft();
+ for(let fi=0;fi<F;fi++){const file=files[fi],nm=cln(file.name).slice(0,80)||'document',pre=F>1?`Fichier ${fi+1} sur ${F} · `:'';if(ctl.stop)break;
+  try{jobSet({title:nm,detail:pre+'préparation…',pct:fi/F*100});if(slotsLeft()<=0){errs.push('60 documents maximum par fiche.');break}
+   if(isPdf(file)&&file.size>4e6){const b=await pdfBytes(file,nm);let sz=0;const sl=slotsLeft();
+    ctl.prog=(k,N,parts,rest)=>jobSet({pct:(fi+k/N)/F*100,detail:`${pre}page ${k+1} sur ${N}${parts?` · ${parts} partie(s) enregistrée(s)`:''}${rest>20?` · encore environ ${dur(rest)}`:''}`});
     const r=await compressPdf(b,nm,sl,async p=>{sz+=p.bytes.length;await addPart(p)},ctl);orig+=file.size;saved+=sz;
     info.push(`« ${nm} » : ${r.done<r.N?r.done+' pages traitées sur '+r.N:r.N+' pages'} → ${r.parts} partie(s)${r.gray?' (pages lourdes passées en noir et blanc)':''}`);
     if(r.done<r.N)errs.push(ctl.stop?`« ${nm} » : compression arrêtée, pages 1 à ${r.done} jointes sur ${r.N}.`:`« ${nm} » : la fiche est pleine (60 documents) — pages 1 à ${r.done} jointes sur ${r.N}. Joignez la suite à une autre fiche.`)}
-   else for(const r of await shrink(file))await addPart(r)}
-  catch(er){errs.push(er&&er.message||'Fichier illisible.')}}
- if($('#bz'))$('#cd').close();
- if(n){const x=db[e].find(i=>i.id==id);log(`Document joint (${n}) : ${S[e].t} ${x?lab(e,x):''}`);save();render();fSync()}
- if(errs.length||orig)alert((orig?`✅ Compression terminée : ${ko(orig)} → ${ko(saved)}${saved<orig?` (−${Math.round(100-saved/orig*100)} %)`:''}.\n${info.join('\n')}`:'')+(errs.length?(orig?'\n\n':'')+'⚠️ '+errs.join('\n⚠️ '):''));
- if(reopen&&db[e].some(i=>i.id==id))docs(e,id)}
+   else{jobSet({detail:pre+'chiffrement…'});for(const r of await shrink(file))await addPart(r);info.push(`« ${nm} » joint.`)}}
+  catch(er){if(!JOB.silent)errs.push(er&&er.message||'Fichier illisible.')}}
+ if(JOB.silent)return{};jobSet({pct:100,detail:'Enregistrement…'});
+ if(n){const x=db[e].find(i=>i.id==id);log(`Document joint (${n}) : ${S[e].t} ${x?lab(e,x):''}`);save();render();fSync();
+  const d=$('#cd');if(d.open&&d.querySelector('#ff')&&d.dataset.docs==e+'|'+id)docs(e,id)}
+ const head=n?(errs.length?'⚠️ Documents joints, avec des remarques':'✅ Documents joints'):'⚠️ Aucun document joint';
+ return{t:head,err:errs.length,e,id,d:[orig?`Compression : ${ko(orig)} → ${ko(saved)}${saved<orig?` (−${Math.round(100-saved/orig*100)} %)`:''}`:'',...info,...errs.map(x=>'⚠️ '+x)].filter(Boolean).join('\n')}}
 async function fSync(){if(fBusy||!SY||!KEY||!navigator.onLine)return;fBusy=true;const me=SY;
  try{const k=await syKeys(me);
-  fErr='';for(const f of allF()){if(SY!==me)return;if(await stGet('u:'+f.id))continue;const data=await fGet(f.id);if(!data)continue;
+  fErr='';const todo=[];for(const f of allF())if(!await stGet('u:'+f.id))todo.push(f);let i=0;
+  for(const f of todo){if(SY!==me)return;const data=await fGet(f.id);i++;if(!data)continue;if(todo.length>1||data.length>1e6){JOB.cloud={ic:'☁️',title:'Envoi au cloud (chiffré)',detail:`document ${i} sur ${todo.length} · ${cln(f.n)}`,pct:(i-1)/todo.length*100};jobUI()}
    try{await rpc('ptua_file_put',{p_id:k.id,p_auth:k.auth,p_fid:f.id,p_blob:b64(data)});await stPut('u:'+f.id,1)}catch(x){if(/quota/.test(x.detail||'')){fErr='quota';break}if(!x.detail)throw x;fErr='refus'}}
   for(const id of Object.keys(db.fdel||{})){if(SY!==me)return;if(await stGet('d:'+id))continue;await fDel(id);await rpc('ptua_file_del',{p_id:k.id,p_auth:k.auth,p_fid:id});await stPut('d:'+id,1)}}
- catch(e){fErr=fErr||'net'}finally{fBusy=false;const c=$('#fst');if(c)fStat()}}
+ catch(e){fErr=fErr||'net'}finally{fBusy=false;if(JOB.cloud){JOB.cloud=null;jobUI()}const c=$('#fst');if(c)fStat()}}
 async function fLoad(f){let data=await fGet(f.id);
  if(!data){if(!SY)throw new Error('Ce document n’est pas enregistré sur cet appareil.');if(!navigator.onLine)throw new Error('Hors ligne : ce document n’a pas encore été téléchargé sur cet appareil.');
   const k=await syKeys(),b=await rpc('ptua_file_get',{p_id:k.id,p_auth:k.auth,p_fid:f.id});if(!b)throw new Error('Document pas encore disponible : ouvrez PTUA avec Internet sur l’appareil où il a été ajouté pour terminer l’envoi.');
@@ -765,11 +802,11 @@ function courShow(t){const d=$('#cd');d.innerHTML=`<h3 style="margin-top:0">✉�
   if(v=='p'){$('#fs')?.remove();const f=document.createElement('div');f.id='fs';f.style.whiteSpace='pre-wrap';f.textContent=tx;document.body.appendChild(f);document.body.classList.add('pfs');const end=()=>{document.body.classList.remove('pfs');f.remove();removeEventListener('afterprint',end)};addEventListener('afterprint',end);setTimeout(end,12e4);log('Courrier généré : '+t.n);save();d.close();setTimeout(()=>window.print(),150)}});
  d.onkeydown=null;d.oncancel=null;if(!d.open)d.showModal()}
 function pdfLib(){return pdfP||(pdfP=import('./lib/pdf.min.mjs').then(m=>{m.GlobalWorkerOptions.workerSrc='lib/pdf.worker.min.mjs';return m}).catch(e=>{pdfP=null;throw new Error('Lecteur PDF non chargé (hors ligne ?).')}))}
-function docs(e,id){const x=db[e].find(i=>i.id==id);if(!x)return;const F=x.files||[],d=$('#cd'),touch=matchMedia('(pointer:coarse)').matches;
+function docs(e,id){const x=db[e].find(i=>i.id==id);if(!x)return;const F=x.files||[],d=$('#cd'),touch=matchMedia('(pointer:coarse)').matches;d.dataset.docs=e+'|'+id;
  d.innerHTML=`<h3 style="margin-top:0">📎 Documents — ${esc(S[e].t)} ${esc(lab(e,x))}</h3><div class="bar" style="margin:0 0 12px">${F.length>1?'<button class="pri" data-o="">👁️ Tout parcourir</button>':''}${touch?`<button data-a="c" class="${F.length?'':'pri'}">📷 Photographier</button>`:''}<button data-a="f" class="${F.length||touch?'':'pri'}">📁 Choisir un fichier</button></div>
  ${F.length?`<div class="dl">${F.map(f=>`<div class="di"><div><b>${f.t=='application/pdf'?'📄':'🖼️'} ${esc(f.n)}</b><small>${ko(f.s)} — ajouté le ${new Date(f.d).toLocaleDateString('fr-FR')}</small></div><button data-o="${f.id}">Ouvrir</button><button data-x="${f.id}">Retirer</button></div>`).join('')}</div>`:'<div class="e">Aucun document joint. Ajoutez le scan de la pièce : photo ou PDF.</div>'}
  <input type="file" id="fc" accept="image/*" capture="environment" hidden><input type="file" id="ff" accept="image/*,application/pdf" multiple hidden>
- <p style="margin:10px 0 0;color:var(--m);font-size:12px">Photos et PDF, 60 documents par fiche. Les PDF de plus de 4 Mo (marchés scannés, jusqu’à 150 Mo) sont compressés automatiquement et découpés en parties si besoin. Chaque document est chiffré${SY?' puis sauvegardé avec la synchronisation ; les autres appareils le téléchargent à la première ouverture.':'. ⚠️ Sans synchronisation, il reste uniquement sur cet appareil : il n’est pas inclus dans l’export JSON.'}</p>
+ <p style="margin:10px 0 0;color:var(--m);font-size:12px">Photos et PDF, 60 documents par fiche. Les PDF de plus de 4 Mo (marchés scannés, jusqu’à ${PMAX/1e6} Mo sur cet appareil) sont compressés automatiquement et découpés en parties si besoin ; une jauge suit l’opération en arrière-plan, vous pouvez continuer à travailler. Chaque document est chiffré${SY?' puis sauvegardé avec la synchronisation ; les autres appareils le téléchargent à la première ouverture.':'. ⚠️ Sans synchronisation, il reste uniquement sur cet appareil : il n’est pas inclus dans l’export JSON.'}</p>
  <div class="row"><button data-a="x">Fermer</button></div>`;
  d.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>view(e,id,b.dataset.o));
  d.querySelectorAll('[data-x]').forEach(b=>b.onclick=()=>rmFile(e,id,b.dataset.x));
@@ -815,7 +852,7 @@ function choose(t,opts){return new Promise(r=>{const d=$('#cd');d.innerHTML=`<h3
 function offer(n,txt,type,msg,tip,cb){const d=$('#cd');d.innerHTML=`<h3 style="margin-top:0">✅ ${msg}</h3><p style="margin:0 0 12px;color:var(--m);font-size:13px">${tip||'Sur iPhone : touchez « Enregistrer le fichier », puis <b>Enregistrer dans Fichiers</b> (iCloud Drive conseillé). Évitez de l’envoyer par messagerie.'}</p><div class="row"><button data-v="0">Fermer</button><button class="pri" data-v="1">💾 Enregistrer le fichier</button></div>`;
  d.querySelectorAll('.row button').forEach(b=>b.onclick=()=>{if(b.dataset.v=='1'){dl(n,txt,type);cb&&cb()}d.close()});d.onkeydown=null;d.oncancel=null;d.showModal()}
 const gp=()=>{try{return localStorage.getItem('ptua_pin')}catch(e){return null}}; // ancien code (avant v7.4), remplacé par le chiffrement au déverrouillage
-function lock(){if(!ENC&&!gp())return;fidShow();mon('lock','Application verrouillée, données retirées de la mémoire');$('#pin').value='';$('#lke').textContent='';$('#lk').hidden=false;if($('#dlg').open)$('#dlg').close();if($('#cd').open)$('#cd').close();
+function lock(){if(!ENC&&!gp())return;jobAbort();fidShow();mon('lock','Application verrouillée, données retirées de la mémoire');$('#pin').value='';$('#lke').textContent='';$('#lk').hidden=false;if($('#dlg').open)$('#dlg').close();if($('#cd').open)$('#cd').close();
  if(ENC&&KEY)PQ.then(()=>{KEY=null;SALT=null;SY=null;clearTimeout(syT);setSy('');db=blank();SN=[];CYM=[];cyBusy=false;vClose();cur={};q='';gq='';$('#df').innerHTML='';$('#cd').innerHTML='';$('#v').innerHTML='';render()});setTimeout(()=>$('#pin').focus(),80)}
 async function unl(){const v=$('#pin').value,e=$('#lke');if(!v)return;const w=+(localStorage.getItem('ptua_until')||0)-Date.now();if(w>0){e.style.color='var(--r)';e.textContent=`Trop d’essais : réessayez dans ${Math.ceil(w/1000)} s.`;return}e.style.color='var(--m)';e.textContent='Vérification…';
  try{if(ENC){const st=stE(),{k,o}=await openE(v,st);KEY=k;SALT=ub(st.salt);db=sanDB(o.db);SN=Array.isArray(o.snaps)?o.snaps:[];SY=syOk(o.sync)?o.sync:null;applyAll();if(SY)setTimeout(syncNow,300)}
@@ -1304,7 +1341,7 @@ async function icsExp(){
  db.os.forEach(o=>{const f=osFin(o);if(!f||f<today)return;
   ev.push({id:'o'+o.id,d:f,t:`PTUA – Fin de durée OS ${o.num||o.type} · ${mn(o.marche)}`,x:dis?'':(o.note||''),al:[15,3]})});
  if(!ev.length)return alert('Aucune échéance future à ajouter (garanties actives avec une date d’échéance, fins prévues de marchés, durées d’OS).');
- const st=new Date().toISOString().replace(/[-:]/g,'').slice(0,15)+'Z',L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//PTUA//Gestionnaire PTUA v9.6//FR','CALSCALE:GREGORIAN','METHOD:PUBLISH','X-WR-CALNAME:PTUA – échéances'];
+ const st=new Date().toISOString().replace(/[-:]/g,'').slice(0,15)+'Z',L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//PTUA//Gestionnaire PTUA v9.7//FR','CALSCALE:GREGORIAN','METHOD:PUBLISH','X-WR-CALNAME:PTUA – échéances'];
  const al=(t,tr)=>L.push('BEGIN:VALARM','ACTION:DISPLAY','DESCRIPTION:'+icsE(t),'TRIGGER:'+tr,'END:VALARM');
  ev.forEach(e=>{L.push('BEGIN:VEVENT',`UID:ptua-${e.id}-${icd(e.d)}@ptua.app`,'DTSTAMP:'+st,'DTSTART;VALUE=DATE:'+icd(e.d),'DTEND;VALUE=DATE:'+icd(new Date(e.d.getTime()+day)),'SUMMARY:'+icsE(e.t));
   if(e.x)L.push('DESCRIPTION:'+icsE(e.x));L.push('TRANSP:TRANSPARENT');

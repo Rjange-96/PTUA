@@ -1,12 +1,12 @@
 {
- "version": "9.6",
+ "version": "9.7",
  "date": "2026-11-16",
  "importance": "normale",
  "notes": [
-  "Documents joints : les gros PDF sont compressés et découpés automatiquement, sans question à répondre.",
-  "La limite de 600 pages est supprimée. Sur ordinateur, un PDF peut maintenant faire jusqu’à 500 Mo (150 Mo sur iPhone).",
-  "La qualité s’adapte toute seule : les pages restent en couleur, et seules les pages trop lourdes passent en noir et blanc.",
-  "Chaque partie porte les numéros de pages qu’elle contient (ex. « partie 2 (pages 41 à 80) »).",
-  "Pendant la compression : progression, temps restant estimé, et bouton « Arrêter » qui garde les pages déjà traitées."
+  "Nouvelle jauge de progression quand vous joignez des documents : pourcentage, page en cours et temps restant.",
+  "Le traitement se fait en arrière-plan : vous pouvez continuer à travailler dans PTUA (consulter, saisir, changer d’onglet) pendant la compression.",
+  "La jauge se réduit en petite pastille d’un toucher. Le pourcentage s’affiche aussi dans le titre de l’onglet sur ordinateur.",
+  "Plusieurs envois à la suite sont mis en file d’attente ; l’envoi chiffré vers le cloud a aussi sa jauge.",
+  "Le bilan s’affiche dans la jauge, sans fenêtre à fermer ; le verrouillage arrête proprement le traitement."
  ]
 }
