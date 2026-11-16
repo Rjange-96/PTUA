@@ -35,5 +35,6 @@ bash tests/run_all.sh
 | t27.py | partage avec un collègue : invitation, accès séparé, documents, modifications croisées, retrait d'accès, anti-hameçonnage |
 | t28.py | gros PDF : compression et découpage automatiques sans question, plus de limite de 600 pages, couleur conservée, fiche pleine, bouton Arrêter (préparer avec `python3 tests/t28_gen.py`) |
 | t29.py | jauge en arrière-plan : pas de fenêtre bloquante, progression, travail possible pendant le traitement, file d'attente, réduire/agrandir, envoi au cloud, verrouillage (arrêt, rien d'affiché, aucun fichier orphelin) |
+| t30.py | thèmes Classique clair/sombre, Ninja, Pirate : choix, mémorisation, tous les onglets sans erreur, contraste ≥ 4,5 |
 
 À lancer après chaque modification, avant de publier.

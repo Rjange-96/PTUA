@@ -1,12 +1,11 @@
 {
- "version": "9.7",
+ "version": "9.8",
  "date": "2026-11-16",
  "importance": "normale",
  "notes": [
-  "Nouvelle jauge de progression quand vous joignez des documents : pourcentage, page en cours et temps restant.",
-  "Le traitement se fait en arrière-plan : vous pouvez continuer à travailler dans PTUA (consulter, saisir, changer d’onglet) pendant la compression.",
-  "La jauge se réduit en petite pastille d’un toucher. Le pourcentage s’affiche aussi dans le titre de l’onglet sur ordinateur.",
-  "Plusieurs envois à la suite sont mis en file d’attente ; l’envoi chiffré vers le cloud a aussi sa jauge.",
-  "Le bilan s’affiche dans la jauge, sans fenêtre à fermer ; le verrouillage arrête proprement le traitement."
+  "Nouveaux thèmes : touchez l’icône palette 🎨 en haut de l’écran pour choisir entre Classique clair, Classique sombre, Ninja et Pirate.",
+  "Thème Ninja : papier parchemin, encre noire, sceaux rouges et accents orange flamme.",
+  "Thème Pirate : planches de bois, océan, parchemin, ancres et touches dorées.",
+  "Le choix est mémorisé sur chaque appareil ; vos données ne changent pas."
  ]
 }
