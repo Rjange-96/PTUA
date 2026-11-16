@@ -1,10 +1,10 @@
 {
- "version": "9.15",
+ "version": "9.16",
  "date": "2026-11-16",
  "importance": "normale",
  "notes": [
-  "Nouveau : la corbeille. Quand vous supprimez un marché, une garantie, une assurance, un OS, un avenant ou une réunion, l’élément est mis de côté 30 jours avec ses documents joints. Vous pouvez le restaurer (avec tout ce qui y était lié) depuis Sauvegarde → Corbeille, ou le supprimer définitivement. Au bout de 30 jours, l’effacement devient définitif.",
-  "Nouveau : la réception. Une nouvelle rubrique « Réserves » suit chaque réserve de la réception provisoire ou définitive : date de notification, délai de levée, date de levée. L’application signale les réserves en retard, la réception définitive attendue (délai de garantie à saisir sur le marché) et les ajoute à l’échéancier et au calendrier.",
-  "Trois courriers prêts à adapter : notification d’une réserve, relance pour levée en retard, et constat de levée. Les points en retard apparaissent aussi dans le contrôle de conformité du marché."
+  "Nouveau : la lecture des scans. Dans Recherche, le bouton « Lire mes scans » lit le texte de vos photos et PDF scannés, directement sur votre appareil (rien n’est envoyé sur Internet). La recherche trouve ensuite un mot même s’il n’est que dans un scan, avec la mention « trouvé dans un scan ».",
+  "L’analyse de conformité d’une assurance fonctionne maintenant aussi sur une attestation scannée ou photographiée. Le texte étant lu automatiquement, l’application vous demande de vérifier les montants et les dates sur le document.",
+  "Le texte lu est chiffré, reste sur l’appareil et disparaît quand vous supprimez le document. Au premier usage, un module d’environ 5 Mo est téléchargé, puis il fonctionne hors ligne."
  ]
 }
