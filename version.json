@@ -1,8 +1,10 @@
 {
- "version": "9.10",
+ "version": "9.11",
  "date": "2026-11-16",
  "importance": "normale",
  "notes": [
-  "Garanties : dans la fenêtre de modification, le marché et le type restent affichés en haut, même en faisant défiler le formulaire — vous savez toujours quelle garantie vous modifiez."
+  "Nouveau : onglet « Réunions ». Enregistrez une réunion depuis votre appareil (🎙️ Nouvelle réunion) : elle est transcrite automatiquement et un procès-verbal (PV) structuré est généré (objet, participants, points abordés, décisions, actions à suivre).",
+  "L’enregistrement audio est chiffré comme vos autres documents. Pour la transcription, il est envoyé (chiffré en transit) à un service d’IA en ligne (Google Gemini), qui ne le conserve pas ; le texte revient ensuite chiffré sur vos appareils.",
+  "Le PV généré est modifiable, s’exporte en Word ou s’imprime, comme vos courriers. La transcription brute reste aussi consultable. Jusqu’à 90 minutes par réunion."
  ]
 }
