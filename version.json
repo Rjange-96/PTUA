@@ -1,11 +1,12 @@
 {
- "version": "9.5",
- "date": "2026-11-15",
+ "version": "9.6",
+ "date": "2026-11-16",
  "importance": "normale",
  "notes": [
-  "Nouveau : partager vos fiches avec un collègue. Onglet Sauvegarde → « Partager avec un collègue » : il reçoit son propre code d’invitation, votre clé personnelle ne lui est jamais transmise.",
-  "Vous voyez la liste des personnes qui ont accès et vous pouvez retirer un accès à tout moment, d’un seul geste.",
-  "Le collègue consulte, ajoute et modifie les marchés, garanties et documents communs ; tout reste chiffré de bout en bout.",
-  "Par sécurité, l’application demande toujours une confirmation avant de rejoindre un espace partagé."
+  "Documents joints : les gros PDF sont compressés et découpés automatiquement, sans question à répondre.",
+  "La limite de 600 pages est supprimée. Sur ordinateur, un PDF peut maintenant faire jusqu’à 500 Mo (150 Mo sur iPhone).",
+  "La qualité s’adapte toute seule : les pages restent en couleur, et seules les pages trop lourdes passent en noir et blanc.",
+  "Chaque partie porte les numéros de pages qu’elle contient (ex. « partie 2 (pages 41 à 80) »).",
+  "Pendant la compression : progression, temps restant estimé, et bouton « Arrêter » qui garde les pages déjà traitées."
  ]
 }

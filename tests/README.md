@@ -33,5 +33,6 @@ bash tests/run_all.sh
 | t25.py | calendrier .ics : injection par retour chariot isolé bloquée, échappement des « ; » et « , » |
 | t26.py | service worker : caches des autres applications du domaine préservés, cache PTUA reconstitué, hors ligne |
 | t27.py | partage avec un collègue : invitation, accès séparé, documents, modifications croisées, retrait d'accès, anti-hameçonnage |
+| t28.py | gros PDF : compression et découpage automatiques sans question, plus de limite de 600 pages, couleur conservée, fiche pleine, bouton Arrêter (préparer avec `python3 tests/t28_gen.py`) |
 
 À lancer après chaque modification, avant de publier.
