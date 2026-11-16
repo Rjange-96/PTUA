@@ -1,10 +1,10 @@
 {
- "version": "9.16",
+ "version": "9.17",
  "date": "2026-11-16",
  "importance": "normale",
  "notes": [
-  "Nouveau : la lecture des scans. Dans Recherche, le bouton « Lire mes scans » lit le texte de vos photos et PDF scannés, directement sur votre appareil (rien n’est envoyé sur Internet). La recherche trouve ensuite un mot même s’il n’est que dans un scan, avec la mention « trouvé dans un scan ».",
-  "L’analyse de conformité d’une assurance fonctionne maintenant aussi sur une attestation scannée ou photographiée. Le texte étant lu automatiquement, l’application vous demande de vérifier les montants et les dates sur le document.",
-  "Le texte lu est chiffré, reste sur l’appareil et disparaît quand vous supprimez le document. Au premier usage, un module d’environ 5 Mo est téléchargé, puis il fonctionne hors ligne."
+  "Nouveau : les rappels sur le téléphone. Dans Sauvegarde → « Rappels sur ce téléphone », activez les notifications : vous êtes prévenu 30 jours, 7 jours et 1 jour avant, puis le jour même, de chaque échéance (assurances, garanties, fin de marché, réserves, réception définitive), même quand l’application est fermée.",
+  "Respect de la confidentialité : la notification est générique (« des échéances demandent votre attention »). Le serveur ne reçoit que l’adresse de notification de l’appareil et des dates d’alerte, sans nom, montant ni marché. Le détail se lit dans PTUA.",
+  "À savoir : sur iPhone, ajoutez d’abord PTUA à l’écran d’accueil (iOS 16.4 ou plus) et activez la synchronisation. Ouvrez l’application au moins une fois par trimestre pour que les dates d’alerte restent à jour."
  ]
 }
