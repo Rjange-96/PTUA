@@ -38,6 +38,7 @@ bash tests/run_all.sh
 | t30.py | thèmes Classique clair/sombre, Ninja, Pirate : choix, mémorisation, tous les onglets sans erreur, contraste ≥ 4,5 |
 | t31.py | garantie de performance environnementale et sociale ; modèles de courrier Word/PDF : ajout, champs remplis (même coupés par Word), mise en page conservée, refus des fichiers piégés, synchronisation, retrait (préparer avec `python3 tests/t31_gen.py`) |
 | t32.py | fenêtre de modification d'une garantie : le marché et le type restent affichés en haut (figés), même en défilant, et se mettent à jour en direct ; pas d'effet de bord sur les autres fiches |
+| t34.py | analyse de conformité d'une assurance reçue : lecture du PDF, exigences lues depuis le CCAP collé, attestation conforme / non conforme (assuré, effet, durée, capital, franchise, garanties exclues, prime sous réserve), valeurs lues appliquées sans écrasement, décision manuelle, courrier de réserves, rapport, texte collé, XSS, sanDB, fusion de synchro (préparer avec `python3 tests/t34_gen.py`) |
 | t33.py | onglet Réunions : enregistrement audio (micro simulé par Chrome), transcription et PV automatiques via l'IA (service simulé), relance automatique sans bouton après une panne (tentatives croissantes, abandon après plusieurs échecs sans perte de l'audio, reprise automatique à la réouverture de l'application), écoute/téléchargement de l'audio, verrouillage pendant un enregistrement, suppression et absence de suppression en cascade avec le marché |
 
 À lancer après chaque modification, avant de publier.

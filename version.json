@@ -1,9 +1,10 @@
 {
- "version": "9.12",
+ "version": "9.13",
  "date": "2026-11-16",
  "importance": "normale",
  "notes": [
-  "Amélioration : en cas de panne du service de transcription (onglet Réunions), la réunion n’affiche plus de bouton « Relancer ». La nouvelle tentative se fait automatiquement, à intervalles croissants, puis reprend seule à la réouverture de l’application ou au retour du réseau — sans aucune action de votre part.",
-  "Si la transcription échoue malgré plusieurs tentatives, l’enregistrement audio reste toujours disponible (écoute et téléchargement) ; la réouverture de l’application relance alors un nouvel essai automatiquement."
+  "Nouveau : dans l’onglet Conformité, « Analyser une assurance reçue ». Joignez l’attestation ou la police (PDF) : l’application la lit sur votre appareil, la compare aux exigences du marché et indique, point par point, ce qui est conforme, non conforme ou à vérifier (validité, assuré, date d’effet, durée, capital, franchise, garanties, clauses, exclusions, prime payée).",
+  "Les exigences de chaque marché (CCAP / DAO) se saisissent une fois par marché ; vous pouvez coller l’article du CCAP et l’application propose une lecture à corriger. Sans saisie, le minimum légal s’applique.",
+  "Un rapport imprimable et un courrier de réserves au titulaire sont générés à partir de l’analyse. Rien n’est envoyé sur Internet : la lecture du document se fait sur le téléphone ou l’ordinateur."
  ]
 }
