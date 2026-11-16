@@ -1,10 +1,10 @@
 {
- "version": "9.14",
+ "version": "9.15",
  "date": "2026-11-16",
  "importance": "normale",
  "notes": [
-  "Nouveau : les thèmes Ninja et Pirate ont maintenant un vrai décor animé, dessiné par l’application. Ninja : montagnes, pagode, bambous, soleil levant, brume qui défile, feuilles qui tombent et shurikens qui traversent l’écran. Pirate : coucher de soleil sur la mer, navire qui tangue, vagues, mouettes, boussole et reflets.",
-  "Nouveau : votre propre photo en fond d’écran, dans n’importe quel thème (touchez le bouton palette, puis « Mon fond d’écran »). La photo reste sur votre appareil : elle n’est ni envoyée sur Internet, ni synchronisée.",
-  "« Admirer le décor » masque l’application un instant pour profiter de l’animation. Les animations peuvent être coupées, sont mises en pause quand l’application est en arrière-plan et respectent le réglage « réduire les animations » du téléphone."
+  "Nouveau : la corbeille. Quand vous supprimez un marché, une garantie, une assurance, un OS, un avenant ou une réunion, l’élément est mis de côté 30 jours avec ses documents joints. Vous pouvez le restaurer (avec tout ce qui y était lié) depuis Sauvegarde → Corbeille, ou le supprimer définitivement. Au bout de 30 jours, l’effacement devient définitif.",
+  "Nouveau : la réception. Une nouvelle rubrique « Réserves » suit chaque réserve de la réception provisoire ou définitive : date de notification, délai de levée, date de levée. L’application signale les réserves en retard, la réception définitive attendue (délai de garantie à saisir sur le marché) et les ajoute à l’échéancier et au calendrier.",
+  "Trois courriers prêts à adapter : notification d’une réserve, relance pour levée en retard, et constat de levée. Les points en retard apparaissent aussi dans le contrôle de conformité du marché."
  ]
 }
