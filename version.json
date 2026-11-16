@@ -1,10 +1,9 @@
 {
- "version": "9.11",
+ "version": "9.12",
  "date": "2026-11-16",
  "importance": "normale",
  "notes": [
-  "Nouveau : onglet « Réunions ». Enregistrez une réunion depuis votre appareil (🎙️ Nouvelle réunion) : elle est transcrite automatiquement et un procès-verbal (PV) structuré est généré (objet, participants, points abordés, décisions, actions à suivre).",
-  "L’enregistrement audio est chiffré comme vos autres documents. Pour la transcription, il est envoyé (chiffré en transit) à un service d’IA en ligne (Google Gemini), qui ne le conserve pas ; le texte revient ensuite chiffré sur vos appareils.",
-  "Le PV généré est modifiable, s’exporte en Word ou s’imprime, comme vos courriers. La transcription brute reste aussi consultable. Jusqu’à 90 minutes par réunion."
+  "Amélioration : en cas de panne du service de transcription (onglet Réunions), la réunion n’affiche plus de bouton « Relancer ». La nouvelle tentative se fait automatiquement, à intervalles croissants, puis reprend seule à la réouverture de l’application ou au retour du réseau — sans aucune action de votre part.",
+  "Si la transcription échoue malgré plusieurs tentatives, l’enregistrement audio reste toujours disponible (écoute et téléchargement) ; la réouverture de l’application relance alors un nouvel essai automatiquement."
  ]
 }

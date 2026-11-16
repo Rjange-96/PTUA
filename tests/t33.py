@@ -1,4 +1,5 @@
-# v9.10 — Réunions : enregistrement audio, transcription et PV automatiques (IA)
+# v9.10/v9.12 — Réunions : enregistrement audio, transcription et PV automatiques (IA),
+# avec relance automatique (sans bouton) en cas de panne du service de transcription.
 # Le micro est simulé par Chrome (--use-fake-device-for-media-stream) ; l'edge function
 # agent-pv est simulée comme le serveur Supabase (aucun appel réseau réel).
 import json,hashlib
@@ -63,20 +64,41 @@ with sync_playwright() as p:
   pg.evaluate(f"revOpen('{rid}')");pg.wait_for_timeout(300);pg.click('[data-a=\"tx\"]');pg.wait_for_timeout(300)
   P('5) transcription brute affichée, XSS non exécuté :',pg.evaluate("$('#cot').value").find('Bonjour')>=0,not pg.evaluate("window.__x"))
   pg.evaluate("$('#cd').close()")
-  # 6) Panne du service : statut Erreur affiché, puis relance réussie
+  # 6) Panne du service : relance automatique sans bouton, puis succès dès que le service revient
   MODE['m']='down'
   pg.evaluate("go('reunions')");pg.wait_for_timeout(300);pg.click('button:has-text(\"Nouvelle réunion\")');pg.wait_for_timeout(200)
   pg.click('#rvb');pg.wait_for_timeout(1000);pg.click('#rvb');pg.wait_for_timeout(2500)
+  rid2=pg.evaluate("db.reunions[1].id")
   for _ in range(20):
     pg.wait_for_timeout(300)
-    if pg.evaluate("db.reunions[1].statut")!='Transcription en cours':break
-  P('6) panne du service de transcription -> statut Erreur avec message :',pg.evaluate("db.reunions[1].statut")=='Erreur' and bool(pg.evaluate("db.reunions[1].erreur")))
-  rid2=pg.evaluate("db.reunions[1].id");MODE['m']='ok'
-  pg.evaluate(f"revOpen('{rid2}')");pg.wait_for_timeout(300);pg.click('[data-a=\"retry\"]');pg.wait_for_timeout(500)
+    if pg.evaluate(f"db.reunions.find(r=>r.id=='{rid2}').retries")>=1:break
+  P('6) après une panne : statut reste « Transcription en cours » (pas « Erreur »), compteur de tentatives incrémenté :',pg.evaluate(f"db.reunions.find(r=>r.id=='{rid2}').statut")=='Transcription en cours',pg.evaluate(f"db.reunions.find(r=>r.id=='{rid2}').retries")>=1)
+  pg.evaluate(f"revOpen('{rid2}')");pg.wait_for_timeout(200)
+  P('6) aucun bouton « Relancer » proposé (relance automatique uniquement), message rassurant affiché :',not pg.evaluate("!!document.querySelector('[data-a=\"retry\"]')"),pg.evaluate("$('#cd').textContent").find('tentative automatique')>=0)
+  pg.evaluate("$('#cd').close()")
+  MODE['m']='ok'
+  pg.evaluate(f"pvProcess('{rid2}')");pg.wait_for_timeout(1500)
   for _ in range(20):
     pg.wait_for_timeout(300)
-    if pg.evaluate("db.reunions[1].statut")!='Transcription en cours':break
-  P('6) relance manuelle après correction du service -> Terminé :',pg.evaluate("db.reunions[1].statut")=='Terminé')
+    if pg.evaluate(f"db.reunions.find(r=>r.id=='{rid2}').statut")!='Transcription en cours':break
+  P('6) dès que le service répond de nouveau : Terminé, compteur de tentatives remis à zéro :',pg.evaluate(f"db.reunions.find(r=>r.id=='{rid2}').statut")=='Terminé',pg.evaluate(f"db.reunions.find(r=>r.id=='{rid2}').retries")==0)
+  # 6bis) abandon définitif après plusieurs échecs, sans jamais perdre l'audio ; reprise automatique
+  # à la réouverture de l'application (pvRescan), sans action de l'utilisateur
+  MODE['m']='down'
+  pg.evaluate("go('reunions')");pg.wait_for_timeout(300);pg.click('button:has-text(\"Nouvelle réunion\")');pg.wait_for_timeout(200)
+  pg.click('#rvb');pg.wait_for_timeout(800);pg.click('#rvb');pg.wait_for_timeout(2000)
+  rid3=pg.evaluate("db.reunions[2].id")
+  pg.evaluate(f"(async()=>{{for(let i=0;i<10&&db.reunions.find(r=>r.id=='{rid3}').statut!='Erreur';i++)await pvProcess('{rid3}')}})()")
+  for _ in range(30):
+    pg.wait_for_timeout(300)
+    if pg.evaluate(f"db.reunions.find(r=>r.id=='{rid3}').statut")=='Erreur':break
+  P('6bis) abandon définitif après plusieurs échecs, audio toujours présent :',pg.evaluate(f"db.reunions.find(r=>r.id=='{rid3}').statut")=='Erreur',pg.evaluate(f"db.reunions.find(r=>r.id=='{rid3}').files.length")==1)
+  MODE['m']='ok'
+  pg.evaluate("pvRescan()")
+  for _ in range(20):
+    pg.wait_for_timeout(300)
+    if pg.evaluate(f"db.reunions.find(r=>r.id=='{rid3}').statut")=='Terminé':break
+  P('6bis) reprise automatique au redémarrage de l’application (pvRescan), sans intervention :',pg.evaluate(f"db.reunions.find(r=>r.id=='{rid3}').statut")=='Terminé')
   # 7) Écoute / téléchargement de l'audio d'origine
   pg.evaluate(f"revOpen('{rid2}')");pg.wait_for_timeout(300)
   P('7) boutons écoute/téléchargement de l’audio proposés :',pg.evaluate("!!document.querySelector('[data-a=\"play\"]')&&!!document.querySelector('[data-a=\"dl\"]')"))
