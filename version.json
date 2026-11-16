@@ -1,11 +1,12 @@
 {
- "version": "9.8",
+ "version": "9.9",
  "date": "2026-11-16",
  "importance": "normale",
  "notes": [
-  "Nouveaux thèmes : touchez l’icône palette 🎨 en haut de l’écran pour choisir entre Classique clair, Classique sombre, Ninja et Pirate.",
-  "Thème Ninja : papier parchemin, encre noire, sceaux rouges et accents orange flamme.",
-  "Thème Pirate : planches de bois, océan, parchemin, ancres et touches dorées.",
-  "Le choix est mémorisé sur chaque appareil ; vos données ne changent pas."
+  "Nouveau type de garantie : « Performance environnementale et sociale », pris en compte partout (tableau de bord, statistiques, conformité, calendrier).",
+  "Vos propres modèles de courrier : ajoutez un fichier Word (.docx) ou PDF via le bouton ✉️ d’une fiche, ou le menu ⋯ → « Mes modèles de courrier ».",
+  "Écrivez des champs comme {{numero_marche}}, {{titulaire}} ou {{organisme}} dans votre modèle : ils sont remplis automatiquement avec les données de la fiche.",
+  "Avec un modèle Word, vous obtenez un fichier Word rempli qui garde la mise en page de votre document (en-tête, tableaux, gras…).",
+  "Les modèles sont chiffrés et synchronisés entre vos appareils, comme les documents joints."
  ]
 }

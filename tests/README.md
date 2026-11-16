@@ -36,5 +36,6 @@ bash tests/run_all.sh
 | t28.py | gros PDF : compression et découpage automatiques sans question, plus de limite de 600 pages, couleur conservée, fiche pleine, bouton Arrêter (préparer avec `python3 tests/t28_gen.py`) |
 | t29.py | jauge en arrière-plan : pas de fenêtre bloquante, progression, travail possible pendant le traitement, file d'attente, réduire/agrandir, envoi au cloud, verrouillage (arrêt, rien d'affiché, aucun fichier orphelin) |
 | t30.py | thèmes Classique clair/sombre, Ninja, Pirate : choix, mémorisation, tous les onglets sans erreur, contraste ≥ 4,5 |
+| t31.py | garantie de performance environnementale et sociale ; modèles de courrier Word/PDF : ajout, champs remplis (même coupés par Word), mise en page conservée, refus des fichiers piégés, synchronisation, retrait (préparer avec `python3 tests/t31_gen.py`) |
 
 À lancer après chaque modification, avant de publier.
