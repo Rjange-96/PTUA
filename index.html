@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob: mediastream:; font-src 'self'; connect-src 'self' https://test.nextdns.io https://raw.githubusercontent.com https://rjange-96.github.io https://iofbwpzhptctyelmylkz.supabase.co; object-src 'none'; base-uri 'none'; form-action 'none'; worker-src 'self'; manifest-src 'self'">
 <meta name="referrer" content="no-referrer">
 <link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-180.png"><link rel="icon" href="icon-192.png">
-<title>Gestionnaire juridique et contractuel PTUA v9.9</title>
+<title>Gestionnaire juridique et contractuel PTUA v9.10</title>
 <style>
 :root{--bg:#eef3fb;--c:rgba(255,255,255,.74);--t:#16213a;--m:#5d6c8a;--b:rgba(60,80,130,.16);--p:#2563eb;--r:#e11d48;--o:#d97706;--y:#a16207;--g:#059669;--g1:#1e3a8a;--g2:#7c3aed;--h2:#1d4ed8;--in:rgba(255,255,255,.95);--hd:rgba(255,255,255,.78);--sh:0 14px 34px -16px rgba(37,60,120,.35);--gl:rgba(37,99,235,.2);--gl2:rgba(37,99,235,.35);--cf:rgba(37,99,235,.5);--cb:linear-gradient(135deg,rgba(37,99,235,.10),rgba(124,58,237,.16));--hv:rgba(37,99,235,.06);--dg:rgba(255,255,255,.98);--ob:#fff;--bt:#fff;--sp:radial-gradient(circle at 50% 45%,#fff,#d6e4ff);--bd:#0f1b3a66;color-scheme:light}
 [data-t=dark]{--bg:#070b17;--c:rgba(18,26,48,.62);--t:#e8eefc;--m:#8b98b8;--b:rgba(148,163,184,.2);--p:#22d3ee;--r:#ff6b81;--o:#fbbf24;--y:#facc15;--g:#34d399;--g1:#fff;--g2:#67e8f9;--h2:#a5f3fc;--in:rgba(6,10,24,.7);--hd:rgba(7,11,23,.72);--sh:0 14px 34px -12px #000a;--gl:#22d3ee55;--gl2:#22d3ee55;--cf:rgba(103,232,249,.55);--cb:linear-gradient(135deg,rgba(34,211,238,.16),rgba(99,102,241,.2));--hv:rgba(34,211,238,.07);--dg:#0c1328f2;--ob:#0f172a;--bt:#04101f;--sp:radial-gradient(circle at 50% 45%,#16205a,#050810);--bd:#02050dcc;color-scheme:dark}
@@ -64,6 +64,10 @@ th.st{cursor:pointer;user-select:none}a{color:var(--p)}
 #fs{display:none}@media print{body.pfs>*:not(#fs){display:none!important}body.pfs #fs{display:block;color:#000;font:14px/1.5 sans-serif;padding:10mm}#fs h1{font-size:22px;margin:0 0 4px}#fs h2{font-size:16px;margin:18px 0 6px}#fs svg{width:60mm;height:60mm;display:block;margin:12px 0}#fs .k{font:700 20px/1.4 monospace;letter-spacing:2px;border:2px solid #000;padding:8px 12px;display:inline-block}}.sp{display:flex;align-items:flex-end;gap:2px;height:56px;border-bottom:1px solid var(--b)}.sp i{flex:1;background:var(--g1);min-height:3px;border-radius:2px 2px 0 0;opacity:.85}.sp i:last-child{opacity:1}@media print{#bg,#sp,#lk,#al,nav,dialog,button,.hr{display:none!important}:root,[data-t=dark]{--t:#000;--m:#444;--c:#fff;--b:#bbb;--g1:#000;--g2:#000;--h2:#000;--hv:transparent;--in:#fff;--hd:#fff}body{background:#fff!important}header{position:static;box-shadow:none}.k,.card,.w{box-shadow:none!important;backdrop-filter:none;break-inside:avoid}main>*{animation:none!important}.w,.w2{overflow:visible}}
 .hit{background:color-mix(in srgb,#facc15 38%,transparent);border-radius:4px}tr.cl{cursor:pointer}.sh{display:flex;justify-content:space-between;align-items:center;margin:16px 0 8px}.sh h2{font-size:15px;margin:0;color:var(--h2)}
 dialog{max-height:92vh;overflow:auto}summary{outline:none}
+#dhd{position:sticky;top:-20px;margin:-20px -20px 14px;padding:20px 20px 12px;background:var(--dg);z-index:5;border-bottom:1px solid var(--b)}
+#dhd h3{margin:0 0 2px}
+#dsub{font-size:12.5px;color:var(--m);font-weight:600}
+#dsub:empty{display:none}
 .cp th,.cp td{padding:4px 8px;font-size:12px}.cg{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}.ci{background:var(--in);border:1px solid var(--b);border-radius:14px;padding:12px;font-size:13px}.ci b{font-size:14px;display:block;margin-bottom:6px}.ci div{margin:3px 0}.ci small{color:var(--m)}.ca{margin-top:8px;display:flex;gap:6px;flex-wrap:wrap}
 .lt td{background:var(--hv);font-weight:700;color:var(--h2);padding:4px 12px}.lh{grid-column:1/-1;font-weight:700;color:var(--h2);border-bottom:1px solid var(--b);padding-top:6px}
 
@@ -109,6 +113,7 @@ button,select,a,label,summary{-webkit-tap-highlight-color:transparent;touch-acti
  .cg{grid-template-columns:1fr}
  .bar select{flex:1 1 40%;min-width:0;width:auto!important}
  dialog{width:100vw;max-width:100vw;margin:auto 0 0;border-radius:20px 20px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom));max-height:92dvh}
+ #dhd{top:-18px;margin:-18px -16px 12px;padding:18px 16px 12px}
  .row{position:sticky;bottom:0;background:var(--dg);padding:10px 0 0}.row button{flex:1}
 }
 
@@ -269,15 +274,15 @@ th{font-size:12.5px}td,th{padding:12px 12px}
 [data-s] nav button{border-color:transparent!important}
 @media print{[data-s] body{background:#fff!important}}
 </style></head><body>
-<a class="skip" href="#v">Aller au contenu</a><div id="bg"></div><div id="sp"><svg class="lgo" viewBox="0 0 48 48" role="img" aria-label="PTUA"><circle cx="24" cy="24" r="22" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="24" cy="24" r="17.5" fill="none" stroke="currentColor" stroke-width="1" opacity=".55"/><text x="24" y="33" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="26" font-weight="700" fill="currentColor">§</text></svg><b>PTUA</b></div><header><div class="lg"><svg class="lgo" viewBox="0 0 48 48" role="img" aria-label="PTUA"><circle cx="24" cy="24" r="22" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="24" cy="24" r="17.5" fill="none" stroke="currentColor" stroke-width="1" opacity=".55"/><text x="24" y="33" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="26" font-weight="700" fill="currentColor">§</text></svg><h1>Gestionnaire juridique et contractuel PTUA <small>v9.9</small> <span id="sys" onclick="go('sauv')"></span></h1></div><div class="hr"><b id="ht">--:--:--</b><small id="hdt"></small></div>
+<a class="skip" href="#v">Aller au contenu</a><div id="bg"></div><div id="sp"><svg class="lgo" viewBox="0 0 48 48" role="img" aria-label="PTUA"><circle cx="24" cy="24" r="22" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="24" cy="24" r="17.5" fill="none" stroke="currentColor" stroke-width="1" opacity=".55"/><text x="24" y="33" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="26" font-weight="700" fill="currentColor">§</text></svg><b>PTUA</b></div><header><div class="lg"><svg class="lgo" viewBox="0 0 48 48" role="img" aria-label="PTUA"><circle cx="24" cy="24" r="22" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="24" cy="24" r="17.5" fill="none" stroke="currentColor" stroke-width="1" opacity=".55"/><text x="24" y="33" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="26" font-weight="700" fill="currentColor">§</text></svg><h1>Gestionnaire juridique et contractuel PTUA <small>v9.10</small> <span id="sys" onclick="go('sauv')"></span></h1></div><div class="hr"><b id="ht">--:--:--</b><small id="hdt"></small></div>
 <div class="hb"><button onclick="go('search')" aria-label="Rechercher" title="Rechercher" data-i="search"></button><button id="th" onclick="thMenu()"></button><button onclick="pinMenu()" aria-label="Code d’accès et verrouillage" title="Code d’accès et verrouillage" data-i="lock"></button><button onclick="menu()" aria-label="Autres actions" title="Autres actions" data-i="dots"></button></div>
 <input type="file" id="imp" hidden onchange="impJ(this)"></header>
 <div id="ins" hidden></div><nav id="nav"></nav><div id="al"></div><main id="v"></main><div id="lk" hidden><div class="lkb"><h2 style="margin:0">🔒 Application verrouillée</h2><small style="color:var(--m)">Données chiffrées sur cet appareil (AES-256)</small><button type="button" class="pri" id="fb" hidden onclick="unlFid()">🙂 Déverrouiller avec Face ID</button><form onsubmit="event.preventDefault();unl()"><input type="text" name="username" value="PTUA" autocomplete="username" hidden readonly><input id="pin" type="password" autocomplete="current-password" placeholder="Code d’accès" autocapitalize="off" spellcheck="false"><button class="pri" type="submit">Déverrouiller</button></form><small id="lke" style="color:var(--r)"></small></div></div>
 <datalist id="orgs"></datalist>
-<dialog id="cd"></dialog><dialog id="dv"></dialog><dialog id="dlg"><h3 id="dt" style="margin-top:0"></h3><div id="df"></div><div class="row"><button onclick="$('#dlg').close()">Annuler</button><button class="pri" onclick="ok()">Enregistrer</button></div></dialog>
+<dialog id="cd"></dialog><dialog id="dv"></dialog><dialog id="dlg"><div id="dhd"><h3 id="dt"></h3><div id="dsub"></div></div><div id="df"></div><div class="row"><button onclick="$('#dlg').close()">Annuler</button><button class="pri" onclick="ok()">Enregistrer</button></div></dialog>
 <script>
 if(top!==self){try{top.location=self.location.href}catch(e){document.documentElement.innerHTML='';throw 0}}
-const APPV='9.9',MOB=()=>matchMedia('(max-width:700px)').matches,K='ptua_v3',$=s=>document.querySelector(s),day=864e5,today=new Date(new Date().toDateString());
+const APPV='9.10',MOB=()=>matchMedia('(max-width:700px)').matches,K='ptua_v3',$=s=>document.querySelector(s),day=864e5,today=new Date(new Date().toDateString());
 // ===== v8.7 — Moniteur d’activité : métadonnées uniquement (heure, serveur, taille), jamais le contenu des données =====
 const MON={net:[],ev:[],t0:Date.now(),sent:0,recv:0,hosts:{}};
 (()=>{const f0=window.fetch.bind(window);window.fetch=async(u,o)=>{const t=performance.now(),rec={at:Date.now(),m:(o&&o.method)||'GET',host:'?',path:'',bl:0,st:0,ms:0,rl:0};
@@ -422,7 +427,10 @@ function edit(e,id){
 if(e=='marches'){const E=['num','objet','titulaire','montant'],L=[...$('#df').children].filter(l=>!E.includes(l.querySelector('[name]').name)),d=document.createElement('details');
   d.open=!!id;d.innerHTML='<summary style="cursor:pointer;margin:4px 0 14px;font-weight:600;color:var(--p)">＋ Plus d’informations (à compléter plus tard)</summary>';L.forEach(l=>d.appendChild(l));$('#df').appendChild(d);
   if(!id)$('#df').insertAdjacentHTML('afterbegin','<p style="margin:0 0 12px;color:var(--m);font-size:13px">Seul le <b>N° de marché</b> est obligatoire : enregistrez maintenant et complétez le reste plus tard (délai en mois ou en jours, dates, montants…).</p>')}
- if(e=='garanties'){const ty=$('#df [name=type]'),ev=$('#df [name=evt]'),fill=()=>{if(!ev.value||Object.values(EVT).includes(ev.value))ev.value=EVT[ty.value]||''};fill();ty.onchange=fill}
+ if(e=='garanties'){const ty=$('#df [name=type]'),ev=$('#df [name=evt]'),mr=$('#df [name=marche]'),fill=()=>{if(!ev.value||Object.values(EVT).includes(ev.value))ev.value=EVT[ty.value]||''};fill();ty.onchange=fill;
+  const sub=()=>{const m=db.marches.find(x=>x.id==mr.value);$('#dsub').textContent=[m?m.num:'',ty.value].filter(Boolean).join(' — ')};
+  sub();ty.addEventListener('change',sub);mr.addEventListener('change',sub)}
+ else $('#dsub').textContent=''
  if(e=='os'){const pv=document.createElement('p');pv.id='pv';pv.style.cssText='margin:0 0 10px;font-weight:600;color:var(--p)';$('#df').appendChild(pv);
   const up=()=>{const f=osFin(fo());pv.textContent=f?'➜ La durée court du '+fd(fo().date)+' au '+fdd(f):'Saisissez la date et une durée (mois et/ou jours) pour voir la date de fin.'};
   $('#df').oninput=up;$('#df').onchange=up;up()}
@@ -1466,7 +1474,7 @@ async function icsExp(){
  db.os.forEach(o=>{const f=osFin(o);if(!f||f<today)return;
   ev.push({id:'o'+o.id,d:f,t:`PTUA – Fin de durée OS ${o.num||o.type} · ${mn(o.marche)}`,x:dis?'':(o.note||''),al:[15,3]})});
  if(!ev.length)return alert('Aucune échéance future à ajouter (garanties actives avec une date d’échéance, fins prévues de marchés, durées d’OS).');
- const st=new Date().toISOString().replace(/[-:]/g,'').slice(0,15)+'Z',L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//PTUA//Gestionnaire PTUA v9.9//FR','CALSCALE:GREGORIAN','METHOD:PUBLISH','X-WR-CALNAME:PTUA – échéances'];
+ const st=new Date().toISOString().replace(/[-:]/g,'').slice(0,15)+'Z',L=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//PTUA//Gestionnaire PTUA v9.10//FR','CALSCALE:GREGORIAN','METHOD:PUBLISH','X-WR-CALNAME:PTUA – échéances'];
  const al=(t,tr)=>L.push('BEGIN:VALARM','ACTION:DISPLAY','DESCRIPTION:'+icsE(t),'TRIGGER:'+tr,'END:VALARM');
  ev.forEach(e=>{L.push('BEGIN:VEVENT',`UID:ptua-${e.id}-${icd(e.d)}@ptua.app`,'DTSTAMP:'+st,'DTSTART;VALUE=DATE:'+icd(e.d),'DTEND;VALUE=DATE:'+icd(new Date(e.d.getTime()+day)),'SUMMARY:'+icsE(e.t));
   if(e.x)L.push('DESCRIPTION:'+icsE(e.x));L.push('TRANSP:TRANSPARENT');
