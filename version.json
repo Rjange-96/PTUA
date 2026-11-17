@@ -1,10 +1,8 @@
 {
- "version": "9.21",
+ "version": "9.22",
  "date": "2026-11-17",
  "importance": "normale",
  "notes": [
-  "Assurances : l’assureur de chaque police est contrôlé d’après la liste officielle 2026 (communiqué du 21 janvier 2026). Une société agréée en non-vie est acceptée ; une société « vie » seule, un réassureur ou une banque est signalé non conforme.",
-  "Nouvelle revue d’expert (onglet Conformité) : contrôle croisé de tous les champs comme le ferait un gestionnaire de marchés. Dates incohérentes (démarrage avant notification, réception avant démarrage, fin de garantie avant réception, année improbable), montants (garantie supérieure au marché, avance non couverte à 100 %, capital TRC insuffisant, prime anormale, pénalités et plafond, avenants cumulés), statuts (garantie ou police échue encore active, mainlevée, événement de fin incohérent), OS (doublons, reprise sans arrêt, prolongation sans durée), doublons, éléments sans marché, assuré différent du titulaire, organisme non habilité.",
-  "Chaque point est classé Incohérence / Anomalie / Conseil, avec « Que faire » et un bouton « Ouvrir » vers la fiche à corriger ; une alerte apparaît aussi sur le tableau de bord."
+  "Correction : le numéro de version affiché en haut de l’application indiquait toujours v9.18. Il suit maintenant automatiquement la version installée."
  ]
 }
