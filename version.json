@@ -1,10 +1,10 @@
 {
- "version": "9.19",
+ "version": "9.20",
  "date": "2026-11-17",
  "importance": "normale",
  "notes": [
-  "Nouvel analyseur de garanties (onglet Conformité, bouton 🔍 dans la liste des garanties) : la garantie reçue est lue sur votre appareil puis comparée au marché — montant (taux du marché, avance à garantir), délai de remise après la notification d’approbation, durée de validité, titulaire, n° du marché, clauses (irrévocable, première demande, libération à l’événement de fin, bénéficiaire…).",
-  "Résultat point par point (conforme, non conforme, à vérifier) avec l’extrait du document, la suite à donner et votre décision finale ; rapport imprimable et courrier de réserves prêt à envoyer.",
-  "Les exigences du CCAP/DAO se saisissent par type de garantie (ou se collent depuis l’article du CCAP) ; à défaut, le référentiel de l’application s’applique. L’agrément de l’organisme et l’authenticité de la garantie sont à confirmer par vos soins (cases à cocher)."
+  "Liste officielle 2026 des organismes habilités intégrée (communiqué du Ministre des Finances et du Budget du 21 janvier 2026) : l’analyseur de garanties contrôle maintenant automatiquement l’organisme garant. Une société d’assurance doit figurer sur la liste des sociétés habilitées à délivrer des cautionnements (13 sociétés) ; sinon la garantie est signalée non conforme.",
+  "Les banques restent à vérifier par vos soins (autre liste officielle). Les noms ambigus (NSIA, Coris, Atlantique : banque ou assurance ?) sont signalés. Une pastille ✅ / ❌ s’affiche dans la fiche d’analyse, et une carte « Liste officielle 2026 » permet de vérifier n’importe quel organisme.",
+  "À la fin de 2026, la liste intégrée sera marquée « à vérifier » tant qu’elle n’est pas remplacée par celle de l’année suivante."
  ]
 }

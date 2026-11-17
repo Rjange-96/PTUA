@@ -317,7 +317,7 @@ html.peek body>*:not(#wp){visibility:hidden!important}html.peek #wp .wpv{opacity
 <dialog id="cd"></dialog><dialog id="dv"></dialog><dialog id="dlg"><div id="dhd"><h3 id="dt"></h3><div id="dsub"></div></div><div id="df"></div><div class="row"><button onclick="$('#dlg').close()">Annuler</button><button class="pri" onclick="ok()">Enregistrer</button></div></dialog>
 <script>
 if(top!==self){try{top.location=self.location.href}catch(e){document.documentElement.innerHTML='';throw 0}}
-const APPV='9.19',MOB=()=>matchMedia('(max-width:700px)').matches,K='ptua_v3',$=s=>document.querySelector(s),day=864e5,today=new Date(new Date().toDateString());
+const APPV='9.20',MOB=()=>matchMedia('(max-width:700px)').matches,K='ptua_v3',$=s=>document.querySelector(s),day=864e5,today=new Date(new Date().toDateString());
 // ===== v8.7 — Moniteur d’activité : métadonnées uniquement (heure, serveur, taille), jamais le contenu des données =====
 const MON={net:[],ev:[],t0:Date.now(),sent:0,recv:0,hosts:{}};
 (()=>{const f0=window.fetch.bind(window);window.fetch=async(u,o)=>{const t=performance.now(),rec={at:Date.now(),m:(o&&o.method)||'GET',host:'?',path:'',bl:0,st:0,ms:0,rl:0};
@@ -1909,6 +1909,93 @@ const GEV={'Bonne exécution':{l:'Libération au procès-verbal de réception pr
  'Avance de démarrage':{l:'Libération au remboursement intégral de l’avance ou par mainlevée du bénéficiaire',re:/(rembours|restitu)\w*[^.\n]{0,50}avance|avance[^.\n]{0,50}(rembours|restitu)/,alt:null,s:'Guide ARCOP §5.4 ; Code des marchés publics art. 101'},
  'Retenue de garantie':{l:'Libération au procès-verbal de réception définitive ou par mainlevée du bénéficiaire',re:/reception definitive/,alt:/reception provisoire/,s:'Guide ARCOP §5.8 ; Code des marchés publics art. 98'}};
 const GKNOWN=[['NSIA Banque',/nsia banque/],['Société Générale Côte d’Ivoire',/societe generale|\bsgci\b|\bsgbci\b/],['BICICI (BNP Paribas)',/bicici|bnp paribas/],['Ecobank Côte d’Ivoire',/ecobank/],['Bank of Africa (BOA)',/bank of africa|\bboa\b/],['Banque Atlantique',/banque atlantique/],['Société Ivoirienne de Banque (SIB)',/societe ivoirienne de banque|\bsib\b/],['Standard Chartered',/standard chartered/],['Stanbic Bank',/stanbic/],['Orabank',/orabank/],['Coris Bank International',/coris bank/],['Bridge Bank Group',/bridge bank/],['Afriland First Bank',/afriland/],['United Bank for Africa (UBA)',/\buba\b|united bank for africa/],['BGFIBank',/bgfi/],['Banque Nationale d’Investissement (BNI)',/banque nationale d'investissement|\bbni\b/],['Versus Bank',/versus bank/],['Citibank',/citibank/],['Banque de l’Habitat (BHCI)',/banque de l'habitat|\bbhci\b/],['Access Bank',/access bank/],...ANKNOWN];
+
+// ===== v9.20 — Liste officielle 2026 des sociétés d’assurances agréées (communiqué du Ministre des Finances et du Budget, DGTCP, 21 janvier 2026) =====
+// Contrôle automatique de l’organisme garant. Listes (lettres) : c = habilitées à délivrer des cautionnements · n = non-vie · r = branche crédit · v = vie · x = réassurance.
+// Une société d’assurance n’est acceptée comme garant que si elle figure sur la liste « c ». Les banques relèvent d’une autre liste (banques et établissements financiers agréés) : à confirmer par vos soins.
+// Pour 2027 : remplacer uniquement AGR.annee, AGR.date et le tableau AGR.E par la nouvelle liste officielle.
+const AGR={annee:2026,date:'2026-01-21',
+ src:'Communiqué du Ministre des Finances et du Budget (DGTCP) du 21 janvier 2026 : liste des sociétés d’assurances habilitées à délivrer des cautionnements en Côte d’Ivoire',
+ LB:{c:'habilitée à délivrer des cautionnements',n:'agréée en assurance non-vie',r:'agréée pour la branche crédit',v:'agréée en assurance vie',x:'société de réassurance'},
+ // [nom officiel, motif reconnu (texte sans accents ni majuscules), motif d’exclusion, listes]
+ E:[
+ ['ACTIVA ASSURANCES CÔTE D’IVOIRE',/activa/,0,'cn'],
+ ['AFG ASSURANCES S.A IARDT CÔTE D’IVOIRE',/\bafg\b/,0,'cnr'],
+ ['ATLANTA ASSURANCES CÔTE D’IVOIRE',/\batlanta\b/,0,'cn'],
+ ['ATLANTIQUE ASSURANCES CÔTE D’IVOIRE',/atlantique assurances|atlantique cote d'ivoire|\baaci\b/,/\bvie\b|banque|aavie/,'cn'],
+ ['CORIS ASSURANCES SA CÔTE D’IVOIRE',/coris assurances?/,/\bvie\b|bank/,'cnr'],
+ ['GÉNÉRATION NOUVELLE D’ASSURANCES CÔTE D’IVOIRE (GNA-CI)',/generation nouvelle|\bgna\b/,0,'cn'],
+ ['LA LOYALE ASSURANCES IARD',/loyale/,0,'c'],
+ ['NSIA CÔTE D’IVOIRE (NSIA-CI)',/nsia[ -]?(assurances?|cote d'ivoire|ci\b)|assurances? nsia/,/banque|\bvie\b/,'cn'],
+ ['SERENITY SA',/serenity/,0,'cn'],
+ ['SMABTP CÔTE D’IVOIRE S.A',/sma ?btp/,0,'cn'],
+ ['SOCIÉTÉ AFRICAINE D’ASSURANCES ET DE RÉASSURANCES (SAAR-CI)',/saar|societe africaine d'assurances et de reassurances/,/\bvie\b/,'cn'],
+ ['LEADWAY ASSURANCE IARD',/leadway/,/\bvie\b/,'cnr'],
+ ['SOCIÉTÉ INTERNATIONALE D’ASSURANCES MULTIRISQUES (SIDAM S.A)',/sidam|assurances multirisques/,0,'cn'],
+ ['AMSA ASSURANCES CÔTE D’IVOIRE',/amsa/,0,'n'],
+ ['ASSURANCES COMAR CÔTE D’IVOIRE (COMAR CI)',/comar/,0,'n'],
+ ['AXA CÔTE D’IVOIRE',/\baxa\b/,0,'nr'],
+ ['L’AFRICAINE DES ASSURANCES (2ACI) (ex SAFA)',/africaine des assurances|\b2aci\b|\bsafa\b/,0,'n'],
+ ['MUTUELLE D’ASSURANCES DES TAXIS COMPTEURS D’ABIDJAN (MATCA)',/matca|taxis compteurs/,0,'n'],
+ ['SANLAMALLIANZ CÔTE D’IVOIRE ASSURANCES',/sanlam|allianz/,/\bvie\b/,'nr'],
+ ['SCHIBA ASSURANCES SA',/schiba/,/\bvie\b/,'n'],
+ ['SOCIÉTÉ IVOIRIENNE DE MICRO-ASSURANCES',/micro[ -]?assurances?/,0,'n'],
+ ['SONAM ASSURANCES (ex 3A IARD)',/sonam/,/\bvie\b/,'n'],
+ ['SUNU ASSURANCES IARD',/sunu/,/\bvie\b|\bre\b/,'n'],
+ ['WAFA ASSURANCE CÔTE D’IVOIRE',/wafa/,/\bvie\b|\bima\b|assistance/,'n'],
+ ['ATLANTIQUE ASSURANCES VIE (AA VIE)',/atlantique assurances vie|aavie|\baa[ -]?vie\b/,0,'v'],
+ ['CORIS ASSURANCES VIE CÔTE D’IVOIRE',/coris[a-z' -]*\bvie\b/,0,'v'],
+ ['LEADWAY VIE',/leadway[a-z' -]*\bvie\b/,0,'v'],
+ ['NSIA VIE ASSURANCES (NSIA-VIE)',/nsia[a-z' -]*\bvie\b/,0,'v'],
+ ['PRUDENTIAL BELIFE INSURANCE',/belife|prudential/,0,'v'],
+ ['SANLAMALLIANZ CÔTE D’IVOIRE ASSURANCES VIE',/(sanlam|allianz)[a-z' -]*\bvie\b/,0,'v'],
+ ['SCHIBA ASSURANCE VIE',/schiba[a-z' -]*\bvie\b/,0,'v'],
+ ['SAAR-VIE CÔTE D’IVOIRE',/saar[a-z' -]*\bvie\b/,0,'v'],
+ ['SOCIÉTÉ DU MILLÉNAIRE D’ASSURANCE VIE (SOMAVIE)',/somavie|millenaire/,0,'v'],
+ ['SONAM VIE CÔTE D’IVOIRE',/sonam[a-z' -]*\bvie\b/,0,'v'],
+ ['SUNU ASSURANCES VIE CÔTE D’IVOIRE',/sunu[a-z' -]*\bvie\b/,0,'v'],
+ ['WAFA ASSURANCE CÔTE D’IVOIRE VIE',/wafa[a-z' -]*\bvie\b/,0,'v'],
+ ['YAKO AFRICA ASSURANCES VIE',/yako/,0,'v'],
+ ['AFRICA-RE',/africa[ -]?re\b/,0,'x'],['AVENI-RE',/aveni[ -]?re/,0,'x'],['CICA-RE',/cica[ -]?re/,0,'x'],['CONTINENTAL-RE',/continental[ -]?re/,0,'x'],
+ ['KENYA RE',/kenya[ -]?re/,0,'x'],['SUNU RE',/sunu[ -]?re\b/,0,'x'],['WAFA IMA ASSISTANCE',/wafa ima/,0,'x'],['NCA-RE',/\bnca[ -]?re/,0,'x'],
+ ['WAICA-RE',/waica/,0,'x'],['ZEP-RE',/zep[ -]?re/,0,'x'],['ATLANTIC RÉ (ex SCR)',/atlantic[ -]re\b/,0,'x'],['HANNOVER-RE',/hannover/,0,'x'],
+ ['MANZI-RÉ',/manzi/,0,'x'],['SWISS RE',/swiss[ -]?re/,0,'x']],
+ // noms incomplets qui désignent à la fois une banque et une compagnie d’assurance
+ AMB:[[/nsia/,'« NSIA » désigne NSIA Banque (banque) ou NSIA Côte d’Ivoire (assurance, habilitée aux cautionnements) : préciser sur la fiche'],
+  [/coris/,'« Coris » désigne Coris Bank International (banque) ou Coris Assurances SA (assurance, habilitée aux cautionnements) : préciser sur la fiche'],
+  [/atlantique/,'« Atlantique » désigne Banque Atlantique (banque) ou Atlantique Assurances Côte d’Ivoire (assurance, habilitée aux cautionnements) : préciser sur la fiche']]};
+const GBANK=GKNOWN.slice(0,GKNOWN.length-ANKNOWN.length);
+const agrLb=L=>String(L||'').split('').map(k=>AGR.LB[k]).filter(Boolean).join(' ; ');
+// s : ok (assureur habilité) · ko (assureur agréé mais non habilité aux cautionnements) · bank (banque connue) · amb (nom incomplet) · unk (non retrouvé) · none (vide)
+function agrCheck(txt){const N=anN(txt||'').replace(/[^a-z0-9' -]/g,' ').replace(/\s+/g,' ').trim();if(!N)return{s:'none'};
+ const bk=GBANK.find(x=>x[1].test(N));if(bk)return{s:'bank',n:bk[0]};
+ const hit=AGR.E.filter(e=>e[1].test(N)&&!(e[2]&&e[2].test(N)));
+ if(hit.length){const c=hit.find(e=>e[3].includes('c'));if(c)return{s:'ok',n:c[0],L:c[3]};return{s:'ko',n:hit[0][0],L:hit[0][3]}}
+ const am=AGR.AMB.find(a=>a[0].test(N));if(am)return{s:'amb',n:am[1]};
+ return{s:'unk'}}
+// résultat du contrôle pour l’analyseur : [verdict, constaté, pourquoi, que faire]
+function agrVerdict(nm,agOk){const A=agrCheck(nm),old=AGR.annee<today.getFullYear(),
+ vo=old?'chk':null,oldWhy=old?' La liste intégrée à l’application date de '+AGR.annee+' : vérifier la liste de l’année en cours.':'';
+ if(A.s=='ok')return[vo||'ok',A.n+' : '+agrLb(A.L)+' (liste '+AGR.annee+')',oldWhy,old?'Vérifier la liste officielle de l’année en cours.':''];
+ if(A.s=='ko')return[vo||'ko',A.n+' : '+agrLb(A.L)+', mais ne figure pas sur la liste '+AGR.annee+' des sociétés habilitées à délivrer des cautionnements',
+  'Une société d’assurance ne peut délivrer une garantie (cautionnement) que si elle figure sur la liste officielle des sociétés habilitées.'+(agOk?' La case « agrément vérifié » est cochée : à revoir.':'')+oldWhy,'Exiger la garantie d’une société figurant sur la liste officielle des habilitées aux cautionnements, ou d’une banque agréée.'];
+ if(A.s=='bank')return[agOk?'ok':'chk',A.n+' : banque (hors liste des sociétés d’assurances)'+(agOk?' — agrément vérifié par vos soins':''),agOk?'':'Une banque n’est pas sur la liste des assureurs : confirmer son agrément sur la liste des banques et établissements financiers agréés (Commission bancaire).','Vérifier l’agrément de la banque, puis cocher « agrément vérifié ».'];
+ if(A.s=='amb')return[agOk?'ok':'chk',A.n,agOk?'':'Nom insuffisant pour savoir s’il s’agit de la banque ou de la compagnie d’assurance.','Préciser l’organisme exact sur la fiche.'];
+ if(A.s=='none')return[agOk?'ok':'chk','Organisme non renseigné','Impossible de contrôler l’agrément.','Renseigner l’organisme garant sur la fiche.'];
+ return[agOk?'ok':'chk',agOk?'Agrément vérifié par vos soins':'Organisme non retrouvé dans la liste '+AGR.annee+' des sociétés d’assurances ni parmi les banques connues','Si c’est une compagnie d’assurance, elle ne figure pas sur la liste officielle : la garantie est irrégulière. Si c’est une banque, confirmer son agrément sur la liste des banques et établissements financiers agréés.','Vérifier l’orthographe sur la fiche, puis l’agrément sur la liste officielle.']}
+function agrChip(g){const A=agrCheck(g.organisme||''),m={ok:['g','✅','Habilité aux cautionnements (liste '+AGR.annee+')'],ko:['r','❌','Non habilité aux cautionnements'],bank:['y','🏦','Banque : hors liste des assureurs'],amb:['y','⚠️','Nom incomplet'],unk:['y','⚠️','Non retrouvé dans la liste '+AGR.annee],none:['y','⚠️','Organisme non renseigné']}[A.s];
+ return`<div>🏛️ Contrôle de l’organisme : <span class="b ${m[0]}">${m[1]} ${esc(m[2])}</span>${A.s=='ok'||A.s=='ko'||A.s=='bank'?' <small>'+esc(A.n)+'</small>':''}</div>`}
+function agrQ(v){const d=$('#agrR');if(!d)return;const A=agrCheck(v);
+ const t={ok:['g','✅ Habilitée à délivrer des cautionnements',A.n],ko:['r','❌ Agréée mais NON habilitée aux cautionnements',(A.n||'')+' — '+agrLb(A.L)],bank:['y','🏦 Banque (autre liste : banques et établissements financiers agréés)',A.n],amb:['y','⚠️ Nom incomplet',A.n],unk:['y','⚠️ Non retrouvé dans la liste '+AGR.annee,'Vérifiez l’orthographe ou la liste officielle'],none:['y','Saisissez un nom','']}[A.s];
+ d.innerHTML=String(v||'').trim()?`<span class="b ${t[0]}">${esc(t[1])}</span> <small>${esc(t[2]||'')}</small>`:''}
+function agrCard(){const by=k=>AGR.E.filter(e=>e[3].includes(k)).map(e=>e[0]),ol=a=>'<ol style="margin:4px 0 10px 20px;padding:0;font-size:13px">'+a.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ol>',
+ sec=(k,t)=>`<details style="margin:6px 0"><summary><b>${esc(t)} (${by(k).length})</b></summary>${ol(by(k))}</details>`;
+ return`<details class="card nt"><summary><h2 style="display:inline">🏛️ Liste officielle ${AGR.annee} des organismes habilités</h2></summary>
+ <p style="margin:8px 0;color:var(--m);font-size:13px">Intégrée à l’application depuis le communiqué du Ministre des Finances et du Budget (DGTCP) du ${esc(fd(AGR.date))}. L’analyseur de garanties s’en sert pour contrôler l’organisme garant. Les banques relèvent d’une autre liste.</p>
+ <label>Vérifier un organisme<input type="search" placeholder="Ex. : NSIA Côte d’Ivoire, SUNU, Serenity…" oninput="agrQ(this.value)" maxlength="120" style="width:100%"></label><div id="agrR" style="margin:8px 0;min-height:22px"></div>
+ <h3 style="margin:10px 0 4px">Habilitées à délivrer des cautionnements (${by('c').length})</h3>${ol(by('c'))}
+ ${sec('r','Non-vie agréées pour la branche crédit')}${sec('n','Sociétés non-vie agréées')}${sec('v','Sociétés vie agréées')}${sec('x','Sociétés de réassurance')}</details>`}
+// ===== fin v9.20 =====
 const GKW={'Bonne exécution':/bonne execution/,'Avance de démarrage':/avance de demarrage|restitution d'avance|garantie d'avance|avance forfaitaire|avance facultative/,'Retenue de garantie':/retenue de garantie|caution de remplacement/,'Soumission':/soumission/,'Performance environnementale et sociale':/performance environnementale|environnementale et sociale/};
 // exigences par défaut = référentiel de l’application (modifiable au CCAP de chaque marché)
 function gaCfgDef(t){const P=RF().p,c={r:1,pmin:0,pmax:0,cm:'',cv:0,em:0,vf:'',vp:0,c:['ben','tit','id','irr','pd','dur']};
@@ -1983,8 +2070,8 @@ function gaRun(g,m,text,info){const t=GT.includes(g.type)?g.type:'',px=gaPx(m),c
  if(!g.organisme)add('Identification','Organisme garant renseigné','Banque, établissement financier ou assureur','Organisme non renseigné'+(det.organisme?' (document : '+det.organisme+')':''),'chk','Organisme garant absent de la fiche.','Guide ARCOP §4.4 (organisme habilité)','Compléter la fiche à partir de la garantie.');
  else add('Identification','Organisme garant renseigné','Banque, établissement financier ou assureur',g.organisme,'ok','');
  if(has&&g.organisme){const tt=anTit(g.organisme);if(tt.length&&!tt.some(w=>N.includes(w)))add('Identification','Cohérence fiche / document (organisme)','Même organisme','Fiche : '+g.organisme+(det.organisme?' · document : '+det.organisme:' · nom non retrouvé dans le document'),'chk','Le nom de l’organisme de la fiche n’apparaît pas dans le document (ou la lecture automatique s’est trompée).','','Vérifier l’organisme émetteur sur l’original.')}
- {const o=anN(g.organisme||det.organisme||''),kn=GKNOWN.find(x=>x[1].test(o));
-  add('Identification','Organisme habilité (banque ou établissement financier agréé, assureur agréé)','Organisme agréé',st.ag?'Agrément vérifié par vos soins':kn?kn[0]+' : organisme connu, agrément non vérifié':'Organisme non reconnu dans la liste intégrée',st.ag?'ok':'chk',st.ag?'':'À confirmer sur la liste officielle : Direction des assurances pour une compagnie d’assurance, liste des banques et établissements financiers agréés pour une banque. Cochez la case « agrément vérifié » une fois fait.','Guide ARCOP §4.4 ; Code CIMA','Vérifier l’agrément de l’organisme garant sur la liste officielle.')}
+ {const ag=agrVerdict(g.organisme||det.organisme||'',st.ag);
+  add('Identification','Organisme habilité à délivrer des garanties (liste officielle '+AGR.annee+')','Société d’assurance figurant sur la liste '+AGR.annee+' des habilitées aux cautionnements, ou banque agréée',ag[1],ag[0],ag[2],AGR.src,ag[3])}
  if(cf.r){
  // 3. montant
  const p=M&&+g.montant?+g.montant/M*100:null,pr1=x=>(Math.round(x*10)/10).toString().replace('.',',');
@@ -2105,7 +2192,8 @@ function gaUI(m){const px=gaPx(m),L=db.garanties.filter(g=>g.marche==m.id).sort(
    <div>📎 ${nf?nf+' document(s) joint(s)':'Aucun document joint'} <button onclick="docs('garanties','${g.id}')">Joindre / voir les documents</button></div>
    <label>Ou collez ici le texte de la garantie (utile pour un scan ou une photo)<textarea rows="4" style="width:100%" maxlength="20000" onchange="gaSetTx('${g.id}',this.value)" placeholder="Copier-coller du texte de la garantie">${esc(g.gantx||'')}</textarea></label>
    ${g.type=='Avance de démarrage'?`<label>Montant de l’avance versée ou à verser (FCFA)${(+m.avance||+m.avancef)?' — lu sur le marché : '+esc(fmt((+m.avance||0)+(+m.avancef||0)))+' FCFA':''}<input type="number" step="any" min="0" value="${esc(st.av||'')}" onchange="gaSetS('${g.id}','av',this.value)"></label>`:''}
-   <label style="display:flex;gap:8px;align-items:flex-start"><input type="checkbox" ${st.ag?'checked':''} onchange="gaSetS('${g.id}','ag',this.checked)" style="margin-top:4px"><span>J’ai vérifié l’agrément de l’organisme garant sur la liste officielle (Direction des assurances pour un assureur ; banques et établissements financiers agréés pour une banque)</span></label>
+   ${agrChip(g)}
+   <label style="display:flex;gap:8px;align-items:flex-start"><input type="checkbox" ${st.ag?'checked':''} onchange="gaSetS('${g.id}','ag',this.checked)" style="margin-top:4px"><span>J’ai vérifié l’agrément de l’organisme garant (utile pour une banque : liste des banques et établissements financiers agréés ; pour un assureur, le contrôle se fait d’après la liste officielle ${AGR.annee} intégrée)</span></label>
    <label style="display:flex;gap:8px;align-items:flex-start"><input type="checkbox" ${st.au?'checked':''} onchange="gaSetS('${g.id}','au',this.checked)" style="margin-top:4px"><span>J’ai fait confirmer l’authenticité de la garantie par l’organisme garant</span></label>
    <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="pri" onclick="gaGo('${g.id}')">▶️ Analyser cette garantie</button>${R?`<button onclick="gaPrint('${g.id}')">🖨️ Rapport</button><button onclick="cour('garanties','${g.id}')">✉️ Courrier</button><button onclick="gaApply('${g.id}')">⬇️ Appliquer les valeurs lues à la fiche</button>`:''}</div>${last}</div>`}
  let res='';
@@ -2118,13 +2206,14 @@ function gaUI(m){const px=gaPx(m),L=db.garanties.filter(g=>g.marche==m.id).sort(
     <div style="font-size:13px;color:var(--m);margin-top:6px"><div>Exigé : ${esc(c.ex)}</div><div>Constaté : ${esc(c.co)}${c.man?' <i>(corrigé à la main ; automatique : '+esc(ANV[c.auto][0])+')</i>':''}</div>${c.why?`<div>${esc(c.why)}</div>`:''}${c.ev?`<div style="margin-top:4px;padding:6px;border-left:3px solid #8886;white-space:pre-wrap">${esc(c.ev)}</div>`:''}${c.act?`<div><b>Que faire :</b> ${esc(c.act)}</div>`:''}<div><i>Source : ${esc(c.src)}</i></div>
     <label style="display:block;margin-top:6px">Ma décision<select onchange="gaOv('${g.id}',${c.id},this.value)"><option value="">Automatique</option>${['ok','ko','chk','na'].map(v=>`<option value="${v}" ${c.man&&c.v==v?'selected':''}>${esc(ANV[v][0])}</option>`).join('')}</select></label></div></details>`).join('')}`).join('')}
    <details style="margin-top:12px"><summary><b>Valeurs lues dans le document</b> (propositions)</summary><div style="font-size:13px;margin-top:6px">${(()=>{const d=R.det||{},Lx=[['Organisme',d.organisme],['Référence',d.ref],['Montant',d.montant?fmt(d.montant)+' FCFA':''],['Date d’émission',d.emission?fd(d.emission):''],['Échéance',d.echeance?fd(d.echeance):'']].filter(x=>x[1]);return Lx.length?Lx.map(x=>`<div>${esc(x[0])} : <b>${esc(x[1])}</b></div>`).join('')+'<div style="color:var(--m)">Lecture automatique : à confirmer sur l’original. Le bouton « Appliquer » ne remplit que les champs vides.</div>':'Aucune valeur repérée.'})()}</div></details>
-   <p class="e" style="margin-top:10px">Aide à la décision : l’analyse lit le texte du document et le compare aux exigences saisies. L’agrément de l’organisme et l’authenticité de la garantie ne peuvent être confirmés que par vos soins. Le DAO, le CCAP et les textes officiels prévalent.</p></div>`}
+   <p class="e" style="margin-top:10px">Aide à la décision : l’analyse lit le texte du document et le compare aux exigences saisies. L’organisme garant est contrôlé d’après la liste officielle ${AGR.annee} des sociétés d’assurances ; l’agrément d’une banque et l’authenticité de la garantie ne peuvent être confirmés que par vos soins. Le DAO, le CCAP et les textes officiels prévalent.</p></div>`}
  return`<div class="card nt"><h2>🔍 Analyser une garantie reçue</h2><p style="margin:0 0 8px;color:var(--m);font-size:13px">Joignez la garantie reçue (caution bancaire ou garantie d’assurance) : l’application la lit sur votre appareil (rien n’est envoyé sur Internet), la compare aux exigences du marché (montant, délai de remise, durée, clauses) et indique, point par point, ce qui est conforme, non conforme ou à vérifier.</p>
   <div class="bar">${sel}<button onclick="gaNew('${m.id}')">＋ Nouvelle garantie reçue</button></div>${body}${res}</div>
  <details class="card nt"><summary><h2 style="display:inline">📜 Exigences de garantie de ce marché (CCAP / DAO)</h2></summary><p style="margin:8px 0;color:var(--m);font-size:13px">Saisissez ce que le CCAP ou le DAO de <b>${esc(m.num)}</b> exige. Tant que rien n’est saisi, l’analyse applique le référentiel de l’application (guide ARCOP, Code des marchés publics). Vous pouvez aussi coller l’article du CCAP : l’application en propose une lecture que vous corrigez.</p>
   <label>Texte de l’article du CCAP / DAO relatif aux garanties (facultatif)<textarea rows="5" style="width:100%" maxlength="1500" onchange="gaPxTx('${m.id}',this.value)" placeholder="Coller ici l’article relatif aux garanties">${esc(px.tx||'')}</textarea></label>
   <div style="margin:8px 0"><button onclick="gaCcap('${m.id}')">🔎 Lire ce texte et proposer les exigences</button></div>
-  ${GT.map((t,i)=>gaFormType(m,px,i)).join('')}</details>`}
+  ${GT.map((t,i)=>gaFormType(m,px,i)).join('')}</details>
+ ${agrCard()}`}
 applyAll();
 const EVT={'Avance de démarrage':'Expire à l’issue du remboursement intégral de l’avance de démarrage consentie à l’entrepreneur, ou par la mainlevée donnée par le Bénéficiaire.','Bonne exécution':'Expire à la date d’établissement du procès-verbal de réception provisoire des travaux, ou par la mainlevée donnée au Bénéficiaire.','Retenue de garantie':'Expire à la date d’établissement du procès-verbal de réception définitive des travaux, ou par la mainlevée donnée par le Bénéficiaire.'};
 const endedG=g=>g.fin_ev&&g.fin_ev!='—'&&g.fin_date&&D(g.fin_date)<=today;
