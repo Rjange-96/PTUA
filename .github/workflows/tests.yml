@@ -28,5 +28,7 @@ jobs:
           else BASE=${{ github.event.before }}; fi
           case "$BASE" in ''|0000000000000000000000000000000000000000) BASE=HEAD~1;; esac
           bash tests/check_bump.sh "$BASE"
+      - name: Fonctions SQL du serveur (base PostgreSQL jetable)
+        run: bash tests/sql_push.sh
       - name: Lancer les tests
         run: bash tests/run_all.sh

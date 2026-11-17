@@ -527,7 +527,7 @@ function pushDue(now){now=now||Date.now();const dd=[];
  db.reserves.filter(resOpen).forEach(r=>{const e=resEch(r);if(e)dd.push(e)});
  const o=new Set();dd.forEach(d=>{if(!d||isNaN(d))return;PUSH_OFF.forEach(k=>{const t=new Date(d.getFullYear(),d.getMonth(),d.getDate()-k,8,0,0).getTime();if(t>now&&t<now+400*864e5)o.add(Math.floor(t/1000))})});
  return[...o].sort((a,b)=>a-b).slice(0,400)}
-async function pushSend(sub){const k=await syKeys(),r=await rpc('ptua_push_set',{p_id:k.id,p_auth:k.auth,p_endpoint:sub.endpoint,p_sub:sub.toJSON(),p_due:pushDue()});if(r!=='ok')throw new Error(r=='limite'?'Trop de téléphones déjà enregistrés (5 au maximum).':'Le serveur a refusé l’enregistrement ('+r+').');localStorage.setItem(PUSHK,String(Date.now()))}
+async function pushSend(sub){const k=await syKeys(),r=await rpc('ptua_push_set',{p_id:k.id,p_auth:k.auth,p_endpoint:sub.endpoint,p_sub:sub.toJSON(),p_due:pushDue()});if(r!=='ok')throw new Error(r=='limite'?'Limite atteinte : 5 téléphones au maximum par espace, ou service de rappels momentanément saturé. Réessayez plus tard.':'Le serveur a refusé l’enregistrement ('+r+').');localStorage.setItem(PUSHK,String(Date.now()))}
 async function pushOn(){if(!SY)return alert('Activez d’abord la synchronisation (menu Sauvegarde) : elle sert d’identifiant sécurisé pour les rappels.');
  if(!pushOK())return alert('Ce navigateur ne gère pas les notifications. Sur iPhone : ouvrez PTUA dans Safari, touchez Partager puis « Sur l’écran d’accueil », et lancez PTUA depuis cette icône (iOS 16.4 ou plus).');
  try{busy('Activation des rappels…');const perm=await Notification.requestPermission();if(perm!='granted')throw new Error('Notifications refusées : autorisez-les dans les réglages de l’appareil, puis réessayez.');
