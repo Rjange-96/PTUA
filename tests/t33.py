@@ -28,7 +28,7 @@ def handle(route):
   else:out=[]
   route.fulfill(status=200,content_type='application/json',body=json.dumps(out))
 with sync_playwright() as p:
-  b=p.chromium.launch(executable_path='/usr/bin/google-chrome',args=['--use-fake-device-for-media-stream','--use-fake-ui-for-media-stream'])
+  b=p.chromium.launch(executable_path=__import__('shutil').which('google-chrome'),args=['--use-fake-device-for-media-stream','--use-fake-ui-for-media-stream'])
   c=b.new_context(viewport={'width':1280,'height':900},permissions=['microphone'])
   pg=c.new_page();pg.set_default_timeout(15000)
   pg.route('https://iofbwpzhptctyelmylkz.supabase.co/**',handle)
@@ -45,6 +45,8 @@ with sync_playwright() as p:
   pg.click('button:has-text(\"Nouvelle réunion\")');pg.wait_for_timeout(200)
   pg.fill('#rvo','Réunion de chantier test');pg.select_option('#rvm','m1');pg.fill('#rvp','Jean, Marie')
   pg.click('#rvb');pg.wait_for_timeout(1200)
+  try:pg.wait_for_function("$('#rvtimer').textContent!='00:00'",timeout=5000)  # machine chargée : le 1er tic peut tarder
+  except Exception:pass
   P('2) enregistrement démarré : chrono actif, champs verrouillés :',pg.evaluate("$('#rvtimer').textContent")!='00:00',pg.evaluate("$('#rvo').disabled"))
   pg.wait_for_timeout(1200);pg.click('#rvb');pg.wait_for_timeout(3000)
   P('2) dialogue fermé, réunion créée (statut initial transcription ou déjà terminé) :',not pg.evaluate("$('#cd').open"),pg.evaluate("db.reunions.length==1"),pg.evaluate("['Transcription en cours','Terminé'].includes(db.reunions[0].statut)"))

@@ -6,7 +6,7 @@ def P(*a):print(*a,flush=True)
 D=sys.argv[1] if len(sys.argv)>1 else '/tmp/claude-0/pdf'
 errs=[];alerts=[];chooses=[]
 with sync_playwright() as p:
-  b=p.chromium.launch(executable_path='/usr/bin/google-chrome');pg=b.new_page();pg.set_default_timeout(15000)
+  b=p.chromium.launch(executable_path=__import__('shutil').which('google-chrome'));pg=b.new_page();pg.set_default_timeout(15000)
   pg.on('pageerror',lambda e:errs.append(str(e)));pg.on('console',lambda m:m.type=='error' and errs.append(m.text));pg.on('dialog',lambda d:(alerts.append(d.message),d.accept()))
   pg.goto('http://localhost:8765/');pg.wait_for_timeout(2300);pg.evaluate("localStorage.clear()");pg.reload();pg.wait_for_timeout(2300)
   pg.evaluate("db.marches.push({id:'m1',num:'M-1',titulaire:'T'},{id:'m2',num:'M-2',titulaire:'T2'});db.garanties.push({id:'g1',marche:'m1',type:'Soumission',statut:'Active'});save();window.__ch=0;const c0=choose;choose=(...a)=>{window.__ch++;return c0(...a)};0")

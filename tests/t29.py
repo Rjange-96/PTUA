@@ -22,7 +22,7 @@ def handle(route):
   else:out=[]
   route.fulfill(status=200,content_type='application/json',body=json.dumps(out))
 with sync_playwright() as p:
-  b=p.chromium.launch(executable_path='/usr/bin/google-chrome');pg=b.new_page(viewport={'width':1280,'height':850});pg.set_default_timeout(15000)
+  b=p.chromium.launch(executable_path=__import__('shutil').which('google-chrome'));pg=b.new_page(viewport={'width':1280,'height':850});pg.set_default_timeout(15000)
   pg.route('https://iofbwpzhptctyelmylkz.supabase.co/**',handle)
   pg.on('pageerror',lambda e:errs.append(str(e)));pg.on('console',lambda m:m.type=='error' and errs.append(m.text));pg.on('dialog',lambda d:(alerts.append(d.message[:80]),d.accept()))
   pg.goto('http://localhost:8765/');pg.wait_for_timeout(2300)

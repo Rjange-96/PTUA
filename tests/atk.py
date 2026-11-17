@@ -9,7 +9,7 @@ evil_backup={"marches":[{"id":"x');window.__p1=1;('","titulaire":"<img src=x one
   "props":[{"id":"evil","op":"add","ent":"marches","after":"num","fs":[["zz\" onfocus=\"window.__p3=1\" autofocus x=\"","<img src=x onerror=window.__p2=1>","text"]],"title":"t","why":"w"}]}}
 open('/tmp/evil.json','w').write(json.dumps(evil_backup))
 with sync_playwright() as p:
-  b=p.chromium.launch(executable_path='/usr/bin/google-chrome');pg=b.new_page();pg.set_default_timeout(6000)
+  b=p.chromium.launch(executable_path=__import__('shutil').which('google-chrome'));pg=b.new_page();pg.set_default_timeout(6000)
   pg.on('dialog',lambda d:d.accept())
   pg.goto(URL);pg.wait_for_timeout(2300);pg.evaluate("localStorage.clear()")
   pg.set_input_files('#imp','/tmp/evil.json');pg.wait_for_timeout(800)

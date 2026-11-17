@@ -7,7 +7,7 @@ def ck(n,c):
   P(('OK  ' if c else 'ÉCHEC ')+n)
   if not c:bad+=1
 with sync_playwright() as p:
-  b=p.chromium.launch(executable_path='/usr/bin/google-chrome')
+  b=p.chromium.launch(executable_path=__import__('shutil').which('google-chrome'))
   c=b.new_context(viewport={'width':1100,'height':800});pg=c.new_page();pg.set_default_timeout(60000)
   ext=[]
   pg.on('request',lambda r:not r.url.startswith('http://localhost:8765') and not r.url.startswith('data:') and not r.url.startswith('blob:') and ext.append(r.url))

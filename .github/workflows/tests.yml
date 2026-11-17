@@ -1,0 +1,36 @@
+# Relance tous les tests automatiques à chaque modification. N'utilise jamais le vrai serveur ni de vraies données.
+name: Tests automatiques
+on:
+  push:
+    paths-ignore: ['.keepalive']
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Installer Playwright, Chromium et les outils de préparation des fichiers de test
+        run: |
+          pip install playwright pillow reportlab python-docx
+          python -m playwright install --with-deps chromium
+      - name: Nouveau numéro de version si l'application change
+        run: |
+          # Référence = la version publiée : main (ou, sur main, l'état avant cet envoi).
+          if [ "${{ github.event_name }}" = pull_request ]; then BASE=${{ github.event.pull_request.base.sha }}
+          elif [ "${{ github.ref }}" = refs/heads/main ]; then BASE=${{ github.event.before }}
+          else BASE=$(git merge-base origin/main HEAD); fi
+          case "$BASE" in ''|0000000000000000000000000000000000000000) BASE=HEAD~1;; esac
+          bash tests/check_bump.sh "$BASE"
+      - name: Fonctions SQL du serveur (base PostgreSQL jetable)
+        run: bash tests/sql_push.sh
+      - name: Lancer les tests
+        run: bash tests/run_all.sh

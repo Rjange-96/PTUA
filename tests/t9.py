@@ -24,7 +24,7 @@ def dev(b,name,mobile):
 def enc(pg,code='Test#Motdepasse2026'):
   pg.evaluate("setTimeout(pinMenu,0)");pg.wait_for_timeout(300);pg.fill('#cd input[name=a]',code);pg.fill('#cd input[name=b]',code);pg.click('#cd .pri');pg.wait_for_timeout(2500)
 with sync_playwright() as p:
-  b=p.chromium.launch(executable_path='/usr/bin/google-chrome')
+  b=p.chromium.launch(executable_path=__import__('shutil').which('google-chrome'))
   pc=dev(b,'PC',False)
   pc.evaluate("""()=>{db.marches.push({id:'m1',titulaire:'SOGEA SATOM',num:'2024-0153',objet:'Voirie',montant:'850000000',debut:'2026-01-08',delaiM:'12'},{id:'m2',titulaire:'COLAS',num:'2025-0007',objet:'Pont',montant:'300000000'});
      db.garanties.push({id:'g1',marche:'m1',type:'Bonne exécution',organisme:'NSIA',montant:'42500000',echeance:'2026-12-30',statut:'Active'});save()}""")

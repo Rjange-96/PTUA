@@ -21,7 +21,7 @@ def handle(route):
   else:out=[]
   route.fulfill(status=200,content_type='application/json',body=json.dumps(out))
 with sync_playwright() as p:
-  b=p.chromium.launch(executable_path='/usr/bin/google-chrome')
+  b=p.chromium.launch(executable_path=__import__('shutil').which('google-chrome'))
   def dev(name):
     c=b.new_context(viewport={'width':1280,'height':850},accept_downloads=True);pg=c.new_page();pg.set_default_timeout(15000);pg.route('https://iofbwpzhptctyelmylkz.supabase.co/**',handle)
     pg.on('pageerror',lambda e:errs.append(name+str(e)));pg.on('console',lambda m:m.type=='error' and errs.append(name+m.text));pg.on('dialog',lambda d:(alerts.append(d.message),d.accept()))

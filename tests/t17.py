@@ -25,10 +25,10 @@ def handle(route):
   else: out=-1
   route.fulfill(status=200,content_type='application/json',body=json.dumps(out))
 with sync_playwright() as p:
-  b=p.chromium.launch(executable_path='/usr/bin/google-chrome')
+  b=p.chromium.launch(executable_path=__import__('shutil').which('google-chrome'))
   def dev(name,mob):
     c=b.new_context(viewport={'width':393 if mob else 1280,'height':852},is_mobile=mob,has_touch=mob,accept_downloads=True);pg=c.new_page();pg.set_default_timeout(15000)
-    pg.route('https://iofbwpzhptctyelmylkz.supabase.co/**',handle);pg.on('pageerror',lambda e:errs.append(name+str(e)));pg.on('console',lambda m:m.type=='error' and errs.append(name+m.text));pg.on('dialog',lambda d:(alerts.append(d.message[:90]),d.accept()))
+    pg.route('https://iofbwpzhptctyelmylkz.supabase.co/**',handle);pg.route('https://test.nextdns.io/**',lambda r:r.fulfill(status=200,content_type='application/json',headers={'access-control-allow-origin':'*'},body='{"status":"unconfigured"}'));pg.on('pageerror',lambda e:errs.append(name+str(e)));pg.on('console',lambda m:m.type=='error' and not (QUOTA[0] and '400' in m.text) and errs.append(name+m.text));pg.on('dialog',lambda d:(alerts.append(d.message[:90]),d.accept()))
     pg.goto('http://localhost:8765/');pg.wait_for_timeout(3500);return pg
   def enc(pg,c):
     pg.fill('#cd input[name=a]',c);pg.fill('#cd input[name=b]',c);pg.click('#cd .pri');pg.wait_for_timeout(3000)

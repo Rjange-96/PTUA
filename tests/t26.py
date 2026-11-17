@@ -4,7 +4,7 @@ src=sys.argv[1] if len(sys.argv)>1 else '.';D='/tmp/ptua_srv_t26';shutil.rmtree(
 srv=subprocess.Popen(['python3','-m','http.server','8766'],cwd=D,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL);time.sleep(1)
 try:
  with sync_playwright() as p:
-  b=p.chromium.launch(executable_path='/usr/bin/google-chrome');ctx=b.new_context();pg=ctx.new_page();pg.on('dialog',lambda d:d.accept())
+  b=p.chromium.launch(executable_path=__import__('shutil').which('google-chrome'));ctx=b.new_context();pg=ctx.new_page();pg.on('dialog',lambda d:d.accept())
   errs=[];pg.on('pageerror',lambda e:errs.append(str(e)))
   pg.goto('http://localhost:8766/');pg.evaluate("navigator.serviceWorker.ready.then(()=>new Promise(r=>navigator.serviceWorker.controller?r():navigator.serviceWorker.addEventListener('controllerchange',r)))");pg.wait_for_timeout(1500)
   print('caches initiaux :',pg.evaluate("caches.keys()"))

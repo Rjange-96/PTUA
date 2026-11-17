@@ -8,7 +8,7 @@ def ck(n,c):
   P(('OK  ' if c else 'ÉCHEC ')+n)
   if not c:bad+=1
 with sync_playwright() as p:
-  b=p.chromium.launch(executable_path='/usr/bin/google-chrome')
+  b=p.chromium.launch(executable_path=__import__('shutil').which('google-chrome'))
   c=b.new_context(viewport={'width':1100,'height':800},permissions=['notifications']);pg=c.new_page();pg.set_default_timeout(20000)
   pg.on('pageerror',lambda e:errs.append(str(e)));pg.on('console',lambda m:m.type=='error' and 'ERR_' not in m.text and 'Failed to load' not in m.text and errs.append(m.text));pg.on('dialog',lambda d:d.accept())
   pg.goto('http://localhost:8765/');pg.wait_for_timeout(2500);pg.evaluate("localStorage.clear()");pg.reload();pg.wait_for_timeout(2500)
