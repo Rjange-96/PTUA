@@ -5,7 +5,7 @@ def P(*a):print(*a,flush=True)
 html=open('index.html',encoding='utf-8').read();sw=open('sw.js',encoding='utf-8').read();vj=json.load(open('version.json',encoding='utf-8'))
 appv=re.search(r"const APPV='([^']+)'",html).group(1)
 src={'version.json':vj['version'],'sw.js':re.search(r"const V='([^']+)'",sw).group(1),
- '<title>':re.search(r'<title>[^<]*PTUA v([0-9.]+)</title>',html).group(1),'en-tête':re.search(r'PTUA <small>v([0-9.]+)</small>',html).group(1)}
+ '<title>':re.search(r'<title>[^<]*PTUA v([0-9.]+)</title>',html).group(1)}
 P('APPV :',appv)
 P('versions cohérentes (fichiers) :',all(v==appv for v in src.values()),src)
 P('notes de version.json en liste :',isinstance(vj.get('notes'),list) and len(vj['notes'])>0)
@@ -15,6 +15,7 @@ with sync_playwright() as p:
   b=p.chromium.launch(executable_path=__import__('shutil').which('google-chrome'));pg=b.new_page()
   pg.on('pageerror',lambda e:errs.append(str(e)));pg.on('console',lambda m:m.type=='error' and errs.append(m.text))
   pg.goto('http://localhost:8765/');pg.wait_for_timeout(2500)
+  P('en-tête affiché :',pg.evaluate("$('#av')?.textContent"),'| à jour :',pg.evaluate("$('#av')?.textContent")=='v'+appv)
   P('titre de l’onglet :',pg.title(),'| à jour :',pg.title().endswith('v'+appv))
   pg.evaluate("localStorage.clear()");pg.reload();pg.wait_for_timeout(2300)
   pg.evaluate("db.marches.push({id:'m1',titulaire:'SOGEA',num:'2024-0153',montant:'1000',debut:'2026-01-08',delaiM:'48'});db.garanties.push({id:'g1',marche:'m1',type:'Bonne exécution',organisme:'NSIA',montant:'1',echeance:'2099-12-30',statut:'Active'});save()")
