@@ -47,5 +47,6 @@ bash tests/run_all.sh
 | t39.py | analyseur de garanties (v9.19) : lecture du document, montant / délai de remise / durée / clauses, avance à garantir, exigences du CCAP lues depuis un texte collé, décisions manuelles, valeurs appliquées à la fiche sans écrasement, courrier de réserves, rapport, bouton dans la liste, XSS, états corrompus (préparer avec `python3 tests/t39_gen.py`) |
 | t40.py | liste officielle 2026 : assureur habilité / non habilité, banque, nom ambigu, organisme inconnu ou piégé, pastille, vérificateur libre, liste périmée |
 | t41.py | assureur contrôlé d'après la liste 2026 ; revue d'expert : jeu sain sans alerte, 30 incohérences détectées (dates, montants, statuts, OS, doublons, organismes), tri, filtre, bouton Ouvrir, alerte, anti-XSS |
+| t42.py | marchés regroupés par entreprise : regroupement des variantes d'écriture, fiche entreprise, nouveau marché prérempli, liens garanties/assurances, recherche, bascule liste, anti-XSS |
 
 À lancer après chaque modification, avant de publier.

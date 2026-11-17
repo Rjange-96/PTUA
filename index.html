@@ -317,7 +317,7 @@ html.peek body>*:not(#wp){visibility:hidden!important}html.peek #wp .wpv{opacity
 <dialog id="cd"></dialog><dialog id="dv"></dialog><dialog id="dlg"><div id="dhd"><h3 id="dt"></h3><div id="dsub"></div></div><div id="df"></div><div class="row"><button onclick="$('#dlg').close()">Annuler</button><button class="pri" onclick="ok()">Enregistrer</button></div></dialog>
 <script>
 if(top!==self){try{top.location=self.location.href}catch(e){document.documentElement.innerHTML='';throw 0}}
-const APPV='9.22',MOB=()=>matchMedia('(max-width:700px)').matches,K='ptua_v3',$=s=>document.querySelector(s),day=864e5,today=new Date(new Date().toDateString());
+const APPV='9.23',MOB=()=>matchMedia('(max-width:700px)').matches,K='ptua_v3',$=s=>document.querySelector(s),day=864e5,today=new Date(new Date().toDateString());
 try{const av=document.getElementById('av');if(av)av.textContent='v'+APPV}catch(e){}
 // ===== v8.7 — Moniteur d’activité : métadonnées uniquement (heure, serveur, taille), jamais le contenu des données =====
 const MON={net:[],ev:[],t0:Date.now(),sent:0,recv:0,hosts:{}};
@@ -425,13 +425,14 @@ function render(){try{trAuto()}catch(e){}pushTick();banner();
  else if(tab=='journal')$('#v').innerHTML=`<div class="w"><table><tr><th>Date</th><th>Action</th></tr>${db.journal.map(j=>`<tr><td>${esc(j.d)}</td><td>${esc(j.m)}</td></tr>`).join('')||'<tr><td class="e" colspan="2">Aucune action enregistrée.</td></tr>'}</table></div>`;
  else if(tab=='reunions')$('#v').innerHTML=reu();
  else{
-  $('#v').innerHTML=`<div class="bar"><input id="q" placeholder="Rechercher…" value="${esc(q)}" oninput="q=this.value.toLowerCase();$('#tb').innerHTML=rows(tab)">${fsel()}${tsel()}<button onclick="$('#vp').hidden=!$('#vp').hidden">⚙️ Affichage</button>${tab=='garanties'||tab=='marches'||tab=='os'||tab=='assurances'?'<button onclick="icsExp()">📅 Calendrier</button>':''}<button class="pri" onclick="edit('${tab}')">+ ${S[tab].t}</button></div><div id="vp" class="card nt" hidden>${vpanel()}</div><div class="w ${VW(tab).mode=='compact'?'cp':''}"><table id="tb"></table></div>`;
+  $('#v').innerHTML=`<div class="bar"><input id="q" placeholder="Rechercher…" value="${esc(q)}" oninput="q=this.value.toLowerCase();$('#tb').innerHTML=rows(tab)">${fsel()}${tsel()}${tab=='marches'?`<button onclick="mgTog()">${mgOn?'📋 En liste':'👥 Par entreprise'}</button>`:''}<button onclick="$('#vp').hidden=!$('#vp').hidden">⚙️ Affichage</button>${tab=='garanties'||tab=='marches'||tab=='os'||tab=='assurances'?'<button onclick="icsExp()">📅 Calendrier</button>':''}<button class="pri" onclick="edit('${tab}')">+ ${S[tab].t}</button></div><div id="vp" class="card nt" hidden>${vpanel()}</div><div class="w ${VW(tab).mode=='compact'?'cp':''}"><table id="tb"></table></div>`;
   $('#tb').innerHTML=rows(tab);
  }
 }
 const R9=render;render=function(){R9();document.querySelectorAll('.card,.w,.w2').forEach(e=>{if(e.scrollWidth>e.clientWidth+2){e.tabIndex=0;e.setAttribute('role','region');e.setAttribute('aria-label','Contenu défilant')}})};
-function go(t){try{const u=RF().use||(RF().use={});u[t]=(u[t]||0)+1}catch(e){}tab=t;q='';sk=S[t]?VW(t).sk:'';sd=S[t]?VW(t).sd:1;sf='';render()}
+function go(t){try{const u=RF().use||(RF().use={});u[t]=(u[t]||0)+1}catch(e){}tab=t;q='';entCur='';sk=S[t]?VW(t).sk:'';sd=S[t]?VW(t).sd:1;sf='';render()}
 function rows(e){
+ if(e=='marches'&&mgOn)return entRows();
  const s=S[e],V=VW(e),F=s.f.filter(f=>!V.hide.includes(f[0]));LL='';
  let a=db[e].filter(x=>!q||(JSON.stringify(x)+mn(x.marche)).toLowerCase().includes(q));
  const fk=FK(e);if(sf&&fk)a=a.filter(x=>x[fk[0]]==sf);
@@ -2111,6 +2112,45 @@ function cohCard(){if(!(db.marches.length||db.garanties.length||db.assurances.le
  <div class="bar"><select aria-label="Gravité" onchange="cohSet(this.value)"><option value="all" ${cohF=='all'?'selected':''}>Tout (${L.length})</option>${['ko','warn','info'].map(k=>`<option value="${k}" ${cohF==k?'selected':''}>${cohSv[k][1]}s (${n[k]})</option>`).join('')}</select></div>
  ${L.length?`<div class="w2"><table class="mx">${sh.map(x=>`<tr><td><span class="b ${cohSv[x.s][0]}">${cohSv[x.s][1]}</span></td><th>${esc(x.m)}</th><td style="text-align:left">${esc(x.t)}${x.a?`<br><small><b>Que faire :</b> ${esc(x.a)}</small>`:''}${x.src?`<br><small><i>${esc(x.src)}</i></small>`:''}</td><td><button onclick="cohOpen('${x.ent}','${esc(x.id)}')">Ouvrir</button></td></tr>`).join('')}</table></div>${V.length>sh.length?`<p class="e">${V.length-sh.length} autre(s) point(s) non affichés : filtrez par gravité.</p>`:''}`:'<div class="e">✅ Aucune incohérence détectée dans vos données.</div>'}</div>`}
 // ===== fin v9.21 =====
+
+// ===== v9.23 — Marchés regroupés par entreprise : une ligne par entreprise ; en la touchant, tous ses marchés et leurs informations =====
+var entCur='',mgOn=(()=>{try{return localStorage.getItem('ptua_mg')!='0'}catch(e){return true}})();
+const entKey=m=>anN(m.titulaire||'').replace(/[^a-z0-9]/g,'')||'~';
+function entList(){const mp=new Map();db.marches.forEach(m=>{const k=entKey(m);let e=mp.get(k);if(!e){e={k,nm:{},ms:[]};mp.set(k,e)}e.ms.push(m);if(m.titulaire)e.nm[m.titulaire]=(e.nm[m.titulaire]||0)+1});
+ return[...mp.values()].map(e=>{e.name=e.k=='~'?'Sans titulaire':Object.keys(e.nm).sort((a,b)=>e.nm[b]-e.nm[a])[0];return e}).sort((a,b)=>a.k=='~'?1:b.k=='~'?-1:a.name.localeCompare(b.name,'fr',{sensitivity:'base'}))}
+function mgTog(){mgOn=!mgOn;entCur='';try{localStorage.setItem('ptua_mg',mgOn?'1':'0')}catch(e){}render()}
+function entGo(k){entCur=k;render();window.scrollTo(0,0)}
+function entBack(){entCur='';render();window.scrollTo(0,0)}
+function entNew(){const e=entList().find(x=>x.k==entCur);edit('marches');const i=$('#df [name=titulaire]');if(i&&e&&e.k!='~')i.value=e.name}
+function entTo(t,num){go(t);q=String(num||'').toLowerCase();render()}
+const entMt=m=>{const r=calc(m);return r?r.M:(+m.montant||0)+db.avenants.filter(v=>v.marche==m.id).reduce((t,v)=>t+(+v.montant||0),0)};
+function entStat(e){const ids=new Set(e.ms.map(m=>m.id)),G=db.garanties.filter(g=>ids.has(g.marche)),As=db.assurances.filter(a=>ids.has(a.marche)),
+ ga=G.filter(g=>{const x=gal(g);return x&&x.j<=30}).length,aa=As.filter(a=>{const x=galA(a);return x&&x.j<=30}).length;return{G,As,ga,aa,tot:e.ms.reduce((t,m)=>t+entMt(m),0)}}
+function entCards(){const L=entList().filter(e=>!q||e.ms.some(m=>(JSON.stringify(m)+' '+e.name).toLowerCase().includes(q)));
+ if(!L.length)return'<tr><td class="e" colspan="99">Aucun marché.</td></tr>';
+ return`<tr><td colspan="99" style="white-space:normal;padding:12px"><div class="cg">${L.map(e=>{const st=entStat(e);
+  return`<div class="ci" style="cursor:pointer" role="button" tabindex="0" onclick="entGo('${e.k}')" onkeydown="if(event.key=='Enter')entGo('${e.k}')"><b>🏢 ${esc(e.name)}</b>
+   <div><span class="b ${e.ms.length>1?'g':'y'}">${e.ms.length} marché${e.ms.length>1?'s':''}</span> ${st.ga||st.aa?`<span class="b r">⚠ ${st.ga+st.aa} échéance(s) ≤ 30 j</span>`:''}</div>
+   <div style="font-size:13px;margin:4px 0">${e.ms.map(m=>esc(m.num||'?')).join(' · ')}</div>
+   <div><small>Montant total :</small> ${fmt(st.tot)} FCFA</div><div><small>Garanties :</small> ${st.G.length} · <small>Assurances :</small> ${st.As.length}</div>
+   <div class="ca"><button onclick="event.stopPropagation();entGo('${e.k}')">Ouvrir →</button></div></div>`}).join('')}</div></td></tr>`}
+function entMc(m,C){const r=calc(m),G=db.garanties.filter(g=>g.marche==m.id),As=db.assurances.filter(a=>a.marche==m.id),O=db.os.filter(o=>o.marche==m.id),R=db.reserves.filter(x=>x.marche==m.id&&resOpen(x)),av=db.avenants.filter(a=>a.marche==m.id),n=C.filter(x=>x.m==m.num&&x.s!='info').length,li=(l,v)=>v||v===0?`<div><small>${l} :</small> ${v}</div>`:'';
+ return`<div class="ci"><b>📁 ${esc(m.num||'?')}</b>${m.objet?`<div>${esc(m.objet)}</div>`:''}
+  ${li('Montant',m.montant?fmt(entMt(m))+' FCFA'+(av.length?' <small>(initial '+fmt(m.montant)+', '+av.length+' avenant'+(av.length>1?'s':'')+')</small>':''):'')}
+  ${li('Démarrage',m.debut?fd(m.debut):'')}${li('Délai',(+m.delaiM?m.delaiM+' mois':'')+(+m.delai?(+m.delaiM?' + ':'')+m.delai+' j':''))}
+  ${r?`<div><small>Fin prévue :</small> ${fdd(r.fin)}${r.retard?` <span class="b r">${r.retard} j de retard</span>`:''}</div>`:''}${r&&r.pen?li('Pénalités estimées',fmt(r.pen)+' FCFA'):''}
+  ${li('Réception',m.reception?fd(m.reception):'')}${li('Fin du délai de garantie',m.fin_garantie?fd(m.fin_garantie):'')}
+  <div style="margin-top:6px"><small>🛡️ Garanties (${G.length})</small>${G.map(g=>`<div style="font-size:13px">${esc(g.type||'')}${g.organisme?' · '+esc(g.organisme):''}${g.montant?' · '+fmt(g.montant)+' FCFA':''} ${badge(g)}</div>`).join('')||'<div style="font-size:13px;color:var(--m)">Aucune</div>'}</div>
+  <div style="margin-top:6px"><small>☂️ Assurances (${As.length})</small>${As.map(a=>`<div style="font-size:13px">${esc(a.type||'')}${a.assureur?' · '+esc(a.assureur):''} ${badgeA(a)}</div>`).join('')||'<div style="font-size:13px;color:var(--m)">Aucune</div>'}</div>
+  ${li('📝 Ordres de service',O.length?O.length+' (dernier : '+esc((O.slice().sort((a,b)=>(a.date||'')<(b.date||'')?1:-1)[0].type||''))+')':'')}${R.length?`<div><span class="b o">🚧 ${R.length} réserve(s) ouverte(s)</span></div>`:''}
+  ${n?`<div><span class="b o" style="cursor:pointer" onclick="go('conf')">🔬 ${n} point(s) à vérifier</span></div>`:''}
+  <div class="ca"><button onclick="edit('marches','${m.id}')">Modifier</button><button onclick="docs('marches','${m.id}')">📎 Documents${(m.files||[]).length?' ('+m.files.length+')':''}</button><button onclick="entTo('garanties','${esc(m.num)}')">🛡️ Garanties</button><button onclick="entTo('assurances','${esc(m.num)}')">☂️ Assurances</button><button onclick="dup('marches','${m.id}')">Dupliquer</button><button onclick="del('marches','${m.id}')">Suppr.</button></div></div>`}
+function entView(){const e=entList().find(x=>x.k==entCur);if(!e){entCur='';return entCards()}const st=entStat(e),C=coh();
+ return`<tr><td colspan="99" style="white-space:normal;padding:12px"><div class="bar"><button onclick="entBack()">← Toutes les entreprises</button><button class="pri" onclick="entNew()">+ Marché pour cette entreprise</button></div>
+  <h2 style="margin:8px 0 4px">🏢 ${esc(e.name)}</h2><p style="margin:0 0 10px;color:var(--m);font-size:13px">${e.ms.length} marché${e.ms.length>1?'s':''} · montant total ${fmt(st.tot)} FCFA · ${st.G.length} garantie(s) · ${st.As.length} assurance(s)</p>
+  <div class="cg">${e.ms.slice().sort((a,b)=>String(a.num||'').localeCompare(String(b.num||''),'fr',{numeric:true})).map(m=>entMc(m,C)).join('')}</div></td></tr>`}
+const entRows=()=>entCur?entView():entCards();
+// ===== fin v9.23 =====
 const GKW={'Bonne exécution':/bonne execution/,'Avance de démarrage':/avance de demarrage|restitution d'avance|garantie d'avance|avance forfaitaire|avance facultative/,'Retenue de garantie':/retenue de garantie|caution de remplacement/,'Soumission':/soumission/,'Performance environnementale et sociale':/performance environnementale|environnementale et sociale/};
 // exigences par défaut = référentiel de l’application (modifiable au CCAP de chaque marché)
 function gaCfgDef(t){const P=RF().p,c={r:1,pmin:0,pmax:0,cm:'',cv:0,em:0,vf:'',vp:0,c:['ben','tit','id','irr','pd','dur']};
