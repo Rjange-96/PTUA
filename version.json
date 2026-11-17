@@ -5,6 +5,8 @@
  "notes": [
   "La fenêtre « Mise à jour disponible » affiche les nouveautés même si elles sont rédigées en une seule phrase.",
   "Rappels sur le téléphone plus sûrs : le serveur n’accepte plus que les vrais services de notification (Apple, Google, Mozilla, Microsoft) et ne peut plus être saturé au point de faire disparaître vos rappels.",
+  "Rappels : l’écran indique maintenant la date de la première alerte, et avertit clairement quand aucune alerte n’est programmée (aucune échéance future trouvée), au lieu d’afficher seulement « Rappels activés ».",
+  "Rappels : une garantie en « Mainlevée obtenue » ou « Expirée » ne déclenche plus de notification (même règle que les alertes du tableau de bord).",
   "Contrôles automatiques renforcés : tous les tests sont relancés sur GitHub à chaque modification, avec un verdict clair, dont une attaque systématique par données piégées sur chaque champ de chaque fiche."
  ]
 }
