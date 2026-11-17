@@ -18,9 +18,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Installer Playwright et Chromium
+      - name: Installer Playwright, Chromium et les outils de préparation des fichiers de test
         run: |
-          pip install playwright
+          pip install playwright pillow reportlab python-docx
           python -m playwright install --with-deps chromium
       - name: Nouveau numéro de version si l'application change
         run: |
