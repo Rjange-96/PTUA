@@ -17,7 +17,7 @@ fi
 
 TESTS=${*:-atk t7 t8 t9 t11 t13 t15 t17 t18 t19 t20 t21 t22 t23 t24 t25 t26 t27 t28 t29 t30 t31 t32 t33 t34 t35 t36 t37 t38 t39}
 # Lignes où « False » est le résultat ATTENDU (ex. : « en clair ? False » = rien en clair sur le serveur).
-OKFALSE='en clair \? False|texte clair sur serveur : False|alerte inattendu : False|fidOk = False'
+OKFALSE='en clair \? False|texte clair sur serveur : False|alerte inattendu : False|fidOk = False|injectée : False \| X-EVIL : False'
 KO=()
 for t in $TESTS; do
   echo "=== $t"
