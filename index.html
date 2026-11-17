@@ -317,7 +317,7 @@ html.peek body>*:not(#wp){visibility:hidden!important}html.peek #wp .wpv{opacity
 <dialog id="cd"></dialog><dialog id="dv"></dialog><dialog id="dlg"><div id="dhd"><h3 id="dt"></h3><div id="dsub"></div></div><div id="df"></div><div class="row"><button onclick="$('#dlg').close()">Annuler</button><button class="pri" onclick="ok()">Enregistrer</button></div></dialog>
 <script>
 if(top!==self){try{top.location=self.location.href}catch(e){document.documentElement.innerHTML='';throw 0}}
-const APPV='9.20',MOB=()=>matchMedia('(max-width:700px)').matches,K='ptua_v3',$=s=>document.querySelector(s),day=864e5,today=new Date(new Date().toDateString());
+const APPV='9.21',MOB=()=>matchMedia('(max-width:700px)').matches,K='ptua_v3',$=s=>document.querySelector(s),day=864e5,today=new Date(new Date().toDateString());
 // ===== v8.7 — Moniteur d’activité : métadonnées uniquement (heure, serveur, taille), jamais le contenu des données =====
 const MON={net:[],ev:[],t0:Date.now(),sent:0,recv:0,hosts:{}};
 (()=>{const f0=window.fetch.bind(window);window.fetch=async(u,o)=>{const t=performance.now(),rec={at:Date.now(),m:(o&&o.method)||'GET',host:'?',path:'',bl:0,st:0,ms:0,rl:0};
@@ -677,7 +677,7 @@ function banner(){
  const n=db.garanties.filter(g=>{const a=gal(g);return a&&a.j<=30}).length,nA=db.assurances.filter(a=>{const x=galA(a);return x&&x.j<=30}).length;let le=0;try{le=+localStorage.getItem('ptua_exp')||0}catch(e){}
  let h='';{const ra=recAl();if(ra.length)h+=`<div class="al ${ra.some(x=>x.j<0)?'r':'o'}" onclick="go('reserves')">🚧 ${ra.length} échéance(s) de réception à traiter (réserves, réception définitive) — voir les réserves</div>`}if(nA)h+=`<div class="al r" onclick="go('assurances')">☂️ ${nA} assurance(s) à renouveler (échéance ≤ 30 jours ou dépassée) — voir les assurances</div>`;if(UPD&&cmpV(UPD.version,APPV)>0)h+=`<div class="al ${UPD.importance=='securite'?'r':'o'}" onclick="showUpd()">🔄 Mise à jour v${esc(UPD.version)} disponible${UPD.importance=='securite'?' (sécurité, recommandée)':''} — toucher pour voir et installer</div>`;if(SY&&SY.last&&Date.now()-SY.last>3*day&&(db.marches.length||db.garanties.length))h+=`<div class="al o" onclick="syncNow(true)">☁️ Sauvegarde cloud non effectuée depuis plus de 3 jours — toucher pour réessayer</div>`;if(n)h+=`<div class="al r" onclick="go('dash')">⚠️ ${n} garantie(s) à surveiller (échéance ≤ 30 jours ou dépassée) — voir le tableau de bord</div>`;
  if((db.marches.length||db.garanties.length)&&Date.now()-le>7*day&&!(SY&&SY.last&&Date.now()-SY.last<3*day))h+=`<div class="al o" onclick="expJ()">💾 Aucune sauvegarde depuis plus de 7 jours — cliquer pour exporter maintenant</div>`;
- if(!ENC&&(db.marches.length||db.garanties.length))h+=`<div class="al r" onclick="pinMenu()">🔓 Vos données ne sont pas chiffrées sur cet appareil — toucher pour activer le code et le chiffrement</div>`;const w=constats().filter(c=>c.n=='warn').length;if(w)h+=`<div class="al o" onclick="go('veille')">⚖️ ${w} point(s) de conformité à vérifier — ouvrir la veille juridique</div>`;{const cn=cfAlertN();if(cn)h+=`<div class="al o" onclick="go('conf')">✅ ${cn} point(s) de conformité à traiter (pièces en retard, garanties, assurances)</div>`}if(diff(today,D(RF().lc||RF().v))>30)h+=`<div class="al o" onclick="go('veille')">⚖️ Référentiel juridique non vérifié depuis plus de 30 jours</div>`;if(!db.marches.length&&!db.garanties.length&&snaps().length)h+=`<div class="al r" onclick="go('sauv')">💾 Aucune donnée affichée, mais ${snaps().length} point(s) de sauvegarde sont disponibles — cliquer pour restaurer</div>`;$('#al').innerHTML=h;{const A=[...$('#al').children];if(A.length>2){const d=document.createElement('details');d.className='alx';d.open=!!window.alxO;d.ontoggle=()=>window.alxO=d.open;d.innerHTML=`<summary>${A.length-2} autre(s) alerte(s)</summary>`;A.slice(2).forEach(x=>d.appendChild(x));$('#al').appendChild(d)}}TTL=(n?'('+n+') ':'')+'Gestionnaire PTUA v'+APPV;setTitle();
+ if(!ENC&&(db.marches.length||db.garanties.length))h+=`<div class="al r" onclick="pinMenu()">🔓 Vos données ne sont pas chiffrées sur cet appareil — toucher pour activer le code et le chiffrement</div>`;const w=constats().filter(c=>c.n=='warn').length;if(w)h+=`<div class="al o" onclick="go('veille')">⚖️ ${w} point(s) de conformité à vérifier — ouvrir la veille juridique</div>`;{const cc=coh().filter(x=>x.s!='info').length;if(cc)h+=`<div class="al o" onclick="go('conf')">🔬 ${cc} incohérence(s) ou anomalie(s) dans vos données — revue d’expert</div>`}{const cn=cfAlertN();if(cn)h+=`<div class="al o" onclick="go('conf')">✅ ${cn} point(s) de conformité à traiter (pièces en retard, garanties, assurances)</div>`}if(diff(today,D(RF().lc||RF().v))>30)h+=`<div class="al o" onclick="go('veille')">⚖️ Référentiel juridique non vérifié depuis plus de 30 jours</div>`;if(!db.marches.length&&!db.garanties.length&&snaps().length)h+=`<div class="al r" onclick="go('sauv')">💾 Aucune donnée affichée, mais ${snaps().length} point(s) de sauvegarde sont disponibles — cliquer pour restaurer</div>`;$('#al').innerHTML=h;{const A=[...$('#al').children];if(A.length>2){const d=document.createElement('details');d.className='alx';d.open=!!window.alxO;d.ontoggle=()=>window.alxO=d.open;d.innerHTML=`<summary>${A.length-2} autre(s) alerte(s)</summary>`;A.slice(2).forEach(x=>d.appendChild(x));$('#al').appendChild(d)}}TTL=(n?'('+n+') ':'')+'Gestionnaire PTUA v'+APPV;setTitle();
 }
 function ech(){
  const it=[];db.assurances.forEach(a=>{const x=galA(a);if(x&&x.j>=0&&x.j<=90)it.push({d:D(a.echeance),t:'☂️ Échéance d’assurance',l:mn(a.marche)+' · '+a.type+(a.assureur?' · '+a.assureur:'')})});
@@ -1551,13 +1551,14 @@ function cfTog(mid,k){const m=mk(mid);if(!m)return;const o=CFS(m);o.s=o.s||{};co
 function cfDate(mid,f,v){const m=mk(mid);if(!m)return;const o=CFS(m);if(/^\d{4}-\d{2}-\d{2}$/.test(v))o[f]=v;else delete o[f];cfPut(m,o);save();render()}
 function cfClause(aid,i){const a=db.assurances.find(x=>x.id==aid);if(!a)return;const o=CFS(a);o.c=o.c||{};if(o.c[i])delete o.c[i];else o.c[i]=1;cfPut(a,o);save();render()}
 function cfSel(v){cfm=v;render()}
+function conf(){return conf0()+cohCard()}
 function cfPrint(mid){const m=mk(mid);if(!m)return;const L=[];L.push('FICHE DE CONFORMITÉ — '+m.num+' — '+(m.titulaire||''));L.push((m.objet||'')+' — '+fmt(m.montant)+' FCFA');L.push('Éditée le '+fdd(today)+'. Aide au suivi : le DAO, le CCAP et les textes officiels prévalent.');L.push('');
  cfRows(m).forEach(p=>{L.push(p.t.toUpperCase());p.it.forEach(i=>L.push((i.na?'[ N/A ] ':i.done?'[ OK  ] ':'[     ] ')+i.l+(i.dd?' — avant le '+fdd(i.dd):'')+(i.au?' ('+i.au+')':'')))});
  L.push('');L.push('CONTRÔLE DES GARANTIES');cfGar(m).forEach(x=>L.push('['+x[0].toUpperCase()+'] '+x[1]));
  L.push('');L.push('CONTRÔLE DES ASSURANCES');cfAss(m).forEach(x=>L.push('['+x[1].toUpperCase()+'] '+x[2]));
  $('#fs')?.remove();const f=document.createElement('div');f.id='fs';f.style.whiteSpace='pre-wrap';f.textContent=L.join('\n');document.body.appendChild(f);document.body.classList.add('pfs');const end=()=>{document.body.classList.remove('pfs');f.remove();removeEventListener('afterprint',end)};addEventListener('afterprint',end);setTimeout(end,12e4);setTimeout(()=>window.print(),150)}
 // --- affichage
-function conf(){
+function conf0(){
  const ms=db.marches;if(!ms.length)return'<div class="card nt"><h2>✅ Conformité</h2><div class="e">Ajoutez un marché pour suivre les pièces à fournir, la légalité des garanties et la conformité des assurances.</div></div>';
  if(!ms.find(m=>m.id==cfm))cfm=ms[0].id;const m=mk(cfm),pg=cfProg(m),an=cfAnch(m),bd={ok:'g',warn:'r',info:'y'},ic={ok:'✓',warn:'⚠',info:'ℹ'};
  const ov=ms.map(x=>{const p=cfProg(x),n=cfN(x);return`<tr style="cursor:pointer" onclick="cfSel('${x.id}')"><th>${esc(x.num)}</th><td style="text-align:left">${esc(x.titulaire||'')}</td><td>${p.f}/${p.t}</td><td><span class="b ${p.late?'r':p.p==100?'g':'y'}">${p.p} %</span></td><td>${n?`<span class="b r">${n} point(s)</span>`:'<span class="b g">RAS</span>'}</td></tr>`}).join('');
@@ -1753,6 +1754,7 @@ function anRun(a,m,text,info){const k=anKey(a),px=anPx(m),cf=anCfg(px,k),def=anI
  // 2. assureur et n° de police
  if(!a.assureur||!a.police)add('Identification','Compagnie et numéro de police','Renseignés',(a.assureur||'assureur ?')+' · '+(a.police||'n° ?'),'chk','Compagnie ou numéro de police absent de la fiche'+(det.assureur||det.police?' (détecté dans le document : '+[det.assureur,det.police].filter(Boolean).join(' · ')+')':'')+'.','Code CIMA art. 8','Compléter la fiche à partir de l’attestation.');
  else add('Identification','Compagnie et numéro de police','Renseignés',a.assureur+' · '+a.police,'ok','');
+ {const ag=agrVerdictAssur(a.assureur||det.assureur||'');add('Identification','Compagnie agréée en assurance non-vie (liste officielle '+AGR.annee+')','Société d’assurance agréée en non-vie (liste '+AGR.annee+')',ag[1],ag[0],ag[2],AGR.src,ag[3])}
  if(has&&a.police&&det.police&&anN(a.police).replace(/[^a-z0-9]/g,'')!=anN(det.police).replace(/[^a-z0-9]/g,''))add('Identification','Cohérence fiche / document (n° de police)','Identiques','Fiche : '+a.police+' · document : '+det.police,'chk','Le numéro lu dans le document diffère de la fiche (ou la lecture automatique s’est trompée).','','Vérifier le numéro sur l’original.');
  // 3. assuré = titulaire
  {const tt=anTit(m.titulaire||''),aa=anN(a.assure||'');if(!tt.length)add('Identification','Assuré = titulaire du marché','Titulaire du marché','Titulaire du marché non renseigné','chk','Renseigner le titulaire du marché.','Loi 2026-385 art. 237 (assurance du constructeur)','');
@@ -1996,6 +1998,118 @@ function agrCard(){const by=k=>AGR.E.filter(e=>e[3].includes(k)).map(e=>e[0]),ol
  <h3 style="margin:10px 0 4px">Habilitées à délivrer des cautionnements (${by('c').length})</h3>${ol(by('c'))}
  ${sec('r','Non-vie agréées pour la branche crédit')}${sec('n','Sociétés non-vie agréées')}${sec('v','Sociétés vie agréées')}${sec('x','Sociétés de réassurance')}</details>`}
 // ===== fin v9.20 =====
+
+// ===== v9.21 — Assurances : assureur contrôlé d’après la liste 2026 ; revue d’expert : cohérence des données entre marchés, garanties, assurances, OS, avenants et réserves =====
+// Une police (TRC, RC, décennale…) doit être émise par une société agréée en assurance non-vie : les sociétés « vie » seules, les réassureurs et les banques ne conviennent pas.
+function agrVerdictAssur(nm){const A=agrCheck(nm),old=AGR.annee<today.getFullYear(),vo=old?'chk':null,oldWhy=old?' La liste intégrée à l’application date de '+AGR.annee+' : vérifier la liste de l’année en cours.':'';
+ if(A.s=='ok'||(A.s=='ko'&&/[nr]/.test(A.L||'')))return[vo||'ok',A.n+' : '+agrLb(A.L)+' (liste '+AGR.annee+')',oldWhy,old?'Vérifier la liste officielle de l’année en cours.':''];
+ if(A.s=='ko')return[vo||'ko',A.n+' : '+agrLb(A.L)+' uniquement','Cette société figure sur la liste '+AGR.annee+' mais n’est pas agréée en assurance non-vie : elle ne peut pas émettre une police TRC, RC, décennale ou accidents du travail.'+oldWhy,'Exiger une attestation d’une société agréée en assurance non-vie.'];
+ if(A.s=='bank')return['ko',A.n+' : banque, et non compagnie d’assurance','Une banque ne délivre pas de police d’assurance : l’émetteur indiqué est incohérent.','Corriger l’assureur sur la fiche ou exiger une attestation d’une compagnie agréée.'];
+ if(A.s=='amb')return['chk',A.n,'Nom insuffisant pour identifier la compagnie.','Préciser la compagnie exacte sur la fiche.'];
+ if(A.s=='none')return['chk','Compagnie non renseignée','Impossible de contrôler l’agrément.','Renseigner la compagnie d’assurance sur la fiche.'];
+ return['chk','Compagnie non retrouvée dans la liste '+AGR.annee+' des sociétés d’assurances','Si c’est bien une compagnie d’assurance, elle ne figure pas sur la liste officielle (ou le nom est mal orthographié ou a changé).','Vérifier l’orthographe, puis l’agrément sur la liste de la Direction des assurances.']}
+const cohDV=s=>{if(typeof s!='string'||!/^\d{4}-\d{2}-\d{2}$/.test(s))return null;const d=new Date(s+'T00:00:00');return isNaN(d)?null:d};
+const cohAddM=(d,n)=>{const x=new Date(d);x.setMonth(x.getMonth()+n);if(x.getDate()!=d.getDate())x.setDate(0);return x};
+const cohSv={ko:['r','Incohérence'],warn:['o','Anomalie'],info:['y','Conseil']};
+var cohF='all';
+// s : ko = incohérence certaine · warn = anomalie probable · info = point d’attention
+function coh(){const o=[],A=['Émise','Active'],P=RF().p,yr=today.getFullYear();
+ const add=(s,ent,x,t,a,src)=>o.push({s,ent,id:x.id,m:ent=='marches'?(x.num||'?'):mn(x.marche),t,a:a||'',src:src||''});
+ // --- dates et montants invraisemblables (toutes fiches)
+ const DK=new Set(['notif','debut','reception','fin_garantie','emission','echeance','fin_date','mainlevee','date','effet','levee']),NK=new Set(['montant','prime','avance','avancef','retenue','taux','plafond','delaiM','delai','garmois','dureeM','jours']);
+ for(const e of ['marches','garanties','os','avenants','assurances','reserves'])for(const x of db[e])for(const k of Object.keys(x)){const v=x[k];if(!v||(!DK.has(k)&&!NK.has(k)))continue;const lb=(S[e].f.find(f=>f[0]==k)||[0,k])[1];
+  if(DK.has(k)){const d=cohDV(v);if(!d)add('ko',e,x,'« '+lb+' » : date illisible ('+v+').','Corriger la date.');else if(d.getFullYear()<2010||d.getFullYear()>yr+15)add('ko',e,x,'« '+lb+' » : '+fd(v)+' est improbable (faute de frappe sur l’année ?).','Corriger la date.')}
+  else if(+v<0&&!(e=='avenants'&&k=='montant'))add('ko',e,x,'« '+lb+' » : valeur négative ('+v+').','Corriger la valeur (seul un avenant peut avoir une variation négative).')}
+ // --- n° de marché en double
+ const nums={};db.marches.forEach(m=>{const k=anN(m.num||'').replace(/[^a-z0-9]/g,'');if(k)(nums[k]=nums[k]||[]).push(m)});
+ for(const k in nums)if(nums[k].length>1)nums[k].forEach(m=>add('ko','marches',m,'N° de marché « '+m.num+' » en double ('+nums[k].length+' fiches).','Fusionner ou corriger : chaque marché a un numéro unique.'));
+ // --- marchés
+ db.marches.forEach(m=>{const gs=db.garanties.filter(g=>g.marche==m.id),os=db.os.filter(x=>x.marche==m.id),av=db.avenants.filter(a=>a.marche==m.id),r=calc(m),mi=+m.montant||0,
+  dN=cohDV(m.notif),dD=cohDV(m.debut),dR=cohDV(m.reception),dF=cohDV(m.fin_garantie);
+  if(!m.titulaire)add('warn','marches',m,'Titulaire non renseigné.','Le titulaire sert aux contrôles des garanties et des assurances : le renseigner.');
+  if(!m.num)add('warn','marches',m,'N° de marché non renseigné.','Renseigner le numéro du marché.');
+  if(mi>0&&mi<100000)add('info','marches',m,'Montant de '+fmt(mi)+' FCFA : très bas pour un marché public (unité en milliers ou millions ?).','Vérifier le montant saisi.');
+  if(!mi&&(gs.length||av.length))add('warn','marches',m,'Montant du marché non renseigné alors que des garanties ou avenants existent : les pourcentages ne sont pas contrôlables.','Renseigner le montant du marché.');
+  if(+m.delaiM>120)add('warn','marches',m,'Délai de '+m.delaiM+' mois (plus de 10 ans) : saisie en jours à la place des mois ?','Vérifier le délai d’exécution.');
+  if(+m.delai>=1000&&!(+m.delaiM))add('info','marches',m,'Délai de '+m.delai+' jours (plus de 2,7 ans) : à confirmer.','Vérifier le délai d’exécution.');
+  if(dN&&dD&&dD<dN)add('warn','marches',m,'Démarrage ('+fd(m.debut)+') antérieur à la notification d’approbation ('+fd(m.notif)+') : un marché ne peut démarrer avant d’être notifié.','Vérifier les deux dates.','Code des marchés publics (notification et ordre de service)');
+  if(dD&&dR&&dR<dD)add('ko','marches',m,'Réception ('+fd(m.reception)+') antérieure au démarrage ('+fd(m.debut)+').','Corriger la date de réception ou de démarrage.');
+  if(dR&&dF&&dF<dR)add('ko','marches',m,'Fin du délai de garantie ('+fd(m.fin_garantie)+') antérieure à la réception ('+fd(m.reception)+').','Corriger les dates.');
+  if(dR&&dF&&+m.garmois>0){const att=cohAddM(dR,Math.round(+m.garmois));if(Math.abs(diff(dF,att))>31)add('warn','marches',m,'Fin du délai de garantie le '+fd(m.fin_garantie)+' alors que réception + '+m.garmois+' mois donne le '+fdd(att)+'.','Aligner la date et le délai de garantie.')}
+  if(+m.taux>3)add('warn','marches',m,'Pénalité de '+m.taux+' ‰ par jour : taux inhabituel (usuel : 0,5 à 1 ‰ par jour). Pourcentage saisi à la place du pour-mille ?','Vérifier le taux au CCAP.');
+  if(+m.plafond>P.pen)add('warn','marches',m,'Plafond de pénalités de '+m.plafond+' % : supérieur au seuil de '+P.pen+' % à partir duquel la résiliation peut être demandée.','Vérifier le plafond au CCAP.','Art. 91');
+  if(+m.taux>0&&!(+m.plafond))add('info','marches',m,'Taux de pénalité saisi mais aucun plafond : le calcul des pénalités n’est pas plafonné.','Saisir le plafond prévu au CCAP.');
+  if(mi>0){const dv=av.reduce((t,a)=>t+(+a.montant||0),0);if(dv/mi>.3)add('warn','marches',m,'Avenants cumulés : '+(dv/mi*100).toFixed(1)+' % du marché initial (au-delà de 30 %, seuil d’alerte usuel).','Vérifier l’autorisation et la régularité des avenants au texte en vigueur.','Code des marchés publics (à confirmer au texte en vigueur)')}
+  av.forEach(a=>{const d=cohDV(a.date);if(d&&dN&&d<dN)add('warn','avenants',a,'Avenant signé le '+fd(a.date)+', avant la notification du marché ('+fd(m.notif)+').','Vérifier la date de l’avenant.');if(!a.date)add('info','avenants',a,'Date de signature de l’avenant non renseignée.','Renseigner la date.')});
+  // ordres de service
+  const dem=os.filter(x=>x.type=='Démarrage'&&x.date);
+  if(dem.length>1)dem.forEach(x=>add('warn','os',x,'Plusieurs OS de démarrage pour ce marché ('+dem.length+').','Un seul OS de démarrage : corriger le type (reprise, prolongation) ou supprimer le doublon.'));
+  if(dem.length==1){const d=D(dem[0].date);if(dD&&diff(d,dD)!=0)add('warn','os',dem[0],'OS de démarrage du '+fd(dem[0].date)+' différent de la date de démarrage du marché ('+fd(m.debut)+').','Aligner les deux dates : l’OS de démarrage fait courir le délai.','Code des marchés publics (ordre de service)');if(dN&&d<dN)add('ko','os',dem[0],'OS de démarrage ('+fd(dem[0].date)+') antérieur à la notification d’approbation ('+fd(m.notif)+').','Corriger la date.')}
+  else if(dD&&dD<today&&!os.some(x=>x.type=='Démarrage'))add('info','marches',m,'Marché démarré le '+fd(m.debut)+' sans OS de démarrage enregistré.','Ajouter l’OS de démarrage (le délai court à compter de sa date).');
+  let stop=false;os.filter(x=>x.date&&(x.type=='Arrêt'||x.type=='Reprise')).sort((a,b)=>a.date<b.date?-1:1).forEach(x=>{if(x.type=='Arrêt'){if(stop)add('warn','os',x,'Arrêt du '+fd(x.date)+' alors que les travaux sont déjà arrêtés (reprise manquante).','Ajouter l’OS de reprise ou corriger.');stop=true}else{if(!stop)add('warn','os',x,'Reprise du '+fd(x.date)+' sans arrêt préalable.','Ajouter l’OS d’arrêt ou corriger le type.');stop=false}});
+  os.filter(x=>x.type=='Prolongation').forEach(x=>{if(!osDays(x))add('warn','os',x,'OS de prolongation sans durée : le délai du marché n’est pas modifié.','Saisir la durée (mois ou jours).')});
+  const on={};os.forEach(x=>{const k=anN(x.num||'').replace(/[^a-z0-9]/g,'');if(k)(on[k]=on[k]||[]).push(x)});for(const k in on)if(on[k].length>1)on[k].forEach(x=>add('warn','os',x,'N° d’OS « '+x.num+' » en double dans ce marché.','Corriger le numéro.'));
+  // réserves et réception
+  const rs=db.reserves.filter(x=>x.marche==m.id);if(m.reception&&rs.some(resOpen))add('info','marches',m,'Réception prononcée avec '+rs.filter(resOpen).length+' réserve(s) non levée(s) : la réception définitive est subordonnée à leur levée.','Suivre la levée des réserves.');
+  // plusieurs garanties de bonne exécution actives
+  const be=gs.filter(g=>g.type=='Bonne exécution'&&A.includes(g.statut)&&!endedG(g));if(be.length>1)add('info','marches',m,be.length+' garanties de bonne exécution actives : vérifier qu’il ne s’agit pas d’un doublon (une nouvelle garantie remplace la précédente).','Passer l’ancienne en mainlevée.')});
+ // --- garanties
+ const dup={};
+ db.garanties.forEach(g=>{const m=mk(g.marche);if(!m){add('ko','garanties',g,'Garantie rattachée à un marché inexistant.','Rattacher la garantie à son marché.');return}
+  const r=calc(m),M=r?r.M:+m.montant||0,gm=+g.montant||0,dE=cohDV(g.emission),dX=cohDV(g.echeance),dN=cohDV(m.notif),av=(+m.avance||0)+(+m.avancef||0),act=A.includes(g.statut)&&!endedG(g);
+  if(!gm&&act)add('warn','garanties',g,'Montant de la garantie non renseigné.','Renseigner le montant.');
+  if(M&&gm>M)add('ko','garanties',g,'Garantie de '+fmt(gm)+' FCFA supérieure au montant du marché ('+fmt(M)+' FCFA).','Vérifier le montant (ou la saisie du marché).');
+  if(g.type=='Retenue de garantie'&&M&&gm>M*P.ret[1]/100)add('warn','garanties',g,'Retenue de garantie de '+(gm/M*100).toFixed(1)+' % : au-delà du maximum de '+P.ret[1]+' %.','Vérifier le montant.','Art. 98');
+  if(g.type=='Avance de démarrage'&&av>0&&gm&&gm<av*.999)add('warn','garanties',g,'Garantie d’avance de '+fmt(gm)+' FCFA inférieure à l’avance consentie ('+fmt(av)+' FCFA) : l’avance doit être garantie à 100 %.','Exiger une garantie couvrant la totalité de l’avance.','Art. 101');
+  if(dE&&dX&&dE>dX)add('ko','garanties',g,'Émission ('+fd(g.emission)+') postérieure à l’échéance ('+fd(g.echeance)+').','Corriger les dates.');
+  if(dE&&dN&&dE<dN&&g.type!='Soumission')add('warn','garanties',g,'Garantie émise le '+fd(g.emission)+', avant la notification d’approbation du marché ('+fd(m.notif)+').','Vérifier la date d’émission ou de notification.');
+  if(g.type=='Bonne exécution'&&act&&dX&&r&&dX<r.fin&&!m.reception)add('warn','garanties',g,'Échéance du '+fd(g.echeance)+' antérieure à la fin prévue des travaux ('+fdd(r.fin)+') : la garantie doit rester valable jusqu’à la réception provisoire.','Demander la prorogation avant l’échéance.','Art. 99');
+  if(g.statut=='Mainlevée obtenue'&&!g.mainlevee)add('info','garanties',g,'Statut « Mainlevée obtenue » sans date de mainlevée.','Renseigner la date de mainlevée.');
+  if(g.mainlevee&&g.statut!='Mainlevée obtenue')add('warn','garanties',g,'Date de mainlevée renseignée ('+fd(g.mainlevee)+') mais statut « '+g.statut+' ».','Passer le statut en « Mainlevée obtenue ».');
+  const fe=g.fin_ev&&g.fin_ev!='—';
+  if(fe&&A.includes(g.statut))add('warn','garanties',g,'Événement de fin survenu (« '+g.fin_ev+' ») mais garantie encore « '+g.statut+' ».','Mettre à jour le statut ou demander la mainlevée.');
+  if(g.fin_date&&!fe)add('warn','garanties',g,'Date de l’événement de fin renseignée sans événement.','Choisir l’événement de fin.');
+  const OKE={'Avance de démarrage':['Remboursement intégral de l’avance de démarrage'],'Bonne exécution':['PV de réception provisoire'],'Retenue de garantie':['PV de réception définitive']}[g.type];
+  if(fe&&g.fin_ev!='Mainlevée du Bénéficiaire'&&OKE&&!OKE.includes(g.fin_ev))add('warn','garanties',g,'Événement de fin « '+g.fin_ev+' » incohérent avec une garantie de '+g.type.toLowerCase()+' (attendu : '+OKE[0]+' ou mainlevée du Bénéficiaire).','Corriger l’événement de fin.');
+  if(g.fin_ev=='PV de réception provisoire'&&m.reception&&g.fin_date&&g.fin_date!=m.reception)add('warn','garanties',g,'Fin de garantie au '+fd(g.fin_date)+' alors que le PV de réception du marché est du '+fd(m.reception)+'.','Aligner les dates.');
+  if(g.type=='Soumission'&&act&&m.notif)add('info','garanties',g,'Garantie de soumission encore active alors que le marché est notifié : la mainlevée est due après notification et constitution de la garantie de bonne exécution.','Demander la mainlevée de la garantie de soumission.');
+  if(g.organisme){const A2=agrCheck(g.organisme);
+   if(A2.s=='ko'&&act)add('warn','garanties',g,'Organisme « '+g.organisme+' » ('+A2.n+') : '+agrLb(A2.L)+', mais absent de la liste '+AGR.annee+' des sociétés habilitées à délivrer des cautionnements.','Exiger la garantie d’un organisme habilité.',AGR.src);
+   else if((A2.s=='unk'||A2.s=='amb')&&act)add('info','garanties',g,A2.s=='amb'?A2.n:'Organisme « '+g.organisme+' » non retrouvé dans la liste '+AGR.annee+' des assureurs ni parmi les banques connues (orthographe ?).','Vérifier le nom et l’agrément de l’organisme.')}
+  const k=[g.marche,g.type,anN(g.organisme||'').replace(/[^a-z0-9]/g,''),gm,g.emission||''].join('|');(dup[k]=dup[k]||[]).push(g)});
+ for(const k in dup)if(dup[k].length>1)dup[k].forEach(g=>add('warn','garanties',g,'Garantie en double ('+dup[k].length+' fiches identiques : même marché, type, organisme, montant et date).','Supprimer le doublon.'));
+ // --- assurances
+ const pol={};
+ db.assurances.forEach(a=>{const m=mk(a.marche);if(!m){add('ko','assurances',a,'Assurance rattachée à un marché inexistant.','Rattacher l’assurance à son marché.');return}
+  const r=calc(m),M=r?r.M:+m.montant||0,dE=cohDV(a.effet),dX=cohDV(a.echeance),dD=cohDV(m.debut),cap=+a.montant||0,pr=+a.prime||0,trc=/TRC|chantier/i.test(a.type||''),live=['Active','En attente de justificatif'].includes(a.statut);
+  if(dE&&dX&&dE>dX)add('ko','assurances',a,'Effet ('+fd(a.effet)+') postérieur à l’échéance ('+fd(a.echeance)+').','Corriger les dates.');
+  if(dE&&dD&&dE>dD&&(trc||/responsabilit/i.test(a.type||'')))add('warn','assurances',a,'Police effective le '+fd(a.effet)+', après le démarrage du marché ('+fd(m.debut)+') : les travaux déjà exécutés ne sont pas couverts.','Exiger une couverture dès le démarrage.','Loi 2026-385 art. 236-237 (assurance du chantier)');
+  if(trc&&live&&dX&&r&&!m.reception&&dX<r.fin)add('warn','assurances',a,'Échéance de la police au '+fd(a.echeance)+', avant la fin prévue des travaux ('+fdd(r.fin)+') : la TRC doit couvrir le chantier jusqu’à la réception.','Demander la prolongation de la police.');
+  if(a.statut=='Active'&&dX&&dX<today)add('warn','assurances',a,'Police « Active » mais échue depuis le '+fd(a.echeance)+'.','Renouveler la police ou passer le statut en « Expirée ».');
+  if(a.statut=='Expirée'&&dX&&dX>today)add('info','assurances',a,'Police « Expirée » alors que l’échéance ('+fd(a.echeance)+') n’est pas atteinte.','Vérifier le statut.');
+  if(a.assure&&m.titulaire){const tt=anTit(m.titulaire),aa=anN(a.assure);if(tt.length&&!tt.some(w=>aa.includes(w)))add('warn','assurances',a,'Assuré « '+a.assure+' » différent du titulaire du marché « '+m.titulaire+' » (un sous-traitant ou le maître d’ouvrage peut être co-assuré, pas l’inverse).','Vérifier l’assuré principal.','Loi 2026-385 art. 237')}
+  if(trc&&cap&&M&&cap<M*.999)add('warn','assurances',a,'Capital TRC de '+fmt(cap)+' FCFA inférieur au montant du marché ('+fmt(M)+' FCFA).','Exiger un capital couvrant la valeur des travaux.','Minimum légal de l’application (100 % du marché)');
+  if(pr&&cap&&pr>cap)add('ko','assurances',a,'Prime ('+fmt(pr)+' FCFA) supérieure au capital assuré ('+fmt(cap)+' FCFA).','Corriger la prime ou le capital.');
+  else if(pr&&cap&&(pr/cap<.0002||pr/cap>.05))add('info','assurances',a,'Prime de '+(pr/cap*100).toFixed(3)+' % du capital : taux inhabituel (unité ou chiffre erroné ?).','Vérifier la prime.');
+  if(a.assureur){const v=agrVerdictAssur(a.assureur);if(v[0]=='ko')add('warn','assurances',a,'Assureur « '+a.assureur+' » : '+v[1]+'.',v[3],AGR.src);else if(v[0]=='chk'&&live)add('info','assurances',a,'Assureur « '+a.assureur+' » : '+v[1]+'.',v[3])}
+  if(a.police){const k=a.marche+'|'+anN(a.assureur||'').replace(/[^a-z0-9]/g,'')+'|'+anN(a.police).replace(/[^a-z0-9]/g,'');(pol[k]=pol[k]||[]).push(a)}});
+ for(const k in pol)if(pol[k].length>1)pol[k].forEach(a=>add('warn','assurances',a,'N° de police « '+a.police+' » en double sur ce marché.','Supprimer le doublon ou corriger le numéro.'));
+ // --- réserves
+ db.reserves.forEach(x=>{const m=mk(x.marche);if(!m){add('ko','reserves',x,'Réserve rattachée à un marché inexistant.','Rattacher la réserve à son marché.');return}
+  const d=cohDV(x.date),l=cohDV(x.levee),dD=cohDV(m.debut);
+  if(d&&l&&l<d)add('ko','reserves',x,'Levée ('+fd(x.levee)+') antérieure à la notification de la réserve ('+fd(x.date)+').','Corriger les dates.');
+  if(x.statut=='Levée'&&!x.levee)add('warn','reserves',x,'Réserve « Levée » sans date de levée.','Renseigner la date de levée.');
+  if(x.statut=='Ouverte'&&x.levee)add('warn','reserves',x,'Réserve « Ouverte » alors qu’une date de levée est renseignée.','Passer le statut en « Levée » ou effacer la date.');
+  if(d&&dD&&d<dD)add('warn','reserves',x,'Réserve notifiée le '+fd(x.date)+', avant le démarrage du marché ('+fd(m.debut)+').','Vérifier la date.')});
+ const rk={ko:0,warn:1,info:2};return o.sort((a,b)=>rk[a.s]-rk[b.s]||String(a.m).localeCompare(String(b.m)))}
+function cohSet(v){cohF=v;render()}
+function cohOpen(e,id){go(e);edit(e,id)}
+function cohCard(){if(!(db.marches.length||db.garanties.length||db.assurances.length))return'';const L=coh(),n={ko:0,warn:0,info:0};L.forEach(x=>n[x.s]++);
+ const V=cohF=='all'?L:L.filter(x=>x.s==cohF),sh=V.slice(0,150);
+ return`<div class="card nt"><h2>🔬 Revue d’expert : cohérence des données</h2><p style="margin:0 0 8px;color:var(--m);font-size:13px">Contrôle croisé de tous les champs (dates, montants, statuts, organismes, assureurs) comme le ferait un gestionnaire de marchés. Une incohérence est certaine ; une anomalie est probable ; un conseil est un point d’attention.</p>
+ <div class="bar"><select aria-label="Gravité" onchange="cohSet(this.value)"><option value="all" ${cohF=='all'?'selected':''}>Tout (${L.length})</option>${['ko','warn','info'].map(k=>`<option value="${k}" ${cohF==k?'selected':''}>${cohSv[k][1]}s (${n[k]})</option>`).join('')}</select></div>
+ ${L.length?`<div class="w2"><table class="mx">${sh.map(x=>`<tr><td><span class="b ${cohSv[x.s][0]}">${cohSv[x.s][1]}</span></td><th>${esc(x.m)}</th><td style="text-align:left">${esc(x.t)}${x.a?`<br><small><b>Que faire :</b> ${esc(x.a)}</small>`:''}${x.src?`<br><small><i>${esc(x.src)}</i></small>`:''}</td><td><button onclick="cohOpen('${x.ent}','${esc(x.id)}')">Ouvrir</button></td></tr>`).join('')}</table></div>${V.length>sh.length?`<p class="e">${V.length-sh.length} autre(s) point(s) non affichés : filtrez par gravité.</p>`:''}`:'<div class="e">✅ Aucune incohérence détectée dans vos données.</div>'}</div>`}
+// ===== fin v9.21 =====
 const GKW={'Bonne exécution':/bonne execution/,'Avance de démarrage':/avance de demarrage|restitution d'avance|garantie d'avance|avance forfaitaire|avance facultative/,'Retenue de garantie':/retenue de garantie|caution de remplacement/,'Soumission':/soumission/,'Performance environnementale et sociale':/performance environnementale|environnementale et sociale/};
 // exigences par défaut = référentiel de l’application (modifiable au CCAP de chaque marché)
 function gaCfgDef(t){const P=RF().p,c={r:1,pmin:0,pmax:0,cm:'',cv:0,em:0,vf:'',vp:0,c:['ben','tit','id','irr','pd','dur']};
@@ -2249,7 +2363,7 @@ REF0.am=[
 {id:'am7',pays:'GEN',titre:'Suivi du remboursement de l’avance de démarrage',why:'La garantie d’avance s’éteint au remboursement intégral : saisir les remboursements permettrait de la passer automatiquement en « Terminée » et de proposer la mainlevée partielle.',src:'Art. 101 · votre clause de fin d’avance'},
 {id:'am8',pays:'GEN',titre:'Contrôle des organismes garants (liste DA 2025)',why:'Importer la liste des organismes habilités permettrait d’alerter si une garantie vient d’un organisme non listé.',src:'Votre liste DA 2025'},
 {id:'am9',pays:'GEN',titre:'Fiche marché en PDF et rappels dans le calendrier',why:'Document prêt à joindre aux dossiers, et alertes d’échéance directement dans le téléphone (fichier .ics).',src:'—'}];
-const AM=()=>RF().am||REF0.am;
+const AM=()=>(RF().am||REF0.am).filter(p=>p.id!='am8');
 function amSt(id,v){const R=RF();(R.amst||(R.amst={}))[id]=v;save();render()}
 function amAp(id){const p=AM().find(x=>x.id==id),R=RF();if(!p||!p.op)return;const pid='am-'+id;
  if(!R.props.some(x=>x.id==pid))R.props.push({id:pid,op:p.op,ent:p.ent,after:p.after,fs:p.fs,key:p.key,label:p.label,title:p.titre,why:p.why});

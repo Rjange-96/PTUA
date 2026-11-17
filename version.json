@@ -1,10 +1,10 @@
 {
- "version": "9.20",
+ "version": "9.21",
  "date": "2026-11-17",
  "importance": "normale",
  "notes": [
-  "Liste officielle 2026 des organismes habilités intégrée (communiqué du Ministre des Finances et du Budget du 21 janvier 2026) : l’analyseur de garanties contrôle maintenant automatiquement l’organisme garant. Une société d’assurance doit figurer sur la liste des sociétés habilitées à délivrer des cautionnements (13 sociétés) ; sinon la garantie est signalée non conforme.",
-  "Les banques restent à vérifier par vos soins (autre liste officielle). Les noms ambigus (NSIA, Coris, Atlantique : banque ou assurance ?) sont signalés. Une pastille ✅ / ❌ s’affiche dans la fiche d’analyse, et une carte « Liste officielle 2026 » permet de vérifier n’importe quel organisme.",
-  "À la fin de 2026, la liste intégrée sera marquée « à vérifier » tant qu’elle n’est pas remplacée par celle de l’année suivante."
+  "Assurances : l’assureur de chaque police est contrôlé d’après la liste officielle 2026 (communiqué du 21 janvier 2026). Une société agréée en non-vie est acceptée ; une société « vie » seule, un réassureur ou une banque est signalé non conforme.",
+  "Nouvelle revue d’expert (onglet Conformité) : contrôle croisé de tous les champs comme le ferait un gestionnaire de marchés. Dates incohérentes (démarrage avant notification, réception avant démarrage, fin de garantie avant réception, année improbable), montants (garantie supérieure au marché, avance non couverte à 100 %, capital TRC insuffisant, prime anormale, pénalités et plafond, avenants cumulés), statuts (garantie ou police échue encore active, mainlevée, événement de fin incohérent), OS (doublons, reprise sans arrêt, prolongation sans durée), doublons, éléments sans marché, assuré différent du titulaire, organisme non habilité.",
+  "Chaque point est classé Incohérence / Anomalie / Conseil, avec « Que faire » et un bouton « Ouvrir » vers la fiche à corriger ; une alerte apparaît aussi sur le tableau de bord."
  ]
 }
