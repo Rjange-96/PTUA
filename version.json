@@ -1,10 +1,10 @@
 {
- "version": "9.19",
+ "version": "9.22",
  "date": "2026-11-17",
  "importance": "normale",
  "notes": [
   "Le fichier de calendrier (.ics) indique désormais toujours le bon numéro de version de l’application.",
   "La fenêtre « Mise à jour disponible » affiche les nouveautés même si elles sont rédigées en une seule phrase.",
-  "Contrôles automatiques renforcés : tous les tests sont relancés à chaque modification, avec un verdict clair, et une modification de l’application sans nouveau numéro de version est signalée (sinon l’iPhone garderait l’ancienne version)."
+  "Contrôles automatiques renforcés : tous les tests sont relancés sur GitHub à chaque modification, avec un verdict clair, et une modification de l’application sans nouveau numéro de version est signalée (sinon l’iPhone garderait l’ancienne version)."
  ]
 }
