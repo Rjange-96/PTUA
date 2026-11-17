@@ -8,7 +8,7 @@ Ils ne touchent jamais au vrai serveur.
 ```bash
 pip install playwright && python3 -m playwright install chromium   # une seule fois
 bash tests/run_all.sh            # tous les tests (démarre le serveur local si besoin)
-bash tests/run_all.sh t7 t42     # seulement certains tests
+bash tests/run_all.sh t7 t44     # seulement certains tests
 ```
 
 Chrome est utilisé s'il est installé (`google-chrome`), sinon le Chromium de Playwright.
@@ -51,12 +51,13 @@ le service worker sert d'abord le cache, donc sans nouvelle version l'iPhone gar
 | t36.py | v9.15 : corbeille (suppression récupérable, restauration avec éléments liés et pièces jointes, suppression définitive, purge à 30 jours, compatibilité synchronisation) et réception (réserves, levée, réception définitive, alertes, échéancier, courriers, conformité) |
 | t37.py | v9.16 : lecture des scans sur l’appareil (OCR français) : PDF image seul et photo JPEG, texte chiffré et effacé avec le document, recherche dans les scans, analyse d’assurance sur un scan, aucune requête externe |
 | t38.py | v9.17 : rappels sur le téléphone (dates d’alerte J-30/J-7/J-1/J à 8 h, contenu envoyé au serveur sans donnée de marché, refus serveur, gestionnaires de notification du service worker) ; l’envoi réel vers un iPhone ne peut pas être testé ici |
-| t42.py | numéro de version identique partout (application, onglet du navigateur, en-tête, service worker, version.json, calendrier .ics) ; notes de mise à jour affichées qu'elles soient en liste ou en phrase |
+| t44.py | numéro de version identique partout (application, onglet du navigateur, en-tête, service worker, version.json, calendrier .ics) ; notes de mise à jour affichées qu'elles soient en liste ou en phrase |
 | t43.py | attaque systématique : chaque champ de chaque type de fiche (marchés, garanties, OS, avenants, assurances, réserves, réunions, journal) reçoit 6 sortes de code piégé, puis tous les onglets, la recherche, les 43 fenêtres de modification et la présentation sont parcourus : aucun code ne doit s'exécuter (vérifié : le test détecte bien une faille si l'échappement est désactivé) |
 | sql_push.sh | fonctions SQL du serveur dans une base PostgreSQL jetable : adresses de notification limitées aux vrais services, secrets vérifiés, fonctions internes inaccessibles, rappels dus trouvés même si la table est pleine |
 | t33.py | onglet Réunions : enregistrement audio (micro simulé par Chrome), transcription et PV automatiques via l'IA (service simulé), relance automatique sans bouton après une panne (tentatives croissantes, abandon après plusieurs échecs sans perte de l'audio, reprise automatique à la réouverture de l'application), écoute/téléchargement de l'audio, verrouillage pendant un enregistrement, suppression et absence de suppression en cascade avec le marché |
 | t39.py | analyseur de garanties (v9.19) : lecture du document, montant / délai de remise / durée / clauses, avance à garantir, exigences du CCAP lues depuis un texte collé, décisions manuelles, valeurs appliquées à la fiche sans écrasement, courrier de réserves, rapport, bouton dans la liste, XSS, états corrompus (préparer avec `python3 tests/t39_gen.py`) |
 | t40.py | liste officielle 2026 : assureur habilité / non habilité, banque, nom ambigu, organisme inconnu ou piégé, pastille, vérificateur libre, liste périmée |
 | t41.py | assureur contrôlé d'après la liste 2026 ; revue d'expert : jeu sain sans alerte, 30 incohérences détectées (dates, montants, statuts, OS, doublons, organismes), tri, filtre, bouton Ouvrir, alerte, anti-XSS |
+| t42.py | marchés regroupés par entreprise : regroupement des variantes d'écriture, fiche entreprise, nouveau marché prérempli, liens garanties/assurances, recherche, bascule liste, anti-XSS |
 
 À lancer après chaque modification, avant de publier (GitHub le fait aussi automatiquement).

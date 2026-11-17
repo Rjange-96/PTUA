@@ -15,7 +15,7 @@ if ! curl -s -o /dev/null http://localhost:8765/; then
   for _ in $(seq 20); do curl -s -o /dev/null http://localhost:8765/ && break; sleep 0.3; done
 fi
 
-TESTS=${*:-atk t7 t8 t9 t11 t13 t15 t17 t18 t19 t20 t21 t22 t23 t24 t25 t26 t27 t28 t29 t30 t31 t32 t33 t34 t35 t36 t37 t38 t39 t40 t41 t42 t43}
+TESTS=${*:-atk t7 t8 t9 t11 t13 t15 t17 t18 t19 t20 t21 t22 t23 t24 t25 t26 t27 t28 t29 t30 t31 t32 t33 t34 t35 t36 t37 t38 t39 t40 t41 t42 t43 t44}
 # Lignes où « False » est le résultat ATTENDU (ex. : « en clair ? False » = rien en clair sur le serveur).
 OKFALSE='en clair \? False|texte clair sur serveur : False|alerte inattendu : False|fidOk = False|injectée : False \| X-EVIL : False'
 KO=()

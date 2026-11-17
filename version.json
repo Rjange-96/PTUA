@@ -1,10 +1,10 @@
 {
- "version": "9.23",
+ "version": "9.24",
  "date": "2026-11-17",
  "importance": "normale",
  "notes": [
   "La fenêtre « Mise à jour disponible » affiche les nouveautés même si elles sont rédigées en une seule phrase.",
-  "Rappels sur le téléphone plus sûrs : le serveur n’accepte plus que les vrais services de notification (Apple, Google, Mozilla, Microsoft) et ne peut plus être saturé au point de faire disparaître vos rappels (mise à jour du serveur à appliquer une fois).",
+  "Rappels sur le téléphone plus sûrs : le serveur n’accepte plus que les vrais services de notification (Apple, Google, Mozilla, Microsoft) et ne peut plus être saturé au point de faire disparaître vos rappels.",
   "Contrôles automatiques renforcés : tous les tests sont relancés sur GitHub à chaque modification, avec un verdict clair, dont une attaque systématique par données piégées sur chaque champ de chaque fiche."
  ]
 }
