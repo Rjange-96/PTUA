@@ -40,7 +40,7 @@ def handle(route):
   route.fulfill(status=st,content_type='application/json',body=json.dumps(out))
 CONFIRM=[True]
 with sync_playwright() as p:
-  b=p.chromium.launch(executable_path='/usr/bin/google-chrome')
+  b=p.chromium.launch(executable_path=__import__('shutil').which('google-chrome'))
   def dev(name,mob):
     c=b.new_context(viewport={'width':393 if mob else 1280,'height':852},is_mobile=mob,has_touch=mob);pg=c.new_page();pg.set_default_timeout(10000)
     pg.route('https://iofbwpzhptctyelmylkz.supabase.co/**',handle);pg.on('pageerror',lambda e:errs.append(name+str(e)));pg.on('console',lambda m:m.type=='error' and errs.append(name+m.text))

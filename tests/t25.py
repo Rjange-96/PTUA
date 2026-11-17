@@ -1,7 +1,7 @@
 import sys
 from playwright.sync_api import sync_playwright
 with sync_playwright() as p:
-  b=p.chromium.launch(executable_path='/usr/bin/google-chrome');pg=b.new_page();pg.on('dialog',lambda d:d.accept())
+  b=p.chromium.launch(executable_path=__import__('shutil').which('google-chrome'));pg=b.new_page();pg.on('dialog',lambda d:d.accept())
   errs=[];pg.on('pageerror',lambda e:errs.append(str(e)))
   pg.goto('http://localhost:8765/');pg.wait_for_timeout(2000);pg.evaluate("localStorage.clear()")
   out=pg.evaluate("""async()=>{const e=new Date(Date.now()+20*864e5).toISOString().slice(0,10);

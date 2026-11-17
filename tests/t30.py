@@ -6,7 +6,7 @@ def L(c):
   r,g,b=[x/255 for x in c[:3]];f=lambda x:x/12.92 if x<=0.03928 else ((x+0.055)/1.055)**2.4;return .2126*f(r)+.7152*f(g)+.0722*f(b)
 def C(a,b):x,y=sorted([L(a),L(b)],reverse=True);return (x+.05)/(y+.05)
 with sync_playwright() as p:
-  b=p.chromium.launch(executable_path='/usr/bin/google-chrome');pg=b.new_page(viewport={'width':1280,'height':800})
+  b=p.chromium.launch(executable_path=__import__('shutil').which('google-chrome'));pg=b.new_page(viewport={'width':1280,'height':800})
   pg.on('pageerror',lambda e:errs.append(str(e)));pg.on('console',lambda m:m.type=='error' and errs.append(m.text));pg.on('dialog',lambda d:d.accept())
   pg.goto('http://localhost:8765/');pg.wait_for_timeout(2300);pg.evaluate("localStorage.clear();db.marches.push({id:'m1',num:'M-1',titulaire:'T'});save();render()")
   pg.click('#th');pg.wait_for_timeout(300);opts=pg.evaluate("[...$('#cd').querySelectorAll('button')].map(b=>b.textContent)");P('choix proposés :',opts[:4])

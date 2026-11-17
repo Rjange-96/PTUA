@@ -23,7 +23,7 @@ def dev(b,name):
   pg.on('dialog',lambda d:(alerts.append(name+': '+d.message[:60]),d.accept()))
   pg.goto('http://localhost:8765/');pg.wait_for_timeout(2300);return pg
 with sync_playwright() as p:
-  b=p.chromium.launch(executable_path='/usr/bin/google-chrome')
+  b=p.chromium.launch(executable_path=__import__('shutil').which('google-chrome'))
   pc=dev(b,'PC')
   pc.evaluate("db.marches.push({id:'m1',titulaire:'SOGEA',num:'2024-0153',montant:'1000'},{id:'m2',titulaire:'COLAS',num:'2025-0007',montant:'2000'});db.garanties.push({id:'g1',marche:'m1',type:'Soumission',statut:'Active',organisme:'NSIA'});save()")
   pc.evaluate("setTimeout(syStart,0)");pc.wait_for_timeout(600);pc.fill('#cd input[name=a]','Test#Motdepasse2026');pc.fill('#cd input[name=b]','Test#Motdepasse2026');pc.click('#cd .pri');pc.wait_for_timeout(3000)

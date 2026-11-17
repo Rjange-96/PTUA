@@ -6,12 +6,20 @@ Ils ne touchent jamais au vrai serveur.
 ## Lancer
 
 ```bash
-pip install playwright && playwright install chromium   # une seule fois
-cd <dossier du dépôt> && python3 -m http.server 8765 &
-bash tests/run_all.sh
+pip install playwright && python3 -m playwright install chromium   # une seule fois
+bash tests/run_all.sh            # tous les tests (démarre le serveur local si besoin)
+bash tests/run_all.sh t7 t39     # seulement certains tests
 ```
 
-(Les scripts utilisent `/usr/bin/google-chrome` : adaptez `executable_path` si besoin.)
+Chrome est utilisé s'il est installé (`google-chrome`), sinon le Chromium de Playwright.
+
+À la fin, `run_all.sh` donne un verdict (✅/❌ par test, puis global) et renvoie un code d'erreur en cas d'échec.
+Un test est en échec s'il plante, dépasse 240 s, signale des erreurs JavaScript, ou affiche une vérification à `False`
+(sauf les lignes où `False` est le résultat attendu, comme « en clair ? False » : elles sont listées dans `OKFALSE`).
+
+**GitHub** : le workflow « Tests automatiques » relance tout à chaque envoi sur GitHub.
+Il vérifie aussi, avec `tests/check_bump.sh`, qu'une modification de l'application s'accompagne d'un nouveau numéro de version :
+le service worker sert d'abord le cache, donc sans nouvelle version l'iPhone garderait l'ancienne application.
 
 | Script | Ce qu'il vérifie |
 |---|---|
@@ -43,6 +51,7 @@ bash tests/run_all.sh
 | t36.py | v9.15 : corbeille (suppression récupérable, restauration avec éléments liés et pièces jointes, suppression définitive, purge à 30 jours, compatibilité synchronisation) et réception (réserves, levée, réception définitive, alertes, échéancier, courriers, conformité) |
 | t37.py | v9.16 : lecture des scans sur l’appareil (OCR français) : PDF image seul et photo JPEG, texte chiffré et effacé avec le document, recherche dans les scans, analyse d’assurance sur un scan, aucune requête externe |
 | t38.py | v9.17 : rappels sur le téléphone (dates d’alerte J-30/J-7/J-1/J à 8 h, contenu envoyé au serveur sans donnée de marché, refus serveur, gestionnaires de notification du service worker) ; l’envoi réel vers un iPhone ne peut pas être testé ici |
+| t39.py | numéro de version identique partout (application, onglet du navigateur, en-tête, service worker, version.json, calendrier .ics) ; notes de mise à jour affichées qu'elles soient en liste ou en phrase |
 | t33.py | onglet Réunions : enregistrement audio (micro simulé par Chrome), transcription et PV automatiques via l'IA (service simulé), relance automatique sans bouton après une panne (tentatives croissantes, abandon après plusieurs échecs sans perte de l'audio, reprise automatique à la réouverture de l'application), écoute/téléchargement de l'audio, verrouillage pendant un enregistrement, suppression et absence de suppression en cascade avec le marché |
 
-À lancer après chaque modification, avant de publier.
+À lancer après chaque modification, avant de publier (GitHub le fait aussi automatiquement).

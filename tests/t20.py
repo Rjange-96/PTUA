@@ -9,7 +9,7 @@ def h(route):
   elif mode[0]=='evil':route.fulfill(status=200,content_type='application/json',headers={'access-control-allow-origin':'*'},body='{"status":"<img src=x onerror=window.__x=1>"}')
   else:route.abort()
 with sync_playwright() as p:
-  b=p.chromium.launch(executable_path='/usr/bin/google-chrome');c=b.new_context(viewport={'width':393,'height':852},is_mobile=True);pg=c.new_page();pg.set_default_timeout(15000)
+  b=p.chromium.launch(executable_path=__import__('shutil').which('google-chrome'));c=b.new_context(viewport={'width':393,'height':852},is_mobile=True);pg=c.new_page();pg.set_default_timeout(15000)
   pg.route('https://test.nextdns.io/**',h);pg.on('pageerror',lambda e:errs.append(str(e)));pg.on('console',lambda m:m.type=='error' and 'ERR_FAILED' not in m.text and 'Failed to load' not in m.text and errs.append(m.text));pg.on('dialog',lambda d:d.accept())
   pg.goto('http://localhost:8765/');pg.wait_for_timeout(2500);pg.evaluate("go('act')");pg.wait_for_timeout(1500)
   P('carte présente :',pg.evaluate("document.body.innerText.includes('Surveiller tout l’iPhone')"))

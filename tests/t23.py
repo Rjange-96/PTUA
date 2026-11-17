@@ -3,7 +3,7 @@ from playwright.sync_api import sync_playwright
 def P(*a):print(*a,flush=True)
 errs=[];alerts=[]
 with sync_playwright() as p:
-  b=p.chromium.launch(executable_path='/usr/bin/google-chrome')
+  b=p.chromium.launch(executable_path=__import__('shutil').which('google-chrome'))
   for nm,vp,mob in [('mobile',{'width':393,'height':852},True),('PC',{'width':1280,'height':800},False)]:
     c=b.new_context(viewport=vp,is_mobile=mob,has_touch=mob);pg=c.new_page();pg.set_default_timeout(15000)
     pg.on('pageerror',lambda e:errs.append(str(e)));pg.on('console',lambda m:m.type=='error' and errs.append(m.text));pg.on('dialog',lambda d:(alerts.append(d.message),d.accept()))
