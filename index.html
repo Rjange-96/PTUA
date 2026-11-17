@@ -317,7 +317,7 @@ html.peek body>*:not(#wp){visibility:hidden!important}html.peek #wp .wpv{opacity
 <dialog id="cd"></dialog><dialog id="dv"></dialog><dialog id="dlg"><div id="dhd"><h3 id="dt"></h3><div id="dsub"></div></div><div id="df"></div><div class="row"><button onclick="$('#dlg').close()">Annuler</button><button class="pri" onclick="ok()">Enregistrer</button></div></dialog>
 <script>
 if(top!==self){try{top.location=self.location.href}catch(e){document.documentElement.innerHTML='';throw 0}}
-const APPV='9.18',MOB=()=>matchMedia('(max-width:700px)').matches,K='ptua_v3',$=s=>document.querySelector(s),day=864e5,today=new Date(new Date().toDateString());
+const APPV='9.19',MOB=()=>matchMedia('(max-width:700px)').matches,K='ptua_v3',$=s=>document.querySelector(s),day=864e5,today=new Date(new Date().toDateString());
 // ===== v8.7 — Moniteur d’activité : métadonnées uniquement (heure, serveur, taille), jamais le contenu des données =====
 const MON={net:[],ev:[],t0:Date.now(),sent:0,recv:0,hosts:{}};
 (()=>{const f0=window.fetch.bind(window);window.fetch=async(u,o)=>{const t=performance.now(),rec={at:Date.now(),m:(o&&o.method)||'GET',host:'?',path:'',bl:0,st:0,ms:0,rl:0};
@@ -369,7 +369,7 @@ const TPLT={'application/pdf':'pdf','application/vnd.openxmlformats-officedocume
 const sanTpl=a=>(Array.isArray(a)?a:[]).filter(x=>x&&IDR.test(x.id)&&x.f&&IDR.test(x.f.id)&&TPLT[x.f.t]&&typeof x.f.k=='string'&&/^[A-Za-z0-9+/]{43}=$/.test(x.f.k)).slice(0,100).map(x=>({id:x.id,nom:cln(x.nom).slice(0,80)||'Modèle',ent:TPLE.includes(x.ent)?x.ent:'tous',_u:+x._u||0,f:{id:x.f.id,n:cln(x.f.n)||'modele',t:x.f.t,s:+x.f.s||0,d:+x.f.d||0,k:x.f.k}}));
 const sanTr=a=>(Array.isArray(a)?a:[]).filter(z=>z&&typeof z=='object'&&IDR.test(z.id)&&z.d&&typeof z.d=='object'&&ENTS.includes(z.e)).slice(0,200).map(z=>{const q=sanDB(z.d),d={};ENTS.forEach(k=>d[k]=q[k]);return{id:z.id,t:+z.t||0,e:z.e,n:String(z.n??'').slice(0,300),d,ru:(Array.isArray(z.ru)?z.ru:[]).filter(x=>IDR.test(x)).slice(0,500)}});
 function sanDB(d){d=d&&typeof d=='object'?d:{};const o={},map={};
- const LONGK={transcription:60000,pv:20000,antx:20000};
+ const LONGK={transcription:60000,pv:20000,antx:20000,gantx:20000};
  for(const e of ENTS)o[e]=(Array.isArray(d[e])?d[e]:[]).filter(x=>x&&typeof x=='object').slice(0,20000).map(x=>{const y={};for(const k of Object.keys(x))if(IDR.test(k)&&k!='id')y[k]=k=='files'?sanFiles(x[k]):LONGK[k]?String(x[k]??'').slice(0,LONGK[k]):prim(x[k]);
   const id=IDR.test(x.id)&&!map[x.id+'|'+e]?x.id:nid();if(typeof x.id=='string')map[x.id+'|'+e]=id;y.id=id;return y});
  for(const e of ['garanties','os','avenants','assurances','reunions','reserves'])o[e].forEach(x=>{const m=map[String(x.marche)+'|marches'];x.marche=m||(IDR.test(x.marche)?x.marche:'')});
@@ -444,10 +444,10 @@ function rows(e){
  return h+a.map(x=>{
   let c=F.map(([k,,t])=>`<td class="${t=='number'?'n':''}">${t=='ref'?esc(mt(x[k])):t=='number'?fmt(x[k]):t=='date'?fd(x[k]):k=='doc'&&/^https?:\/\//.test(x[k])?`<a href="${esc(x[k])}" target="_blank" rel="noopener">🔗 Ouvrir</a>`:esc(x[k])}</td>`).join('');
   if(e=='marches'){const r=calc(x);c+=r?`<td>${fdd(r.fin)}${r.arret?' (+'+r.arret+' j arrêt)':''}</td><td class="n">${r.retard||'—'}</td><td class="n">${r.pen?fmt(r.pen):'—'}</td>`:'<td colspan="3">Renseigner démarrage et délai</td>'}
-  if(e=='garanties')c+=`<td>${badge(x)}</td>`;if(e=='assurances')c+=`<td>${badgeA(x)}</td>`;
+  if(e=='garanties')c+=`<td>${badge(x)}${gaChip(x)}</td>`;if(e=='assurances')c+=`<td>${badgeA(x)}</td>`;
   if(e=='os'){const f=osFin(x);c+=`<td>${f?fdd(f):'—'}</td>`}
   if(e=='reserves')c+=`<td>${badgeR(x)}</td>`;
-  return `${lh(e,x)}<tr>${c}<td><button onclick="docs('${e}','${x.id}')" title="Documents joints">📎${(x.files||[]).length?' '+x.files.length:''}</button>${LET.includes(e)?`<button onclick="cour('${e}','${x.id}')" title="Générer un courrier">✉️</button>`:''}<button onclick="edit('${e}','${x.id}')">Modifier</button> <button onclick="dup('${e}','${x.id}')">Dupliquer</button> <button onclick="del('${e}','${x.id}')">Suppr.</button></td></tr>`}).join('');
+  return `${lh(e,x)}<tr>${c}<td><button onclick="docs('${e}','${x.id}')" title="Documents joints">📎${(x.files||[]).length?' '+x.files.length:''}</button>${e=='garanties'?`<button onclick="gaOpen('${x.id}')" title="Analyser cette garantie reçue" aria-label="Analyser cette garantie reçue">🔍</button>`:''}${LET.includes(e)?`<button onclick="cour('${e}','${x.id}')" title="Générer un courrier">✉️</button>`:''}<button onclick="edit('${e}','${x.id}')">Modifier</button> <button onclick="dup('${e}','${x.id}')">Dupliquer</button> <button onclick="del('${e}','${x.id}')">Suppr.</button></td></tr>`}).join('');
 }
 // ===== v9.15 — Réception : réserves, levée et réception définitive =====
 const resEch=r=>r.date&&+r.delai>0?new Date(D(r.date).getTime()+(+r.delai)*day):null,resOpen=r=>r.statut!='Levée'&&!r.levee;
@@ -1126,7 +1126,10 @@ function lettres(e,x){const m=(e=='marches'?x:mk(x.marche))||{},T=[],ref=`March�
    `\n\nConformément aux stipulations du marché${pen?` (${pen})`:''}, les pénalités de retard s’élèvent, à titre provisoire, à ${fmt(Math.round(r.pen))} FCFA, calculées sur un montant de marché de ${fmt(r.M)} FCFA (avenants compris).`+
    `\n\nCes pénalités seront [retenues sur les prochains décomptes]. Nous vous invitons à nous faire part de vos éventuelles observations dans un délai de [10] jours à compter de la réception de la présente.`+foot})}
  if(e=='garanties'){const ty=String(x.type||'garantie').toLowerCase(),g=`la garantie de ${ty}${x.emission?` émise le ${fd(x.emission)}`:''} par ${x.organisme||LV}, d’un montant de ${money(x.montant)}, au titre du marché n° ${m.num||LV}`;
-  T.push({n:'Demande de prorogation de la garantie',f:'prorogation_garantie',t:head(m.titulaire,`Demande de prorogation de la garantie de ${ty} — marché n° ${m.num||LV}`)+
+  {const rs=typeof anLetterBody=='function'?anLetterBody(x,m,'ganp'):'';if(rs)T.push({n:'Notification de réserves sur la garantie reçue',f:'reserves_garantie',t:head(m.titulaire,`Réserves sur la garantie de ${ty} — marché n° ${m.num||LV}`)+
+   `Nous accusons réception de ${g}, que vous nous avez remise.\n\nAprès examen au regard des prescriptions du marché (CCAP/DAO) et de la réglementation applicable, nous relevons les points suivants :`+rs+
+   `\n\nNous vous demandons de nous remettre, dans un délai de [8] jours à compter de la réception de la présente, une garantie ou un avenant régularisant ces points, émis par un organisme habilité et conforme au modèle du dossier d’appel d’offres.\n\nDans l’attente, nous nous réservons le droit de tirer toutes les conséquences prévues par le marché, y compris [le refus de l’ordre de service de démarrage / la suspension des paiements].`+foot})}
+ T.push({n:'Demande de prorogation de la garantie',f:'prorogation_garantie',t:head(m.titulaire,`Demande de prorogation de la garantie de ${ty} — marché n° ${m.num||LV}`)+
    `Nous vous informons que ${g}, ${lecheance(x.echeance)}.${x.evt?` Cette garantie doit rester valable jusqu’à : ${x.evt}.`:''}\n\nLe marché n’étant pas [achevé / réceptionné], nous vous demandons de nous remettre, dans un délai de [8] jours et en tout état de cause avant l’échéance, l’original d’un avenant de prorogation ou d’une nouvelle garantie émis par un organisme habilité, d’une durée de validité au moins égale à [durée à préciser].\n\nÀ défaut, nous nous réservons le droit de tirer toutes les conséquences prévues par le marché, y compris la mise en jeu de la garantie avant son échéance.`+foot});
   T.push({n:'Demande de mainlevée de la garantie',f:'mainlevee',t:head(x.organisme,`Mainlevée de la garantie de ${ty} — marché n° ${m.num||LV}`)+
    `Nous sommes bénéficiaires de ${g}, consentie pour le compte de ${m.titulaire||LV}.\n\n${x.fin_ev&&x.fin_ev!='—'?`Nous vous confirmons que l’événement suivant est survenu : ${x.fin_ev}${x.fin_date?` (le ${fd(x.fin_date)})`:''}.`:'Nous vous confirmons que l’événement prévu par la garantie pour sa libération est survenu : [préciser l’événement et sa date].'}\n\nEn conséquence, nous consentons à la mainlevée de ladite garantie et vous invitons à en prendre acte et à en informer votre client.`+foot});
@@ -1570,6 +1573,7 @@ function conf(){
  <div class="card nt"><div class="bar"><select onchange="cfSel(this.value)" aria-label="Marché">${ms.map(x=>`<option value="${x.id}" ${x.id==m.id?'selected':''}>${esc(x.num)} — ${esc(x.titulaire||'')}</option>`).join('')}</select><button onclick="cfPrint('${m.id}')">🖨️ Fiche de conformité</button></div><div><b>${pg.f} pièce(s) sur ${pg.t}</b> fournie(s)${pg.late?` · <span class="b r">${pg.late} en retard</span>`:''}<div style="height:8px;border-radius:99px;background:#8883;margin-top:6px"><div style="height:8px;border-radius:99px;width:${pg.p}%;background:var(--g,#10b981)"></div></div></div></div>
  ${rowsH}
  <div class="card nt"><h2>Légalité des garanties</h2><div class="w2"><table class="mx">${gar}</table></div></div>
+ ${gaUI(m)}
  <div class="card nt"><h2>Conformité des assurances</h2><div class="w2"><table class="mx">${as}</table></div></div>
  ${anUI(m)}
  <div class="card nt"><h2>Clauses à vérifier dans chaque police</h2><p style="margin:0 0 8px;color:var(--m);font-size:13px">Les mentions du Code CIMA valent pour toute police. Les clauses propres à la TRC et à la décennale viennent de la loi n° 2026-385 du 19 juin 2026 et du guide ARCOP. Ce qui relève de l’usage est signalé comme tel.</p>${pol}</div>
@@ -1686,13 +1690,13 @@ const anTit=s=>anN(s).replace(/[^a-z0-9 ]/g,' ').split(/\s+/).filter(w=>w.length
 function anState(a){let o={};try{o=JSON.parse(a.an||'{}')}catch(e){}return o&&typeof o=='object'&&!Array.isArray(o)?o:{}}
 function anPut(a,o){let s=JSON.stringify(o);if(s.length>4800){delete o.ov;s=JSON.stringify(o)}a.an=s.slice(0,4800);a._u=Date.now()}
 function anKey(a){const o=anState(a);if(ANT.includes(o.k))return o.k;return Object.keys(ATY).find(z=>ATY[z]==a.type)||''}
-async function anText(a){const out=[],info={pdf:0,img:0,vide:0,ocr:0,err:''};
+async function anText(a,tf){const out=[],info={pdf:0,img:0,vide:0,ocr:0,err:''};
  for(const f of (a.files||[])){const pdf=f.t=='application/pdf';if(!pdf&&f.t!='image/jpeg'){info.img++;continue}if(pdf)info.pdf++;
   if(pdf&&ANX[f.id]==null){try{ANX[f.id]=await pdfText(await fLoad(f))}catch(e){ANX[f.id]='';info.err=(e&&e.message)||'lecture impossible'}}
   let t=pdf?ANX[f.id]:'';
   if(t.replace(/\s/g,'').length<OCK){try{const r=await ocFile(f,p=>busy('Lecture du scan sur votre appareil ('+p+')…'));t=r.t;if(t.replace(/\s/g,'').length>=OCK)info.ocr++}catch(e){info.err=(e&&e.message)||'lecture du scan impossible'}finally{await ocEnd()}}
   if(t.replace(/\s/g,'').length<OCK){if(pdf)info.vide++;else info.img++}else out.push(t)}
- if(a.antx)out.push(String(a.antx));return{text:out.join('\n\n'),info}}
+ const px=tf||'antx';if(a[px])out.push(String(a[px]));return{text:out.join('\n\n'),info}}
 // ===== v9.16 — Lecture des scans (OCR) sur l’appareil =====
 // Moteur Tesseract hébergé par l’application (lib/tesseract), chargé seulement au premier usage. Le texte lu est chiffré avec la clé propre
 // à chaque document, gardé sur l’appareil (non synchronisé) et effacé avec le document.
@@ -1833,7 +1837,7 @@ function anPrint(id){const a=db.assurances.find(x=>x.id==id),R=ANR[id],m=a&&mk(a
  <p><i>Aide à la décision établie par lecture automatique du document : le DAO, le CCAP, la police et les textes officiels prévalent. Les points « à vérifier » doivent être confirmés sur l’original.</i></p>`;
  document.body.appendChild(f);document.body.classList.add('pfs');const end=()=>{document.body.classList.remove('pfs');f.remove();removeEventListener('afterprint',end)};addEventListener('afterprint',end);setTimeout(end,12e4);setTimeout(()=>window.print(),150)}
 // courrier de réserves construit à partir de la dernière analyse enregistrée
-function anLetterBody(a,m){let P=[];try{P=JSON.parse(a.anp||'[]')}catch(e){}if(!Array.isArray(P)||!P.length)return'';const ko=P.filter(p=>p[0]=='ko'),ck=P.filter(p=>p[0]=='chk');
+function anLetterBody(a,m,pk){let P=[];try{P=JSON.parse(a[pk||'anp']||'[]')}catch(e){}if(!Array.isArray(P)||!P.length)return'';const ko=P.filter(p=>p[0]=='ko'),ck=P.filter(p=>p[0]=='chk');
  const ln=p=>`- ${p[1]}${p[3]?' (exigé : '+p[3]+(p[4]?' ; constaté : '+p[4]:'')+')':''}${p[2]?' → '+p[2]:''}`;
  return(ko.length?`\n\nNon-conformités relevées :\n${ko.map(ln).join('\n')}`:'')+(ck.length?`\n\nPoints à confirmer par vos soins :\n${ck.map(p=>'- '+p[1]+(p[2]?' → '+p[2]:'')).join('\n')}`:'')}
 // ---------- affichage ----------
@@ -1880,6 +1884,247 @@ function anUI(m){const px=anPx(m),pols=db.assurances.filter(a=>a.marche==m.id).s
   <div style="margin:8px 0"><button onclick="anCcap('${m.id}')">🔎 Lire ce texte et proposer les exigences</button></div>
   ${ANT.map(k=>anFormType(m,px,k)).join('')}</details>`}
 
+// ===== v9.19 — Analyseur de garanties : conformité d’une garantie reçue (caution bancaire, garantie d’assurance) aux exigences du marché =====
+// Même principe que l’analyse des assurances (v9.13) : le document est lu sur l’appareil (rien n’est envoyé sur Internet), puis comparé point par point
+// aux exigences du marché (CCAP / DAO). À défaut d’exigence saisie, le référentiel de l’application s’applique (guide ARCOP §4.4, §5.4, §5.8 ; Code des marchés publics art. 97 à 101 et 129 à 131).
+// Aide à la décision : l’agrément de l’organisme garant et l’authenticité de la garantie restent à confirmer par l’utilisateur (cases à cocher), le DAO et le CCAP prévalent.
+var GAR={},GAP='';
+const GT=['Bonne exécution','Avance de démarrage','Retenue de garantie','Soumission','Performance environnementale et sociale'];
+const GSRC='Modèle de garantie du DAO (à confirmer au DAO)';
+// clauses vérifiées dans le texte du document (sans accents ni majuscules)
+const GCL=[
+ {k:'ben',l:'Bénéficiaire : l’autorité contractante / le maître d’ouvrage',re:/beneficiaire|autorite contractante|maitre (de l')?(d')?ouvrage/,s:GSRC},
+ {k:'tit',l:'Garanti (donneur d’ordre) = titulaire du marché',re:null,s:GSRC},
+ {k:'id',l:'Marché identifié sur la garantie (n° du marché)',re:null,s:GSRC},
+ {k:'irr',l:'Engagement irrévocable et inconditionnel',re:/irrevocable|inconditionnel\w*|sans condition/,s:GSRC},
+ {k:'pd',l:'Paiement à première demande, sans discussion ni justification',re:/premiere demande|sans (qu'il soit )?(besoin|necessaire|obligation)[^.\n]{0,50}(justifi|prouv|motiv)|renonc\w*[^.\n]{0,40}benefice de (discussion|division)|garantie autonome/,s:GSRC},
+ {k:'ev',l:'Libération à l’événement prévu pour ce type de garantie',re:null,s:'EVT de l’application (PV de réception provisoire / définitive, remboursement de l’avance, ou mainlevée du bénéficiaire)'},
+ {k:'mo',l:'Conformité au modèle (formulaire) du DAO',re:/(modele|formulaire|format)[^.\n]{0,50}(dao|dossier d'appel|dossier de consultation|appel d'offres)|conforme(ment)? (au|a la|aux) (modele|formulaire)/,s:GSRC},
+ {k:'dur',l:'Durée de validité ou date d’expiration indiquée',re:/valable (jusqu|pendant)|date d'expiration|expire\w*|echeance|jusqu['\s]*au|jusqu['\s]*a la/,s:'Guide ARCOP §4.4 (durée de la garantie)'},
+ {k:'deg',l:'Réduction / mainlevée partielle à mesure du remboursement (avance)',re:/degressi\w*|reduit\w*|mainlevee partielle|au fur et a mesure|reduction progressive/,s:'Code des marchés publics art. 101'},
+ {k:'jur',l:'Droit applicable : droit ivoirien / OHADA',re:/ohada|acte uniforme|droit ivoirien|tribunaux? (d')?abidjan|cote d'ivoire/,s:'Pratique (à confirmer au DAO)'},
+ {k:'sig',l:'Signature et cachet de l’organisme garant',re:/signature|cachet|signe par|fait a [a-z' .-]{2,30},? le/,s:'Pratique de contrôle'}];
+// événement qui met fin à la garantie, selon le type (clauses de fin de l’application)
+const GEV={'Bonne exécution':{l:'Libération au procès-verbal de réception provisoire ou par mainlevée du bénéficiaire',re:/reception provisoire/,alt:/reception definitive/,s:'Guide ARCOP §4.4 ; Code des marchés publics art. 99'},
+ 'Avance de démarrage':{l:'Libération au remboursement intégral de l’avance ou par mainlevée du bénéficiaire',re:/(rembours|restitu)\w*[^.\n]{0,50}avance|avance[^.\n]{0,50}(rembours|restitu)/,alt:null,s:'Guide ARCOP §5.4 ; Code des marchés publics art. 101'},
+ 'Retenue de garantie':{l:'Libération au procès-verbal de réception définitive ou par mainlevée du bénéficiaire',re:/reception definitive/,alt:/reception provisoire/,s:'Guide ARCOP §5.8 ; Code des marchés publics art. 98'}};
+const GKNOWN=[['NSIA Banque',/nsia banque/],['Société Générale Côte d’Ivoire',/societe generale|\bsgci\b|\bsgbci\b/],['BICICI (BNP Paribas)',/bicici|bnp paribas/],['Ecobank Côte d’Ivoire',/ecobank/],['Bank of Africa (BOA)',/bank of africa|\bboa\b/],['Banque Atlantique',/banque atlantique/],['Société Ivoirienne de Banque (SIB)',/societe ivoirienne de banque|\bsib\b/],['Standard Chartered',/standard chartered/],['Stanbic Bank',/stanbic/],['Orabank',/orabank/],['Coris Bank International',/coris bank/],['Bridge Bank Group',/bridge bank/],['Afriland First Bank',/afriland/],['United Bank for Africa (UBA)',/\buba\b|united bank for africa/],['BGFIBank',/bgfi/],['Banque Nationale d’Investissement (BNI)',/banque nationale d'investissement|\bbni\b/],['Versus Bank',/versus bank/],['Citibank',/citibank/],['Banque de l’Habitat (BHCI)',/banque de l'habitat|\bbhci\b/],['Access Bank',/access bank/],...ANKNOWN];
+const GKW={'Bonne exécution':/bonne execution/,'Avance de démarrage':/avance de demarrage|restitution d'avance|garantie d'avance|avance forfaitaire|avance facultative/,'Retenue de garantie':/retenue de garantie|caution de remplacement/,'Soumission':/soumission/,'Performance environnementale et sociale':/performance environnementale|environnementale et sociale/};
+// exigences par défaut = référentiel de l’application (modifiable au CCAP de chaque marché)
+function gaCfgDef(t){const P=RF().p,c={r:1,pmin:0,pmax:0,cm:'',cv:0,em:0,vf:'',vp:0,c:['ben','tit','id','irr','pd','dur']};
+ if(t=='Bonne exécution'){c.pmin=P.gbe[0];c.pmax=P.gbe[1];c.em=21;c.vf='rp';c.c=['ben','tit','id','irr','pd','ev','mo','dur']}
+ else if(t=='Avance de démarrage'){c.cm='a';c.cv=100;c.c=['ben','tit','id','irr','pd','ev','mo','dur']}
+ else if(t=='Retenue de garantie'){c.pmax=P.ret[1];c.vf='rd';c.c=['ben','tit','id','irr','pd','ev','dur']}
+ return c}
+// toute valeur lue (stockée ou synchronisée) est ramenée à des types sûrs
+function gaNorm(c){c=c&&typeof c=='object'?c:{};const n=x=>{x=+x;return isFinite(x)&&x>0?x:0};
+ return{r:c.r?1:0,pmin:Math.min(n(c.pmin),100),pmax:Math.min(n(c.pmax),100),cm:['f','a'].includes(c.cm)?c.cm:'',cv:n(c.cv),em:Math.min(Math.round(n(c.em)),365),vf:['rp','rd','fin'].includes(c.vf)?c.vf:'',vp:Math.min(Math.round(n(c.vp)),240),c:(Array.isArray(c.c)?c.c:[]).filter(k=>GCL.some(x=>x.k==k))}}
+function gaPx(m){let o={};try{o=JSON.parse(m.gx||'{}')}catch(e){}if(!o||typeof o!='object'||Array.isArray(o))o={};if(!o.t||typeof o.t!='object'||Array.isArray(o.t))o.t={};return o}
+const gaCfg=(px,t)=>{const c=px.t[t];return c&&typeof c=='object'&&!Array.isArray(c)?c:gaCfgDef(t)},gaIsDef=(px,t)=>!(px.t[t]&&typeof px.t[t]=='object'&&!Array.isArray(px.t[t]));
+function gaSavePx(m,px){let s=JSON.stringify(px);if(s.length>4800){px.tx='';s=JSON.stringify(px)}if(s.length>4800)return alert('Exigences trop longues pour être enregistrées.');m.gx=s;m._u=Date.now();save();render()}
+function gaPxSet(mid,ti,f,v){const m=mk(mid),t=GT[ti];if(!m||!t)return;const px=gaPx(m),c=gaNorm(gaCfg(px,t));
+ if(f=='r')c.r=v?1:0;else if(f=='pmin'||f=='pmax')c[f]=Math.min(100,Math.max(0,+v||0));else if(f=='cm')c.cm=['f','a'].includes(v)?v:'';else if(f=='cv')c.cv=Math.max(0,+v||0);else if(f=='em')c.em=Math.min(365,Math.max(0,Math.round(+v||0)));else if(f=='vf')c.vf=['rp','rd','fin'].includes(v)?v:'';else if(f=='vp')c.vp=Math.min(240,Math.max(0,Math.round(+v||0)));else return;
+ px.t[t]=c;gaSavePx(m,px)}
+function gaPxTog(mid,ti,key,on){const m=mk(mid),t=GT[ti];if(!m||!t||!GCL.some(x=>x.k==key))return;const px=gaPx(m),c=gaNorm(gaCfg(px,t));c.c=c.c.filter(x=>x!=key);if(on)c.c.push(key);px.t[t]=c;gaSavePx(m,px)}
+function gaPxReset(mid,ti){const m=mk(mid),t=GT[ti];if(!m||!t)return;const px=gaPx(m);delete px.t[t];gaSavePx(m,px)}
+function gaPxTx(mid,v){const m=mk(mid);if(!m)return;const px=gaPx(m);px.tx=String(v||'').slice(0,1500);gaSavePx(m,px)}
+// lecture de l’article du CCAP / DAO sur les garanties : propose des exigences par type (à vérifier)
+function gaCcap(mid){const m=mk(mid);if(!m)return;const px=gaPx(m),raw=String(px.tx||'');if(raw.trim().length<20)return alert('Collez d’abord le texte de l’article du CCAP ou du DAO relatif aux garanties.');
+ const sents=raw.split(/(?<=[.;:\n])\s+/).map(anN),res=[],NUM='(\\d{1,3}(?:[ .]\\d{3})+(?:,\\d+)?|\\d+(?:,\\d+)?)';
+ GT.forEach((t,ti)=>{const S=sents.filter(s=>GKW[t].test(s));if(!S.length)return;const s=S.join(' . '),c=gaNorm(gaCfgDef(t)),found=[];let x;c.r=1;
+  if(t=='Avance de démarrage'){if((x=/(\d+(?:,\d+)?)\s*%\s*(?:de l'avance|du montant de l'avance|de la valeur de l'avance|de l'avance)/.exec(s))){c.cm='a';c.cv=Math.min(100,+x[1].replace(',','.'));found.push('garantie = '+c.cv+' % de l’avance')}}
+  else if((x=/(\d+(?:,\d+)?)\s*%\s*(?:et|a)\s*(\d+(?:,\d+)?)\s*%/.exec(s))){c.pmin=Math.min(100,+x[1].replace(',','.'));c.pmax=Math.min(100,+x[2].replace(',','.'));found.push('montant : '+c.pmin+' % à '+c.pmax+' % du marché')}
+  else if((x=/(\d+(?:,\d+)?)\s*%/.exec(s))){const p=Math.min(100,+x[1].replace(',','.'));if(t=='Retenue de garantie'){c.pmin=0;c.pmax=p;found.push('montant : au plus '+p+' % du marché')}else{c.pmin=c.pmax=p;found.push('montant : '+p+' % du marché')}}
+  else if((x=new RegExp(NUM+'\\s*(milliards?|millions?)?\\s*(?:fcfa|f cfa|xof|francs?|cfa)').exec(s))){const v=anMoney(x[1],x[2]);if(v>=1000){c.pmin=c.pmax=0;c.cm='f';c.cv=v;found.push('montant minimum : '+fmt(v)+' FCFA')}}
+  if((x=/(\d{1,3})\s*jours?\s*(ouvrables?|calendaires?)?[^.]{0,80}(notification|approbation)/.exec(s))){c.em=Math.min(365,/ouvrable/.test(x[2]||'')?Math.ceil(+x[1]*1.4):+x[1]);found.push('remise sous '+c.em+' jours après la notification d’approbation')}
+  const rp=/reception provisoire/.test(s),rd=/reception definitive|delai de garantie/.test(s);
+  if(rp&&!rd){c.vf='rp';found.push('validité jusqu’à la réception provisoire')}else if(rd&&!rp){c.vf='rd';found.push('validité jusqu’à la réception définitive')}else if(!rp&&!rd&&/fin des travaux|achevement des travaux/.test(s)){c.vf='fin';found.push('validité jusqu’à la fin des travaux')}
+  if((x=/(\d{1,3})\s*mois\s*(apres|suivant|a compter)/.exec(s))){c.vp=Math.min(240,+x[1]);found.push('+ '+c.vp+' mois')}
+  for(const it of GCL)if(it.re&&it.re.test(s)&&!c.c.includes(it.k)){c.c.push(it.k);found.push(it.l)}
+  px.t[t]=c;res.push(t+' : '+(found.length?found.join(' ; '):'aucune précision trouvée (référentiel conservé)'))});
+ if(!res.length)return alert('Aucune garantie reconnue dans ce texte (bonne exécution, avance, retenue de garantie, soumission, performance environnementale et sociale). Saisissez les exigences à la main.');
+ gaSavePx(m,px);alert('Exigences lues dans le texte (à vérifier avec le CCAP) :\n\n'+res.join('\n\n'))}
+// valeurs repérées dans le document (propositions : jamais appliquées sans l’accord de l’utilisateur)
+function gaDetect(raw){const N=anN(raw),o={},NUM='(\\d{1,3}(?:[ .]\\d{3})+(?:,\\d+)?|\\d+(?:,\\d+)?)\\s*(milliards?|millions?)?';let m;
+ for(const [n,re] of GKNOWN){if(re.test(N)){o.organisme=n;break}}
+ m=/(?:garantie|caution|lettre de garantie|engagement)[^\n]{0,40}?(?:n°|no\b|num(?:ero)?\b|ref(?:erence)?\b)\s*[:.]?\s*((?=[a-z0-9\/.\-]*\d)[a-z0-9][a-z0-9\/.\-]{3,29})/.exec(N);
+ if(m){const off=m.index+m[0].length-m[1].length;o.ref=raw.substr(off,m[1].length).toUpperCase().replace(/[.\-\/]+$/,'')}
+ m=new RegExp('(?:montant|somme|plafond)\\s+(?:de |d\')?(?:la |cette |l\')?(?:presente )?(?:garantie|caution|engagement)[^0-9\\n]{0,40}?'+NUM).exec(N)||new RegExp('(?:a concurrence de|a hauteur de)[^0-9\\n]{0,30}?'+NUM).exec(N)||new RegExp(NUM+'\\s*(?:fcfa|f cfa|xof|francs? cfa)').exec(N);
+ if(m){const v=anMoney(m[1],m[2]||'');if(v>=10000){o.montant=v;o.montantI=m.index}}
+ for(const d of anDates(N)){const c=N.slice(Math.max(0,d.i-45),d.i);
+  if(!o.emission&&/(fait a [a-z' .-]{2,30},? le|emis\w*(?: le| en date du)?|date d'emission|delivre\w*(?: le)?|en date du)\s*[:]?\s*$/.test(c)){o.emission=d.d;o.dateI=d.i}
+  else if(!o.echeance&&/(echeance|expire\w*|date d'expiration|valable jusqu['\s]*a[u]?|jusqu['\s]*au|date limite)\s*[:]?\s*$/.test(c))o.echeance=d.d}
+ return o}
+// ---------- état d’analyse d’une garantie ----------
+function gaState(g){let o={};try{o=JSON.parse(g.gan||'{}')}catch(e){}return o&&typeof o=='object'&&!Array.isArray(o)?o:{}}
+function gaPut(g,o){let s=JSON.stringify(o);if(s.length>4800){delete o.ov;s=JSON.stringify(o)}g.gan=s.slice(0,4800);g._u=Date.now()}
+// date minimale de fin de validité selon l’exigence : réception provisoire, fin du délai de garantie ou fin des travaux (+ mois)
+function gaNeed(m,vf,vp){const r=calc(m);let d=null,fb='';
+ if(vf=='rp'){if(m.reception)d=D(m.reception);else if(r){d=r.fin;fb=' (réception non encore prononcée : fin prévue des travaux retenue)'}}
+ else if(vf=='rd'){const gm=+m.garmois>0?Math.round(+m.garmois):0;
+  if(m.fin_garantie)d=D(m.fin_garantie);
+  else if(m.reception){d=anAdd(D(m.reception),gm||12);if(!gm)fb=' (délai de garantie non renseigné : 12 mois après la réception retenus par défaut)'}
+  else if(r){d=anAdd(r.fin,gm||12);fb=' (réception non encore prononcée : fin prévue des travaux + '+(gm||12)+' mois de délai de garantie retenus)'}}
+ else if(vf=='fin'){if(r)d=r.fin}
+ return{d:d?anAdd(d,vp||0):null,fb}}
+// ---------- moteur d’analyse ----------
+function gaRun(g,m,text,info){const t=GT.includes(g.type)?g.type:'',px=gaPx(m),cf=t?gaNorm(gaCfg(px,t)):null,def=t?gaIsDef(px,t):true,st=gaState(g),C=[],raw=String(text||''),N=anN(raw),lines=raw?anLines(raw):[],has=raw.replace(/\s/g,'').length>=60,det=has?gaDetect(raw):{};
+ const r=calc(m),P=RF().p,M=r?r.M:(+m.montant||0)+db.avenants.filter(v=>v.marche==m.id).reduce((s,v)=>s+(+v.montant||0),0),SRC=def?'Référentiel de l’application (CCAP non saisi)':'CCAP/DAO du marché (exigence saisie)';
+ const add=(gr,l,ex,co,v,why,src,act,evid)=>C.push({g:gr,l,ex,co,v,why:why||'',src:src||SRC,act:act||'',ev:evid||''});
+ if(!t)return{k:'',C:[],verdict:'chk',cnt:{ok:0,ko:0,chk:0,na:0},det,has,note:'Ce type de garantie n’a pas d’exigence associée : modifiez la fiche pour choisir un type (bonne exécution, avance de démarrage, retenue de garantie, soumission ou performance environnementale et sociale).'};
+ if(!cf.r)add('Garantie','Garantie exigée par le marché','Non exigée','Garantie fournie','na','Le marché n’exige pas ce type de garantie (selon les exigences saisies).');
+ // 1. validité
+ if(endedG(g)||g.statut=='Mainlevée obtenue')add('Validité','Garantie en cours de validité','En vigueur','Garantie levée ou terminée'+(g.fin_ev&&g.fin_ev!='—'?' ('+g.fin_ev+')':''),'na','La garantie est terminée ou a fait l’objet d’une mainlevée : le contrôle de validité n’a plus d’objet.','Code des marchés publics art. 99','');
+ else if(g.statut=='Expirée')add('Validité','Garantie en cours de validité','En vigueur','Statut : Expirée','ko','La garantie est indiquée comme expirée.','Guide ARCOP §4.4 (durée de la garantie)','Exiger la prorogation de la garantie ou une nouvelle garantie avant tout paiement.');
+ else if(!g.echeance){if(g.evt||(g.fin_ev&&g.fin_ev!='—'))add('Validité','Garantie en cours de validité','En vigueur','Fin sur événement (aucune date fixée)','ok','');else add('Validité','Garantie en cours de validité','Date d’échéance ou événement de fin connu','Ni échéance ni événement de fin renseignés','chk','Renseigner la date d’échéance ou l’événement de fin de la garantie.','Guide ARCOP §4.4','Compléter la fiche à partir de la garantie.')}
+ else if(D(g.echeance)<today)add('Validité','Garantie en cours de validité','En vigueur','Échue depuis le '+fd(g.echeance),'ko','La garantie est échue depuis '+diff(today,D(g.echeance))+' jour(s).','Guide ARCOP §4.4 (durée de la garantie)','Exiger la prorogation ou une nouvelle garantie avant tout paiement.');
+ else add('Validité','Garantie en cours de validité','En vigueur','Valable jusqu’au '+fd(g.echeance)+' ('+diff(D(g.echeance),today)+' j)','ok','');
+ // 2. organisme garant
+ if(!g.organisme)add('Identification','Organisme garant renseigné','Banque, établissement financier ou assureur','Organisme non renseigné'+(det.organisme?' (document : '+det.organisme+')':''),'chk','Organisme garant absent de la fiche.','Guide ARCOP §4.4 (organisme habilité)','Compléter la fiche à partir de la garantie.');
+ else add('Identification','Organisme garant renseigné','Banque, établissement financier ou assureur',g.organisme,'ok','');
+ if(has&&g.organisme){const tt=anTit(g.organisme);if(tt.length&&!tt.some(w=>N.includes(w)))add('Identification','Cohérence fiche / document (organisme)','Même organisme','Fiche : '+g.organisme+(det.organisme?' · document : '+det.organisme:' · nom non retrouvé dans le document'),'chk','Le nom de l’organisme de la fiche n’apparaît pas dans le document (ou la lecture automatique s’est trompée).','','Vérifier l’organisme émetteur sur l’original.')}
+ {const o=anN(g.organisme||det.organisme||''),kn=GKNOWN.find(x=>x[1].test(o));
+  add('Identification','Organisme habilité (banque ou établissement financier agréé, assureur agréé)','Organisme agréé',st.ag?'Agrément vérifié par vos soins':kn?kn[0]+' : organisme connu, agrément non vérifié':'Organisme non reconnu dans la liste intégrée',st.ag?'ok':'chk',st.ag?'':'À confirmer sur la liste officielle : Direction des assurances pour une compagnie d’assurance, liste des banques et établissements financiers agréés pour une banque. Cochez la case « agrément vérifié » une fois fait.','Guide ARCOP §4.4 ; Code CIMA','Vérifier l’agrément de l’organisme garant sur la liste officielle.')}
+ if(cf.r){
+ // 3. montant
+ const p=M&&+g.montant?+g.montant/M*100:null,pr1=x=>(Math.round(x*10)/10).toString().replace('.',',');
+ if(cf.pmin||cf.pmax){const ex=cf.pmin&&cf.pmax?(cf.pmin==cf.pmax?cf.pmin+' % du marché':'entre '+cf.pmin+' % et '+cf.pmax+' % du marché'):cf.pmax?'≤ '+cf.pmax+' % du marché':'≥ '+cf.pmin+' % du marché',src=t=='Bonne exécution'?'Guide ARCOP §4.4 ; Code des marchés publics art. 97 ; DPAO/CCAP':t=='Retenue de garantie'?'Guide ARCOP §5.8 ; Code des marchés publics art. 98':SRC;
+  if(!M)add('Montants','Montant de la garantie',ex,'Montant du marché non renseigné','chk','Renseigner le montant du marché.',src,'');
+  else if(!+g.montant)add('Montants','Montant de la garantie',ex,'Montant non renseigné'+(det.montant?' (document : '+fmt(det.montant)+' FCFA)':''),'chk','Montant absent de la fiche'+(det.montant?' : valeur lue dans le document, à appliquer après vérification':'')+'.',src,'Compléter la fiche avec le montant de la garantie.',det.montantI!=null?anEx(raw,det.montantI,60):'');
+  else{const lo=cf.pmin&&p<cf.pmin-.005,hi=cf.pmax&&p>cf.pmax+.005;
+   if(lo)add('Montants','Montant de la garantie',ex+' ('+fmt(Math.round(M*cf.pmin/100))+' FCFA minimum)',fmt(g.montant)+' FCFA = '+pr1(p)+' %','ko','Montant inférieur de '+fmt(Math.round(M*cf.pmin/100-g.montant))+' FCFA au minimum exigé'+(def?' (taux à confirmer au DPAO et au CCAP)':'')+'.',src,'Exiger une garantie complémentaire ou un avenant portant le montant à '+fmt(Math.round(M*cf.pmin/100))+' FCFA au moins.');
+   else if(hi)add('Montants','Montant de la garantie',ex+' ('+fmt(Math.round(M*cf.pmax/100))+' FCFA maximum)',fmt(g.montant)+' FCFA = '+pr1(p)+' %','ko','Montant supérieur de '+fmt(Math.round(g.montant-M*cf.pmax/100))+' FCFA au maximum admis'+(def?' (taux à confirmer au DPAO et au CCAP)':'')+'.',src,'Demander une garantie au taux prévu ou obtenir l’accord écrit de l’autorité contractante.');
+   else add('Montants','Montant de la garantie',ex,fmt(g.montant)+' FCFA = '+pr1(p)+' %','ok','',src)}}
+ else if(cf.cm=='f'){const need=Math.round(cf.cv);
+  if(!need)add('Montants','Montant de la garantie','Montant minimum','Montant minimum non saisi','chk','Saisir le montant exigé par le DAO.','','');
+  else if(!+g.montant)add('Montants','Montant de la garantie','≥ '+fmt(need)+' FCFA','Montant non renseigné'+(det.montant?' (document : '+fmt(det.montant)+' FCFA)':''),'chk','Montant absent de la fiche.','','Compléter la fiche avec le montant de la garantie.',det.montantI!=null?anEx(raw,det.montantI,60):'');
+  else if(+g.montant<need)add('Montants','Montant de la garantie','≥ '+fmt(need)+' FCFA',fmt(g.montant)+' FCFA','ko','Montant inférieur de '+fmt(need-g.montant)+' FCFA à l’exigence.',SRC,'Exiger une garantie portant le montant à '+fmt(need)+' FCFA au moins.');
+  else add('Montants','Montant de la garantie','≥ '+fmt(need)+' FCFA',fmt(g.montant)+' FCFA','ok','')}
+ else if(cf.cm=='a'){const A=(+m.avance||0)+(+m.avancef||0)||(+st.av||0),need=Math.round(A*(cf.cv||100)/100),ex='≥ '+(cf.cv||100)+' % de l’avance';
+  if(!A)add('Montants','Montant de la garantie',ex,'Montant de l’avance non renseigné','chk','Saisir le montant de l’avance versée (ci-dessus) pour contrôler la garantie.','Guide ARCOP §5.4','Renseigner l’avance.');
+  else if(!+g.montant)add('Montants','Montant de la garantie',ex+' ('+fmt(need)+' FCFA)','Montant non renseigné'+(det.montant?' (document : '+fmt(det.montant)+' FCFA)':''),'chk','Montant absent de la fiche.','Guide ARCOP §5.4','Compléter la fiche.',det.montantI!=null?anEx(raw,det.montantI,60):'');
+  else if(+g.montant<need)add('Montants','Montant de la garantie',ex+' ('+fmt(need)+' FCFA)',fmt(g.montant)+' FCFA','ko','Garantie inférieure de '+fmt(need-g.montant)+' FCFA à l’avance à garantir : l’avance ne serait pas couverte en totalité.','Guide ARCOP §5.4 ; Code des marchés publics art. 101','Exiger une garantie couvrant l’avance en totalité avant son versement.');
+  else add('Montants','Montant de la garantie',ex+' ('+fmt(need)+' FCFA)',fmt(g.montant)+' FCFA','ok','','Guide ARCOP §5.4');
+  if(A&&M&&A/M*100>P.avt)add('Montants','Avance dans le plafond de cumul','≤ '+P.avt+' % du marché',pr1(A/M*100)+' % du marché','chk','L’avance dépasse le plafond de cumul de '+P.avt+' % : à justifier au CCAP.','Code des marchés publics art. 129 à 131','Vérifier le montant de l’avance au CCAP.')}
+ else add('Montants','Montant de la garantie','Montant fixé par le DAO',+g.montant?fmt(g.montant)+' FCFA':'Montant non renseigné','chk','Le montant exigé par le DAO n’est pas saisi : renseignez-le dans les exigences du marché (ci-dessous) pour obtenir un contrôle chiffré.','DAO (propre à chaque marché)','Saisir l’exigence du DAO.');
+ if(has&&+g.montant&&det.montant&&Math.abs(det.montant-g.montant)/g.montant>.01)add('Montants','Cohérence fiche / document (montant)','Identiques','Fiche : '+fmt(g.montant)+' · document : '+fmt(det.montant),'chk','Le montant lu dans le document diffère de la fiche (ou la lecture automatique a pris un autre montant).','','Vérifier le montant sur l’original.',anEx(raw,det.montantI||0,60));
+ // 4. délais
+ if(cf.em){const an=cfAnch(m),ex='≤ '+cf.em+' jours après la notification d’approbation';
+  if(!an.dP)add('Délais','Délai de remise de la garantie',ex,'Date de notification d’approbation non renseignée','chk','Renseigner la date de notification d’approbation (onglet Conformité, rubrique Garanties financières).','Guide ARCOP §4.4','');
+  else if(!g.emission)add('Délais','Délai de remise de la garantie',ex,'Date d’émission non renseignée'+(det.emission?' (document : '+fd(det.emission)+')':''),'chk','Compléter la date d’émission.','Guide ARCOP §4.4','Compléter la fiche avec la date de la garantie.',det.dateI!=null?anEx(raw,det.dateI,12):'');
+  else{const j=diff(D(g.emission),D(an.dP));
+   if(j>cf.em)add('Délais','Délai de remise de la garantie',ex,'Émise '+j+' jours après la notification','ko','Délai dépassé de '+(j-cf.em)+' jour(s) : la garantie a été remise tardivement.','Guide ARCOP §4.4','Tirer les conséquences prévues au CCAP (le défaut de garantie peut entraîner la résiliation).');
+   else add('Délais','Délai de remise de la garantie',ex,'Émise '+Math.max(j,0)+' jour(s) après la notification','ok','','Guide ARCOP §4.4')}}
+ if(t=='Bonne exécution'&&g.emission){const os=db.os.filter(o=>o.marche==m.id&&o.type=='Démarrage'&&o.date).sort((a,b)=>a.date<b.date?-1:1)[0];
+  if(os&&D(g.emission)>D(os.date))add('Délais','Garantie remise avant l’ordre de service de démarrage','Émission ≤ OS de démarrage du '+fd(os.date),'Émission le '+fd(g.emission),'chk','L’ordre de service de démarrage ne devrait être délivré qu’après production de la garantie de bonne exécution : l’émission est postérieure à l’OS.','Guide ARCOP §5.2','Vérifier la chronologie (date d’émission réelle, date de remise, date de l’OS).')}
+ if(cf.vf){const nd=gaNeed(m,cf.vf,cf.vp),lab={rp:'la réception provisoire',rd:'la fin du délai de garantie (réception définitive)',fin:'la fin prévue des travaux'}[cf.vf],txt='Valable jusqu’à '+lab+(cf.vp?' + '+cf.vp+' mois':'');
+  if(!nd.d)add('Délais','Durée de validité suffisante',txt,'Date de référence inconnue (démarrage, délai ou réception à renseigner)','chk','Impossible de calculer la date exigée.','','Renseigner le démarrage et le délai du marché.');
+  else if(!g.echeance){if(g.evt||(g.fin_ev&&g.fin_ev!='—'))add('Délais','Durée de validité suffisante',txt+' ('+fdd(nd.d)+')'+nd.fb,'Fin sur événement (aucune date fixée)','ok','');else add('Délais','Durée de validité suffisante',txt+' ('+fdd(nd.d)+')'+nd.fb,'Échéance non renseignée'+(det.echeance?' (document : '+fd(det.echeance)+')':''),'chk','Compléter la date d’échéance ou l’événement de fin.','','Compléter la fiche.')}
+  else if(D(g.echeance)<nd.d)add('Délais','Durée de validité suffisante',txt+' ('+fdd(nd.d)+')'+nd.fb,'Échéance le '+fd(g.echeance),'ko','La garantie expire '+diff(nd.d,D(g.echeance))+' jour(s) avant la date exigée.','Guide ARCOP §4.4 ; §5.8','Exiger une prorogation ou un avenant à la garantie couvrant la période jusqu’au '+fdd(nd.d)+'.');
+  else add('Délais','Durée de validité suffisante',txt+' ('+fdd(nd.d)+')'+nd.fb,'Échéance le '+fd(g.echeance),'ok','')}
+ if(has&&g.echeance&&det.echeance&&g.echeance!=det.echeance)add('Délais','Cohérence fiche / document (échéance)','Identiques','Fiche : '+fd(g.echeance)+' · document : '+fd(det.echeance),'chk','L’échéance lue dans le document diffère de la fiche.','','Vérifier la date sur l’original.');
+ if(has&&g.emission&&det.emission&&g.emission!=det.emission)add('Délais','Cohérence fiche / document (émission)','Identiques','Fiche : '+fd(g.emission)+' · document : '+fd(det.emission),'chk','La date d’émission lue dans le document diffère de la fiche.','','Vérifier la date sur l’original.');
+ // 5. clauses lues dans le document
+ const judge=it=>{const ex=it.l,G='Clauses exigées';
+  if(it.k=='id'){const nm=anN(m.num||'').replace(/[^a-z0-9]/g,''),NN=N.replace(/[^a-z0-9]/g,'');
+   if(nm&&NN.includes(nm)){const i=N.indexOf(anN(m.num||''));add(G,ex,'Exigé','N° du marché retrouvé','ok','',it.s,'',i>=0?anEx(raw,i,String(m.num).length):'')}
+   else add(G,ex,'Exigé','N° du marché '+(m.num||'?')+' non retrouvé','chk','La garantie ne cite pas le marché : elle pourrait ne pas couvrir ce marché.',it.s,'Demander que la garantie vise expressément le marché (numéro et objet).');return}
+  if(it.k=='tit'){const tt=anTit(m.titulaire||'');
+   if(!tt.length){add(G,ex,'Titulaire : '+(m.titulaire||'?'),'Titulaire du marché non renseigné','chk','Renseigner le titulaire du marché.',it.s,'');return}
+   const hit=tt.filter(w=>N.includes(w)),pc=hit.length/tt.length;
+   if(pc>=.6||hit.length>=2)add(G,ex,'Titulaire : '+m.titulaire,'Nom du titulaire retrouvé','ok','',it.s,'',anEx(raw,Math.max(0,N.indexOf(hit[0])),hit[0].length));
+   else if(hit.length)add(G,ex,'Titulaire : '+m.titulaire,'Nom du titulaire retrouvé en partie','chk','Le document ne cite le titulaire qu’en partie (groupement, sigle ou erreur de lecture ?).',it.s,'Vérifier le nom du donneur d’ordre sur l’original.');
+   else add(G,ex,'Titulaire : '+m.titulaire,'Nom du titulaire non retrouvé','ko','Le titulaire du marché n’apparaît pas dans la garantie : elle a peut-être été émise pour le compte d’une autre entreprise.',it.s,'Exiger une garantie établie pour le compte du titulaire du marché (ou la preuve du lien : groupement, filiale).');return}
+  const pr=anProof(raw,N,lines,it);
+  if(!pr||pr.v=='none'){
+   if(it.k=='ev'&&it.alt&&it.alt.test(N))add(G,ex,'Exigé','Libération liée à un autre événement','chk','Le document lie la libération à un événement différent de celui prévu par l’application pour ce type de garantie : à confirmer au CCAP.',it.s,'Comparer avec le modèle de garantie du DAO et le CCAP.');
+   else add(G,ex,'Exigé','Non retrouvé dans le document','chk','Point non retrouvé dans le texte lu : à confirmer sur l’original (ou si la lecture du scan est incomplète).',it.s,'Demander à l’organisme garant une garantie conforme au modèle du DAO sur ce point.')}
+  else if(pr.v=='excl')add(G,ex,'Exigé','Apparaît seulement dans une exclusion','ko','Le point cité figure dans une clause d’exclusion.',it.s,'Exiger la suppression de la clause ou une garantie conforme au modèle du DAO.',pr.ex);
+  else add(G,ex,'Exigé','Mentionné dans le document','ok','',it.s,'',pr.ex)};
+ if(has){for(const key of cf.c){const it=key=='ev'?(GEV[t]?{k:'ev',l:GEV[t].l,re:GEV[t].re,alt:GEV[t].alt,s:GEV[t].s}:null):GCL.find(x=>x.k==key);if(it)judge(it)}
+  const rc=lines.filter(l=>!l.ex&&l.e-l.i>25&&/sous reserve (de|que|d')|a condition (que|de|d')|sous condition|a moins que/.test(N.slice(l.i,l.e))).slice(0,5).map(l=>anEx(raw,l.i,Math.min(l.e-l.i,200)));
+  if(rc.length)add('À lire','Conditions restrictives dans le texte','Engagement sans condition','Réserves ou conditions relevées : à lire','chk','Le document contient des conditions ou réserves : une garantie « à première demande » ne doit pas être subordonnée à des conditions.',GSRC,'Lire ces passages et demander leur suppression si elles contredisent le modèle du DAO.',rc.join('\n'));
+  const ex=lines.filter(l=>l.ex&&raw.slice(l.i,l.e).trim().length>25).slice(0,6).map(l=>anEx(raw,l.i,Math.min(l.e-l.i,200)));
+  if(ex.length)add('À lire','Exclusions du document','Aucune exclusion contraire au marché','Exclusions relevées : à lire','chk','Le document contient des exclusions : les lire une à une face aux exigences du CCAP.','CCAP/DAO','Demander la suppression des exclusions qui contredisent le marché.',ex.join('\n'))}
+ else add('Clauses exigées','Clauses de la garantie ('+cf.c.length+' exigée(s))','Texte du document','Texte du document non disponible','chk','Aucun texte lisible : joignez le PDF (ou la photo) de la garantie, ou collez son texte, pour vérifier les clauses.',GSRC,'Obtenir l’original de la garantie.');
+ }
+ // 6. vérifications à faire auprès de l’organisme garant
+ add('Vérifications','Authenticité confirmée auprès de l’organisme garant','Confirmation écrite de l’organisme',st.au?'Confirmée par vos soins':'Non confirmée',st.au?'ok':'chk',st.au?'':'Une garantie remise par l’entreprise doit être confirmée par l’organisme émetteur (émission, date, montant, durée). Cochez la case une fois la confirmation reçue.','Pratique de contrôle','Utiliser le courrier « Demande de confirmation d’authenticité ».');
+ // 7. document
+ if(!has)add('Document','Document de garantie lisible','Garantie jointe ou texte collé',info&&info.pdf?'PDF sans texte lisible (scan)':info&&info.img?'Photo (texte non lisible automatiquement)':(g.files&&g.files.length)?'Document en cours de préparation':'Aucun document joint','chk','Pour contrôler les clauses, joignez le PDF de la garantie (texte lisible) ou collez son texte ci-dessous.','Pratique de contrôle','Joindre la garantie reçue (et lancer « Lire mes scans » si c’est un scan).');
+ else add('Document','Document de garantie lisible','Garantie jointe ou texte collé','Texte lu ('+raw.replace(/\s+/g,' ').length+' caractères)','ok','');
+ const ov=st.ov&&typeof st.ov=='object'?st.ov:{};C.forEach((c,i)=>{c.id=i;const o=ov[c.g+'|'+c.l];if(['ok','ko','chk','na'].includes(o)){c.auto=c.v;c.v=o;c.man=1}});
+ const cnt={ok:0,ko:0,chk:0,na:0};C.forEach(c=>cnt[c.v]++);
+ return{k:t,C,verdict:cnt.ko?'ko':cnt.chk?'chk':'ok',cnt,det,has,def,cf,M}}
+// ---------- actions ----------
+async function gaGo(id){const g=db.garanties.find(x=>x.id==id),m=g&&mk(g.marche);if(!g||!m)return;busy('Lecture et analyse du document…');
+ try{const t=await anText(g,'gantx'),R=gaRun(g,m,t.text,t.info);R.info=t.info;R.d=Date.now();GAR[id]=R;const st=gaState(g);st.d=new Date().toISOString().slice(0,10);st.v=R.verdict;st.n={ko:R.cnt.ko,chk:R.cnt.chk,ok:R.cnt.ok};gaPut(g,st);g.ganp=JSON.stringify(anPoints(R)).slice(0,4800);g._u=Date.now();log('Analyse de conformité de garantie : '+(g.type||'')+' — '+(g.organisme||'?')+' — '+anVL[R.verdict]);save()}
+ catch(e){alert('Analyse impossible : '+((e&&e.message)||'erreur de lecture'))}
+ finally{const d=$('#cd');if(d.open)d.close();render();setTimeout(()=>$('#gaR')?.scrollIntoView({block:'start'}),60)}}
+async function gaGoQuick(id){const g=db.garanties.find(x=>x.id==id),m=g&&mk(g.marche);if(!g||!m)return;const t=await anText(g,'gantx'),R=gaRun(g,m,t.text,t.info);R.info=t.info;R.d=Date.now();GAR[id]=R;const st=gaState(g);st.v=R.verdict;st.n={ko:R.cnt.ko,chk:R.cnt.chk,ok:R.cnt.ok};gaPut(g,st);g.ganp=JSON.stringify(anPoints(R)).slice(0,4800);save();render()}
+function gaSetTx(id,v){const g=db.garanties.find(x=>x.id==id);if(!g)return;g.gantx=String(v||'').slice(0,20000);g._u=Date.now();delete GAR[id];save();render()}
+function gaSetS(id,f,v){const g=db.garanties.find(x=>x.id==id);if(!g)return;const st=gaState(g);if(f=='av')st.av=Math.max(0,+v||0);else if(f=='ag'||f=='au'){if(v)st[f]=1;else delete st[f]}else return;gaPut(g,st);delete GAR[id];save();render()}
+function gaOv(id,i,v){const g=db.garanties.find(x=>x.id==id),R=GAR[id];if(!g||!R||!R.C[i])return;const c=R.C[i],key=c.g+'|'+c.l,st=gaState(g);st.ov=st.ov||{};if(['ok','ko','chk','na'].includes(v))st.ov[key]=v;else delete st.ov[key];gaPut(g,st);save();gaGoQuick(id)}
+function gaApply(id){const g=db.garanties.find(x=>x.id==id),R=GAR[id];if(!g||!R)return;const d=R.det||{},ch=[];
+ if(!g.organisme&&d.organisme){g.organisme=d.organisme;ch.push('organisme garant')}if(!+g.montant&&d.montant){g.montant=d.montant;ch.push('montant')}if(!g.emission&&d.emission){g.emission=d.emission;ch.push('date d’émission')}if(!g.echeance&&d.echeance){g.echeance=d.echeance;ch.push('échéance')}if(!g.doc&&d.ref){g.doc=d.ref;ch.push('référence')}
+ if(!ch.length)return alert('Rien à appliquer : les champs concernés sont déjà renseignés (les valeurs existantes ne sont jamais écrasées).');g._u=Date.now();log('Valeurs lues dans la garantie appliquées à la fiche : '+ch.join(', '));save();alert('Appliqué à la fiche : '+ch.join(', ')+'.\nVérifiez-les sur l’original, puis relancez l’analyse.');delete GAR[id];render()}
+function gaNew(mid){edit('garanties');const s=$('#df [name=marche]');if(s)s.value=mid}
+function gaOpen(id){const g=db.garanties.find(x=>x.id==id);if(!g)return;cfm=g.marche;GAP=id;go('conf');setTimeout(()=>$('#gaS')?.scrollIntoView({block:'start'}),80)}
+const gaChip=g=>{const v=gaState(g).v;return v?`<div><small><span class="b ${{ko:'r',chk:'y',ok:'g'}[v]||'y'}">🔍 ${v=='ko'?'Non conforme':v=='ok'?'Conforme':'Sous réserves'}</span></small></div>`:''};
+function gaPrint(id){const g=db.garanties.find(x=>x.id==id),R=GAR[id],m=g&&mk(g.marche);if(!g||!R||!m)return;
+ const rows=gr=>R.C.filter(c=>c.g==gr).map(c=>`<tr><td>${esc(c.l)}${c.man?' <i>(corrigé à la main)</i>':''}</td><td>${esc(c.ex)}</td><td>${esc(c.co)}${c.why?'<br><i>'+esc(c.why)+'</i>':''}</td><td><b>${ANV[c.v][2]} ${esc(ANV[c.v][0])}</b></td></tr>`).join('');
+ const gs=[...new Set(R.C.map(c=>c.g))],acts=R.C.filter(c=>(c.v=='ko'||c.v=='chk')&&c.act).map(c=>`<li><b>${esc(c.l)}</b> — ${esc(c.act)}</li>`).join('');
+ $('#fs')?.remove();const f=document.createElement('div');f.id='fs';
+ f.innerHTML=`<h1>Analyse de conformité d’une garantie</h1><p>Marché n° ${esc(m.num)} — ${esc(m.titulaire||'')} — ${esc(m.objet||'')}<br>Garantie de ${esc(String(g.type||'').toLowerCase())} — ${esc(g.organisme||'organisme ?')} — ${+g.montant?esc(fmt(g.montant))+' FCFA':'montant ?'} — éditée le ${esc(fdd(today))}</p>
+ <h2>Verdict : ${esc(anVL[R.verdict])}</h2><p>${R.cnt.ok} point(s) conforme(s), ${R.cnt.ko} non conforme(s), ${R.cnt.chk} à vérifier. Exigences comparées : ${R.def?'référentiel de l’application (CCAP non saisi)':'CCAP/DAO du marché'}.</p>
+ ${gs.map(x=>`<h2>${esc(x)}</h2><table><tr><th>Point contrôlé</th><th>Exigé</th><th>Constaté</th><th>Verdict</th></tr>${rows(x)}</table>`).join('')}
+ ${acts?`<h2>Suites à donner</h2><ul>${acts}</ul>`:''}
+ <p><i>Aide à la décision établie par lecture automatique du document : le DAO, le CCAP, la garantie originale et les textes officiels prévalent. Les points « à vérifier » doivent être confirmés sur l’original, et l’authenticité de la garantie auprès de l’organisme émetteur.</i></p>`;
+ document.body.appendChild(f);document.body.classList.add('pfs');const end=()=>{document.body.classList.remove('pfs');f.remove();removeEventListener('afterprint',end)};addEventListener('afterprint',end);setTimeout(end,12e4);setTimeout(()=>window.print(),150)}
+// ---------- affichage ----------
+function gaFormType(m,px,ti){const t=GT[ti],c=gaNorm(gaCfg(px,t)),def=gaIsDef(px,t),id=m.id,cm={'':'Pas de minimum chiffré autre que le taux','f':'Montant minimum fixe (FCFA)','a':'% du montant de l’avance'},vf={'':'Non précisée','rp':'Jusqu’à la réception provisoire','rd':'Jusqu’à la fin du délai de garantie (réception définitive)','fin':'Jusqu’à la fin prévue des travaux'};
+ const ck=it=>`<label style="display:flex;gap:8px;align-items:flex-start;padding:4px 0"><input type="checkbox" ${c.c.includes(it.k)?'checked':''} onchange="gaPxTog('${id}',${ti},'${it.k}',this.checked)" style="margin-top:4px"><span>${esc(it.l)}</span></label>`;
+ return`<details class="card nt" style="margin:8px 0"><summary><b>${esc(t)}</b> ${c.r?'<span class="b g">Exigée</span>':'<span class="b y">Non exigée</span>'} ${def?'<span class="b y">Référentiel</span>':'<span class="b g">CCAP saisi</span>'}</summary>
+ <div style="display:grid;gap:10px;margin-top:10px">
+ <label style="display:flex;gap:8px;align-items:center"><input type="checkbox" ${c.r?'checked':''} onchange="gaPxSet('${id}',${ti},'r',this.checked)"> Garantie exigée par le marché</label>
+ <label>Montant minimum (% du montant du marché, avenants compris ; 0 = non contrôlé)<input type="number" step="any" min="0" max="100" value="${esc(c.pmin||'')}" onchange="gaPxSet('${id}',${ti},'pmin',this.value)"></label>
+ <label>Montant maximum (% du montant du marché ; 0 = non contrôlé)<input type="number" step="any" min="0" max="100" value="${esc(c.pmax||'')}" onchange="gaPxSet('${id}',${ti},'pmax',this.value)"></label>
+ <label>Autre exigence de montant<select onchange="gaPxSet('${id}',${ti},'cm',this.value)">${Object.entries(cm).map(([v,l])=>`<option value="${v}" ${c.cm==v?'selected':''}>${l}</option>`).join('')}</select></label>
+ ${c.cm?`<label>${c.cm=='a'?'Pourcentage de l’avance à garantir':'Montant minimum (FCFA)'}<input type="number" step="any" min="0" value="${esc(c.cv||'')}" onchange="gaPxSet('${id}',${ti},'cv',this.value)"></label>`:''}
+ <label>Délai de remise après la notification d’approbation (jours calendaires, 0 = non contrôlé)<input type="number" min="0" max="365" value="${esc(c.em||'')}" onchange="gaPxSet('${id}',${ti},'em',this.value)"></label>
+ <label>Durée de validité exigée<select onchange="gaPxSet('${id}',${ti},'vf',this.value)">${Object.entries(vf).map(([v,l])=>`<option value="${v}" ${c.vf==v?'selected':''}>${l}</option>`).join('')}</select></label>
+ ${c.vf?`<label>… plus (mois)<input type="number" min="0" max="240" value="${esc(c.vp||0)}" onchange="gaPxSet('${id}',${ti},'vp',this.value)"></label>`:''}
+ <div><b style="font-size:13px">Clauses exigées dans la garantie</b>${GCL.map(ck).join('')}</div>
+ ${def?'':`<button onclick="gaPxReset('${id}',${ti})">↺ Revenir au référentiel</button>`}</div></details>`}
+function gaUI(m){const px=gaPx(m),L=db.garanties.filter(g=>g.marche==m.id).sort((a,b)=>(+b._u||0)-(+a._u||0));if(!L.find(x=>x.id==GAP))GAP=L[0]?L[0].id:'';
+ const g=L.find(x=>x.id==GAP),R=g&&GAR[g.id],st=g?gaState(g):{},bd={ko:'r',chk:'y',ok:'g'};
+ const sel=L.length?`<select id="gaS" aria-label="Garantie à analyser" onchange="GAP=this.value;render()">${L.map(x=>`<option value="${x.id}" ${x.id==GAP?'selected':''}>${esc(x.type||'Garantie')} — ${esc(x.organisme||'organisme ?')} — ${+x.montant?esc(fmt(x.montant))+' FCFA':'montant ?'}</option>`).join('')}</select>`:'<div id="gaS" class="e">Aucune garantie enregistrée pour ce marché.</div>';
+ let body='';
+ if(g){const nf=(g.files||[]).length,last=st.v?`<div style="margin:8px 0">Dernière analyse du ${esc(fd(st.d))} : <span class="b ${bd[st.v]}">${esc(anVL[st.v])}</span>${st.n?` <small>${st.n.ok} conforme(s) · ${st.n.ko} non conforme(s) · ${st.n.chk} à vérifier</small>`:''}</div>`:'';
+  body=`<div style="display:grid;gap:10px;margin-top:10px">
+   <div>📎 ${nf?nf+' document(s) joint(s)':'Aucun document joint'} <button onclick="docs('garanties','${g.id}')">Joindre / voir les documents</button></div>
+   <label>Ou collez ici le texte de la garantie (utile pour un scan ou une photo)<textarea rows="4" style="width:100%" maxlength="20000" onchange="gaSetTx('${g.id}',this.value)" placeholder="Copier-coller du texte de la garantie">${esc(g.gantx||'')}</textarea></label>
+   ${g.type=='Avance de démarrage'?`<label>Montant de l’avance versée ou à verser (FCFA)${(+m.avance||+m.avancef)?' — lu sur le marché : '+esc(fmt((+m.avance||0)+(+m.avancef||0)))+' FCFA':''}<input type="number" step="any" min="0" value="${esc(st.av||'')}" onchange="gaSetS('${g.id}','av',this.value)"></label>`:''}
+   <label style="display:flex;gap:8px;align-items:flex-start"><input type="checkbox" ${st.ag?'checked':''} onchange="gaSetS('${g.id}','ag',this.checked)" style="margin-top:4px"><span>J’ai vérifié l’agrément de l’organisme garant sur la liste officielle (Direction des assurances pour un assureur ; banques et établissements financiers agréés pour une banque)</span></label>
+   <label style="display:flex;gap:8px;align-items:flex-start"><input type="checkbox" ${st.au?'checked':''} onchange="gaSetS('${g.id}','au',this.checked)" style="margin-top:4px"><span>J’ai fait confirmer l’authenticité de la garantie par l’organisme garant</span></label>
+   <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="pri" onclick="gaGo('${g.id}')">▶️ Analyser cette garantie</button>${R?`<button onclick="gaPrint('${g.id}')">🖨️ Rapport</button><button onclick="cour('garanties','${g.id}')">✉️ Courrier</button><button onclick="gaApply('${g.id}')">⬇️ Appliquer les valeurs lues à la fiche</button>`:''}</div>${last}</div>`}
+ let res='';
+ if(R){const gs=[...new Set(R.C.map(c=>c.g))],info=R.info||{};
+  res=`<div id="gaR" class="card nt" style="margin-top:12px;border-left:6px solid var(--${bd[R.verdict]=='g'?'g':bd[R.verdict]=='r'?'r':'y'},#999)"><h2 style="margin:0 0 6px">${R.verdict=='ok'?'✅':R.verdict=='ko'?'❌':'⚠️'} ${esc(anVL[R.verdict])}</h2>
+   <div>${R.cnt.ok} conforme(s) · ${R.cnt.ko} non conforme(s) · ${R.cnt.chk} à vérifier${R.cnt.na?' · '+R.cnt.na+' sans objet':''}</div>
+   <small style="color:var(--m)">Exigences comparées : ${R.def?'référentiel de l’application (le CCAP de ce marché n’est pas encore saisi — voir plus bas)':'CCAP/DAO du marché'}.${R.has?'':' Texte du document non disponible : seuls les contrôles chiffrés sont faits.'}${info.ocr?' Texte lu automatiquement sur '+info.ocr+' scan(s) : vérifiez les montants et les dates sur le document.':''}${info.vide?' '+info.vide+' PDF sans texte lisible (scan).':''}${info.err?' Erreur de lecture : '+esc(info.err):''}</small>
+   ${R.note?`<p>${esc(R.note)}</p>`:''}
+   ${gs.map(x=>`<h3 style="margin:14px 0 4px">${esc(x)}</h3>${R.C.filter(c=>c.g==x).map(c=>`<details style="padding:8px 0;border-top:1px solid var(--bd,#8883)"><summary style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span class="b ${ANV[c.v][1]}">${ANV[c.v][2]} ${esc(ANV[c.v][0])}</span><b style="flex:1;min-width:200px">${esc(c.l)}</b></summary>
+    <div style="font-size:13px;color:var(--m);margin-top:6px"><div>Exigé : ${esc(c.ex)}</div><div>Constaté : ${esc(c.co)}${c.man?' <i>(corrigé à la main ; automatique : '+esc(ANV[c.auto][0])+')</i>':''}</div>${c.why?`<div>${esc(c.why)}</div>`:''}${c.ev?`<div style="margin-top:4px;padding:6px;border-left:3px solid #8886;white-space:pre-wrap">${esc(c.ev)}</div>`:''}${c.act?`<div><b>Que faire :</b> ${esc(c.act)}</div>`:''}<div><i>Source : ${esc(c.src)}</i></div>
+    <label style="display:block;margin-top:6px">Ma décision<select onchange="gaOv('${g.id}',${c.id},this.value)"><option value="">Automatique</option>${['ok','ko','chk','na'].map(v=>`<option value="${v}" ${c.man&&c.v==v?'selected':''}>${esc(ANV[v][0])}</option>`).join('')}</select></label></div></details>`).join('')}`).join('')}
+   <details style="margin-top:12px"><summary><b>Valeurs lues dans le document</b> (propositions)</summary><div style="font-size:13px;margin-top:6px">${(()=>{const d=R.det||{},Lx=[['Organisme',d.organisme],['Référence',d.ref],['Montant',d.montant?fmt(d.montant)+' FCFA':''],['Date d’émission',d.emission?fd(d.emission):''],['Échéance',d.echeance?fd(d.echeance):'']].filter(x=>x[1]);return Lx.length?Lx.map(x=>`<div>${esc(x[0])} : <b>${esc(x[1])}</b></div>`).join('')+'<div style="color:var(--m)">Lecture automatique : à confirmer sur l’original. Le bouton « Appliquer » ne remplit que les champs vides.</div>':'Aucune valeur repérée.'})()}</div></details>
+   <p class="e" style="margin-top:10px">Aide à la décision : l’analyse lit le texte du document et le compare aux exigences saisies. L’agrément de l’organisme et l’authenticité de la garantie ne peuvent être confirmés que par vos soins. Le DAO, le CCAP et les textes officiels prévalent.</p></div>`}
+ return`<div class="card nt"><h2>🔍 Analyser une garantie reçue</h2><p style="margin:0 0 8px;color:var(--m);font-size:13px">Joignez la garantie reçue (caution bancaire ou garantie d’assurance) : l’application la lit sur votre appareil (rien n’est envoyé sur Internet), la compare aux exigences du marché (montant, délai de remise, durée, clauses) et indique, point par point, ce qui est conforme, non conforme ou à vérifier.</p>
+  <div class="bar">${sel}<button onclick="gaNew('${m.id}')">＋ Nouvelle garantie reçue</button></div>${body}${res}</div>
+ <details class="card nt"><summary><h2 style="display:inline">📜 Exigences de garantie de ce marché (CCAP / DAO)</h2></summary><p style="margin:8px 0;color:var(--m);font-size:13px">Saisissez ce que le CCAP ou le DAO de <b>${esc(m.num)}</b> exige. Tant que rien n’est saisi, l’analyse applique le référentiel de l’application (guide ARCOP, Code des marchés publics). Vous pouvez aussi coller l’article du CCAP : l’application en propose une lecture que vous corrigez.</p>
+  <label>Texte de l’article du CCAP / DAO relatif aux garanties (facultatif)<textarea rows="5" style="width:100%" maxlength="1500" onchange="gaPxTx('${m.id}',this.value)" placeholder="Coller ici l’article relatif aux garanties">${esc(px.tx||'')}</textarea></label>
+  <div style="margin:8px 0"><button onclick="gaCcap('${m.id}')">🔎 Lire ce texte et proposer les exigences</button></div>
+  ${GT.map((t,i)=>gaFormType(m,px,i)).join('')}</details>`}
 applyAll();
 const EVT={'Avance de démarrage':'Expire à l’issue du remboursement intégral de l’avance de démarrage consentie à l’entrepreneur, ou par la mainlevée donnée par le Bénéficiaire.','Bonne exécution':'Expire à la date d’établissement du procès-verbal de réception provisoire des travaux, ou par la mainlevée donnée au Bénéficiaire.','Retenue de garantie':'Expire à la date d’établissement du procès-verbal de réception définitive des travaux, ou par la mainlevée donnée par le Bénéficiaire.'};
 const endedG=g=>g.fin_ev&&g.fin_ev!='—'&&g.fin_date&&D(g.fin_date)<=today;
@@ -1967,7 +2212,7 @@ function cards(e,a,F){
  const hd=x=>e=='marches'?(x.titulaire?x.titulaire+' · ':'')+(x.num||''):mt(x.marche)+' · '+(x.type||x.num||''),ex=e=='marches'?['titulaire','num']:e=='garanties'||e=='assurances'?['marche','type']:['marche','num'];
  return `<tr><td colspan="99" style="white-space:normal;padding:12px"><div class="cg">${a.map(x=>{const lhd=sk=='@az'&&ltr(e,x)!=LL?(LL=ltr(e,x),`<div class="lh">${LL=='#'?'Divers':LL}</div>`):'',r=e=='marches'?calc(x):null,
   L=F.filter(f=>!ex.includes(f[0])&&x[f[0]]!==undefined&&x[f[0]]!==''&&x[f[0]]!=='—').map(f=>`<div><small>${esc(f[1])} :</small> ${esc(cvl(x,f))}</div>`).join('');
-  return `${lhd}<div class="ci"><b>${esc(hd(x))}</b>${e=='garanties'?`<div>${badge(x)}</div>`:e=='assurances'?`<div>${badgeA(x)}</div>`:''}${r?`<div><small>Fin prévue :</small> ${fdd(r.fin)}${r.retard?` <span class="b r">${r.retard} j de retard</span>`:''}</div>`:''}${e=='os'&&osFin(x)?`<div><small>Fin de la durée :</small> ${fdd(osFin(x))}</div>`:''}${L}<div class="ca"><button onclick="docs('${e}','${x.id}')">📎 Documents${(x.files||[]).length?' ('+x.files.length+')':''}</button>${LET.includes(e)?`<button onclick="cour('${e}','${x.id}')">✉️ Courrier</button>`:''}<button onclick="edit('${e}','${x.id}')">Modifier</button><button onclick="dup('${e}','${x.id}')">Dupliquer</button><button onclick="del('${e}','${x.id}')">Suppr.</button></div></div>`}).join('')}</div></td></tr>`}
+  return `${lhd}<div class="ci"><b>${esc(hd(x))}</b>${e=='garanties'?`<div>${badge(x)}</div>${gaChip(x)}`:e=='assurances'?`<div>${badgeA(x)}</div>`:''}${r?`<div><small>Fin prévue :</small> ${fdd(r.fin)}${r.retard?` <span class="b r">${r.retard} j de retard</span>`:''}</div>`:''}${e=='os'&&osFin(x)?`<div><small>Fin de la durée :</small> ${fdd(osFin(x))}</div>`:''}${L}<div class="ca"><button onclick="docs('${e}','${x.id}')">📎 Documents${(x.files||[]).length?' ('+x.files.length+')':''}</button>${e=='garanties'?`<button onclick="gaOpen('${x.id}')" title="Analyser cette garantie reçue">🔍 Analyser</button>`:''}${LET.includes(e)?`<button onclick="cour('${e}','${x.id}')">✉️ Courrier</button>`:''}<button onclick="edit('${e}','${x.id}')">Modifier</button><button onclick="dup('${e}','${x.id}')">Dupliquer</button><button onclick="del('${e}','${x.id}')">Suppr.</button></div></div>`}).join('')}</div></td></tr>`}
 
 const mt=id=>{const m=mk(id);return m?(m.titulaire?m.titulaire+' · ':'')+m.num:'?'};
 let LL='';
