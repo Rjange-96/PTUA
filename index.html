@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob: mediastream:; font-src 'self'; connect-src 'self' https://test.nextdns.io https://raw.githubusercontent.com https://rjange-96.github.io https://iofbwpzhptctyelmylkz.supabase.co; object-src 'none'; base-uri 'none'; form-action 'none'; worker-src 'self'; manifest-src 'self'">
 <meta name="referrer" content="no-referrer">
 <link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-180.png"><link rel="icon" href="icon-192.png">
-<title>Gestionnaire juridique et contractuel PTUA v9.18</title>
+<title>Gestionnaire juridique et contractuel PTUA</title>
 <style>
 :root{--bg:#eef3fb;--c:rgba(255,255,255,.74);--t:#16213a;--m:#5d6c8a;--b:rgba(60,80,130,.16);--p:#2563eb;--r:#e11d48;--o:#d97706;--y:#a16207;--g:#059669;--g1:#1e3a8a;--g2:#7c3aed;--h2:#1d4ed8;--in:rgba(255,255,255,.95);--hd:rgba(255,255,255,.78);--sh:0 14px 34px -16px rgba(37,60,120,.35);--gl:rgba(37,99,235,.2);--gl2:rgba(37,99,235,.35);--cf:rgba(37,99,235,.5);--cb:linear-gradient(135deg,rgba(37,99,235,.10),rgba(124,58,237,.16));--hv:rgba(37,99,235,.06);--dg:rgba(255,255,255,.98);--ob:#fff;--bt:#fff;--sp:radial-gradient(circle at 50% 45%,#fff,#d6e4ff);--bd:#0f1b3a66;color-scheme:light}
 [data-t=dark]{--bg:#070b17;--c:rgba(18,26,48,.62);--t:#e8eefc;--m:#8b98b8;--b:rgba(148,163,184,.2);--p:#22d3ee;--r:#ff6b81;--o:#fbbf24;--y:#facc15;--g:#34d399;--g1:#fff;--g2:#67e8f9;--h2:#a5f3fc;--in:rgba(6,10,24,.7);--hd:rgba(7,11,23,.72);--sh:0 14px 34px -12px #000a;--gl:#22d3ee55;--gl2:#22d3ee55;--cf:rgba(103,232,249,.55);--cb:linear-gradient(135deg,rgba(34,211,238,.16),rgba(99,102,241,.2));--hv:rgba(34,211,238,.07);--dg:#0c1328f2;--ob:#0f172a;--bt:#04101f;--sp:radial-gradient(circle at 50% 45%,#16205a,#050810);--bd:#02050dcc;color-scheme:dark}
@@ -390,7 +390,7 @@ html[data-t=dark][data-n] a{color:var(--nc,#2ecc71)}
 <dialog id="cd"></dialog><dialog id="dv"></dialog><dialog id="dlg"><div id="dhd"><h3 id="dt"></h3><div id="dsub"></div></div><div id="df"></div><div class="row"><button onclick="$('#dlg').close()">Annuler</button><button class="pri" onclick="ok()">Enregistrer</button></div></dialog>
 <script>
 if(top!==self){try{top.location=self.location.href}catch(e){document.documentElement.innerHTML='';throw 0}}
-const APPV='9.27',MOB=()=>matchMedia('(max-width:700px)').matches,K='ptua_v3',$=s=>document.querySelector(s),day=864e5,today=new Date(new Date().toDateString());
+const APPV='9.28',MOB=()=>matchMedia('(max-width:700px)').matches,K='ptua_v3',$=s=>document.querySelector(s),day=864e5,today=new Date(new Date().toDateString());
 try{const av=document.getElementById('av');if(av)av.textContent='v'+APPV}catch(e){}
 // ===== v8.7 — Moniteur d’activité : métadonnées uniquement (heure, serveur, taille), jamais le contenu des données =====
 const MON={net:[],ev:[],t0:Date.now(),sent:0,recv:0,hosts:{}};
@@ -517,7 +517,7 @@ function rows(e){
  if(!a.length)return h+`<tr><td class="e" colspan="${F.length+ex.length+1}">Aucun élément.</td></tr>`;
  if(V.mode=='cards')return cards(e,a,F);
  return h+a.map(x=>{
-  let c=F.map(([k,,t])=>`<td class="${t=='number'?'n':''}">${t=='ref'?esc(mt(x[k])):t=='number'?fmt(x[k]):t=='date'?fd(x[k]):k=='doc'&&/^https?:\/\//.test(x[k])?`<a href="${esc(x[k])}" target="_blank" rel="noopener">🔗 Ouvrir</a>`:esc(x[k])}</td>`).join('');
+  let c=F.map(([k,,t])=>`<td class="${t=='number'?'n':''}">${t=='ref'?esc(mt(x[k])):t=='number'?fmt(x[k]):t=='date'?fd(x[k]):k=='doc'&&/^https?:\/\//.test(x[k])?`<a href="${esc(x[k])}" target="_blank" rel="noopener noreferrer">🔗 Ouvrir</a>`:esc(x[k])}</td>`).join('');
   if(e=='marches'){const r=calc(x);c+=r?`<td>${fdd(r.fin)}${r.arret?' (+'+r.arret+' j arrêt)':''}</td><td class="n">${r.retard||'—'}</td><td class="n">${r.pen?fmt(r.pen):'—'}</td>`:'<td colspan="3">Renseigner démarrage et délai</td>'}
   if(e=='garanties')c+=`<td>${badge(x)}${gaChip(x)}</td>`;if(e=='assurances')c+=`<td>${badgeA(x)}</td>`;
   if(e=='os'){const f=osFin(x);c+=`<td>${f?fdd(f):'—'}</td>`}
@@ -1046,7 +1046,7 @@ function revOpen(id){
  </div><div class="row"><button data-a="x">Fermer</button></div>`;
  d.querySelector('[data-a="pv"]')?.addEventListener('click',()=>courShow({n:'PV — '+(x.objet||'réunion'),t:x.pv,f:'pv'}));
  d.querySelector('[data-a="tx"]')?.addEventListener('click',()=>courShow({n:'Transcription — '+(x.objet||'réunion'),t:x.transcription,f:'brut'}));
- d.querySelector('[data-a="play"]')?.addEventListener('click',async()=>{try{const b=await fLoad(x.files[0]),blob=new Blob([b],{type:x.files[0].t}),url=URL.createObjectURL(blob);window.open(url,'_blank');setTimeout(()=>URL.revokeObjectURL(url),6e4)}catch(e){alert(e&&e.message||'Audio indisponible.')}});
+ d.querySelector('[data-a="play"]')?.addEventListener('click',async()=>{try{const b=await fLoad(x.files[0]),blob=new Blob([b],{type:x.files[0].t}),url=URL.createObjectURL(blob);window.open(url,'_blank','noopener,noreferrer');setTimeout(()=>URL.revokeObjectURL(url),6e4)}catch(e){alert(e&&e.message||'Audio indisponible.')}});
  d.querySelector('[data-a="dl"]')?.addEventListener('click',async()=>{try{const b=await fLoad(x.files[0]);dl(x.files[0].n,new Blob([b],{type:x.files[0].t}),x.files[0].t)}catch(e){alert(e&&e.message||'Audio indisponible.')}});
  d.querySelector('[data-a="x"]').onclick=()=>d.close();
  d.onkeydown=null;d.oncancel=null;if(!d.open)d.showModal()}

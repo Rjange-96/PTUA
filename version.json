@@ -1,10 +1,10 @@
 {
- "version": "9.27",
+ "version": "9.28",
  "date": "2026-11-18",
- "importance": "normale",
+ "importance": "securite",
  "notes": [
-  "Écran de verrouillage : la lampe se balance quand on tire la ficelle, vire à l’orange après 3 codes faux et au rouge en cas de blocage ; la carte tremble à chaque erreur.",
-  "Nouveau thème « Néon » (menu des thèmes) : fond sombre et accents de la couleur choisie sur la lampe.",
-  "Journal de sécurité (page Activité) : verrouillages, déverrouillages et codes incorrects, avec l’heure seulement. Aucun code ni donnée n’y figure."
+  "Audit de sécurité complet : aucune faille exploitable repérée dans l’application (affichage, chiffrement, synchronisation, import de sauvegardes).",
+  "Petits durcissements : liens et lecture audio ouverts sans transmettre d’informations à la page ouverte ; titre de la page corrigé.",
+  "Côté serveur : accès inutiles retirés sur les fonctions de rappel et de transcription, clé de l’IA de transcription mieux protégée."
  ]
 }
