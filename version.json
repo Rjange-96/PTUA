@@ -1,10 +1,9 @@
 {
- "version": "9.28",
+ "version": "9.29",
  "date": "2026-11-18",
  "importance": "securite",
  "notes": [
-  "Audit de sécurité complet : aucune faille exploitable repérée dans l’application (affichage, chiffrement, synchronisation, import de sauvegardes).",
-  "Petits durcissements : liens et lecture audio ouverts sans transmettre d’informations à la page ouverte ; titre de la page corrigé.",
-  "Côté serveur : accès inutiles retirés sur les fonctions de rappel et de transcription, clé de l’IA de transcription mieux protégée."
+  "Codes d’accès : un nouveau code trop faible est désormais refusé (chiffres seuls : 12 minimum ; sinon mélange de lettres, chiffres et symboles, ou phrase de 16 caractères). Si votre code actuel est faible, un rappel apparaît sur l’accueil.",
+  "Serveur : la création de nouveaux espaces de synchronisation est fermée par sécurité (les espaces existants ne changent pas)."
  ]
 }

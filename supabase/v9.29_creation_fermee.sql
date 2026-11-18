@@ -1,0 +1,11 @@
+-- v9.29 — audit : la création de NOUVEAUX espaces de synchronisation est fermée (appliqué en production le 2026-11-18).
+-- Empêche n'importe quel porteur de la clé publique de remplir le stockage gratuit. Les espaces existants ne sont pas touchés.
+-- Pour OUVRIR temporairement (par ex. pour créer une nouvelle synchronisation) :
+--   update public.ptua_push_cfg set v = 'open' where k = 'creation';
+-- puis refermer : update public.ptua_push_cfg set v = 'closed' where k = 'creation';
+insert into public.ptua_push_cfg(k, v) values ('creation', 'closed') on conflict (k) do nothing;
+-- ptua_put : au début de la branche « p_ver = 0 », ajout de :
+--   if coalesce((select c.v from public.ptua_push_cfg c where c.k = 'creation'), 'open') = 'closed' then
+--     raise exception 'creation fermee';
+--   end if;
+-- (voir la définition complète en production)
