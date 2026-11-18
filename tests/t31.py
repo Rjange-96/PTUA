@@ -51,7 +51,7 @@ with sync_playwright() as p:
   pc.evaluate(f"setTimeout(()=>cour('garanties','{gid}'),0)");pc.wait_for_timeout(400)
   opts=pc.evaluate("[...$('#cd').querySelectorAll('button[data-i]')].map(b=>b.textContent)");P('modèles proposés pour la garantie :',[o for o in opts if 'mon modèle' in o])
   i=[k for k,o in enumerate(opts) if 'modele' in o and '📝' in o][0];pc.click(f'#cd button[data-i="{i}"]');pc.wait_for_timeout(2500)
-  tx=pc.evaluate("$('#cot').value");P('texte rempli :','2026-0042' in tx and 'Banque Démo Verte' in tx and GP in tx and '15 000 000' in tx.replace(' ',' ').replace('\xa0',' '),'| champs non remplacés :',[x for x in ['{{numero_marche}}','{{organisme}}'] if x in tx],'| champ inconnu laissé :','{{inconnu}}' in tx)
+  tx=pc.evaluate("$('#cot').value");P('texte rempli :','2026-0042' in tx and 'Banque Démo Verte' in tx and GP in tx and '15.000.000' in tx,'| champs non remplacés :',[x for x in ['{{numero_marche}}','{{organisme}}'] if x in tx],'| champ inconnu laissé :','{{inconnu}}' in tx)
   with pc.expect_download() as dw:pc.click('#cd [data-v="x"]')
   path=dw.value.path();doc=Document(path);body='\n'.join(p.text for p in doc.paragraphs)+'\n'+'\n'.join(c.text for r in doc.tables[0].rows for c in r.cells);hd=doc.sections[0].header.paragraphs[0].text
   P('Word (mise en page du modèle) :','2026-0042' in body and 'Banque Démo Verte' in body and 'Entreprise Démo' in body,'| en-tête rempli :','{{' not in hd and '2026' in hd,'| tableau rempli :','Banque Démo Verte' in doc.tables[0].rows[0].cells[1].text,'| gras conservé :',any(r.bold for p in doc.paragraphs for r in p.runs if 'gras' in r.text))

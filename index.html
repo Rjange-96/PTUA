@@ -317,7 +317,7 @@ html.peek body>*:not(#wp){visibility:hidden!important}html.peek #wp .wpv{opacity
 <dialog id="cd"></dialog><dialog id="dv"></dialog><dialog id="dlg"><div id="dhd"><h3 id="dt"></h3><div id="dsub"></div></div><div id="df"></div><div class="row"><button onclick="$('#dlg').close()">Annuler</button><button class="pri" onclick="ok()">Enregistrer</button></div></dialog>
 <script>
 if(top!==self){try{top.location=self.location.href}catch(e){document.documentElement.innerHTML='';throw 0}}
-const APPV='9.23',MOB=()=>matchMedia('(max-width:700px)').matches,K='ptua_v3',$=s=>document.querySelector(s),day=864e5,today=new Date(new Date().toDateString());
+const APPV='9.24',MOB=()=>matchMedia('(max-width:700px)').matches,K='ptua_v3',$=s=>document.querySelector(s),day=864e5,today=new Date(new Date().toDateString());
 try{const av=document.getElementById('av');if(av)av.textContent='v'+APPV}catch(e){}
 // ===== v8.7 — Moniteur d’activité : métadonnées uniquement (heure, serveur, taille), jamais le contenu des données =====
 const MON={net:[],ev:[],t0:Date.now(),sent:0,recv:0,hosts:{}};
@@ -384,7 +384,7 @@ db=db||{marches:[],garanties:[],os:[],journal:[]};db.avenants=db.avenants||[];db
 const esc=s=>String(s??'').replace(/[&<>"'`]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;','`':'&#96;'}[c]));
 const save=()=>{if(db.ref)db.ref._u=Date.now();if(typeof SY!='undefined'&&SY){SY.dc=(SY.dc||0)+1;syLater()}try{if(!ENC)localStorage.setItem(K,JSON.stringify(db));localStorage.setItem('ptua_ls',Date.now());snap(false);if(ENC)persist()}catch(e){alert('Sauvegarde automatique impossible : pensez à exporter vos données (JSON).')}};
 const D=s=>s?new Date(s+'T00:00:00'):null,diff=(a,b)=>Math.round((a-b)/day);
-const fmt=n=>(+n||0).toLocaleString('fr-FR'),fdd=d=>d.toLocaleDateString('fr-FR'),fd=s=>s?fdd(D(s)):'—';
+const fmt=n=>{n=Math.round((+n||0)*1e3)/1e3;const[i,f]=Math.abs(n).toFixed(3).split('.'),r=f.replace(/0+$/,'');return(n<0?'-':'')+i.replace(/\B(?=(\d{3})+(?!\d))/g,'.')+(r?','+r:'')},fdd=d=>d.toLocaleDateString('fr-FR'),fd=s=>s?fdd(D(s)):'—';
 const mk=id=>db.marches.find(m=>m.id==id),mn=id=>mk(id)?.num||'?';
 const log=m=>{db.journal.unshift({d:new Date().toLocaleString('fr-FR'),m,t:Date.now()});db.journal=db.journal.slice(0,300)};
 const tomb=id=>{(db.del||(db.del={}))[id]=Date.now()};

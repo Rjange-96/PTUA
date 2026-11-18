@@ -15,7 +15,7 @@ with sync_playwright() as p:
   allt='\n'.join(t for l in T.values() for _,t in l)
   P('aucun undefined/NaN/null :',not any(w in allt for w in ['undefined','NaN','null','[object']))
   m=dict(T['marches'])
-  P('mise en demeure : numéro, objet, montant, retard, pénalité :','2024-0153' in m['Mise en demeure d’exécuter le marché'],'Réhabilitation' in allt,'850 000 000'.replace(' ',' ') in allt or '850 000 000' in allt,'jour(s)' in allt,'0,5 ‰' in allt)
+  P('mise en demeure : numéro, objet, montant, retard, pénalité :','2024-0153' in m['Mise en demeure d’exécuter le marché'],'Réhabilitation' in allt,'850.000.000' in allt,'jour(s)' in allt,'0,5 ‰' in allt)
   
   pg.screenshot(path='/tmp/i0.png')
   # UI marché : bouton ✉️ et choix
