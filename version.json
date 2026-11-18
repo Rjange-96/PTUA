@@ -1,8 +1,8 @@
 {
- "version": "9.25",
+ "version": "9.26",
  "date": "2026-11-18",
  "importance": "normale",
  "notes": [
-  "Nouvel écran de verrouillage « lampe néon » : touchez la ficelle de la lampe ou une pastille pour changer la couleur. Seule l’apparence change : le code d’accès, Face ID et le chiffrement fonctionnent exactement comme avant."
+  "Écran de verrouillage : chaque fois que vous tirez la ficelle de la lampe, la lumière change de couleur (vert, rose, cyan, orange, blanc). Seule l’apparence change."
  ]
 }

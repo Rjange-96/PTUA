@@ -382,7 +382,7 @@ main>.bar .pri{margin-left:auto}
 <dialog id="cd"></dialog><dialog id="dv"></dialog><dialog id="dlg"><div id="dhd"><h3 id="dt"></h3><div id="dsub"></div></div><div id="df"></div><div class="row"><button onclick="$('#dlg').close()">Annuler</button><button class="pri" onclick="ok()">Enregistrer</button></div></dialog>
 <script>
 if(top!==self){try{top.location=self.location.href}catch(e){document.documentElement.innerHTML='';throw 0}}
-const APPV='9.25',MOB=()=>matchMedia('(max-width:700px)').matches,K='ptua_v3',$=s=>document.querySelector(s),day=864e5,today=new Date(new Date().toDateString());
+const APPV='9.26',MOB=()=>matchMedia('(max-width:700px)').matches,K='ptua_v3',$=s=>document.querySelector(s),day=864e5,today=new Date(new Date().toDateString());
 try{const av=document.getElementById('av');if(av)av.textContent='v'+APPV}catch(e){}
 // ===== v8.7 — Moniteur d’activité : métadonnées uniquement (heure, serveur, taille), jamais le contenu des données =====
 const MON={net:[],ev:[],t0:Date.now(),sent:0,recv:0,hosts:{}};
@@ -1348,7 +1348,7 @@ const FIDK='ptua_fid',fidOk=()=>!!(window.PublicKeyCredential&&navigator.credent
 function col(n){i=n;lk.style.setProperty('--nc',C[n][0]);lk.style.setProperty('--nc-rgb',C[n][1]);[...sw.children].forEach((b,k)=>b.classList.toggle('on',k==n));try{localStorage.setItem('ptua_neon',n)}catch(e){}}
 function lamp(v){on=v;lk.style.setProperty('--non',v?1:0)}
 C.forEach((c,n)=>{const b=document.createElement('button');b.type='button';b.style.background=c[0];b.title=c[2];b.setAttribute('aria-label',c[2]);b.onclick=()=>{col(n);lamp(1)};sw.appendChild(b)});
-st.addEventListener('click',()=>{st.classList.add('pl');setTimeout(()=>st.classList.remove('pl'),160);if(on)lamp(0);else{col((i+1)%5);lamp(1)}});col(i)})();
+st.addEventListener('click',()=>{st.classList.add('pl');setTimeout(()=>st.classList.remove('pl'),160);col((i+1)%5);lamp(1)});col(i)})();
 function fidShow(){const b=$('#fb');if(b)b.hidden=!(ENC&&fidHas()&&fidOk())}
 // Face ID (passkey + extension PRF) : le code d’accès est conservé chiffré par une clé que seul Face ID peut redonner. Le code reste toujours valable.
 async function fidKey(prf){const m=await crypto.subtle.importKey('raw',prf,'HKDF',false,['deriveKey']);return crypto.subtle.deriveKey({name:'HKDF',hash:'SHA-256',salt:new Uint8Array(32),info:te.encode('ptua-face-id-v1')},m,{name:'AES-GCM',length:256},false,['encrypt','decrypt'])}
