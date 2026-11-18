@@ -56,5 +56,5 @@ with sync_playwright() as p:
   P('retrait : serveur',len(FILES),'fichier(s) | PC',pc.evaluate("db.garanties[0].files.length"))
   # fichier piégé refusé
   open('/tmp/faux.pdf','w').write('<script>alert(1)</script>');pc.set_input_files('#ff','/tmp/faux.pdf');pc.wait_for_timeout(1200)
-  P('faux PDF refusé :',any('PDF valide' in a for a in alerts))
+  pc.wait_for_timeout(1500);P('faux PDF refusé :',any('PDF valide' in a for a in alerts) or 'PDF valide' in pc.evaluate("JOB.msg?JOB.msg.d:''"))
   P('erreurs :',errs);b.close()

@@ -1,0 +1,5 @@
+Lecture des scans (OCR) hébergée par l'application, sans service externe.
+- tesseract.js 7.0.0 (Apache-2.0) : tesseract.min.js, worker.min.js
+- tesseract.js-core 6.1.2 (Apache-2.0) : tesseract-core-simd-lstm.wasm.js (moteur Tesseract compilé en WebAssembly)
+- @tesseract.js-data/fra 1.0.0 (Apache-2.0) : fra.traineddata.gz (modèle de langue française, 4.0.0_best_int)
+Ces fichiers ne sont chargés qu'à la première utilisation de « Lire mes scans » ; ensuite ils sont conservés hors ligne.

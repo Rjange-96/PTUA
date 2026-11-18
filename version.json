@@ -1,6 +1,8 @@
 {
- "version": "9.3",
- "date": "2026-11-13",
+ "version": "9.26",
+ "date": "2026-11-18",
  "importance": "normale",
- "notes": "Nouvel onglet « Assistant sécurité » : un assistant IA de cybersécurité (analyse de liens, failles CVE, checklists). Il n’a accès à aucune donnée de PTUA ; les échanges ne sont pas enregistrés. Le numéro de version affiché en haut de l’écran est corrigé."
+ "notes": [
+  "Écran de verrouillage : chaque fois que vous tirez la ficelle de la lampe, la lumière change de couleur (vert, rose, cyan, orange, blanc). Seule l’apparence change."
+ ]
 }
