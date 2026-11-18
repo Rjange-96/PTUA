@@ -1,8 +1,10 @@
 {
- "version": "9.26",
+ "version": "9.27",
  "date": "2026-11-18",
  "importance": "normale",
  "notes": [
-  "Écran de verrouillage : chaque fois que vous tirez la ficelle de la lampe, la lumière change de couleur (vert, rose, cyan, orange, blanc). Seule l’apparence change."
+  "Écran de verrouillage : la lampe se balance quand on tire la ficelle, vire à l’orange après 3 codes faux et au rouge en cas de blocage ; la carte tremble à chaque erreur.",
+  "Nouveau thème « Néon » (menu des thèmes) : fond sombre et accents de la couleur choisie sur la lampe.",
+  "Journal de sécurité (page Activité) : verrouillages, déverrouillages et codes incorrects, avec l’heure seulement. Aucun code ni donnée n’y figure."
  ]
 }
