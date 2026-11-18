@@ -1,9 +1,8 @@
 {
- "version": "9.23",
- "date": "2026-11-17",
+ "version": "9.24",
+ "date": "2026-11-18",
  "importance": "normale",
  "notes": [
-  "Marchés regroupés par entreprise : une entreprise qui a plusieurs marchés (ex. Urban Building) n’apparaît plus qu’une fois dans la liste. En la touchant, vous voyez tous ses marchés avec leurs informations (montant, avenants, démarrage, fin prévue, retard, garanties, assurances, ordres de service, réserves, points à vérifier).",
-  "Dans la fiche d’une entreprise : bouton « + Marché pour cette entreprise » (titulaire prérempli), accès direct aux garanties et assurances de chaque marché, et retour à la liste des entreprises. Le bouton « 📋 En liste / 👥 Par entreprise » permet de revenir à l’ancien affichage à plat."
+  "Interface plus soignée : alertes plus sobres et plus compactes, en-tête du téléphone réorganisé (titre, puis heure et boutons), cartes de chiffres alignées, fiches entreprise avec survol et lien « Ouvrir » discret, barre d’outils des listes avec le bouton d’ajout bien visible, zones vides plus claires. Aucune donnée ni fonction modifiée."
  ]
 }

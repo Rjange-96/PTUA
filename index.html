@@ -308,6 +308,45 @@ html.peek body>*:not(#wp){visibility:hidden!important}html.peek #wp .wpv{opacity
 #wp.noa *,#wp.noa{animation:none!important}#wp.pz *{animation-play-state:paused!important}
 @media(prefers-reduced-motion:reduce){#wp *{animation:none!important}}
 @media print{#wp{display:none!important}}
+/* ===== v9.24 — finition d’interface : alertes sobres, en-tête mobile, cartes, barre d’outils, états vides ===== */
+/* Alertes : une couleur d’accent à gauche, texte lisible, alignées sur le contenu */
+#al{max-width:1240px}
+.al{color:var(--t);font-weight:500;font-size:13.5px;line-height:1.4;padding:9px 12px;border-radius:10px;border-left:4px solid var(--ac,var(--m));transition:background .15s}
+.al.r{--ac:var(--r);color:var(--t)}.al.o{--ac:var(--o);color:var(--t)}
+.al:hover{background:color-mix(in srgb,var(--ac,var(--m)) 7%,var(--c));filter:none}
+@media(min-width:900px){.al{margin:8px 28px 0}#al{padding-top:4px}}
+/* Cartes chiffres : chiffre aligné en bas, étiquette en haut */
+.k{justify-content:space-between;min-height:92px}
+.k b{font-variant-numeric:tabular-nums;font-size:28px;line-height:1.15}
+.k span{line-height:1.3}
+/* Tableaux : lignes plus légères, dernière ligne sans trait */
+td{border-bottom-color:color-mix(in srgb,var(--b) 65%,transparent)}
+tbody tr:last-child td{border-bottom:0}
+/* États vides : zone discrète au lieu d’un texte flottant */
+.card>.e,.card .w>.e{background:color-mix(in srgb,var(--m) 6%,transparent);border-radius:10px;padding:22px 16px;font-size:14px}
+/* Barre d’outils des listes : recherche large, action principale à droite */
+main>.bar{align-items:center}
+main>.bar input{min-width:160px}
+main>.bar #ssel{max-width:190px;flex:0 1 190px}
+main>.bar .pri{margin-left:auto}
+/* Fiches entreprise / marché : survol, hiérarchie, lien « Ouvrir » discret */
+.ci{transition:border-color .15s,box-shadow .2s;padding:14px 16px;font-size:13.5px}
+.ci:hover{border-color:var(--cf);box-shadow:var(--sh)}
+.ci b{font-size:15px;margin-bottom:8px}
+.ci .ca{justify-content:flex-end;margin-top:6px}
+.ci .ca button{border:0;background:none;box-shadow:none;color:var(--p);font-weight:600;padding:4px 0;min-height:0}
+.ci .ca button:hover{text-decoration:underline;background:none}
+/* Mobile : en-tête sur deux lignes (titre, puis heure + boutons), action principale en haut des listes */
+@media(max-width:700px){
+ header{row-gap:6px}
+ .lg{flex:1 1 100%;min-width:0}
+ h1{font-size:15px;line-height:1.3}
+ .hr{order:0;width:auto;flex:1 1 0;min-width:0}
+ .hb{margin-left:auto}
+ main>.bar .pri{order:-1;flex:1 1 100%;margin-left:0}
+ main>.bar input{flex:1 1 100%}
+ .k{min-height:84px}
+}
 </style></head><body>
 <a class="skip" href="#v">Aller au contenu</a><div id="bg"></div><div id="sp"><svg class="lgo" viewBox="0 0 48 48" role="img" aria-label="PTUA"><circle cx="24" cy="24" r="22" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="24" cy="24" r="17.5" fill="none" stroke="currentColor" stroke-width="1" opacity=".55"/><text x="24" y="33" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="26" font-weight="700" fill="currentColor">§</text></svg><b>PTUA</b></div><header><div class="lg"><svg class="lgo" viewBox="0 0 48 48" role="img" aria-label="PTUA"><circle cx="24" cy="24" r="22" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="24" cy="24" r="17.5" fill="none" stroke="currentColor" stroke-width="1" opacity=".55"/><text x="24" y="33" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="26" font-weight="700" fill="currentColor">§</text></svg><h1>Gestionnaire juridique et contractuel PTUA <small id="av"></small> <span id="sys" onclick="go('sauv')"></span></h1></div><div class="hr"><b id="ht">--:--:--</b><small id="hdt"></small></div>
 <div class="hb"><button onclick="go('search')" aria-label="Rechercher" title="Rechercher" data-i="search"></button><button id="th" onclick="thMenu()"></button><button onclick="pinMenu()" aria-label="Code d’accès et verrouillage" title="Code d’accès et verrouillage" data-i="lock"></button><button onclick="menu()" aria-label="Autres actions" title="Autres actions" data-i="dots"></button></div>
@@ -317,7 +356,7 @@ html.peek body>*:not(#wp){visibility:hidden!important}html.peek #wp .wpv{opacity
 <dialog id="cd"></dialog><dialog id="dv"></dialog><dialog id="dlg"><div id="dhd"><h3 id="dt"></h3><div id="dsub"></div></div><div id="df"></div><div class="row"><button onclick="$('#dlg').close()">Annuler</button><button class="pri" onclick="ok()">Enregistrer</button></div></dialog>
 <script>
 if(top!==self){try{top.location=self.location.href}catch(e){document.documentElement.innerHTML='';throw 0}}
-const APPV='9.23',MOB=()=>matchMedia('(max-width:700px)').matches,K='ptua_v3',$=s=>document.querySelector(s),day=864e5,today=new Date(new Date().toDateString());
+const APPV='9.24',MOB=()=>matchMedia('(max-width:700px)').matches,K='ptua_v3',$=s=>document.querySelector(s),day=864e5,today=new Date(new Date().toDateString());
 try{const av=document.getElementById('av');if(av)av.textContent='v'+APPV}catch(e){}
 // ===== v8.7 — Moniteur d’activité : métadonnées uniquement (heure, serveur, taille), jamais le contenu des données =====
 const MON={net:[],ev:[],t0:Date.now(),sent:0,recv:0,hosts:{}};
