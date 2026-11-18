@@ -1,8 +1,8 @@
 {
- "version": "9.24",
+ "version": "9.25",
  "date": "2026-11-18",
  "importance": "normale",
  "notes": [
-  "Interface plus soignée : alertes plus sobres et plus compactes, en-tête du téléphone réorganisé (titre, puis heure et boutons), cartes de chiffres alignées, fiches entreprise avec survol et lien « Ouvrir » discret, barre d’outils des listes avec le bouton d’ajout bien visible, zones vides plus claires. Aucune donnée ni fonction modifiée."
+  "Nouvel écran de verrouillage « lampe néon » : touchez la ficelle de la lampe ou une pastille pour changer la couleur. Seule l’apparence change : le code d’accès, Face ID et le chiffrement fonctionnent exactement comme avant."
  ]
 }
